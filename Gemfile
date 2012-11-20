@@ -31,6 +31,7 @@ gem 'devise' # authentication
 gem 'cancan' # authorization
 gem 'geocoder' # geo location
 
+gem 'ffaker'
 group :development do
 end
 

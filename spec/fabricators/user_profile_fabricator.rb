@@ -1,7 +1,8 @@
 Fabricator(:user_profile) do
-  birthday "2012-11-19"
-  gender   "MyString"
-  seeking  "MyString"
-  min_age  ""
-  max_age  ""
+  user { Fabricate(:user) }
+  birthday { Date.today }
+  gender   { ['male', 'female'].sample }
+  seeking  { ['male', 'female'].sample }
+  min_age  { (18...35).to_a.sample }
+  max_age  { (36...50).to_a.sample }
 end

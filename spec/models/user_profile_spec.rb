@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe UserProfile do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'Fabricator' do 
+    subject { Fabricate(:user_profile) }
+    it { should be_valid }
+  end
 end
