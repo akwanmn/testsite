@@ -62,6 +62,11 @@ module Phoenix
     # Enable the asset pipeline
     config.assets.enabled = true
 
+    config.generators do |g|
+      g.orm :mongoid
+      g.test_framework :rspec, :fixture => true, :views => false
+      g.fixture_replacement :fabrication, :dir => "spec/fabricators"
+    end
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
   end

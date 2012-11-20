@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.9'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -19,19 +19,22 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'haml-rails'
 gem 'jquery-rails'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'mongoid', '~> 3.0.0' # database
+gem 'activemerchant' # credit card processing
+gem 'sendgrid' # email 
+gem 'aasm' # state machine
+gem 'simple_form' # forms
+gem 'devise' # authentication
+gem 'cancan' # authorization
+gem 'geocoder' # geo location
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
+group :development do
+end
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
+group :test do
+  gem 'fabrication' # fixtures
+  gem 'rspec-rails' # rspec / testing
+end
