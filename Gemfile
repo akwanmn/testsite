@@ -38,4 +38,5 @@ end
 group :test do
   gem 'fabrication' # fixtures
   gem 'rspec-rails' # rspec / testing
+  gem 'database_cleaner'
 end
