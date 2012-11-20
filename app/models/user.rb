@@ -1,5 +1,9 @@
 class User
   include Mongoid::Document
+
+  # association
+  embeds_one :user_profile
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

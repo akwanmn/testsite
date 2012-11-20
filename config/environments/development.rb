@@ -30,4 +30,10 @@ Phoenix::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # active merchant configuration
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    ::GATEWAY = ActiveMerchant::Billing::BogusGateway.new
+  end
 end

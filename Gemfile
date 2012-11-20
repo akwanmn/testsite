@@ -23,7 +23,7 @@ gem 'haml-rails'
 gem 'jquery-rails'
 
 gem 'mongoid', '~> 3.0.0' # database
-gem 'activemerchant' # credit card processing
+gem 'activemerchant', :require => 'active_merchant' # credit card processing
 gem 'sendgrid' # email 
 gem 'aasm' # state machine
 gem 'simple_form' # forms
