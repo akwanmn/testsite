@@ -30,13 +30,16 @@ gem 'simple_form' # forms
 gem 'devise' # authentication
 gem 'cancan' # authorization
 gem 'geocoder' # geo location
+gem 'sidekiq'
 
-gem 'ffaker'
 group :development do
+  gem 'foreman'
+  gem 'thin'
 end
 
 group :test do
   gem 'fabrication' # fixtures
   gem 'rspec-rails' # rspec / testing
   gem 'database_cleaner'
+  gem 'ffaker'
 end

@@ -1,5 +1,6 @@
 class UserProfile
   include Mongoid::Document
+  include Geocoder::Model::Mongoid
 
   belongs_to :user
 
@@ -8,6 +9,8 @@ class UserProfile
   field :seeking,       type: String
   field :min_age,       type: Integer
   field :max_age,       type: Integer
+  field :coordinates,   type: Array
+
 
   # validations
   validates_inclusion_of :gender, in: ['male', 'female']
