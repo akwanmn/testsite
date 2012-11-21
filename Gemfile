@@ -43,3 +43,7 @@ group :test do
   gem 'database_cleaner'
   gem 'ffaker'
 end
+
+gem 'hpricot'
+gem 'haml'
+gem 'ruby_parser'
