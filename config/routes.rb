@@ -1,7 +1,8 @@
 Phoenix::Application.routes.draw do
+  ##################################################
+  # GLOBAL ROUTES
+  ##################################################
   devise_for :users, path_names: { :sign_in => 'login', :sign_out => 'logout' }
-# default urls for user
-
 
 
   ##################################################
@@ -12,5 +13,6 @@ Phoenix::Application.routes.draw do
     resources :sample
   end
 
-  root to: 'sample#index'
+  # needs to be changed to something that is not the admin.
+  root to: 'admin/sample#index'
 end

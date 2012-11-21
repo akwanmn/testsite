@@ -55,19 +55,19 @@
                       %li
                         %a{:href => "#", :tabindex => "-1"} Second level link
               %li
-                %a{:href => "login.html"} Logout
+                = link_to 'Logout', destroy_user_session_path
           / /#top-nav
         / /.container
       / /#topbar
       #header
         .container
-          %a.brand{:href => "./index.html"} Dashboard Admin
+          = link_to 'Dashboard', root_path, :class => 'brand'
           %a.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :href => "javascript:;"}
             %i.icon-reorder
           .nav-collapse
             %ul#main-nav.nav.pull-right
               %li.nav-icon.active
-                %a{:href => "./index.html"}
+                = link_to root_path do
                   %i.icon-home
                   %span Home
               %li.dropdown
@@ -95,38 +95,7 @@
                         %a{:href => "#", :tabindex => "-1"} Second level link
                       %li
                         %a{:href => "#", :tabindex => "-1"} Second level link
-              %li.dropdown
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:;"}
-                  %i.icon-copy
-                  %span Sample Pages
-                  %b.caret
-                %ul.dropdown-menu
-                  %li
-                    %a{:href => "./faq.html"} FAQ
-                  %li
-                    %a{:href => "./gallery.html"} Image Gallery
-                  %li
-                    %a{:href => "./pricing.html"} Pricing Plans
-                  %li
-                    %a{:href => "./reports.html"} Reports
-                  %li
-                    %a{:href => "./settings.html"} Settings
-              %li.dropdown
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:;"}
-                  %i.icon-external-link
-                  %span Extras
-                  %b.caret
-                %ul.dropdown-menu
-                  %li
-                    %a{:href => "./login.html"} Login
-                  %li
-                    %a{:href => "./signup.html"} Signup
-                  %li
-                    %a{:href => "./error.html"} Error
-                  %li
-                    %a{:href => "./skins.html"} Skins
-                  %li
-                    %a{:href => "./sticky.html"} Sticky Footer
+              
           / /.nav-collapse
         / /.container
       / /#header
