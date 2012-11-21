@@ -1,0 +1,256 @@
+<!doctype html>
+/[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en">
+/[if IE 7] <html class="no-js lt-ie9 lt-ie8" lang="en">
+/[if IE 8] <html class="no-js lt-ie9" lang="en">
+/ [if gt IE 8]><!
+%html.no-js{:lang => "en"}
+  / <![endif]
+  %head
+    %title Dashboard Admin
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", :name => "viewport"}/
+    %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,600,800", :rel => "stylesheet"}/
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'libs/modernizr-2.5.3.min.js'
+  %body
+    #wrapper
+      #topbar
+        .container
+          %a#menu-trigger{:href => "javascript:;"}
+            %i.icon-cog
+          #top-nav
+            %ul
+              %li.dropdown
+                %a{:href => "http://2date4love.com"}
+                  View Site
+                
+            %ul.pull-right
+              %li
+                %a{:href => "javascript:;"}
+                  %i.icon-user
+                  Logged in as Laura Brashier
+              %li
+                %a{:href => "javascript:;"}
+                  %span.badge.badge-primary 1
+                  New Message
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "./pages/settings.html"}
+                  Settings
+                  %b.caret
+                %ul.dropdown-menu.pull-right
+                  %li
+                    %a{:href => "javascript:;"} Settings #1
+                  %li
+                    %a{:href => "javascript:;"} Settings #2
+                  %li.dropdown-submenu
+                    %a{:href => "#", :tabindex => "-1"} Dropdown menu
+                    %ul.dropdown-menu
+                      %li
+                        %a{:href => "#", :tabindex => "-1"} Second level link
+                      %li
+                        %a{:href => "#", :tabindex => "-1"} Second level link
+                      %li
+                        %a{:href => "#", :tabindex => "-1"} Second level link
+              %li
+                %a{:href => "login.html"} Logout
+          / /#top-nav
+        / /.container
+      / /#topbar
+      #header
+        .container
+          %a.brand{:href => "./index.html"} Dashboard Admin
+          %a.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :href => "javascript:;"}
+            %i.icon-reorder
+          .nav-collapse
+            %ul#main-nav.nav.pull-right
+              %li.nav-icon.active
+                %a{:href => "./index.html"}
+                  %i.icon-home
+                  %span Home
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:;"}
+                  %i.icon-th
+                  %span Components
+                  %b.caret
+                %ul.dropdown-menu
+                  %li
+                    %a{:href => "./elements.html"} Elements
+                  %li
+                    %a{:href => "./validation.html"} Validation
+                  %li
+                    %a{:href => "./jqueryui.html"} jQuery UI
+                  %li
+                    %a{:href => "./charts.html"} Charts
+                  %li
+                    %a{:href => "./bonus.html"} Bonus Elements
+                  %li.dropdown-submenu
+                    %a{:href => "#", :tabindex => "-1"} Dropdown menu
+                    %ul.dropdown-menu
+                      %li
+                        %a{:href => "#", :tabindex => "-1"} Second level link
+                      %li
+                        %a{:href => "#", :tabindex => "-1"} Second level link
+                      %li
+                        %a{:href => "#", :tabindex => "-1"} Second level link
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:;"}
+                  %i.icon-copy
+                  %span Sample Pages
+                  %b.caret
+                %ul.dropdown-menu
+                  %li
+                    %a{:href => "./faq.html"} FAQ
+                  %li
+                    %a{:href => "./gallery.html"} Image Gallery
+                  %li
+                    %a{:href => "./pricing.html"} Pricing Plans
+                  %li
+                    %a{:href => "./reports.html"} Reports
+                  %li
+                    %a{:href => "./settings.html"} Settings
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:;"}
+                  %i.icon-external-link
+                  %span Extras
+                  %b.caret
+                %ul.dropdown-menu
+                  %li
+                    %a{:href => "./login.html"} Login
+                  %li
+                    %a{:href => "./signup.html"} Signup
+                  %li
+                    %a{:href => "./error.html"} Error
+                  %li
+                    %a{:href => "./skins.html"} Skins
+                  %li
+                    %a{:href => "./sticky.html"} Sticky Footer
+          / /.nav-collapse
+        / /.container
+      / /#header
+      #masthead
+        .container
+          .masthead-pad
+            .masthead-text
+              %h2 Dashboard
+              %p You are currently working on 4 projects, with 23 total tasks.
+            / /.masthead-text
+        / /.container
+      / /#masthead
+      #content
+        .container
+          .row
+            .span4
+              %h3 Welcome back, Admin.
+              %p
+                You are currently signed up to the Free Trial Plan.
+                %br/
+                = succeed "." do
+                  %a{:href => "javascript:;"} Upgrade your plan today
+              %table.table.stat-table
+                %tbody
+                  %tr
+                    %td.value 789
+                    %td.full Visits Today
+                  %tr
+                    %td.value 634
+                    %td.full Unique Visits
+                  %tr
+                    %td.value 13
+                    %td.full Pending Comments
+                  %tr
+                    %td.value 17
+                    %td.full Support Requests
+            / /.span4
+            .span8
+              #line-chart.chart-holder
+              / /#bar-chart
+            / /.span8
+          / /.row
+          .row
+            .span5
+              %h3.title Sales
+              #donut-chart.chart-holder
+              / /#donut-chart
+            / /.span5
+            .span7
+              %h3.title Support Request
+              %table.table
+                %thead
+                  %tr
+                    %th Label
+                    %th Subject
+                    %th User
+                %tbody
+                  %tr
+                    %td
+                      %span.label.label-primary Open
+                    %td.full
+                      %a{:href => "#"} Lorem ipsum dolor sit amet
+                    %td.who Posted by Bill
+                  %tr
+                    %td
+                      %span.label.label-primary Open
+                    %td.full
+                      %a{:href => "#"} Consectetur adipiscing
+                    %td.who Posted by Pam
+                  %tr
+                    %td
+                      %span.label.label-primary Open
+                    %td.full
+                      %a{:href => "#"} Sed in porta lectus maecenas
+                    %td.who Posted by Curtis
+                  %tr
+                    %td
+                      %span.label.label-danger Closed
+                    %td.full
+                      %a{:href => "#"} Dignissim enim
+                    %td.who Posted by John
+                  %tr
+                    %td
+                      %span.label.label-secondary Responded
+                    %td.full
+                      %a{:href => "#"} Duis nec rutrum lorem
+                    %td.who Posted by James
+                  %tr
+                    %td
+                      %span.label.label-danger Closed
+                    %td.full
+                      %a{:href => "#"} Maecenas id velit et elit
+                    %td.who Posted by Sam
+                  %tr
+                    %td
+                      %span.label.label-secondary Responded
+                    %td.full
+                      %a{:href => "#"} Duis nec rutrum lorem
+                    %td.who Posted by Carlos
+            / /.span7
+          / /.row
+        / /.container
+      / /#content
+    / /#wrapper
+    #footer
+      .container
+        .row
+          .span6
+            © 2012
+            = succeed "," do
+              %a{:href => "#"} New Beginnings LLC
+            all rights reserved.
+          / /span6
+          #builtby.span6
+
+          / /.span6
+        / /row
+      / /container
+    / /#footer
+    = javascript_include_tag 'application'
+    :javascript
+      $(function () {
+      	
+      	Theme.init ();
+      	
+      });
+      

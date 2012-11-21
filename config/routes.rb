@@ -1,5 +1,8 @@
 Phoenix::Application.routes.draw do
   devise_for :users # default urls for user
+  resources :sample
+
+  root to: 'sample#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
