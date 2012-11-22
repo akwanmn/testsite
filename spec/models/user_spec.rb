@@ -5,6 +5,9 @@ describe User do
   context 'Fabricator' do 
     it { should be_valid }
   end
-  its(:full_name) { should_not be_blank }
 
+  it '#full_name' do 
+    name = "#{subject.user_profile.first_name} #{subject.user_profile.last_name}"
+    subject.full_name.should eql "#{name}"
+  end
 end
