@@ -4,6 +4,8 @@ class UserProfile
 
   belongs_to :user
 
+  field :first_name,    type: String
+  field :last_name,     type: String
   field :birthday,      type: Date
   field :gender,        type: String
   field :seeking,       type: String

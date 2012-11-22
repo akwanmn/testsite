@@ -1,0 +1,37 @@
+<!doctype html>
+/[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en">
+/[if IE 7] <html class="no-js lt-ie9 lt-ie8" lang="en">
+/[if IE 8] <html class="no-js lt-ie9" lang="en">
+/ [if gt IE 8]><!
+%html.no-js{:lang => "en"}
+  / <![endif]
+  %head
+    %meta{:charset => "utf-8"}/
+    %title Dashboard Admin
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", :name => "viewport"}/
+    %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,600,800", :rel => "stylesheet"}/
+    = stylesheet_link_tag 'application'
+    %script{:src => "js/libs/modernizr-2.5.3.min.js"}
+  %body.login
+    .account-container.login.stacked
+      .content.clearfix
+        - flash.each do |name, msg|
+          .alert= content_tag :div, msg, id: "flash_#{name}", class: "alert-#{name}" if msg.is_a?(String)
+        = yield
+      / /content
+    / /account-container
+    / Text Under Box
+    .login-extra
+      Don't have an account?
+      = link_to "Sign Up", new_registration_path(resource_name)
+      %br/
+      = link_to "Forgot your password?", new_password_path(resource_name)
+    / /login-extra
+    %script{:src => "js/libs/jquery-1.7.2.min.js"}
+    %script{:src => "js/libs/jquery-ui-1.8.21.custom.min.js"}
+    %script{:src => "js/libs/jquery.ui.touch-punch.min.js"}
+    %script{:src => "js/libs/bootstrap/bootstrap.min.js"}
+    %script{:src => "js/signin.js"}
