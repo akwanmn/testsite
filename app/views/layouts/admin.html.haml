@@ -24,15 +24,13 @@
           #top-nav
             %ul
               %li.dropdown
-                %a{:href => "http://2date4love.com"}
-                  View Site
-                
+                = link_to 'View Site', 'http://2date4love.com', :target => '_blank'
             %ul.pull-right
               %li
                 %a{:href => "javascript:;"}
                   %i.icon-user
                   Logged in as
-                  = current_user.email
+                  = current_user.full_name.blank? ? current_user.email : current_user.full_name
               %li
                 %a{:href => "javascript:;"}
                   %span.badge.badge-primary 1
@@ -125,8 +123,8 @@
               %table.table.stat-table
                 %tbody
                   %tr
-                    %td.value 789
-                    %td.full Visits Today
+                    %td.value= User.count
+                    %td.full Total Users
                   %tr
                     %td.value 634
                     %td.full Unique Visits
@@ -209,7 +207,7 @@
         .row
           .span6
             © 2012
-            = succeed "," do
+            = succeed ", " do
               %a{:href => "#"} New Beginnings LLC
             all rights reserved.
           / /span6

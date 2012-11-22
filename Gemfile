@@ -35,6 +35,8 @@ gem 'sidekiq'
 group :development do
   gem 'foreman'
   gem 'thin'
+  gem 'guard-rspec'
+  gem 'rb-fsevent'
 end
 
 group :test do

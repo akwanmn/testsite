@@ -1,5 +1,5 @@
 Fabricator(:user_profile) do
-  user { Fabricate(:user) }
+  #user { Fabricate(:user) }
   first_name { Faker::Name.first_name }
   last_name { Faker::Name.last_name }
   birthday { Date.today }

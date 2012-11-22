@@ -1,6 +1,6 @@
 class User
   include Mongoid::Document
-
+  include Mongoid::Timestamps
   # association
   embeds_one :user_profile
 
@@ -44,4 +44,8 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+
+  def full_name
+    "#{user_profile.first_name} #{user_profile.last_name}" unless user_profile.blank?
+  end
 end
