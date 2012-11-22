@@ -21,7 +21,6 @@ end
 
 gem 'haml-rails'
 gem 'jquery-rails'
-
 gem 'mongoid', '~> 3.0.0' # database
 gem 'activemerchant', :require => 'active_merchant' # credit card processing
 gem 'sendgrid' # email 
@@ -30,7 +29,8 @@ gem 'simple_form' # forms
 gem 'devise' # authentication
 gem 'cancan' # authorization
 gem 'geocoder' # geo location
-gem 'sidekiq'
+gem 'sidekiq' # jobs platform
+gem 'switch_user' # switch from admin to user
 
 group :development do
   gem 'foreman'

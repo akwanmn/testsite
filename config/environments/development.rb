@@ -35,5 +35,6 @@ Phoenix::Application.configure do
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test
     ::GATEWAY = ActiveMerchant::Billing::BogusGateway.new
+    # Access as GATEWAY
   end
 end

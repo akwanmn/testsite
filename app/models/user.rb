@@ -3,6 +3,7 @@ class User
   include Mongoid::Timestamps
   # association
   embeds_one :user_profile
+  has_many :orders
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -30,6 +31,9 @@ class User
   field :last_sign_in_at,    :type => Time
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
+
+  # some delegations to make things cleaner -- Thanks Jon.
+  delegate :first_name, :last_name, to: :user_profile
 
   ## Confirmable
   # field :confirmation_token,   :type => String

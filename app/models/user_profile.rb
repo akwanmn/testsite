@@ -2,7 +2,7 @@ class UserProfile
   include Mongoid::Document
   include Geocoder::Model::Mongoid
 
-  belongs_to :user
+  embedded_in :user
 
   field :first_name,    type: String
   field :last_name,     type: String
@@ -15,8 +15,8 @@ class UserProfile
 
 
   # validations
-  validates_inclusion_of :gender, in: ['male', 'female']
-  validates_inclusion_of :seeking, in: ['male', 'female']
-  validates_numericality_of :min_age, greater_than_or_equal_to: 18
-  validates_numericality_of :max_age, less_than_or_equal_to: 120
+  #validates_inclusion_of :gender, in: ['male', 'female']
+  #validates_inclusion_of :seeking, in: ['male', 'female']
+  #validates_numericality_of :min_age, greater_than_or_equal_to: 18
+  #alidates_numericality_of :max_age, less_than_or_equal_to: 120
 end
