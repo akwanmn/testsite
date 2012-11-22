@@ -48,4 +48,18 @@ class User
   def full_name
     "#{user_profile.first_name} #{user_profile.last_name}" unless user_profile.blank?
   end
+
+  # Override the devise valid_password? method so that we can use Django passwords
+  # here as well.  Import them straight in and we will check for Devise passwords,
+  # otherwise check against Django's format.
+  def valid_password?(password)
+    begin
+      super(password)
+    rescue BCrypt::Errors::InvalidHash
+      type, salt, enc_pass = encrypted_password.split('$')
+      Digest::SHA1.hexdigest("#{salt}#{password}") == enc_pass
+    end
+  end
+  alias :devise_valid_password? :valid_password?
+
 end
