@@ -1,7 +1,4 @@
-- content_for :masthead do
-  %h2 Manage Users
-  %p= "There are currently #{User.count} users in the database."
-
+= render 'admin/users/shared/masthead'
 
 %table.table.table-bordered.table-striped.table-highlight
   %thead
@@ -24,5 +21,6 @@
         %td
           = link_to 'Edit', edit_admin_user_path(u), class: 'btn btn-secondary'
           = link_to 'Delete', admin_user_path(u), method: :delete, class: 'btn btn-danger'
+          = link_to 'Switch', '#', class: 'btn btn-tertiary'
 
 = paginate @users, window: 2

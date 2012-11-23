@@ -8,6 +8,7 @@ class User
   # association
   embeds_one :user_profile
   has_many :orders
+  accepts_nested_attributes_for :user_profile
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

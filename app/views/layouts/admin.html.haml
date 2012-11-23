@@ -108,9 +108,12 @@
       / /#masthead
       #content
         .container
-          /.alert HELLO
-          /.alert.alert-error HELLO
-          /.alert.alert-info HELLO
+          - if !flash[:alert].blank?
+            .alert= flash[:alert]
+          - if !flash[:notice].blank?
+            .alert.alert-info= flash[:notice]
+          - if !flash[:error].blank?
+            .alert.alert-error= flash[:error]
           = yield
           
     #footer

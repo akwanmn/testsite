@@ -2,6 +2,8 @@ class UserProfile
   include Mongoid::Document
   include Geocoder::Model::Mongoid
 
+  GENDERS = ['male', 'female']
+
   embedded_in :user
 
   field :first_name,        type: String
@@ -26,6 +28,7 @@ class UserProfile
   validates_inclusion_of :seeking, in: ['male', 'female']
   validates_numericality_of :min_age, greater_than_or_equal_to: 18
   validates_numericality_of :max_age, less_than_or_equal_to: 120
+  validates_presence_of :first_name, :last_name
 
   def age
     return "-" if birthday.blank?

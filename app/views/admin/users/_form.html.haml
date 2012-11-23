@@ -1,0 +1,20 @@
+.row
+  = simple_form_for [:admin,@user] do |f|
+    .span6
+      = f.input :email, input_html: {class: 'input-xlarge'}
+      = f.input :password
+      = f.input :password_confirmation
+      = f.input :is_admin, as: :boolean
+      = f.input :sign_in_count, :disabled => true
+      = f.input :last_sign_in_at, :disabled => true
+      = f.input :last_sign_in_ip, :disabled => true
+    .span6
+      = f.simple_fields_for :user_profile do |up|
+        = up.input :first_name
+        = up.input :last_name
+        = up.input :birthday
+        = up.input :gender, as: :select, collection: UserProfile::GENDERS
+        = up.input :seeking, as: :select, collection: UserProfile::GENDERS
+        = up.input :min_age
+        = up.input :max_age
+    = f.button :submit
