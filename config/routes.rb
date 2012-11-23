@@ -10,13 +10,15 @@ Phoenix::Application.routes.draw do
   ##################################################
   # the namespace, then the custom path.
   namespace :admin, path: '/super-admin' do 
+    match '/orders/latest' => 'orders#latest'
     resources :sample
     resources :users do 
       member do
         get :disable
         get :restore
       end
-      resources :orders do 
+      resources :orders do
+
       end
     end
   end

@@ -35,6 +35,7 @@ Phoenix::Application.configure do
   config.after_initialize do
     # password 353703739
     # andy_1353703658_biz@conspyre.com
+    #  4153058268775801
     ActiveMerchant::Billing::Base.mode = :test
     ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
         login: 'andy_1353703658_biz_api1.conspyre.com',

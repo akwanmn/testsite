@@ -4,6 +4,7 @@ class Order
 
   attr_accessor :card_number, :card_verification
 
+  paginates_per 5
   belongs_to :user
   embeds_many :transactions, class_name: 'OrderTransaction'
 
