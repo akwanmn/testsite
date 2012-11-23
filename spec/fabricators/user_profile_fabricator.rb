@@ -1,7 +1,7 @@
 Fabricator(:user_profile) do
   first_name { Faker::Name.first_name }
   last_name { Faker::Name.last_name }
-  birthday { Date.today }
+  birthday { Date.today - (25...50).to_a.sample.year }
   gender   { ['male', 'female'].sample }
   seeking  { ['male', 'female'].sample }
   min_age  { (18...35).to_a.sample }

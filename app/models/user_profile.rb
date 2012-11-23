@@ -22,8 +22,14 @@ class UserProfile
 
 
   # validations
-  #validates_inclusion_of :gender, in: ['male', 'female']
-  #validates_inclusion_of :seeking, in: ['male', 'female']
-  #validates_numericality_of :min_age, greater_than_or_equal_to: 18
-  #alidates_numericality_of :max_age, less_than_or_equal_to: 120
+  validates_inclusion_of :gender, in: ['male', 'female']
+  validates_inclusion_of :seeking, in: ['male', 'female']
+  validates_numericality_of :min_age, greater_than_or_equal_to: 18
+  validates_numericality_of :max_age, less_than_or_equal_to: 120
+
+  def age
+    return "-" if birthday.blank?
+    now = Time.now.utc.to_date
+    now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
+  end
 end

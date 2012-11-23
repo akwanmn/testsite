@@ -102,8 +102,7 @@
         .container
           .masthead-pad
             .masthead-text
-              %h2 Dashboard
-              %p You are currently working on 4 projects, with 23 total tasks.
+              = yield :masthead
             / /.masthead-text
         / /.container
       / /#masthead
@@ -112,96 +111,8 @@
           /.alert HELLO
           /.alert.alert-error HELLO
           /.alert.alert-info HELLO
-          .row
-            .span4
-              %h3 Welcome back, Admin.
-              %p
-                You are currently signed up to the Free Trial Plan.
-                %br/
-                = succeed "." do
-                  %a{:href => "javascript:;"} Upgrade your plan today
-              %table.table.stat-table
-                %tbody
-                  %tr
-                    %td.value= User.count
-                    %td.full Total Users
-                  %tr
-                    %td.value= Order.count
-                    %td.full Orders
-                  %tr
-                    %td.value 13
-                    %td.full Pending Comments
-                  %tr
-                    %td.value 17
-                    %td.full Support Requests
-            / /.span4
-            .span8
-              #line-chart.chart-holder
-              / /#bar-chart
-            / /.span8
-          / /.row
-          .row
-            .span5
-              %h3.title Sales
-              #donut-chart.chart-holder
-              / /#donut-chart
-            / /.span5
-            .span7
-              %h3.title Support Request
-              %table.table
-                %thead
-                  %tr
-                    %th Label
-                    %th Subject
-                    %th User
-                %tbody
-                  %tr
-                    %td
-                      %span.label.label-primary Open
-                    %td.full
-                      %a{:href => "#"} Lorem ipsum dolor sit amet
-                    %td.who Posted by Bill
-                  %tr
-                    %td
-                      %span.label.label-primary Open
-                    %td.full
-                      %a{:href => "#"} Consectetur adipiscing
-                    %td.who Posted by Pam
-                  %tr
-                    %td
-                      %span.label.label-primary Open
-                    %td.full
-                      %a{:href => "#"} Sed in porta lectus maecenas
-                    %td.who Posted by Curtis
-                  %tr
-                    %td
-                      %span.label.label-danger Closed
-                    %td.full
-                      %a{:href => "#"} Dignissim enim
-                    %td.who Posted by John
-                  %tr
-                    %td
-                      %span.label.label-secondary Responded
-                    %td.full
-                      %a{:href => "#"} Duis nec rutrum lorem
-                    %td.who Posted by James
-                  %tr
-                    %td
-                      %span.label.label-danger Closed
-                    %td.full
-                      %a{:href => "#"} Maecenas id velit et elit
-                    %td.who Posted by Sam
-                  %tr
-                    %td
-                      %span.label.label-secondary Responded
-                    %td.full
-                      %a{:href => "#"} Duis nec rutrum lorem
-                    %td.who Posted by Carlos
-            / /.span7
-          / /.row
-        / /.container
-      / /#content
-    / /#wrapper
+          = yield
+          
     #footer
       .container
         .row

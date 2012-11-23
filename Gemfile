@@ -31,6 +31,8 @@ gem 'cancan' # authorization
 gem 'geocoder' # geo location
 gem 'sidekiq' # jobs platform
 gem 'switch_user' # switch from admin to user
+gem 'kaminari' # pagination
+gem 'kaminari-bootstrap'
 
 group :development do
   gem 'foreman'

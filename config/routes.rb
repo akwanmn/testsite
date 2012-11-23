@@ -11,8 +11,9 @@ Phoenix::Application.routes.draw do
   # the namespace, then the custom path.
   namespace :admin, path: '/super-admin' do 
     resources :sample
+    resources :users
   end
 
   # needs to be changed to something that is not the admin.
-  root to: 'admin/sample#index'
+  root to: 'admin/users#index'
 end

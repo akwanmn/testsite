@@ -3,3 +3,9 @@
 
 en:
   hello: "Hello world"
+  male: 'Male'
+  female: 'Female'
+
+  date:
+    formats:
+      default: "%m/%d/%Y"

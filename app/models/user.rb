@@ -1,6 +1,10 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Paranoia
+
+  paginates_per 20
+
   # association
   embeds_one :user_profile
   has_many :orders
@@ -31,6 +35,9 @@ class User
   field :last_sign_in_at,    :type => Time
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
+
+  # extra fields
+  field :is_admin,           :type => Boolean, :default => false
 
   # some delegations to make things cleaner -- Thanks Jon.
   delegate :first_name, :last_name, to: :user_profile
