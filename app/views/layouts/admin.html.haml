@@ -72,28 +72,16 @@
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:;"}
                   %i.icon-th
-                  %span Components
+                  %span Navigation
                   %b.caret
                 %ul.dropdown-menu
-                  %li
-                    %a{:href => "./elements.html"} Elements
-                  %li
-                    %a{:href => "./validation.html"} Validation
-                  %li
-                    %a{:href => "./jqueryui.html"} jQuery UI
-                  %li
-                    %a{:href => "./charts.html"} Charts
-                  %li
-                    %a{:href => "./bonus.html"} Bonus Elements
                   %li.dropdown-submenu
-                    %a{:href => "#", :tabindex => "-1"} Dropdown menu
+                    = link_to 'Users', admin_users_path
                     %ul.dropdown-menu
                       %li
-                        %a{:href => "#", :tabindex => "-1"} Second level link
+                        = link_to 'Active Users', admin_users_path
                       %li
-                        %a{:href => "#", :tabindex => "-1"} Second level link
-                      %li
-                        %a{:href => "#", :tabindex => "-1"} Second level link
+                        = link_to 'Deleted Users', admin_users_path(deleted: 1)
               
           / /.nav-collapse
         / /.container

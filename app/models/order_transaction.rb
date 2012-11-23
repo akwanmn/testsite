@@ -22,4 +22,8 @@ class OrderTransaction
     self.message        = e.message 
     self.params         = {}
   end
+
+  def to_dollars
+    amount / 100.0
+  end
 end

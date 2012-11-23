@@ -20,6 +20,10 @@ class Order
     response.success?
   end
 
+  def initial_transaction
+    transactions.first
+  end
+
   # default
   def price_in_cents
     12.95 * 100

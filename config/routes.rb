@@ -16,6 +16,8 @@ Phoenix::Application.routes.draw do
         get :disable
         get :restore
       end
+      resources :orders do 
+      end
     end
   end
 

@@ -8,6 +8,6 @@
 
 require 'fabrication'
 require 'ffaker'
-10.times do 
+100.times do 
   Fabricate(:user)
 end

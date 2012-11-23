@@ -1,7 +1,4 @@
 = render 'admin/users/shared/masthead'
-= link_to "#{User.deleted.count} Deleted Users", admin_users_path(deleted: 1), class: 'btn'
-%br/
-%br/
 %table.table.table-bordered.table-striped.table-highlight
   %thead
     %tr
@@ -30,6 +27,6 @@
             = link_to 'Delete', disable_admin_user_path(u), class: 'btn btn-danger',
               confirm: "Delete #{u.full_name}?"
             /= link_to 'Switch', "/switch_user?scope_identifier?user_#{u.id}", class: 'btn btn-tertiary'
-            = link_to 'Orders', '#', class: 'btn btn-primary'
+            = link_to 'Orders', admin_user_orders_path(u), class: 'btn btn-primary'
 
 = paginate @users, window: 2
