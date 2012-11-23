@@ -14,6 +14,7 @@ Phoenix::Application.routes.draw do
     resources :users do 
       member do
         get :disable
+        get :restore
       end
     end
   end

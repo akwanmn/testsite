@@ -1,8 +1,13 @@
 class Admin::UsersController < AdminController
+  prepend_before_filter :find_deleted, only: [:restore]
   before_filter :find_user, only: [:edit, :update, :disable]
 
   def index
-    @users = User.page params[:page]
+    if params[:deleted]
+      @users = User.deleted.page params[:page]
+    else
+      @users = User.page params[:page]
+    end
   end
 
   def update
@@ -22,10 +27,21 @@ class Admin::UsersController < AdminController
 
   # we don't want to 'destroy' users so lets just disable them.
   def disable
-    @user.delete
+    @user.destroy
     respond_to do |format|
       format.html { redirect_to admin_users_path, notice: "#{@user.full_name} has been deleted." }
     end
+  end
+
+  def restore
+    @user.restore
+    respond_to do |format|
+      format.html { redirect_to admin_users_path, notice: "#{@user.full_name} has been restored."}
+    end
+  end
+
+  def find_deleted
+    @user = User.deleted.where(id: params[:id]).first
   end
 
   # Find  the user
