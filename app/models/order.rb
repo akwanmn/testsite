@@ -29,12 +29,12 @@ class Order
     {
       :ip => ip_address,
       :billing_address => {
-        :name => 'Andy Holman',
-        :address1 => '123 Main St.',
-        :city => 'Howell',
-        :state => 'MI',
-        :country => 'US',
-        :zip => '48843'
+        :name => user.full_name,
+        :address1 => user.user_profile.address_street,
+        :city => user.user_profile.address_city,
+        :state => user.user_profile.address_state,
+        :country => user.user_profile.address_country,
+        :zip => user.user_profile.address_zip
       }
     }
   end
@@ -43,7 +43,7 @@ class Order
   def validate_card
     unless credit_card.valid?
       credit_card.errors.full_messages.each do |message|
-        errors.add_to_base message
+        errors.add :base, message
       end
     end
   end

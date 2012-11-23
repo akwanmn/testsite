@@ -3,13 +3,13 @@ class OrderTransaction
   embedded_in :order
   #serialize :params
 
-  field :order_id,      type: Integer
+  #field :order_id,      type: Integer
   field :action,        type: String
   field :amount,        type: Integer
   field :success,       type: Boolean
   field :authorization, type: String
   field :message,       type: String
-  field :params,        type: String
+  field :params,        type: Array
 
   def response=(response)
     self.success        = response.success?
