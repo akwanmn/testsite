@@ -12,7 +12,8 @@
       = f.simple_fields_for :user_profile do |up|
         = up.input :first_name
         = up.input :last_name
-        = up.input :birthday
+        = up.input :selected_birthday, as: :datepicker, input_html: {value: l(@user.user_profile.birthday)}
+        = up.input :birthday, as: :hidden
         = up.input :gender, as: :select, collection: UserProfile::GENDERS
         = up.input :seeking, as: :select, collection: UserProfile::GENDERS
         = up.input :min_age

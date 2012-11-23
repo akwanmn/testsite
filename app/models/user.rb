@@ -3,7 +3,7 @@ class User
   include Mongoid::Timestamps
   include Mongoid::Paranoia
 
-  paginates_per 20
+  paginates_per 5
 
   # association
   embeds_one :user_profile

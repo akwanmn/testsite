@@ -8,6 +8,7 @@
       %th Gender
       %th Birthday
       %th Age
+      %th Status
       %th Functions
   %tbody
     - @users.each do |u|
@@ -18,9 +19,12 @@
         %td= t(u.user_profile.gender)
         %td= l(u.user_profile.birthday)
         %td= u.user_profile.age
+        %td= 'TODO'
         %td
           = link_to 'Edit', edit_admin_user_path(u), class: 'btn btn-secondary'
-          = link_to 'Delete', admin_user_path(u), method: :delete, class: 'btn btn-danger'
-          = link_to 'Switch', '#', class: 'btn btn-tertiary'
+          = link_to 'Delete', disable_admin_user_path(u), class: 'btn btn-danger',
+            confirm: "Delete #{u.full_name}?"
+          /= link_to 'Switch', "/switch_user?scope_identifier?user_#{u.id}", class: 'btn btn-tertiary'
+          = link_to 'Orders', '#', class: 'btn btn-primary'
 
 = paginate @users, window: 2

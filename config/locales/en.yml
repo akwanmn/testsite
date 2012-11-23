@@ -6,6 +6,22 @@ en:
   male: 'Male'
   female: 'Female'
 
+  simple_form:
+    labels:
+      user:
+        email: 'E-Mail'
+        password_confirmation: 'Password Confirmation'
+        sign_in_count: 'Signed In Count'
+        last_sign_in_at: 'Lasted Signed In'
+        last_sign_in_ip: 'Last IP Address'
+        is_admin: 'Admin'
+      user_profile:
+        selected_birthday: 'Birthday'
+        last_name: 'Last Name'
+        first_name: 'First Name'
+        min_age: 'Min. Age'
+        max_age: 'Max Age'
+
   date:
     formats:
       default: "%m/%d/%Y"
