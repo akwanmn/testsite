@@ -1,0 +1,4 @@
+- content_for :masthead do
+  %h2 New Order
+  %p= "Create a new order for #{@user.full_name}"
+= render 'admin/orders/form'

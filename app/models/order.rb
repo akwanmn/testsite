@@ -2,7 +2,8 @@ class Order
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  attr_accessor :card_number, :card_verification
+  attr_accessor :card_number, :card_verification, :address, :city, :state, :zip, :name,
+    :country
 
   paginates_per 5
   belongs_to :user
@@ -14,6 +15,7 @@ class Order
 
   # make sure we have a good card on new order.
   validate :validate_card, on: :create
+  #validates_presence_of :address
 
   def purchase
     response = GATEWAY.purchase(price_in_cents, credit_card, purchase_options)
@@ -30,16 +32,19 @@ class Order
     12.95 * 100
   end
 
+  # TODO: Make this actually take input params
+  # not just what we have on file, to allow for 
+  # other cards to be used?
   def purchase_options
     {
       :ip => ip_address,
       :billing_address => {
-        :name => user.full_name,
-        :address1 => user.user_profile.address_street,
-        :city => user.user_profile.address_city,
-        :state => user.user_profile.address_state,
-        :country => user.user_profile.address_country,
-        :zip => user.user_profile.address_zip
+        :name => name,
+        :address1 => address,
+        :city => city,
+        :state => state,
+        :country => 'US',
+        :zip => zip
       }
     }
   end

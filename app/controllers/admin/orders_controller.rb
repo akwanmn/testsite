@@ -1,6 +1,21 @@
 class Admin::OrdersController < AdminController
   before_filter :find_orders_by_user
 
+  def new
+    @user = User.find(params[:user_id])
+    @order = @user.orders.new
+  end
+
+  def create
+    Rails.logger.debug "*" * 100
+    Rails.logger.debug params.inspect
+    @user = User.find(params[:user_id])
+    @order = @user.orders.new
+    @order.ip_address = request.remote_ip
+    @order.purchase
+    render text: @order.initial_transaction.success
+  end
+
   def latest 
     @orders = Order.order_by('created_at DESC').page params[:page]
   end

@@ -1,0 +1,15 @@
+.row
+  = simple_form_for [:admin, @user, @order] do |f|
+    .span6
+      = f.input :card_number
+      = f.input :card_verification
+      = f.input :card_expires_on
+    .span6
+      = f.input :name, input_html: {value: @user.full_name }
+      = f.input :address, input_html: {value: @user.user_profile.address_street}
+      = f.input :city, input_html: {value: @user.user_profile.address_city}
+      = f.input :state, input_html: {value: @user.user_profile.address_state}
+      = f.input :zip, input_html: {value: @user.user_profile.address_zip}
+    .row
+      .offset4
+        = f.button :submit
