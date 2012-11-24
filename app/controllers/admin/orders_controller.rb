@@ -33,6 +33,25 @@ class Admin::OrdersController < AdminController
     end
   end
 
+  # refund a transaction
+  def refund
+    order = Order.where(id: params[:id], user_id: params[:user_id]).first
+    respond_to do |format|
+      if order
+        transaction = order.transactions.where(id: params[:order_transaction][:transaction_id], is_refunded: false).first
+        if transaction.refund
+          flash[:info] = 'Order has been processed.'
+          format.html { redirect_to admin_user_orders_path(order.user) }
+        else
+          format.html { flash[:error] = "Unable to refund transaction. (#{transaction.message}"; redirect_to admin_user_orders_path(order.user)}
+        end
+        
+      else
+        format.html { flash[:error] = 'Unable to locate order.'; redirect_to admin_user_orders_path(order.user) }
+      end
+    end
+  end
+
   def latest 
     @orders = Order.order_by('created_at DESC').page params[:page]
   end
