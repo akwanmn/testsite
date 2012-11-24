@@ -28,5 +28,5 @@
       .span3.offset1
         = simple_form_for(transaction, url: refund_admin_user_order_path(transaction.order.user.id, transaction.order.id)) do |f|
           = f.input :transaction_id, as: :hidden, input_html: {value: transaction.id}
-          = f.submit :value => 'Refund', class: 'btn btn-danger'
+          = f.submit :value => 'Refund', class: 'btn btn-danger process'
           /= link_to 'Refund', refund_admin_user_order_path(transaction.order.user.id, transaction.order.id), class: 'btn btn-danger refund'

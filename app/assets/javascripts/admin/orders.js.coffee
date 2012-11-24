@@ -19,4 +19,5 @@ $ ->
     e.preventDefault()
     $(this).val('Processing...')
     $(this).attr('disabled', 'disabled')
-    $('#new_order').submit()
+    $(this).closest('form').submit()
+    #$('#new_order').submit()
