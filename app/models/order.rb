@@ -31,6 +31,19 @@ class Order
     transactions.first
   end
 
+  # Determine the overall status of the order.
+  def status
+    statuses = []
+    transactions.where(action: 'purchase').each do |t|
+      statuses << (t.is_refunded ? 'Refunded' : 'Valid')
+    end
+    if statuses.uniq.length > 1
+      'Partially Refunded'
+    else
+      (statuses.uniq == ['Refunded']) ? 'Fully Refunded' : 'Valid'
+    end
+  end
+
   # default
   def price_in_cents
     DEFAULT_PRICE * 100

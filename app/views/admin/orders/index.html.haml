@@ -19,7 +19,7 @@
         %td= order.id
         %td= link_to order.user.full_name, edit_admin_user_path(order.user)
         %td= number_to_currency(order.initial_transaction.to_dollars) rescue ''
-        %td= order.initial_transaction.success ? 'Success' : 'Failed' rescue ''
+        %td= order.status
         %td= order.card_used
         %td= order.initial_transaction.message rescue ''
         %td= l(order.created_at)
