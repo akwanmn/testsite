@@ -16,6 +16,7 @@ class Order
   field :card_type,         type: String
   field :card_expires_on,   type: Date
   field :current_state,     type: String
+  field :card_used,         type: String
 
   # make sure we have a good card on new order.
   validate :validate_card, on: :create
@@ -67,7 +68,7 @@ class Order
   def validate_card
     unless credit_card.valid?
       credit_card.errors.full_messages.each do |message|
-        errors.add :base, message
+        errors.add :card_number, message
       end
     end
   end

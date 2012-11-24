@@ -1,0 +1,25 @@
+.content12
+  .row-fluid
+    .span3
+      %strong Transaction ID:
+      = transaction.transaction_id
+    .span3
+      %strong Message:
+      = transaction.message
+    - if transaction.success
+      .span3.offset3
+        = link_to 'Refund', '#', class: 'btn btn-danger'
+  .row-fluid
+    .span3
+      %strong Amount:
+      = number_to_currency(transaction.to_dollars)
+    .span3
+      %strong Timestamp:
+      = l(DateTime.parse(transaction.paypal_timestamp)) unless transaction.paypal_timestamp.blank?
+  .row-fluid
+    .span3
+      %strong AVS Code:
+      = transaction.cvv2_code unless transaction.cvv2_code.blank?
+    .span3
+      %strong CVV2 Code:
+      = transaction.avs_code unless transaction.avs_code.blank?

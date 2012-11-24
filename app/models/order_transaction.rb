@@ -23,6 +23,22 @@ class OrderTransaction
     self.params         = {}
   end
 
+  def transaction_id
+    params['transaction_id']
+  end
+
+  def paypal_timestamp
+    params['timestamp']
+  end
+
+  def cvv2_code
+    params['cvv2_code']
+  end
+
+  def avs_code
+    params['AVSCode']
+  end
+
   def to_dollars
     amount / 100.0
   end

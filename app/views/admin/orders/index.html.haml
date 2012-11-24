@@ -1,4 +1,7 @@
 = render 'admin/orders/shared/masthead'
+= link_to 'Create Order', new_admin_user_order_path(@user), class: 'btn btn-primary'
+%br/
+%br/
 %table.table.table-bordered.table-striped.table-highlight
   %thead
     %tr
@@ -6,6 +9,7 @@
       %th User
       %th Amount
       %th Status
+      %th Card #
       %th Message
       %th Created
       %th Functions
@@ -16,8 +20,15 @@
         %td= link_to order.user.full_name, edit_admin_user_path(order.user)
         %td= number_to_currency(order.initial_transaction.to_dollars) rescue ''
         %td= order.initial_transaction.success ? 'Success' : 'Failed' rescue ''
+        %td= order.card_used
         %td= order.initial_transaction.message rescue ''
         %td= l(order.created_at)
         %td
-          = link_to 'View', '#', class: 'btn btn-primary'
+          = link_to 'View', "##{order.id}-transactions", class: 'btn btn-primary view-transaction'
+      %tr{id: "#{order.id}-transactions", style: 'display:none'}
+        %td{colspan: 8}
+          - order.transactions.each do |trans|
+            = render partial: 'admin/orders/transaction', locals: {transaction: trans}
+            - if order.transactions.count > 1
+              %hr/
 = paginate @orders, window: 2
