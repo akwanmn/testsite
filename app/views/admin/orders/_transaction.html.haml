@@ -1,4 +1,4 @@
-.content12
+.content12{style: "background-color: #{(transaction.is_refunded ? 'yellow' : '#ffffff')}"}
   .row-fluid
     .span3
       %strong Transaction ID:
@@ -6,7 +6,7 @@
     .span3
       %strong Message:
       = transaction.message
-    - if transaction.success
+    - if transaction.action == 'purchase' && transaction.success && !transaction.is_refunded
       .span3.offset3
         = link_to 'Refund', '#', class: 'btn btn-danger'
   .row-fluid
@@ -16,6 +16,9 @@
     .span3
       %strong Timestamp:
       = l(DateTime.parse(transaction.paypal_timestamp)) unless transaction.paypal_timestamp.blank?
+    .span3
+      %strong Type:
+      = transaction.action.capitalize
   .row-fluid
     .span3
       %strong AVS Code:

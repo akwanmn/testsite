@@ -38,4 +38,5 @@
 //= require plugins/flot/jquery.flot.resize
 //= require demos/charts/line
 //= require demos/charts/donut
+//= require plugins/msgbox/jquery.msgbox.min
 //= require jquery_ujs

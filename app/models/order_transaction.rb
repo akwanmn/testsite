@@ -10,6 +10,7 @@ class OrderTransaction
   field :authorization, type: String
   field :message,       type: String
   field :params,        type: Array
+  field :is_refunded,   type: Boolean, default: false
 
   def response=(response)
     self.success        = response.success?
@@ -42,4 +43,14 @@ class OrderTransaction
   def to_dollars
     amount / 100.0
   end
+
+  def refund
+    response = GATEWAY.refund(amount, transaction_id)
+    order.transactions.create!(action: 'refund', amount: amount, response: response, order: order)
+    if response.success?
+      self.update_attribute(:is_refunded, true)
+    end
+    response.success?
+  end
+
 end
