@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
-  $( "input.datepicker" ).datepicker
+  $( "input#user_user_profile_attributes_selected_birthday" ).datepicker
     altFormat: 'yy-mm-dd'
     dateFormat: 'mm/dd/yy'
     altField: '#user_user_profile_attributes_birthday'

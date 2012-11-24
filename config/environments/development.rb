@@ -33,14 +33,13 @@ Phoenix::Application.configure do
 
   # active merchant configuration
   config.after_initialize do
-    # password 353703739
-    # andy_1353703658_biz@conspyre.com
-    #  4153058268775801
+    # 353774152 - personal
+    # 353774188 - business
     ActiveMerchant::Billing::Base.mode = :test
     ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
-        login: 'andy_1353703658_biz_api1.conspyre.com',
-        password: '1353703677',
-        signature: 'AFcWxV21C7fd0v3bYYYRCpSSRl31ATgBmtuOEzBuX96REdJFJgmalsg9'
+        login: 'andy_1353774218_biz_api1.conspyre.com',
+        password: '1353774257',
+        signature: 'Aej25IpJLqXjMLvgSNNMveBCqM4BAfDnk30suIxxTbXZll3n0iSzjBvC'
       )
     # Access as GATEWAY
   end

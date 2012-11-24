@@ -951,6 +951,7 @@ label {
 select,
 textarea,
 input[type="text"],
+input[type="datepicker"],
 input[type="password"],
 input[type="datetime"],
 input[type="datetime-local"],
@@ -989,6 +990,7 @@ textarea {
 
 textarea,
 input[type="text"],
+input[type="datepicker"],
 input[type="password"],
 input[type="datetime"],
 input[type="datetime-local"],

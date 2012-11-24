@@ -1,15 +1,18 @@
-.row
-  = simple_form_for [:admin, @user, @order] do |f|
-    .span6
+%h4= "Customer will be charged the default of #{number_to_currency(Order::DEFAULT_PRICE)}"
+= simple_form_for [:admin, @user, @order], html: {class: 'form-horizontal'} do |f|
+  .row
+    .span4.offset1
+      = f.input :name, input_html: {value: @user.full_name }
       = f.input :card_number
       = f.input :card_verification
-      = f.input :card_expires_on
-    .span6
-      = f.input :name, input_html: {value: @user.full_name }
-      = f.input :address, input_html: {value: @user.user_profile.address_street}
-      = f.input :city, input_html: {value: @user.user_profile.address_city}
-      = f.input :state, input_html: {value: @user.user_profile.address_state}
-      = f.input :zip, input_html: {value: @user.user_profile.address_zip}
-    .row
-      .offset4
-        = f.button :submit
+      = f.input :card_expires_on, as: :date, start_year: Date.today.year, discard_day: true, order: [:month, :year],
+        use_month_numbers: true
+    .span4
+      = f.input :address, input_html: {value: (params[:order].blank? ? @user.user_profile.address_street : params[:order][:address]) }
+      = f.input :city, input_html: {value: (params[:order].blank? ? @user.user_profile.address_city : params[:order][:city])}
+      = f.input :state, input_html: {value: (params[:order].blank? ? @user.user_profile.address_state : params[:order][:state])}
+      = f.input :zip, input_html: {value: (params[:order].blank? ? @user.user_profile.address_zip : params[:order][:zip])}
+      = f.input :country, input_html: {value: (params[:order].blank? ? @user.user_profile.address_country : params[:order][:country])}, priority: ['United States']
+  .row
+    .offset5
+      = f.button :submit, class: 'btn-primary'

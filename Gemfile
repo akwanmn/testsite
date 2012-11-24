@@ -26,6 +26,7 @@ gem 'activemerchant', :require => 'active_merchant' # credit card processing
 gem 'sendgrid' # email 
 gem 'aasm' # state machine
 gem 'simple_form' # forms
+gem 'country_select'
 gem 'devise' # authentication
 gem 'cancan' # authorization
 gem 'geocoder' # geo location

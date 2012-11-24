@@ -3,8 +3,8 @@ Fabricator(:user_profile) do
   last_name { Faker::Name.last_name }
   selected_birthday { Date.today - (25...50).to_a.sample.year }
   birthday { |up| up[:selected_birthday] }
-  gender   { ['male', 'female'].sample }
-  seeking  { ['male', 'female'].sample }
+  gender   { ['Male', 'Female'].sample }
+  seeking  { ['Male', 'Female'].sample }
   min_age  { (18...35).to_a.sample }
   max_age  { (36...50).to_a.sample }
   address_street { Faker::Address.street_address}

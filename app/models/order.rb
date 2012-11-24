@@ -1,6 +1,9 @@
 class Order
   include Mongoid::Document
   include Mongoid::Timestamps
+  include AASM
+
+  DEFAULT_PRICE = 12.95 # hard coded for now until we build a subscription class.
 
   attr_accessor :card_number, :card_verification, :address, :city, :state, :zip, :name,
     :country
@@ -12,14 +15,25 @@ class Order
   field :ip_address,        type: String
   field :card_type,         type: String
   field :card_expires_on,   type: Date
+  field :current_state,     type: String
 
   # make sure we have a good card on new order.
   validate :validate_card, on: :create
-  #validates_presence_of :address
+  validates_presence_of :address, :card_number, :card_verification, :city, :state, :zip, :name, :country,
+    :card_expires_on
+
+
+  # handle state transitions for orders.
+  aasm :column => :current_state do 
+    state :pending, initial: true
+    state :failed
+    state :success
+    state :processing
+  end
 
   def purchase
     response = GATEWAY.purchase(price_in_cents, credit_card, purchase_options)
-    transactions.create!(action: 'purchase', amount: price_in_cents, response: response)
+    transactions.create(action: 'purchase', amount: price_in_cents, response: response)
     response.success?
   end
 
@@ -29,7 +43,7 @@ class Order
 
   # default
   def price_in_cents
-    12.95 * 100
+    DEFAULT_PRICE * 100
   end
 
   # TODO: Make this actually take input params

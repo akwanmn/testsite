@@ -4,7 +4,7 @@ class UserProfile
 
   attr_accessor :selected_birthday
 
-  GENDERS = ['male', 'female']
+  GENDERS = ['Male', 'Female']
 
   embedded_in :user
 
@@ -26,8 +26,8 @@ class UserProfile
 
 
   # validations
-  validates_inclusion_of :gender, in: ['male', 'female']
-  validates_inclusion_of :seeking, in: ['male', 'female']
+  validates_inclusion_of :gender, in: GENDERS
+  validates_inclusion_of :seeking, in: GENDERS
   validates_numericality_of :min_age, greater_than_or_equal_to: 18
   validates_numericality_of :max_age, less_than_or_equal_to: 120
   validates_presence_of :first_name, :last_name, :selected_birthday, 

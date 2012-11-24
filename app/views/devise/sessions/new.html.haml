@@ -13,7 +13,5 @@
   / /login-fields
   .login-actions
     %span.login-checkbox
-      = f.input :remember_me, :input_html => {:class=> 'field login-checkbox'}, :inline_label => '.choice', :as => :boolean
-      /%input#Field.field.login-checkbox{:name => "Field", :tabindex => "4", :type => "checkbox", :value => "First Choice"}/
-      /%label.choice{:for => "Field"} Keep me signed in
+      = f.input :remember_me, :input_html => {:class=> 'field login-checkbox'},  :as => :boolean
     = f.button :submit, "Sign In", :class => 'button btn btn-primary btn-large'
