@@ -1,5 +1,8 @@
 %strong Approximate Location:
 = @user.user_profile.approximate_location
+%br/
+%br/
+= link_to 'Manage Profile', '#', class: 'btn btn-primary'
 = simple_form_for [:admin,@user], html: {class: 'form-horizontal'} do |f|
   .row
     .span5
@@ -9,19 +12,16 @@
       = f.input :is_admin, as: :boolean
       = f.input :sign_in_count, :disabled => true
       = f.input :last_sign_in_at, :disabled => true
-      = f.input :last_sign_in_ip, :disabled => true
+      = f.input :membership_valid, as: :boolean
     .span5
       = f.simple_fields_for :user_profile do |up|
         = up.input :first_name
         = up.input :last_name
         = up.input :selected_birthday, as: :datepicker, input_html: {value: l(@user.user_profile.birthday)}
         = up.input :birthday, as: :hidden
-        = up.input :gender, as: :select, collection: UserProfile::GENDERS
-        = up.input :seeking, as: :select, collection: UserProfile::GENDERS
-        = up.input :min_age
-        = up.input :max_age
         = up.input :address_zip
         = up.input :address_country, :priority => ['United States', 'Canada']
+        = f.input :last_sign_in_ip, :disabled => true
     .span2
       %h5 Within 300 miles..
       - User.near(@user.coordinates.reverse, 300).excludes(id: @user.id).limit(20).each do |match|

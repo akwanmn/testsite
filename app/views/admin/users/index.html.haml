@@ -18,7 +18,7 @@
         %td= t(u.user_profile.gender)
         %td= l(u.user_profile.birthday)
         %td= u.user_profile.age
-        %td= 'TODO'
+        %td= u.membership_valid ? 'Current' : 'Expired'
         %td
           - if u.deleted_at
             = link_to 'Restore', restore_admin_user_path(u.id), class: 'btn btn-success'
@@ -28,5 +28,6 @@
               confirm: "Delete #{u.full_name}?"
             /= link_to 'Switch', "/switch_user?scope_identifier?user_#{u.id}", class: 'btn btn-tertiary'
             = link_to 'Orders', admin_user_orders_path(u), class: 'btn btn-primary'
+            = link_to 'Profile', '#', class: 'btn btn-tertiary'
 
 = paginate @users, window: 2
