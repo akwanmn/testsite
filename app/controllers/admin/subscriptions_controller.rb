@@ -1,5 +1,7 @@
 class Admin::SubscriptionsController < AdminController
   before_filter :find_subscription, except: [:index, :new, :create]
+  load_and_authorize_resource
+  
   def index
     @subscriptions = Subscription.page params[:page]
   end

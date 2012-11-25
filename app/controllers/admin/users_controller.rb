@@ -1,7 +1,8 @@
 class Admin::UsersController < AdminController
   prepend_before_filter :find_deleted, only: [:restore]
   before_filter :find_user, only: [:edit, :update, :disable]
-
+  load_and_authorize_resource
+  
   def index
     if params[:deleted]
       @users = User.deleted.page params[:page]

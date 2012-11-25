@@ -24,7 +24,7 @@ class Order
   def purchase
     response = GATEWAY.purchase(price_in_cents, credit_card, purchase_options)
     transactions.create(action: 'purchase', amount: price_in_cents, response: response)
-    user.update_attribute(:membership_valid, true)  if response.success?
+    user.make_paid!  if response.success?
     response.success?
   end
 

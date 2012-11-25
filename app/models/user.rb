@@ -3,6 +3,7 @@ class User
   include Mongoid::Timestamps
   include Mongoid::Paranoia
   include Geocoder::Model::Mongoid
+  include AASM
 
   paginates_per 10
 
@@ -41,7 +42,7 @@ class User
   # extra fields
   field :is_admin,           :type => Boolean, :default => false
   field :coordinates,         type: Array
-  field :membership_valid,    type: Boolean, default: false
+  field :current_state,       type: String
 
   geocoded_by :address
   after_validation :geocode
@@ -49,6 +50,31 @@ class User
   # some delegations to make things cleaner -- Thanks Jon.
   delegate :first_name, :last_name, :address, :address_zip, to: :user_profile
 
+  # handle membership status
+  aasm column: :current_state do
+    state :free, initial: true
+    state :paid
+    state :charter
+
+    event :make_paid do
+      transitions to: :paid, from: [:free, :charter]
+    end
+
+    event :make_charter do 
+      transitions to: :charter, from: [:paid, :free]
+    end
+  end
+
+  def membership_status
+    case current_state
+    when 'free'
+      'Free'
+    when 'paid'
+      'Current'
+    when 'charter'
+      'Charter'
+    end
+  end
 
   ## Confirmable
   # field :confirmation_token,   :type => String

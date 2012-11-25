@@ -18,7 +18,7 @@
         %td= t(u.user_profile.gender)
         %td= l(u.user_profile.birthday)
         %td= u.user_profile.age
-        %td= u.membership_valid ? 'Current' : 'Expired'
+        %td= u.membership_status
         %td
           - if u.deleted_at
             = link_to 'Restore', restore_admin_user_path(u.id), class: 'btn btn-success'

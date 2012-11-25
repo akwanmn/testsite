@@ -12,7 +12,6 @@
       = f.input :is_admin, as: :boolean
       = f.input :sign_in_count, :disabled => true
       = f.input :last_sign_in_at, :disabled => true
-      = f.input :membership_valid, as: :boolean
     .span5
       = f.simple_fields_for :user_profile do |up|
         = up.input :first_name
