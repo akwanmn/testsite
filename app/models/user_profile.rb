@@ -1,6 +1,5 @@
 class UserProfile
   include Mongoid::Document
-  include Geocoder::Model::Mongoid
 
   attr_accessor :selected_birthday
 
@@ -15,15 +14,13 @@ class UserProfile
   field :seeking,           type: String
   field :min_age,           type: Integer
   field :max_age,           type: Integer
-  field :coordinates,       type: Array
-  field :address_street,    type: String
-  field :address_street2,   type: String
   field :address_city,      type: String
   field :address_state,     type: String
   field :address_zip,       type: String
   field :address_country,   type: String
 
-
+  #geocoded_by :address_zip
+  #after_validation :geocode, :if => :address_zip_changed?
 
   # validations
   validates_inclusion_of :gender, in: GENDERS
@@ -38,5 +35,27 @@ class UserProfile
     return "-" if birthday.blank?
     now = Time.now.utc.to_date
     now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
+  end
+
+  def latitude
+    coordinates[1]
+  end
+
+  def longitude
+    coordinates[0]
+  end
+
+  def address
+    #addy = "#{address_city} #{address_state}, #{address_zip} #{address_country}"
+    address_zip
+  end
+
+  def approximate_location
+    if !user.coordinates.blank?
+      location = Geocoder.search(user.coordinates.reverse).first
+    else
+      location = Geocoder.search(address_zip).first
+    end
+    location.nil? ? 'Unknown' : location.data['formatted_address']
   end
 end

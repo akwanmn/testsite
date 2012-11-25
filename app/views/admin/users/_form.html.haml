@@ -1,3 +1,5 @@
+%strong Approximate Location:
+= @user.user_profile.approximate_location
 = simple_form_for [:admin,@user], html: {class: 'form-horizontal'} do |f|
   .row
     .span6
@@ -18,8 +20,11 @@
         = up.input :seeking, as: :select, collection: UserProfile::GENDERS
         = up.input :min_age
         = up.input :max_age
+        = up.input :address_zip
+        = up.input :address_country, :priority => ['United States', 'Canada']
   .row
     .offset1
       = f.button :submit, class: 'btn btn-primary'
       = link_to 'Create Order', new_admin_user_order_path(@user), class: 'btn btn-secondary'
       = link_to 'Cancel', admin_users_path, class: 'btn btn-tertiary'
+

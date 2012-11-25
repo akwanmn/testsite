@@ -2,6 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Paranoia
+  include Geocoder::Model::Mongoid
 
   paginates_per 10
 
@@ -39,9 +40,13 @@ class User
 
   # extra fields
   field :is_admin,           :type => Boolean, :default => false
+  field :coordinates,         type: Array
+  
+  geocoded_by :address
+  after_validation :geocode
 
   # some delegations to make things cleaner -- Thanks Jon.
-  delegate :first_name, :last_name, to: :user_profile
+  delegate :first_name, :last_name, :address, :address_zip, to: :user_profile
 
   ## Confirmable
   # field :confirmation_token,   :type => String
