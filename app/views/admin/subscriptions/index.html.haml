@@ -1,0 +1,28 @@
+- content_for :masthead do
+  %h2 Manage Subscriptions
+  %p= "There are currently #{Subscription.count} subscriptions in the database."
+= link_to 'New Subscription', new_admin_subscription_path, class: 'btn btn-primary'
+%br/
+%br/
+%table.table.table-bordered.table-striped.table-highlight
+  %thead
+    %tr
+      %th Name
+      %th Recurring?
+      %th Amount
+      %th Duration
+      %th Disabled
+      %th Functions
+  %tbody
+    - @subscriptions.each do |s|
+      %tr
+        %td= s.name
+        %td= s.recurring ?  'Yes' : 'No'
+        %td= number_to_currency(s.amount)
+        %td= s.duration
+        %td= s.disabled ? 'Yes' : 'No'
+        %td
+          = link_to 'Edit', edit_admin_subscription_path(s), class: 'btn btn-primary'
+
+
+= paginate @subscriptions, window: 2

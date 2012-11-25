@@ -21,3 +21,7 @@ $ ->
     $(this).attr('disabled', 'disabled')
     $(this).closest('form').submit()
     #$('#new_order').submit()
+
+  $('#order_amount').change (e) ->
+    $('h4.amount-charged').html('Customer will be charged the default of $' + $(this).val()).show()
+  #Customer will be charged the default of #{number_to_currency(Order::DEFAULT_PRICE)}

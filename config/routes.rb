@@ -12,6 +12,7 @@ Phoenix::Application.routes.draw do
   namespace :admin, path: '/super-admin' do 
     match '/orders/latest' => 'orders#latest'
     resources :sample
+    resources :subscriptions
     resources :users do 
       member do
         get :disable

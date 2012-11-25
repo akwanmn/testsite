@@ -1,0 +1,11 @@
+= simple_form_for [:admin,@subscription], html: {class: 'form-horizontal'} do |f|
+  .row
+    .span4
+      = f.input :name
+      = f.input :duration
+      = f.input :amount
+      = f.input :recurring, as: :boolean
+      = f.input :disabled, as: :boolean
+  .row
+    .span4.offset1  
+      = f.button :submit, class: 'btn-primary btn'

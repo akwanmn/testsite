@@ -1,4 +1,4 @@
-%h4= "Customer will be charged the default of #{number_to_currency(Order::DEFAULT_PRICE)}"
+%h4.amount-charged{style: 'display: none;'}= "Customer will be charged the default of #{number_to_currency(Order::DEFAULT_PRICE)}"
 = simple_form_for [:admin, @user, @order], html: {class: 'form-horizontal'} do |f|
   .row
     .span4.offset1
@@ -7,6 +7,7 @@
       = f.input :card_verification
       = f.input :card_expires_on, as: :date, start_year: Date.today.year, discard_day: true, order: [:month, :year],
         use_month_numbers: true
+      = f.input :amount, collection: Subscription.all.collect { |s| [s.name, s.amount]}, prompt: 'Choose Subscription'
     .span4
       = f.input :address, input_html: {value: (params[:order].blank? ? @user.user_profile.address_street : params[:order][:address]) }
       = f.input :city, input_html: {value: (params[:order].blank? ? @user.user_profile.address_city : params[:order][:city])}

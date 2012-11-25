@@ -5,7 +5,7 @@ class Order
   DEFAULT_PRICE = 12.95 # hard coded for now until we build a subscription class.
 
   attr_accessor :card_number, :card_verification, :address, :city, :state, :zip, :name,
-    :country
+    :country, :amount
 
   paginates_per 5
   belongs_to :user
@@ -19,7 +19,7 @@ class Order
   # make sure we have a good card on new order.
   validate :validate_card, on: :create
   validates_presence_of :address, :card_number, :card_verification, :city, :state, :zip, :name, :country,
-    :card_expires_on
+    :card_expires_on, :amount
 
   def purchase
     response = GATEWAY.purchase(price_in_cents, credit_card, purchase_options)
@@ -46,7 +46,7 @@ class Order
 
   # default
   def price_in_cents
-    DEFAULT_PRICE * 100
+    amount.to_f * 100
   end
 
   # TODO: Make this actually take input params
