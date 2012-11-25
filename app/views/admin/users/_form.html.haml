@@ -2,7 +2,7 @@
 = @user.user_profile.approximate_location
 = simple_form_for [:admin,@user], html: {class: 'form-horizontal'} do |f|
   .row
-    .span6
+    .span5
       = f.input :email, input_html: {class: 'input-xlarge'}
       = f.input :password
       = f.input :password_confirmation
@@ -10,7 +10,7 @@
       = f.input :sign_in_count, :disabled => true
       = f.input :last_sign_in_at, :disabled => true
       = f.input :last_sign_in_ip, :disabled => true
-    .span6
+    .span5
       = f.simple_fields_for :user_profile do |up|
         = up.input :first_name
         = up.input :last_name
@@ -22,6 +22,10 @@
         = up.input :max_age
         = up.input :address_zip
         = up.input :address_country, :priority => ['United States', 'Canada']
+    .span2
+      %h5 Within 300 miles..
+      - User.near(@user.coordinates.reverse, 300).limit(20).each do |match|
+        = link_to match.email, edit_admin_user_path(match)
   .row
     .offset1
       = f.button :submit, class: 'btn btn-primary'
