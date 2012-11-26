@@ -11,7 +11,7 @@ class User
   embeds_one :user_profile
   has_many :orders
   accepts_nested_attributes_for :user_profile
-  attr_accessor :search
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

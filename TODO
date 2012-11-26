@@ -4,3 +4,9 @@ TODO
 4. Image upload.
 5. User membership state based on transactions.
 6. User switch to assume users.
+7. View transaction on orders list page.
+
+Errors
+ActionController::RoutingError (No route matches [GET] "/img/glyphicons-halflings.png"):
+
+Login js errors.

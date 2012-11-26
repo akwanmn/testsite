@@ -9,3 +9,19 @@ abbr[title=required] {
 #order_card_expires_on_1i {
   width: 75px;
 }
+
+
+span.label.current {
+  background-color: #94ba65;
+  font-weight: normal;
+}
+
+span.label.charter {
+  @extend span.label.current;
+  background-color: #2790b0;
+}
+
+span.label.free {
+  @extend span.label.current;
+  background-color: #999999;
+}

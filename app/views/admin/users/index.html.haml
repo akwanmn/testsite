@@ -22,7 +22,8 @@
         %td= t(u.user_profile.gender)
         %td= l(u.user_profile.birthday)
         %td= u.user_profile.age
-        %td= u.membership_status
+        %td
+          %span.label{class: "#{u.membership_status.downcase}"}= u.membership_status
         %td
           - if u.deleted_at
             = link_to 'Restore', restore_admin_user_path(u.id), class: 'btn btn-success'

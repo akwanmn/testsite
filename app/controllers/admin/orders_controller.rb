@@ -1,5 +1,5 @@
 class Admin::OrdersController < AdminController
-  before_filter :find_orders_by_user
+  before_filter :find_orders_by_user, except: [:latest]
 
   def new
     @user = User.find(params[:user_id])
