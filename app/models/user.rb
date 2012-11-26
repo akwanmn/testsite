@@ -11,7 +11,7 @@ class User
   embeds_one :user_profile
   has_many :orders
   accepts_nested_attributes_for :user_profile
-
+  attr_accessor :search
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -106,5 +106,13 @@ class User
     end
   end
   alias :devise_valid_password? :valid_password?
+
+  def self.search(search)
+    if search.blank?
+      all
+    else
+      where("$or" => [{email: /#{search}/i}, {'user_profile.first_name' => /#{search}/i}, {'user_profile.last_name' => /#{search}/i}])
+    end
+  end
 
 end

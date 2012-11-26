@@ -7,7 +7,7 @@ class Admin::UsersController < AdminController
     if params[:deleted]
       @users = User.deleted.page params[:page]
     else
-      @users = User.order_by('email ASC').page params[:page]
+      @users = User.search(params[:search]).order_by('email ASC').page params[:page]
     end
   end
 

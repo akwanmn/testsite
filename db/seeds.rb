@@ -8,6 +8,9 @@
 
 require 'fabrication'
 require 'ffaker'
+
+Fabricate(:user, email: 'andy@conspyre.com', is_admin: true)
+
 100.times do 
   Fabricate(:user)
 end

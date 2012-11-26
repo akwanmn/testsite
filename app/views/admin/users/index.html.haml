@@ -1,4 +1,8 @@
 = render 'admin/users/shared/masthead'
+= simple_form_for admin_users_path, method: :get, html: {class: 'form form-search'} do |f|
+  %input.input-medium.search-query{type: 'text', name: 'search'}
+  %button.btn{type: 'submit'} Search
+  = link_to 'Reset', admin_users_path, class: 'btn'
 %table.table.table-bordered.table-striped.table-highlight
   %thead
     %tr
