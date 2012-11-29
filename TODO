@@ -2,11 +2,33 @@ TODO
 1. More profile info for all the likes etc.
 3. Add / edit likes?
 4. Image upload.
-5. User membership state based on transactions.
 6. User switch to assume users.
-7. View transaction on orders list page.
+8. Manually add users (edit & add need different things, break out templates)
 
-Errors
-ActionController::RoutingError (No route matches [GET] "/img/glyphicons-halflings.png"):
 
-Login js errors.
+Profile:
+  Biography
+  Occupation
+  Education
+  Ethnicity
+  Religion
+  Likes
+  Radius to search
+  Animals
+  Family
+  Career
+  Politics
+  Marital status
+  Books & Reading
+  Health & Fitness
+  Nightlife
+  Outdoors
+  Nightlife
+  Views of Profile -> array (log user_id, last_viewed_at)
+
+Messages:
+  Inbox
+  Sent
+  Trash
+  Archives
+  read_on

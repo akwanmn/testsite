@@ -1,2 +1,7 @@
 = render 'admin/users/shared/masthead'
+
+%strong Approximate Location:
+= @user.user_profile.approximate_location
+%br/
+%br/
 = render 'admin/users/form'

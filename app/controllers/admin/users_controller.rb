@@ -11,6 +11,11 @@ class Admin::UsersController < AdminController
     end
   end
 
+  def new
+    @user = User.new
+    #@user.user_profile = UserProfile.new
+  end
+
   def update
     respond_to do |format|
       if params[:user][:password].blank?

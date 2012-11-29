@@ -26,6 +26,8 @@ Phoenix::Application.routes.draw do
           put :refund
         end
       end
+      # user profile management
+      resource :user_profile
     end
   end
 

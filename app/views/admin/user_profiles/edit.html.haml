@@ -1,0 +1,7 @@
+- content_for :masthead do
+  %h2 Manage Profile
+  %p= "Manage profile for #{@user.full_name}"
+
+= simple_form_for [:admin, @user],  html: {class: 'form-horizontal'} do |f|
+  = f.simple_fields_for :user_profile do |up|
+    = up.input :gender

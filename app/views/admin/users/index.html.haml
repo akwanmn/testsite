@@ -3,6 +3,8 @@
   %input.input-medium.search-query{type: 'text', name: 'search'}
   %button.btn{type: 'submit'} Search
   = link_to 'Reset', admin_users_path, class: 'btn'
+  .pull-right
+    = link_to 'Create User', '#', class: 'btn btn-primary'
 %table.table.table-bordered.table-striped.table-highlight
   %thead
     %tr
@@ -33,6 +35,6 @@
               confirm: "Delete #{u.full_name}?"
             /= link_to 'Switch', "/switch_user?scope_identifier?user_#{u.id}", class: 'btn btn-tertiary'
             = link_to 'Orders', admin_user_orders_path(u), class: 'btn btn-primary'
-            = link_to 'Profile', '#', class: 'btn btn-tertiary'
+            = link_to 'Profile', edit_admin_user_user_profile_path(u), class: 'btn btn-tertiary'
 
 = paginate @users, window: 2
