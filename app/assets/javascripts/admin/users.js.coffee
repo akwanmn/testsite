@@ -6,3 +6,7 @@ $ ->
     altFormat: 'yy-mm-dd'
     dateFormat: 'mm/dd/yy'
     altField: '#user_user_profile_attributes_birthday'
+
+  $('.alert').delay 10000,  -> 
+    $(this).fadeOut 'slow',  ->
+      $(this).remove()

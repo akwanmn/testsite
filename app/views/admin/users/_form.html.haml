@@ -1,4 +1,5 @@
 = link_to 'Manage Profile', edit_profile_admin_user_path(@user), class: 'btn btn-primary'
+= @user.user_profile.approximate_location
 = simple_form_for [:admin,@user], html: {class: 'form-horizontal'} do |f|
   .row
     .span5
@@ -19,8 +20,8 @@
         = f.input :last_sign_in_ip, :disabled => true
     .span2
       - if params[:action] == 'edit'
-        %h5 Within 300 miles..
-        - User.near(@user.coordinates.reverse, 300).excludes(id: @user.id).limit(20).each do |match|
+        %h5= "Within #{@user.user_profile.search_radius} miles.."
+        - User.near(@user.coordinates.reverse, @user.user_profile.search_radius.to_i).excludes(id: @user.id).limit(20).each do |match|
           = link_to match.email, edit_admin_user_path(match)
   .row
     .offset1

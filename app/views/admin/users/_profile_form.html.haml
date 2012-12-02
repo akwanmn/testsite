@@ -1,7 +1,7 @@
 %h4 
-  = "Profile is #{@user.user_profile.percent_complete} complete."
+  = "Profile is #{@user.user_profile.percent_complete}% complete."
 .progress.progress-striped.active
-  .bar{style: "width: #{@user.user_profile.percent_complete}"}
+  .bar{style: "width: #{@user.user_profile.percent_complete}%"}
 = simple_form_for [:admin, @user], url: update_profile_admin_user_path(@user), html: {class: 'form-horizontal'} do |f|
   .row
     .span6
@@ -37,12 +37,13 @@
     .span6
       = f.simple_fields_for :user_profile do |up|
         = up.input :occupation
-        = up.input :ethnicity, collection: UserProfile::ETHNICITY, prompt: 'Choose Ethnicity'
+        = up.input :ethnicity, collection: UserProfile::ETHNICITY, prompt: 'Choose Ethnicity', include_blank: true
         = up.input :search_radius
     .span6
       = f.simple_fields_for :user_profile do |up|
-        = up.input :education, collection: UserProfile::EDUCATION, prompt: 'Choose Education'
-        = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion'
+        = up.input :education, collection: UserProfile::EDUCATION, prompt: 'Choose Education', include_blank: true
+        = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion', include_blank: true
+        = up.input :likes
   .row
     %h3 Biography
     = f.simple_fields_for :user_profile do |up|

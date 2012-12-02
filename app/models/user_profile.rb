@@ -75,6 +75,7 @@ class UserProfile
   field :religion,          type: String
   field :likes,             type: Array
   field :search_radius,     type: Integer
+  field :percent_complete,  type: Integer
 
   # validations
   validates_inclusion_of :gender, in: GENDERS
@@ -82,9 +83,11 @@ class UserProfile
   validates_numericality_of :min_age, greater_than_or_equal_to: 18
   validates_numericality_of :max_age, less_than_or_equal_to: 120
   validates_numericality_of :search_radius, greater_than: 0, less_than_or_equal_to: 4000
-  validates_presence_of :first_name, :last_name, :gender, :seeking, :min_age, :max_age, :address_zip, :address_country
-  #:selected_birthday,
-  #validates_presence_of :selected_birthday, if: lambda { |obj| obj.selected_birthday.present? }
+  validates_presence_of :first_name, :last_name, :gender, :seeking, :min_age, :max_age, :address_zip, :address_country,
+    :selected_birthday
+
+  # callbacks
+  before_save :calculate_profile_percentage
 
   # Calculate the age of this person.
   def age
@@ -93,7 +96,9 @@ class UserProfile
     now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
   end
 
-  def percent_complete
+  # Calculate the percentage complete of the profile, maybe even send emails
+  # out if they are < 50% on occassion or something for reminders.
+  def calculate_profile_percentage
     fields = ['gender', 'seeking', 'min_age', 'max_age', 'address_zip', 'address_country',
       'biography', 'occupation', 'education', 'ethnicity', 'religion', 'likes', 'search_radius']
     filled_in = 0
@@ -101,7 +106,8 @@ class UserProfile
       filled_in += 1 unless self.send(f).blank?
     end
     percent = (filled_in.to_f / fields.length.to_f).round(2) * 100
-    "#{percent.to_i}%"
+    #{}"#{percent.to_i}%"
+    self.percent_complete = percent.to_i
   end
 
   def latitude
