@@ -4,6 +4,56 @@ class UserProfile
   attr_accessor :selected_birthday
 
   GENDERS = ['Male', 'Female']
+  EDUCATION = [
+    "High School", 
+    "Some College", 
+    "Associate Degree", 
+    "Bachelor's Degree",
+    "Master's Degree",
+    "PhD / Post Doctoral",
+    "Trade",
+    "Other"
+  ]
+
+  ETHNICITY = [
+    "African-American",
+    "American Indian",
+    "Asian / Pacific Islander",
+    "Caucasian",
+    "Hispanic",
+    "Indian",
+    "Middle-Eastern"
+  ]
+
+  RELIGIONS = [
+    'African Traditional and Diasporic',
+    'Agnostic',
+    'Assemblies of God',
+    'Baptist',
+    'Cao Dai',
+    'Catholic',
+    'Chinese Traditional',
+    'Christian',
+    'Church of Latter-Day Saints (Mormon)',
+    'Episcopalian',
+    'Hinduism',
+    'Islam',
+    'Juche',
+    'Judaism',
+    'Lutheran (Evangelical)',
+    'Lutheran (Missouri Synod)',
+    'Methodist',
+    'Neo-Paganism',
+    'Non-Religious (Secular/Agnostic/Atheist)',
+    'Presbyterian',
+    'Primal-Indigenous',
+    'Shinto',
+    'Sikhism',
+    'Spiritism',
+    'Tenrikyo',
+    'Unitarian-Universalism',
+    'Zoroastrianism'
+  ]
 
   embedded_in :user
 
@@ -18,23 +68,40 @@ class UserProfile
   field :address_state,     type: String
   field :address_zip,       type: String
   field :address_country,   type: String
-
-  #geocoded_by :address_zip
-  #after_validation :geocode, :if => :address_zip_changed?
+  field :biography,         type: String
+  field :occupation,        type: String
+  field :education,         type: String
+  field :ethnicity,         type: String
+  field :religion,          type: String
+  field :likes,             type: Array
+  field :search_radius,     type: Integer
 
   # validations
   validates_inclusion_of :gender, in: GENDERS
   validates_inclusion_of :seeking, in: GENDERS
   validates_numericality_of :min_age, greater_than_or_equal_to: 18
   validates_numericality_of :max_age, less_than_or_equal_to: 120
-  validates_presence_of :first_name, :last_name, :selected_birthday, 
-    :gender, :seeking, :min_age, :max_age
+  validates_numericality_of :search_radius, greater_than: 0, less_than_or_equal_to: 4000
+  validates_presence_of :first_name, :last_name, :gender, :seeking, :min_age, :max_age, :address_zip, :address_country
+  #:selected_birthday,
+  #validates_presence_of :selected_birthday, if: lambda { |obj| obj.selected_birthday.present? }
 
   # Calculate the age of this person.
   def age
     return "-" if birthday.blank?
     now = Time.now.utc.to_date
     now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
+  end
+
+  def percent_complete
+    fields = ['gender', 'seeking', 'min_age', 'max_age', 'address_zip', 'address_country',
+      'biography', 'occupation', 'education', 'ethnicity', 'religion', 'likes', 'search_radius']
+    filled_in = 0
+    fields.each do |f|
+      filled_in += 1 unless self.send(f).blank?
+    end
+    percent = (filled_in.to_f / fields.length.to_f).round(2) * 100
+    "#{percent.to_i}%"
   end
 
   def latitude

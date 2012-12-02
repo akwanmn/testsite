@@ -1,0 +1,52 @@
+%h4 
+  = "Profile is #{@user.user_profile.percent_complete} complete."
+.progress.progress-striped.active
+  .bar{style: "width: #{@user.user_profile.percent_complete}"}
+= simple_form_for [:admin, @user], url: update_profile_admin_user_path(@user), html: {class: 'form-horizontal'} do |f|
+  .row
+    .span6
+      %h3 Personal Details
+      = f.simple_fields_for :user_profile do |up|
+        = up.input :first_name
+        = up.input :last_name
+        = up.input :address_city
+        = up.input :address_state
+        = up.input :address_zip
+        = up.input :address_country, :priority => ['United States', 'Canada']
+        = up.input :selected_birthday, as: :datepicker, input_html: {value: l(@user.user_profile.birthday)}
+        = up.input :birthday, as: :hidden
+        //.offset1
+        //  = f.button :submit, class: 'btn btn-primary'
+        //  = link_to 'Cancel', admin_users_path, class: 'btn btn-tertiary'
+    .span6
+      %h3 Relationship Details
+      = f.simple_fields_for :user_profile do |up|
+        = up.input :seeking, collection: UserProfile::GENDERS, prompt: 'Choose Gender'
+        = up.input :gender, collection: UserProfile::GENDERS, prompt: 'Choose Gender'
+        = up.input :min_age
+        = up.input :max_age
+        %h3 Profile Images
+        = image_tag 'http://placehold.it/90x90'
+        = image_tag 'http://placehold.it/90x90'
+        = image_tag 'http://placehold.it/90x90'
+        = image_tag 'http://placehold.it/90x90'
+        /= f.button :submit, class: 'btn btn-primary'
+        /= link_to 'Cancel', admin_users_path, class: 'btn btn-tertiary'
+  .row
+    %h3 Profile
+    .span6
+      = f.simple_fields_for :user_profile do |up|
+        = up.input :occupation
+        = up.input :ethnicity, collection: UserProfile::ETHNICITY, prompt: 'Choose Ethnicity'
+        = up.input :search_radius
+    .span6
+      = f.simple_fields_for :user_profile do |up|
+        = up.input :education, collection: UserProfile::EDUCATION, prompt: 'Choose Education'
+        = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion'
+  .row
+    %h3 Biography
+    = f.simple_fields_for :user_profile do |up|
+      = up.text_area :biography, :size => "200x5", class: 'span12'
+  .row
+    .span3.offset1
+      = f.button :submit, class: 'btn btn-primary'

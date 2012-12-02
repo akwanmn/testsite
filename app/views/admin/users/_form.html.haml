@@ -1,4 +1,4 @@
-= link_to 'Manage Profile', edit_admin_user_user_profile_path(@user), class: 'btn btn-primary'
+= link_to 'Manage Profile', edit_profile_admin_user_path(@user), class: 'btn btn-primary'
 = simple_form_for [:admin,@user], html: {class: 'form-horizontal'} do |f|
   .row
     .span5

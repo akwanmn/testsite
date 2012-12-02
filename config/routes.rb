@@ -17,6 +17,8 @@ Phoenix::Application.routes.draw do
       member do
         get :disable
         get :restore
+        put :update_profile
+        get :edit_profile
       end
       collection do 
         get :search
@@ -26,8 +28,6 @@ Phoenix::Application.routes.draw do
           put :refund
         end
       end
-      # user profile management
-      resource :user_profile
     end
   end
 

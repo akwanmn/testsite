@@ -31,6 +31,22 @@ class Admin::UsersController < AdminController
     end
   end
 
+  def edit_profile
+    @user = User.find(params[:id])
+  end
+
+  def update_profile
+    @user = User.find(params[:id])
+    Rails.logger.debug params
+    respond_to do |format|
+      if @user.user_profile.update_attributes(params[:user][:user_profile_attributes])
+        format.html { redirect_to edit_profile_admin_user_path(@user), notice: 'Profile has been updated.'}
+      else
+        format.html { flash[:error] = 'There were validation errors.'; render action: 'edit_profile' }
+      end
+    end
+  end
+
   # we don't want to 'destroy' users so lets just disable them.
   def disable
     @user.destroy
