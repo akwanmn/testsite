@@ -56,8 +56,18 @@ class UserProfile
   ]
 
   LIKES = [
-    'Dancing',
-    'Hiking'
+    'Animals',
+    'Books & Reading',
+    'Career',
+    'Education',
+    'Family',
+    'Heath & Fitness',
+    'Nightlife',
+    'Outdoors',
+    'Politics',
+    'Religion',
+    'Social Life',
+    'Travel'
   ]
 
   embedded_in :user
@@ -108,7 +118,12 @@ class UserProfile
       'biography', 'occupation', 'education', 'ethnicity', 'religion', 'likes', 'search_radius']
     filled_in = 0
     fields.each do |f|
-      filled_in += 1 unless self.send(f).blank?
+      if self.send(f).is_a?(Array)
+        # see if the array is actually empty
+        filled_in += 1 unless self.send(f).reject(&:empty?).count == 0
+      else
+        filled_in += 1 unless self.send(f).blank?
+      end
     end
     percent = (filled_in.to_f / fields.length.to_f).round(2) * 100
     self.percent_complete = percent.to_i
