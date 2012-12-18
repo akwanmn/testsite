@@ -41,7 +41,7 @@
     .span6
       = f.simple_fields_for :user_profile do |up|
         = up.input :education, collection: UserProfile::EDUCATION, prompt: 'Choose Education', include_blank: true
-        = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion', include_blank: true, input_html: {class: 'chzn-select'}
+        = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion', include_blank: true
         = up.input :likes, input_html: {class: 'chzn-select', multiple: true}, collection: UserProfile::LIKES
   .row
     .span12

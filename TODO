@@ -32,3 +32,8 @@ Messages:
   Trash
   Archives
   read_on
+
+
+
+# query to see where likes match current users likes
+User.where('user_profile.likes' => {'$in' =>  ['Family', 'Education']}).count

@@ -48,7 +48,7 @@ class User
   after_validation :geocode
 
   # some delegations to make things cleaner -- Thanks Jon.
-  delegate :first_name, :last_name, :address, :address_zip, to: :user_profile
+  delegate :first_name, :last_name, :address, :address_zip, :likes, to: :user_profile
 
   # handle membership status
   aasm column: :current_state do
