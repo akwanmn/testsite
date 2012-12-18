@@ -1,3 +1,4 @@
+= javascript_include_tag 'user_profile'
 = render 'admin/users/shared/masthead'
 = simple_form_for admin_users_path, method: :get, html: {class: 'form form-search'} do |f|
   %input.input-medium.search-query{type: 'text', name: 'search'}
@@ -28,13 +29,13 @@
           %span.label{class: "#{u.membership_status.downcase}"}= u.membership_status
         %td
           - if u.deleted_at
-            = link_to 'Restore', restore_admin_user_path(u.id), class: 'btn btn-success'
+            = link_to 'Restore', restore_admin_user_path(u.id), class: 'btn btn-small btn-success'
           - else
-            = link_to 'Edit', edit_admin_user_path(u), class: 'btn btn-secondary'
-            = link_to 'Delete', disable_admin_user_path(u), class: 'btn btn-danger msgbox-confirm',
+            = link_to 'Edit', edit_admin_user_path(u), class: 'btn btn-small btn-secondary'
+            = link_to 'Delete', disable_admin_user_path(u), class: 'btn btn-small btn-danger msgbox-confirm',
               confirm: "Delete #{u.full_name}?"
-            /= link_to 'Switch', "/switch_user?scope_identifier?user_#{u.id}", class: 'btn btn-tertiary'
-            = link_to 'Orders', admin_user_orders_path(u), class: 'btn btn-primary'
-            = link_to 'Profile', edit_admin_user_user_profile_path(u), class: 'btn btn-tertiary'
+            = link_to 'Switch', "/switch_user?scope_identifier?user_#{u.id}", class: 'btn btn-small btn-tertiary'
+            = link_to 'Orders', admin_user_orders_path(u), class: 'btn btn-small btn-primary'
+            = link_to 'Profile', edit_profile_admin_user_path(u), class: 'btn btn-small btn-tertiary'
 
 = paginate @users, window: 2

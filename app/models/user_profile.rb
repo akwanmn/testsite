@@ -5,9 +5,9 @@ class UserProfile
 
   GENDERS = ['Male', 'Female']
   EDUCATION = [
-    "High School", 
-    "Some College", 
-    "Associate Degree", 
+    "High School",
+    "Some College",
+    "Associate Degree",
     "Bachelor's Degree",
     "Master's Degree",
     "PhD / Post Doctoral",
@@ -55,6 +55,11 @@ class UserProfile
     'Zoroastrianism'
   ]
 
+  LIKES = [
+    'Dancing',
+    'Hiking'
+  ]
+
   embedded_in :user
 
   field :first_name,        type: String
@@ -74,7 +79,7 @@ class UserProfile
   field :ethnicity,         type: String
   field :religion,          type: String
   field :likes,             type: Array
-  field :search_radius,     type: Integer
+  field :search_radius,     type: Integer, default: 100
   field :percent_complete,  type: Integer
 
   # validations
@@ -84,7 +89,7 @@ class UserProfile
   validates_numericality_of :max_age, less_than_or_equal_to: 120
   validates_numericality_of :search_radius, greater_than: 0, less_than_or_equal_to: 4000
   validates_presence_of :first_name, :last_name, :gender, :seeking, :min_age, :max_age, :address_zip, :address_country,
-    :selected_birthday
+    :selected_birthday, :search_radius
 
   # callbacks
   before_save :calculate_profile_percentage
@@ -106,7 +111,6 @@ class UserProfile
       filled_in += 1 unless self.send(f).blank?
     end
     percent = (filled_in.to_f / fields.length.to_f).round(2) * 100
-    #{}"#{percent.to_i}%"
     self.percent_complete = percent.to_i
   end
 

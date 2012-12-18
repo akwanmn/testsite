@@ -16,5 +16,6 @@
  *= require design
  *= require pages/dashboard
  *= require admin/admin
+ *= require chosen
  *= require_self
 */

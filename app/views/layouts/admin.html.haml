@@ -86,7 +86,7 @@
                     = link_to 'Orders', admin_orders_latest_path
                   %li
                     = link_to 'Subscriptions', admin_subscriptions_path
-              
+
           / /.nav-collapse
         / /.container
       / /#header
@@ -107,12 +107,12 @@
           - if !flash[:error].blank?
             .alert.alert-error= flash[:error]
           = yield
-          
+
     #footer
       .container
         .row
           .span6
-            © 
+            ©
             = Date.today.year
             = succeed ", " do
               %a{:href => "#"} New Expectations Dating Inc.
@@ -127,10 +127,11 @@
     = javascript_include_tag 'application'
     = javascript_include_tag 'admin/users'
     = javascript_include_tag 'admin/orders'
+    = javascript_include_tag 'admin/user_profile'
     :javascript
       $(function () {
-      	
+
       	Theme.init ();
-      	
+
       });
-      
+

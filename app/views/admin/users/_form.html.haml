@@ -1,5 +1,7 @@
 = link_to 'Manage Profile', edit_profile_admin_user_path(@user), class: 'btn btn-primary'
-= @user.user_profile.approximate_location
+%p
+  %strong Approx
+  = @user.user_profile.approximate_location
 = simple_form_for [:admin,@user], html: {class: 'form-horizontal'} do |f|
   .row
     .span5

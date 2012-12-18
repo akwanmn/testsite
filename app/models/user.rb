@@ -24,7 +24,7 @@ class User
 
   validates_presence_of :email
   validates_presence_of :encrypted_password
-  
+
   ## Recoverable
   field :reset_password_token,   :type => String
   field :reset_password_sent_at, :type => Time
@@ -60,7 +60,7 @@ class User
       transitions to: :paid, from: [:free, :charter]
     end
 
-    event :make_charter do 
+    event :make_charter do
       transitions to: :charter, from: [:paid, :free]
     end
   end

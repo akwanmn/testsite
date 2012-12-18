@@ -40,3 +40,4 @@
 //= require demos/charts/donut
 //= require plugins/msgbox/jquery.msgbox.min
 //= require jquery_ujs
+//= require chosen-jquery

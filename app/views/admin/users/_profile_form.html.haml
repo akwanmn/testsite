@@ -1,4 +1,4 @@
-%h4 
+%h4
   = "Profile is #{@user.user_profile.percent_complete}% complete."
 .progress.progress-striped.active
   .bar{style: "width: #{@user.user_profile.percent_complete}%"}
@@ -33,7 +33,6 @@
         /= f.button :submit, class: 'btn btn-primary'
         /= link_to 'Cancel', admin_users_path, class: 'btn btn-tertiary'
   .row
-    %h3 Profile
     .span6
       = f.simple_fields_for :user_profile do |up|
         = up.input :occupation
@@ -42,12 +41,13 @@
     .span6
       = f.simple_fields_for :user_profile do |up|
         = up.input :education, collection: UserProfile::EDUCATION, prompt: 'Choose Education', include_blank: true
-        = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion', include_blank: true
-        = up.input :likes
+        = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion', include_blank: true, input_html: {class: 'chzn-select'}
+        = up.input :likes, input_html: {class: 'chzn-select', multiple: true}, collection: UserProfile::LIKES
   .row
-    %h3 Biography
-    = f.simple_fields_for :user_profile do |up|
-      = up.text_area :biography, :size => "200x5", class: 'span12'
+    .span12
+      %h3 Biography
+      = f.simple_fields_for :user_profile do |up|
+        = up.text_area :biography, :size => "200x5", class: 'span12'
   .row
     .span3.offset1
       = f.button :submit, class: 'btn btn-primary'

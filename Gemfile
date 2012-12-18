@@ -19,11 +19,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'chosen-rails'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'mongoid', '~> 3.0.0' # database
 gem 'activemerchant', :require => 'active_merchant' # credit card processing
-gem 'sendgrid' # email 
+gem 'sendgrid' # email
 gem 'aasm' # state machine
 gem 'simple_form' # forms
 gem 'country_select'
