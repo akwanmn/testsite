@@ -103,7 +103,7 @@ class UserProfile
 
   # callbacks
   before_save :calculate_profile_percentage
-
+  delegate :photos, to: :user
   # Calculate the age of this person.
   def age
     return "-" if birthday.blank?
@@ -115,12 +115,13 @@ class UserProfile
   # out if they are < 50% on occassion or something for reminders.
   def calculate_profile_percentage
     fields = ['gender', 'seeking', 'min_age', 'max_age', 'address_zip', 'address_country',
-      'biography', 'occupation', 'education', 'ethnicity', 'religion', 'likes', 'search_radius']
+      'biography', 'occupation', 'education', 'ethnicity', 'religion', 'likes', 'search_radius',
+      'photos']
     filled_in = 0
     fields.each do |f|
       if self.send(f).is_a?(Array)
         # see if the array is actually empty
-        filled_in += 1 unless self.send(f).reject(&:empty?).count == 0
+        filled_in += 1 unless self.send(f).reject(&:blank?).count == 0
       else
         filled_in += 1 unless self.send(f).blank?
       end
