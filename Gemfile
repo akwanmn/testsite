@@ -2,11 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -35,6 +30,13 @@ gem 'sidekiq' # jobs platform
 gem 'switch_user' # switch from admin to user
 gem 'kaminari' # pagination
 gem 'kaminari-bootstrap'
+
+# image processing
+gem 'carrierwave'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'mini_magick'
+gem "jquery-fileupload-rails"
+
 
 group :development do
   gem 'foreman'

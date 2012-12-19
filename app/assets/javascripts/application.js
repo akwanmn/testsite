@@ -41,3 +41,4 @@
 //= require plugins/msgbox/jquery.msgbox.min
 //= require jquery_ujs
 //= require chosen-jquery
+//= require jquery-fileupload

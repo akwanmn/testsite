@@ -17,5 +17,6 @@
  *= require pages/dashboard
  *= require admin/admin
  *= require chosen
+ *= require jquery.fileupload-ui
  *= require_self
 */

@@ -8,7 +8,8 @@ class User
   paginates_per 10
 
   # association
-  embeds_one :user_profile
+  embeds_one  :user_profile
+  embeds_many :photos
   has_many :orders
   accepts_nested_attributes_for :user_profile
 

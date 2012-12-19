@@ -9,22 +9,23 @@ Phoenix::Application.routes.draw do
   ## ADMIN URLS
   ##################################################
   # the namespace, then the custom path.
-  namespace :admin, path: '/super-admin' do 
+  namespace :admin, path: '/super-admin' do
     match '/orders/latest' => 'orders#latest'
     resources :sample
     resources :subscriptions
-    resources :users do 
+    resources :users do
+      resources :photos, :except => [:update, :edit]
       member do
         get :disable
         get :restore
         put :update_profile
         get :edit_profile
       end
-      collection do 
+      collection do
         get :search
       end
       resources :orders do
-        member do 
+        member do
           put :refund
         end
       end

@@ -5,7 +5,6 @@
 = simple_form_for [:admin, @user], url: update_profile_admin_user_path(@user), html: {class: 'form-horizontal'} do |f|
   .row
     .span6
-      %h3 Personal Details
       = f.simple_fields_for :user_profile do |up|
         = up.input :first_name
         = up.input :last_name
@@ -15,39 +14,46 @@
         = up.input :address_country, :priority => ['United States', 'Canada']
         = up.input :selected_birthday, as: :datepicker, input_html: {value: l(@user.user_profile.birthday)}
         = up.input :birthday, as: :hidden
+        = up.input :occupation
+        = up.input :ethnicity, collection: UserProfile::ETHNICITY, prompt: 'Choose Ethnicity', include_blank: true
+        = up.input :search_radius
         //.offset1
         //  = f.button :submit, class: 'btn btn-primary'
         //  = link_to 'Cancel', admin_users_path, class: 'btn btn-tertiary'
     .span6
-      %h3 Relationship Details
       = f.simple_fields_for :user_profile do |up|
         = up.input :seeking, collection: UserProfile::GENDERS, prompt: 'Choose Gender'
         = up.input :gender, collection: UserProfile::GENDERS, prompt: 'Choose Gender'
         = up.input :min_age
         = up.input :max_age
-        %h3 Profile Images
-        = image_tag 'http://placehold.it/90x90'
-        = image_tag 'http://placehold.it/90x90'
-        = image_tag 'http://placehold.it/90x90'
-        = image_tag 'http://placehold.it/90x90'
-        /= f.button :submit, class: 'btn btn-primary'
-        /= link_to 'Cancel', admin_users_path, class: 'btn btn-tertiary'
-  .row
-    .span6
-      = f.simple_fields_for :user_profile do |up|
-        = up.input :occupation
-        = up.input :ethnicity, collection: UserProfile::ETHNICITY, prompt: 'Choose Ethnicity', include_blank: true
-        = up.input :search_radius
-    .span6
-      = f.simple_fields_for :user_profile do |up|
+        = up.input :likes, input_html: {class: 'chzn-select', multiple: true}, collection: UserProfile::LIKES
         = up.input :education, collection: UserProfile::EDUCATION, prompt: 'Choose Education', include_blank: true
         = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion', include_blank: true
-        = up.input :likes, input_html: {class: 'chzn-select', multiple: true}, collection: UserProfile::LIKES
+
+
+
   .row
     .span12
       %h3 Biography
       = f.simple_fields_for :user_profile do |up|
         = up.text_area :biography, :size => "200x5", class: 'span12'
   .row
-    .span3.offset1
+    .span3
       = f.button :submit, class: 'btn btn-primary'
+
+// Upload profile images.
+.row
+  .span12
+    %h3 Profile Photos - Not Staying here.
+    = simple_form_for [:admin, @user, Photo.new], :remote => true do |p|
+      .fileupload-buttonbar
+        %span.btn.btn-success.fileinput-button
+          %i.icon-plus.icon-white
+          %span Add Files...
+          = p.file_field :photo_file, id: 'fileupload'
+        %button{type: :submit, class: 'btn btn-primary start'}
+          %i.icon-upload.icon-white
+          %span Start Upload
+.row
+  - @user.photos.each do |photo|
+    %img{src: photo.photo_file.thumb.url }
