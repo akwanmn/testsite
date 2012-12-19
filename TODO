@@ -1,9 +1,10 @@
 TODO
-1. More profile info for all the likes etc.
-3. Add / edit likes?
-4. Image upload.
-6. User switch to assume users.
-8. Manually add users (edit & add need different things, break out templates)
+- Move photo uploads, also call calculate percentage when an image is uploaded
+  to make sure the percentage is updated, or at least if photos.count = 0.
+- Fix jquery upload.
+  - Show  the image they are uploading in a text box or something.
+  - On done: add it to the list of images that are there.
+  - Make remote => true work.
 
 
 Profile:

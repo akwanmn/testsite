@@ -33,12 +33,12 @@
 
 
   .row
-    .span12
+    .span6.offset1
       %h3 Biography
       = f.simple_fields_for :user_profile do |up|
-        = up.text_area :biography, :size => "200x5", class: 'span12'
+        = up.text_area :biography, :size => "200x5", class: 'span10'
   .row
-    .span3
+    .span3.offset1
       = f.button :submit, class: 'btn btn-primary'
 
 // Upload profile images.
