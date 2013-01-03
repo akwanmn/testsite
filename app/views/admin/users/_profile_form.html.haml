@@ -30,8 +30,6 @@
         = up.input :education, collection: UserProfile::EDUCATION, prompt: 'Choose Education', include_blank: true
         = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion', include_blank: true
 
-
-
   .row
     .span6.offset1
       %h3 Biography
@@ -43,17 +41,20 @@
 
 // Upload profile images.
 .row
-  .span12
-    %h3 Profile Photos - Not Staying here.
-    = simple_form_for [:admin, @user, Photo.new], :remote => true do |p|
-      .fileupload-buttonbar
-        %span.btn.btn-success.fileinput-button
-          %i.icon-plus.icon-white
-          %span Add Files...
-          = p.file_field :photo_file, id: 'fileupload'
-        %button{type: :submit, class: 'btn btn-primary start'}
-          %i.icon-upload.icon-white
-          %span Start Upload
+  .span11.offset1
+    = form_for [:admin, @user, Photo.new], html: {id: 'profile_upload'} do |p|
+      %span.btn.btn-success.fileinput-button
+        %i.icon-plus.icon-white
+        %span Add Profile Photos
+        %input{type: 'file', name: 'photos[photo_file]', multiple: 'multiple'}
 .row
-  - @user.photos.each do |photo|
-    %img{src: photo.photo_file.thumb.url }
+  .span11.offset1
+    #photos
+      %ul.thumbnails
+        = render @user.photos
+
+%script{id: 'template-upload', type: 'text/x-tmpl'}
+  .upload
+    {%=o.name%}
+    .progress
+      .bar{style: 'width: 0%'}

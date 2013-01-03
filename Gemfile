@@ -12,6 +12,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-fileupload-rails'
 end
 
 gem 'chosen-rails'
@@ -35,8 +36,6 @@ gem 'kaminari-bootstrap'
 gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mini_magick'
-gem "jquery-fileupload-rails"
-
 
 group :development do
   gem 'foreman'
@@ -45,7 +44,7 @@ group :development do
   gem 'rb-fsevent'
   gem 'terminal-notifier-guard'
   gem 'quiet_assets'
-  gem 'forward'
+  gem 'localtunnel'
 end
 
 group :test do

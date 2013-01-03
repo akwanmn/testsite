@@ -15,8 +15,8 @@
  *= require ui-lightness/jquery-ui-1.8.21.custom.css
  *= require design
  *= require pages/dashboard
- *= require admin/admin
  *= require chosen
+ *= require admin/admin
  *= require jquery.fileupload-ui
  *= require_self
 */
