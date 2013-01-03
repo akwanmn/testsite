@@ -40,8 +40,10 @@
       = f.button :submit, class: 'btn btn-primary'
 
 // Upload profile images.
+
 .row
   .span11.offset1
+    %h2 Manage Profile Photos
     = form_for [:admin, @user, Photo.new], html: {id: 'profile_upload'} do |p|
       %span.btn.btn-success.fileinput-button
         %i.icon-plus.icon-white

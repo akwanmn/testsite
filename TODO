@@ -3,8 +3,6 @@ TODO
   to make sure the percentage is updated, or at least if photos.count = 0.
 - Fix jquery upload.
   - Show  the image they are uploading in a text box or something.
-  - On done: add it to the list of images that are there.
-  - Make remote => true work.
 
 
 Profile:
