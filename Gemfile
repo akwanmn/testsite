@@ -37,6 +37,8 @@ gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mini_magick'
 
+gem 'strong_parameters'
+
 group :development do
   gem 'foreman'
   gem 'thin'

@@ -226,6 +226,10 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    strong_parameters (0.1.6)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
+      railties (~> 3.0)
     subexec (0.2.2)
     switch_user (0.9.1)
     terminal-notifier-guard (1.5.3)
@@ -284,6 +288,7 @@ DEPENDENCIES
   sendgrid
   sidekiq
   simple_form
+  strong_parameters
   switch_user
   terminal-notifier-guard
   thin

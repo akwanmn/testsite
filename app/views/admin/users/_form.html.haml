@@ -15,7 +15,7 @@
       = f.simple_fields_for :user_profile do |up|
         = up.input :first_name
         = up.input :last_name
-        = up.input :selected_birthday, as: :datepicker, input_html: {value: l(@user.user_profile.birthday)}
+        = up.input :selected_birthday, as: :datepicker, input_html: {value: l(@user.user_profile.birthday)} rescue 'N/A'
         = up.input :birthday, as: :hidden
         = up.input :address_zip
         = up.input :address_country, :priority => ['United States', 'Canada']

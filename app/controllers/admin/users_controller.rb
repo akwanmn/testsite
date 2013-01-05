@@ -2,7 +2,7 @@ class Admin::UsersController < AdminController
   prepend_before_filter :find_deleted, only: [:restore]
   before_filter :find_user, only: [:edit, :update, :disable]
   load_and_authorize_resource
-  
+
   def index
     if params[:deleted]
       @users = User.deleted.page params[:page]
@@ -19,14 +19,14 @@ class Admin::UsersController < AdminController
   def update
     respond_to do |format|
       if params[:user][:password].blank?
-        result = @user.update_without_password(params[:user])
+        result = @user.update_without_password(user_params)
       else
         result = @user.update_with_password(params[:user])
       end
       if result
         format.html { redirect_to admin_users_path, notice: "#{@user.full_name} was successfully updated."}
       else
-        format.html { flash[:error] = 'There were validation errors.'; render action: 'edit'} 
+        format.html { flash[:error] = 'There were validation errors.'; render action: 'edit'}
       end
     end
   end
@@ -70,4 +70,19 @@ class Admin::UsersController < AdminController
   def find_user
     @user = User.find(params[:id])
   end
+
+  private
+    # assign some parameters for admin atm, this way we can protect what we want
+    # for different roles as we go forward.
+    def user_params
+      if current_user.is_admin
+        params.require(:user).permit(:email, :is_admin, :password, :password_confirmation, user_profile_attributes: [
+          :selected_birthday, :first_name, :last_name, :address_zip, :address_country
+        ])
+      else
+        params.require(:user).permit(:email, user_profile_attributes: [
+          :selected_birthday, :first_name, :last_name, :address_zip
+        ])
+      end
+    end
 end

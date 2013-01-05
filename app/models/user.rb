@@ -4,6 +4,7 @@ class User
   include Mongoid::Paranoia
   include Geocoder::Model::Mongoid
   include AASM
+  include ActiveModel::ForbiddenAttributesProtection
 
   paginates_per 10
 
