@@ -8,6 +8,7 @@ $ ->
   $('#profile_upload').fileupload
     dataType: 'script'
     add: (e, data) ->
+      $('.bar').parent().fadeOut()
       types = /(\.|\/)(gif|jpe?g|png)$/i
       file = data.files[0]
       if types.test(file.type) || types.test(file.name)
