@@ -19,6 +19,11 @@ class Admin::PhotosController < ApplicationController
   def destroy
     user = User.find(params[:user_id])
     @photo = user.photos.find(params[:id])
-    Rails.logger.debug @photo.inspect
+    pass = true
+    respond_to do |format|
+      if @photo.destroy
+        format.js { render layout: false }
+      end
+    end
   end
 end

@@ -1,4 +1,3 @@
-= link_to 'Manage Profile', edit_profile_admin_user_path(@user), class: 'btn btn-primary'
 %p
   %strong Approx
   = @user.user_profile.approximate_location
@@ -27,6 +26,7 @@
           = link_to match.email, edit_admin_user_path(match)
   .row
     .offset1
+      = link_to 'Manage Profile', edit_profile_admin_user_path(@user), class: 'btn'
       = f.button :submit, class: 'btn btn-primary'
       - if params[:action] == 'edit'
         = link_to 'Create Order', new_admin_user_order_path(@user), class: 'btn btn-secondary'

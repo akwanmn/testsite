@@ -1,2 +1,4 @@
-%li.span2
+%li.span2{'class' => photo.id}
   = link_to image_tag(photo.photo_file.thumb.url, class: 'img-polaroid'), photo.photo_file.url
+  %p
+    = link_to 'Delete', admin_user_photo_path(@user, photo), method: :delete, remote: true, class: 'btn', confirm: 'Are you sure?'
