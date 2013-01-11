@@ -1,0 +1,93 @@
+// Find the number based on tag
+// returns something like the following
+/*
+{
+  "_id" : "Heath & Fitness",
+  "usersByTag" : 1,
+  "users" : [
+    "andy@conspyre.com"
+  ]
+},
+{
+  "_id" : "",
+  "usersByTag" : 2,
+  "users" : [
+    "andy@conspyre.com",
+    "amara@denesik.us"
+  ]
+}
+*/
+db.runCommand(
+{ aggregate : "users", pipeline : [
+    { $project : {
+        email : 1,
+        likes: "$user_profile.likes"
+    }},
+    { $unwind: "$likes" },
+    { $group: {
+      _id: "$likes",
+      usersByTag: { $sum: 1 },
+      users: { $addToSet: "$email"}
+    }}
+]});
+
+// Match on the users likes first.
+// FInd any that are in this range,
+// then we can group/unwind etc., to see which is the most likely or
+// highest rated.
+db.users.aggregate(
+  {$match: {$or:
+    [
+    {'user_profile.likes': 'Outdoors'},
+    {'user_profile.likes': 'Career'},
+  ]}}
+)
+
+
+// Stil not working, might need to do a cron for the short
+// term to start matching, and maybe just provide a percent
+// calculation based on the items in their list.
+db.users.aggregate(
+  // include matches for this users tags
+  //{$match: {email: {$ne: 'amara@denesik.us'}}},
+  {$project: {
+    _id: 1,
+    email: 1,
+    name: "$user_profile.first_name",
+    score: { $add:["$score", 0] },
+    likes: "$user_profile.likes" // default score maybe?
+  }},
+  {$unwind: "$likes"},
+  {$group:
+    {
+      _id: "$likes",
+      count: { $sum: 1 }
+    }
+  }
+  // {$match: {$or:
+  //   [
+  //   {'$likes': 'Outdoors'},
+  //   {'$likes': 'Career'},
+  //   {'$likes': 'Heath & Fitness'},
+  // ]}}
+)
+
+// Just use group?
+// 'Heath & Fitness'
+// db.users.aggregate(
+//   { $group:
+//     {
+//       _id: "$email",
+//       totalLikes: { $sum: "$user_profile.likes" }
+//     }
+//   },
+//   { $match: {totalLikes: {$gte: 1}}}
+// )
+
+// db.users.aggregate(
+//   { $group:
+//     {_id: "$email",
+//       totalLikes: { $sum: "$likes" }
+//     }
+//   }
+// )

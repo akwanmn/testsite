@@ -1,8 +1,7 @@
 TODO
 - Move photo uploads, also call calculate percentage when an image is uploaded
   to make sure the percentage is updated, or at least if photos.count = 0.
-- Fix jquery upload.
-  - Show  the image they are uploading in a text box or something.
+
 
 
 Profile:
@@ -36,3 +35,4 @@ Messages:
 
 # query to see where likes match current users likes
 User.where('user_profile.likes' => {'$in' =>  ['Family', 'Education']}).count
+ within(range).min_age(18).max_age(37)

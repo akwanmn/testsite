@@ -3,6 +3,7 @@ class UserProfile
 
   attr_accessor :selected_birthday
 
+  # Maybe move out to a lib/constants for now?
   GENDERS = ['Male', 'Female']
   EDUCATION = [
     "High School",
@@ -61,7 +62,7 @@ class UserProfile
     'Career',
     'Education',
     'Family',
-    'Heath & Fitness',
+    'Health & Fitness',
     'Nightlife',
     'Outdoors',
     'Politics',
