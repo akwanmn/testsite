@@ -10,8 +10,6 @@ class Communication
   field :subject,       type: String
   field :body,          type: String
   field :sent_at,       type: DateTime
-  field :viewed_at,     type: DateTime
-  field :status,        type: String
 
   # validations
   validates_presence_of :from_user_id, :to_user_id, :subject, :body

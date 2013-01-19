@@ -23,10 +23,18 @@ Profile: (Allow editing of a fiew specific to a like?)
 # another alternative is a list of embedded documents in each user profile, that
 # has their email id, and the state of it.
 
-Mailbox
-  belongs_to :communication
 
-  field :status # used for read, sent, trashed etc.
+# Maybe get rid of from/to in communication and put it in mailbox?
+
+# Sent could be what is in communication
+
+# The rest of the mailbox functions for trash, archive etc., handled through Mailbox?
+
+Mailbox
+  has_many :communications
+  belongs_to :user
+
+  state to control inbox, trash, sent etc.
 
   def sent
   end
