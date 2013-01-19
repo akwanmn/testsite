@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.10'
+gem 'rails', '3.2.11'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -13,7 +13,10 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-fileupload-rails'
+  gem 'handlebars_assets'
 end
+
+
 
 gem 'chosen-rails'
 gem 'haml-rails'
@@ -31,12 +34,12 @@ gem 'sidekiq' # jobs platform
 gem 'switch_user' # switch from admin to user
 gem 'kaminari' # pagination
 gem 'kaminari-bootstrap'
+gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
 
 # image processing
 gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mini_magick'
-
 gem 'strong_parameters'
 
 group :development do
@@ -47,6 +50,8 @@ group :development do
   gem 'terminal-notifier-guard'
   gem 'quiet_assets'
   gem 'localtunnel'
+  gem 'pry-rails'
+  gem 'awesome_print'
 end
 
 group :test do

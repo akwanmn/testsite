@@ -25,7 +25,7 @@
           #top-nav
             %ul
               %li.dropdown
-                = link_to 'View Site', 'http://2date4love.com', :target => '_blank'
+                = link_to 'View Site', root_path, :target => '_blank'
             %ul.pull-right
               %li
                 %a{:href => "javascript:;"}
@@ -61,13 +61,13 @@
       / /#topbar
       #header
         .container
-          = link_to 'Dashboard', root_path, :class => 'brand'
+          = link_to 'Dashboard', admin_path, :class => 'brand'
           %a.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :href => "javascript:;"}
             %i.icon-reorder
           .nav-collapse
             %ul#main-nav.nav.pull-right
               %li.nav-icon.active
-                = link_to root_path do
+                = link_to admin_path do
                   %i.icon-home
                   %span Home
               %li.dropdown

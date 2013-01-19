@@ -1,0 +1,2 @@
+module Lounge::HomeHelper
+end
