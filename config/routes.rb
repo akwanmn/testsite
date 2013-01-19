@@ -33,6 +33,7 @@ Phoenix::Application.routes.draw do
     end
   end
 
+  # namespace for the api to use for ember.js
   namespace :api do
     namespace :v1 do
       resources :users

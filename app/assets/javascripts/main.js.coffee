@@ -7,11 +7,11 @@
 #= require ember-data
 #= require bootstrap
 #= require_self
-#= require ./v1/lounge
-#= require ./v1/routes
-#= require_tree ./v1/controllers
-#= require_tree ./v1/models
-#= require_tree ./v1/templates
-#= require_tree ./v1/views
+#= require ./lounge
+#= require ./routes
+#= require_tree ./controllers
+#= require_tree ./models
+#= require_tree ./templates
+#= require_tree ./views
 
 window.App = Ember.Application.create()
