@@ -92,6 +92,7 @@ class UserProfile
   field :likes,             type: Array
   field :search_radius,     type: Integer, default: 100
   field :percent_complete,  type: Integer
+  #field :profile_views,     type: Array
 
   # validations
   validates_inclusion_of :gender, in: GENDERS

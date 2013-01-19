@@ -1,17 +1,6 @@
 TODO
-- Move photo uploads, also call calculate percentage when an image is uploaded
-  to make sure the percentage is updated, or at least if photos.count = 0.
 
-
-
-Profile:
-  Biography
-  Occupation
-  Education
-  Ethnicity
-  Religion
-  Likes
-  Radius to search
+Profile: (Allow editing of a fiew specific to a like?)
   Animals
   Family
   Career
@@ -22,14 +11,37 @@ Profile:
   Nightlife
   Outdoors
   Nightlife
+
+  # maybe make an embedded document of who viewed and timestamp?
   Views of Profile -> array (log user_id, last_viewed_at)
+
+
+# Refactor, think about how this can be from / to on both sides and each side
+# can independently manage the communication? Two copies? Extra columns for from/to
+# statuses?
+
+# another alternative is a list of embedded documents in each user profile, that
+# has their email id, and the state of it.
+
+Mailbox
+  belongs_to :communication
+
+  field :status # used for read, sent, trashed etc.
+
+  def sent
+  end
+
+  def trash
+  end
+
+  def pending
+  end
+end
 
 Messages:
   Inbox
   Sent
   Trash
-  Archives
-  read_on
 
 
 

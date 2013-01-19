@@ -1,7 +1,6 @@
 class Communication
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Paranoia
   include AASM
 
 
@@ -20,22 +19,33 @@ class Communication
   # callbacks
   after_create :populate_sent_at
 
-  aasm column: :status do
-    state :created, initial: true
-    state :viewed
+  # inbox = created and sent_to = current_user
+  # archived = archived and sent_to = current_user
+  # sent = from_user = current_user
+  # trash_from_user = ?
+  # trash_to_user = ?
 
-    event :seen, :before => :populate_viewed_at do
-      transitions to: :viewed, from: [:created]
-    end
-  end
+  # aasm column: :status do
+  #   state :created, initial: true
+  #   state :viewed
+  #   state :archived
+
+  #   event :view, :before => :populate_viewed_at do
+  #     transitions to: :viewed, from: [:created]
+  #   end
+
+  #   event :archive do
+  #     transitions to: :archived, from: :viewed
+  #   end
+  # end
 
   # methods
   def populate_sent_at
     self.sent_at = DateTime.now.utc
   end
 
-  def populate_viewed_at
-    self.viewed_at = DateTime.now.utc
-  end
+  # def populate_viewed_at
+  #   self.viewed_at = DateTime.now.utc
+  # end
 
 end
