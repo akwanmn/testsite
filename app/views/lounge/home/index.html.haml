@@ -1,0 +1,61 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title 2 Date 4 Love - A different kind of intimacy.
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    = stylesheet_link_tag 'lounge'
+    %link{href:'http://fonts.googleapis.com/css?family=Petit+Formal+Script', rel: 'stylesheet', type: 'text/css'}
+    %link{href:'http://fonts.googleapis.com/css?family=Oxygen', rel: 'stylesheet', type: 'text/css'}
+
+    = javascript_include_tag 'main'
+  %body{'cz-shortcut-listen' => true}
+    #wrap
+      .navbar.navbar-inverse.navbar-fixed-top
+        .navbar-inner
+          .container
+            .branding.pull-left
+              .logo
+              .live-text= 'Live love like your life!'
+              .different-text= 'A different kind of intimacy.'
+
+            .login.pull-right
+              %form.navbar-form
+                %input{type: 'text', class: 'input-medium', placeholder: 'Email'}
+                %input{type: 'text', class: 'input-medium', placeholder: 'Password'}
+                %button{type: 'submit', class: 'btn yellow-btn'} Login
+                .options
+                  %label.checkbox
+                    %input{type: 'checkbox'}
+                      Keep me logged in.
+                    = "|"
+                    = link_to 'Forgot Password', '#'
+
+      #myCarousel.carousel.slide
+        .carousel-inner
+          .item.active
+            %img{src: '/assets/lounge/background1.png'}
+            .container
+            .carousel-caption
+              %h1 Example Headline.
+              %p.lead
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+              = link_to 'Sign up Today', '#', class: 'btn btn-large btn-primary'
+          .item
+            %img{src: '/assets/lounge/background.png'}
+      .container
+        %h2 HERE
+      / .container
+      /   .row
+      /     .span6
+      /       %form.form-horizontal.join-form
+      /         .control-group
+      /           %label.control-label{for: 'inputEmail'} Sex
+      /           .controls
+      /             %select{type: 'text', id: 'inputEmail'}
+      /         .control-group
+      /           %label.control-label{for: 'inputEmail'} Birth Date
+      /           .controls
+      /             %select{type: 'text', id: 'inputEmail'}
+      /     .span6.offset2

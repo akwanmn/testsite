@@ -1,3 +1,3 @@
-App.Store = DS.Store.extend
-  revision: 11
-  adapter: DS.RESTAdapter.create({bulkCommit: false})
+$ ->
+  $('#myCarousel').carousel
+    interval: 5000
