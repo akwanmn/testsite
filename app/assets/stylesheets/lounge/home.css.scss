@@ -1,25 +1,16 @@
 // Place all the styles related to the lounge/home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-/*
-<!--[if gte IE 9]>
-  <style type="text/css">
-    .gradient {
-       filter: none;
-    }
-  </style>
-<![endif]-->
-
-#E9AD21
-*/
 /*
   TODO: Add selector inheritance for things like the repetitive items
   so that we can re-use them.;
+  #A69E77
 */
 $purple_font: #E8E0EE;
+$dark_purple_font: #675370;
 $gray_font: #7D808A;
 $link_color: #000;
+$green_font: #A69E77;
 
 $cursive_font: 'Petit Formal Script';
 $clean_font: 'Oxygen';
@@ -32,6 +23,7 @@ body {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
+  background-attachment: fixed;
 }
 
 /* large h2 type text with dropshadow */
@@ -140,12 +132,16 @@ a:hover {
   color: green;
 }
 
+.off-green {
+  color: $green_font;
+}
+
 .join-form {
   background-image: url(/assets/lounge/from_bg1.png);
   background-repeat: no-repeat;
   height: 500px;
   padding: 15px;
-  margin-top: 30px; // From top of image area.
+  margin-top: 10px; // From top of image area.
 
   .join-today {
     @extend .big-shadow;
@@ -254,3 +250,10 @@ a:hover {
   font-family: $clean_font, sans-serif;
 }
 
+.logo-text {
+  color: $dark_purple_font;
+  font-family: $clean_font, sans-serif;
+  font-size: 24px;
+  margin-left: 10px;
+  padding: 10px 0px 0px 0px;
+}
