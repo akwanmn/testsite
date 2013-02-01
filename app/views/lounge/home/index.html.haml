@@ -10,6 +10,11 @@
     %link{href:'http://fonts.googleapis.com/css?family=Oxygen', rel: 'stylesheet', type: 'text/css'}
 
     = javascript_include_tag 'main'
+    /[if gte IE 9]
+      :css
+        .gradient {
+          filter: none;
+        }
   %body{'cz-shortcut-listen' => true}
     #wrap
       .navbar.navbar-inverse.navbar-fixed-top
@@ -64,7 +69,9 @@
                     %option{value: ''} California
                 .form-row
                   %input.input-medium{type: :password, placeholder: 'Zip Code'}
-                  %input.input-medium{type: :password, placeholder: 'Confirm Password'}
+                  %select
+                    %option{value: ''} Choose Subscription
+                    %option{value: ''} $12.95 (One Time)
                 .form-row
                   %input.input-xxlarge{type: :text, placeholder: 'Credit Card Number'}
                 .form-row
@@ -73,11 +80,16 @@
       .container.full
         .row
           .span12
-            %img{src: '/assets/lounge/today.png'}
-            %img{src: '/assets/lounge/time.png'}
-            %img{src: '/assets/lounge/daily_news.png'}
-            %img{src: '/assets/lounge/the_huffington.png'}
-            %img{src: '/assets/lounge/good_morning.png'}
+            %a{href: 'http://digitallife.today.com/_news/2011/08/18/7408417-new-dating-site-focuses-on-people-who-cant-have-sex', target: '_blank'}
+              %img{src: '/assets/lounge/today.png'}
+            %a{href: 'http://healthland.time.com/2011/08/18/dating-site-for-people-who-cant-have-sex-takes-off/', target: '_blank'}
+              %img{src: '/assets/lounge/time.png'}
+            %a{href: 'http://www.nydailynews.com/life-style/love-sex-cancer-survivor-launches-dating-website-people-sex-article-1.948203', target: '_blank'}
+              %img{src: '/assets/lounge/daily_news.png'}
+            %a{href: 'http://www.huffingtonpost.com/2011/08/12/2date4love-no-sex-dating-website-cancer_n_925574.html', target: '_blank'}
+              %img{src: '/assets/lounge/the_huffington.png'}
+            %a{href: 'http://abcnews.go.com/Health/cancer-survivor-creates-website-sex-love/story?id=14285437', target: '_blank'}
+              %img{src: '/assets/lounge/good_morning.png'}
       .container.bottom
         .row
           .span2
@@ -107,3 +119,5 @@
           .span4
             .live-text Live love like your life!
             .different-text A different kind of intimacy.
+          .span12
+            %p.copyright © 2013 New Expectations Dating, Inc. All Rights Reserved. 2date4love is a service mark of New Expectations Dating, Inc.

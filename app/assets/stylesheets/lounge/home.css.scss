@@ -13,7 +13,10 @@
 
 #E9AD21
 */
-
+/*
+  TODO: Add selector inheritance for things like the repetitive items
+  so that we can re-use them.;
+*/
 $purple_font: #E8E0EE;
 $gray_font: #7D808A;
 $link_color: #000;
@@ -25,10 +28,24 @@ body {
   padding-top: 80px;
   background-image: url('/assets/lounge/background1.png');
   background-repeat: no-repeat;
-  background-position: right 70px;
+  background-position: right 60px;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
+}
+
+/* large h2 type text with dropshadow */
+.big-shadow {
+  font-size:42px;
+  font-family: 'museo_sans_900regular';
+  text-transform:uppercase;
+  font-weight:bold;
+  font-style: normal;
+  color:#422e4b;
+  line-height: 35px;
+  text-align: center;
+  margin-top: 10px;
+  text-shadow:2px 2px #FFF;
 }
 
 a {
@@ -99,7 +116,7 @@ a:hover {
   }
 
   .login {
-    margin: 5px 0px 0px 0px;
+    margin: 10px 0px 0px 0px;
     a {
       color: #fff;
     }
@@ -123,16 +140,6 @@ a:hover {
   color: green;
 }
 
-.center {
-  margin-left: auto;
-  margin-right: auto;
-  float: none;
-}
-
-.navbar .navbar-fixed-bottom .container {
-  height: 100px;
-}
-
 .join-form {
   background-image: url(/assets/lounge/from_bg1.png);
   background-repeat: no-repeat;
@@ -141,16 +148,8 @@ a:hover {
   margin-top: 30px; // From top of image area.
 
   .join-today {
+    @extend .big-shadow;
     font-size:42px;
-    font-family: 'museo_sans_900regular';
-    text-transform:uppercase;
-    font-weight:bold;
-    font-style: normal;
-    color:#422e4b;
-    line-height: 35px;
-    text-align: center;
-    margin-top: 10px;
-    text-shadow:2px 2px #FFF;
   }
 
   .form-details {
@@ -174,7 +173,7 @@ a:hover {
     }
 
     .input-xxlarge {
-      width: 319px;
+      width: 318px;
     }
   }
 }
@@ -215,7 +214,7 @@ a:hover {
   margin: 0px auto 0px auto;
   width: 940px;
   padding-top: 30px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
   .live-text {
     color: $gray_font;
     font-family: $cursive_font, cursive;
@@ -245,5 +244,13 @@ a:hover {
     font-family: $clean_font, sans-serif;
     font-size: 14px
   }
+}
+
+.copyright {
+  color: $gray_font;
+  text-align: center;
+  padding-top: 40px;
+  font-size: 12px;
+  font-family: $clean_font, sans-serif;
 }
 
