@@ -32,30 +32,78 @@
                     = "|"
                     = link_to 'Forgot Password', '#'
 
-      #myCarousel.carousel.slide
-        .carousel-inner
-          .item.active
-            %img{src: '/assets/lounge/background1.png'}
-            .container
-            .carousel-caption
-              %h1 Example Headline.
-              %p.lead
-                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-              = link_to 'Sign up Today', '#', class: 'btn btn-large btn-primary'
-          .item
-            %img{src: '/assets/lounge/background.png'}
       .container
-        %h2 HERE
-      / .container
-      /   .row
-      /     .span6
-      /       %form.form-horizontal.join-form
-      /         .control-group
-      /           %label.control-label{for: 'inputEmail'} Sex
-      /           .controls
-      /             %select{type: 'text', id: 'inputEmail'}
-      /         .control-group
-      /           %label.control-label{for: 'inputEmail'} Birth Date
-      /           .controls
-      /             %select{type: 'text', id: 'inputEmail'}
-      /     .span6.offset2
+        .row
+          .span5.join-form
+            .join-today Join Today
+            .form-details
+              .form.form-horizontal
+                %h4 Join today for only $12.95 (one time)
+                .form-row
+                  .input-prepend
+                    %span.add-on @
+                    %input.span2{type: :text, placeholder: "Username"}
+                  .username-message
+                    .green SUCCESS!
+                .form-row
+                  %input.input-medium{type: :text, placeholder: 'First Name'}
+                  %input.input-medium{type: :text, placeholder: 'Last Name'}
+                .form-row
+                  %input.input-xxlarge{type: :text, placeholder: 'E-Mail'}
+                .form-row
+                  %input.input-medium{type: :password, placeholder: 'Password'}
+                  %input.input-medium{type: :password, placeholder: 'Confirm Password'}
+                %h4 Billing Details
+                .form-row.line
+                  %input.input-xxlarge{type: :text, placeholder: 'Street Address'}
+                .form-row
+                  %input.input-medium{type: :password, placeholder: 'City'}
+                  %select
+                    %option{value: ''} Select State
+                    %option{value: ''} Michigan
+                    %option{value: ''} California
+                .form-row
+                  %input.input-medium{type: :password, placeholder: 'Zip Code'}
+                  %input.input-medium{type: :password, placeholder: 'Confirm Password'}
+                .form-row
+                  %input.input-xxlarge{type: :text, placeholder: 'Credit Card Number'}
+                .form-row
+                  %button.btn.yellow-btn{type: :submit} Join Now
+
+      .container.full
+        .row
+          .span12
+            %img{src: '/assets/lounge/today.png'}
+            %img{src: '/assets/lounge/time.png'}
+            %img{src: '/assets/lounge/daily_news.png'}
+            %img{src: '/assets/lounge/the_huffington.png'}
+            %img{src: '/assets/lounge/good_morning.png'}
+      .container.bottom
+        .row
+          .span2
+            %ul
+              %li
+                = link_to 'Contact Us'
+              %li
+                = link_to 'Facebook'
+              %li
+                = link_to 'Twitter'
+          .span2
+            %ul
+              %li
+                = link_to "FAQ's"
+              %li
+                = link_to "Terms of Service"
+              %li
+                = link_to "Our Privacy Policy"
+          .span3
+            %ul
+              %li
+                =link_to 'Success Stories'
+              %li
+                =link_to 'Relationship Articles'
+              %li
+                =link_to 'Dating Tips'
+          .span4
+            .live-text Live love like your life!
+            .different-text A different kind of intimacy.

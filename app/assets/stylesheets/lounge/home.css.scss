@@ -14,16 +14,29 @@
 #E9AD21
 */
 
+$purple_font: #E8E0EE;
+$gray_font: #7D808A;
+$link_color: #000;
+
+$cursive_font: 'Petit Formal Script';
+$clean_font: 'Oxygen';
+
 body {
-  padding-top: 77px;
-  // background-image: url('/assets/lounge/background.png');
-  // background-repeat: no-repeat;
-  // background-attachment: fixed;
-  // background-position: right 50px;
-  // -webkit-background-size: cover;
-  // -moz-background-size: cover;
-  // -o-background-size: cover;
-  // background-size: cover;
+  padding-top: 80px;
+  background-image: url('/assets/lounge/background1.png');
+  background-repeat: no-repeat;
+  background-position: right 70px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+a {
+  color: $link_color;
+}
+
+a:hover {
+  color: $gray_font;
 }
 
 .navbar-inverse .navbar-inner {
@@ -57,20 +70,21 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+
 /* navbar on home page */
 .navbar .container {
   height: 75px;
 
   .branding {
     .live-text {
-      color: #E8E0EE;
-      font-family: 'Petit Formal Script', cursive;
+      color: $purple_font;
+      font-family: $cursive_font, cursive;
       font-size: 24px;
       margin: 15px 0px 0px 100px;
     }
 
     .different-text {
-      font-family: 'Oxygen', sans-serif;
+      font-family: $clean_font, sans-serif;
       margin: 10px 0px 0px 100px;
     }
 
@@ -95,34 +109,141 @@ body {
       margin-top: 4px;
     }
     label {
-      font-family: 'Oxygen', sans-serif;
+      font-family: $clean_font, sans-serif;
       font-size: 11px;
     }
   }
 }
 
-.join-form {
-  padding-top: 30px;
-  background: url(/assets/lounge/from_bg.png) 100px 0px no-repeat;
-  height: 449px;
-
+.red {
+  color: red;
 }
 
-// /* JOIN FORM INLAY */
-// .join-inlay {
-//   background: url(/assets/lounge/from_bg.png) no-repeat;
-//   //height: 449px;
-//   margin-top: 20px;
+.green {
+  color: green;
+}
 
-//   h2{
-//     font-size: 42px;
-//     font-family: 'museo_sans_900regular';
-//     text-transform:uppercase;
-//     font-weight: bold;
-//     font-style: normal;
-//     color:#422e4b;
-//     line-height: 35px;
-//     //padding: 22px 0 0 35px;
-//     text-shadow:2px 2px #FFF;
-//   }
-// }
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}
+
+.navbar .navbar-fixed-bottom .container {
+  height: 100px;
+}
+
+.join-form {
+  background-image: url(/assets/lounge/from_bg1.png);
+  background-repeat: no-repeat;
+  height: 500px;
+  padding: 15px;
+  margin-top: 30px; // From top of image area.
+
+  .join-today {
+    font-size:42px;
+    font-family: 'museo_sans_900regular';
+    text-transform:uppercase;
+    font-weight:bold;
+    font-style: normal;
+    color:#422e4b;
+    line-height: 35px;
+    text-align: center;
+    margin-top: 10px;
+    text-shadow:2px 2px #FFF;
+  }
+
+  .form-details {
+    margin-left: 25px;
+    margin-top: 20px;
+
+    .form-row {
+      clear: right;
+      padding-top: 10px;
+
+      select {
+        width: 165px;
+      }
+
+      .username-message {
+        width: 170px;
+        float: right;
+        font-size: 12px;
+        margin-top: 5px;
+      }
+    }
+
+    .input-xxlarge {
+      width: 319px;
+    }
+  }
+}
+
+.container.full {
+  background-color: #ffffff;
+  width: 100%;
+  margin-top: 20px;
+  height: 100px;
+  padding-left: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container.bottom {
+  background-image: url('/assets/lounge/buttom.png');
+  background-color: #EEEBE6;
+  width: 100%;
+  height: 100%;
+  margin-bottom:0px;
+}
+
+/* as seen in area */
+.container.full div.row {
+  margin: 0px auto 0px auto;
+  width: 940px
+}
+
+#wrap div.container.full div.row img {
+  position: static;
+  padding-top: 17px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+/* footer */
+.container.bottom div.row {
+  margin: 0px auto 0px auto;
+  width: 940px;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  .live-text {
+    color: $gray_font;
+    font-family: $cursive_font, cursive;
+    font-size: 24px;
+    margin: 0px 0px 0px 0px;
+  }
+
+  .different-text {
+    color: $gray_font;
+    font-family: $clean_font, sans-serif;
+    margin: 10px 0px 0px 0px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    background-image: url('/assets/lounge/footer_mark.png');
+    background-repeat: no-repeat;
+    background-position: 0 .4em;
+    padding-left: 1em;
+  }
+  ul li {
+    font-family: $clean_font, sans-serif;
+    font-size: 14px
+  }
+}
+
