@@ -54,6 +54,7 @@ Phoenix::Application.configure do
     main.js
     libs/*.js
     admin/*.js
+    admin/*.js.coffee
     admin/*.css
     lounge/*.css
     lounge/*.js )
