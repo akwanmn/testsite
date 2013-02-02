@@ -57,6 +57,20 @@
   }
 }
 
+@mixin shadowed-text($font_size) {
+  .big-shadow {
+    font-size: $font_size;
+    font-family: 'museo_sans_900regular';
+    text-transform:uppercase;
+    font-weight:bold;
+    font-style: normal;
+    color:#422e4b;
+    line-height: 35px;
+    margin-top: 10px;
+    text-shadow:2px 2px #FFF;
+  }
+}
+
 .red {
   color: red;
 }
@@ -69,6 +83,13 @@
   color: $logo_green;
 }
 
+.container.bottom {
+  background-image: url('/assets/lounge/buttom.png');
+  background-color: #EEEBE6;
+  width: 100%;
+  height: 100%;
+  margin-bottom:0px;
+}
 
 .container.bottom div.row {
   margin: 0px auto 0px auto;
