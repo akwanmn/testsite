@@ -2,7 +2,7 @@
 %html{:lang => "en"}
   %head
     %meta{:charset => "utf-8"}/
-    %title 2 Date 4 Love - A different kind of intimacy.
+    %title 2Date4Love - A different kind of intimacy.
     %meta{:content => "", :name => "description"}/
     %meta{:content => "", :name => "author"}/
     = stylesheet_link_tag 'lounge'
@@ -17,30 +17,11 @@
         }
   %body{'cz-shortcut-listen' => true}
     #wrap
-      .navbar.navbar-inverse.navbar-fixed-top
-        .navbar-inner
-          .container
-            .branding.pull-left
-              .logo
-              .live-text= 'Live love like your life!'
-              .different-text= 'A different kind of intimacy.'
-
-            .login.pull-right
-              %form.navbar-form
-                %input{type: 'text', class: 'input-medium', placeholder: 'Email'}
-                %input{type: 'text', class: 'input-medium', placeholder: 'Password'}
-                %button{type: 'submit', class: 'btn yellow-btn'} Login
-                .options
-                  %label.checkbox
-                    %input{type: 'checkbox'}
-                      Keep me logged in.
-                    = "|"
-                    = link_to 'Forgot Password', '#'
+      = render 'lounge/shared/topnav'
 
       .container
         .row
-          %p.logo-text
-            <span class='off-green'>2</span>date<span class='off-green'>4</span>love
+          = render 'lounge/shared/logo-text'
 
           //.alert.alert-error Sorry there was a problem processing your request.
           .span5.join-form
@@ -79,51 +60,9 @@
                 .form-row
                   %input.input-medium{type: :text, placeholder: 'Credit Card Number'}
                   %input.input-small.cvv2{type: :text, placeholder: 'CCV2'}
-                  %input.input-small{type: :text, placeholder: 'Credit Card Expiration'}
+                  %input.input-small{type: :text, placeholder: 'Card Exp.'}
                 .form-row
                   %button.btn.yellow-btn{type: :submit} Join Now
 
-      .container.full
-        .row
-          .span12
-            %a{href: 'http://digitallife.today.com/_news/2011/08/18/7408417-new-dating-site-focuses-on-people-who-cant-have-sex', target: '_blank'}
-              %img{src: '/assets/lounge/today.png'}
-            %a{href: 'http://healthland.time.com/2011/08/18/dating-site-for-people-who-cant-have-sex-takes-off/', target: '_blank'}
-              %img{src: '/assets/lounge/time.png'}
-            %a{href: 'http://www.nydailynews.com/life-style/love-sex-cancer-survivor-launches-dating-website-people-sex-article-1.948203', target: '_blank'}
-              %img{src: '/assets/lounge/daily_news.png'}
-            %a{href: 'http://www.huffingtonpost.com/2011/08/12/2date4love-no-sex-dating-website-cancer_n_925574.html', target: '_blank'}
-              %img{src: '/assets/lounge/the_huffington.png'}
-            %a{href: 'http://abcnews.go.com/Health/cancer-survivor-creates-website-sex-love/story?id=14285437', target: '_blank'}
-              %img{src: '/assets/lounge/good_morning.png'}
-      .container.bottom
-        .row
-          .span2
-            %ul
-              %li
-                = link_to 'Contact Us'
-              %li
-                = link_to 'Facebook'
-              %li
-                = link_to 'Twitter'
-          .span2
-            %ul
-              %li
-                = link_to "FAQ's"
-              %li
-                = link_to "Terms of Service"
-              %li
-                = link_to "Our Privacy Policy"
-          .span3
-            %ul
-              %li
-                =link_to 'Success Stories'
-              %li
-                =link_to 'Relationship Articles'
-              %li
-                =link_to 'Dating Tips'
-          .span4
-            .live-text Live love like your life!
-            .different-text A different kind of intimacy.
-          .span12
-            %p.copyright © 2013 New Expectations Dating, Inc. All Rights Reserved. 2date4love is a service mark of New Expectations Dating, Inc.
+      = render 'lounge/shared/promos'
+      = render 'lounge/shared/footer'

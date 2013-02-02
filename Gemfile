@@ -43,15 +43,18 @@ gem 'mini_magick'
 gem 'strong_parameters'
 
 group :development do
-  gem 'foreman'
+  #gem 'foreman'
   gem 'thin'
-  gem 'guard-rspec'
-  gem 'rb-fsevent'
-  gem 'terminal-notifier-guard'
+  #gem 'guard-rspec'
+  #gem 'rb-fsevent'
+  #gem 'terminal-notifier-guard'
   gem 'quiet_assets'
-  gem 'localtunnel'
+  #gem 'localtunnel'
   gem 'pry-rails'
   gem 'awesome_print'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 group :test do

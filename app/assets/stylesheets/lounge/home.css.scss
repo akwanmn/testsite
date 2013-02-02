@@ -1,19 +1,10 @@
 // Place all the styles related to the lounge/home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-/*
-  TODO: Add selector inheritance for things like the repetitive items
-  so that we can re-use them.;
-  #A69E77
-*/
-$purple_font: #E8E0EE;
-$dark_purple_font: #675370;
-$gray_font: #7D808A;
-$link_color: #000;
-$green_font: #A69E77;
 
-$cursive_font: 'Petit Formal Script';
-$clean_font: 'Oxygen';
+@import "lounge-variables";
+@import "lounge-global";
+
 
 body {
   padding-top: 80px;
@@ -40,72 +31,12 @@ body {
   text-shadow:2px 2px #FFF;
 }
 
-a {
-  color: $link_color;
-}
-
-a:hover {
-  color: $gray_font;
-}
-
-.navbar-inverse .navbar-inner {
-  color: #ffffff;
-  background: #685372; /* Old browsers */
-  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
-  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY4NTM3MiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM4ODZkOTYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-  background: -moz-linear-gradient(top,  #685372 0%, #886d96 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#685372), color-stop(100%,#886d96)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #685372 0%,#886d96 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #685372 0%,#886d96 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #685372 0%,#886d96 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  #685372 0%,#886d96 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#685372', endColorstr='#886d96',GradientType=0 ); /* IE6-8 */
-}
-
-.yellow-btn {
-  background-color: hsl(36, 100%, 50%) !important;
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#E9AD21", endColorstr="#ff9900");
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#E9AD21), to(#ff9900));
-  background-image: -moz-linear-gradient(top, #E9AD21, #ff9900);
-  background-image: -ms-linear-gradient(top, #E9AD21, #ff9900);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E9AD21), color-stop(100%, #ff9900));
-  background-image: -webkit-linear-gradient(top, #E9AD21, #ff9900);
-  background-image: -o-linear-gradient(top, #E9AD21, #ff9900);
-  background-image: linear-gradient(#E9AD21, #ff9900);
-  border-color: #ff9900 #ff9900 hsl(36, 100%, 45%);
-  color: #FFF !important;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.33);
-  -webkit-font-smoothing: antialiased;
-}
-
 
 /* navbar on home page */
 .navbar .container {
-  height: 75px;
+  height: $header_height;
 
-  .branding {
-    .live-text {
-      color: $purple_font;
-      font-family: $cursive_font, cursive;
-      font-size: 24px;
-      margin: 15px 0px 0px 100px;
-    }
-
-    .different-text {
-      font-family: $clean_font, sans-serif;
-      margin: 10px 0px 0px 100px;
-    }
-
-    .logo {
-      background-image: url('/assets/lounge/2date4love-logo.png');
-      background-size: 70px 70px;
-      width: 70px;
-      height: 70px;
-      margin: 0px 0px 0px 15px;
-      float: left;
-    }
-  }
+  @include header-logo-text;
 
   .login {
     margin: 10px 0px 0px 0px;
@@ -124,17 +55,6 @@ a:hover {
   }
 }
 
-.red {
-  color: red;
-}
-
-.green {
-  color: green;
-}
-
-.off-green {
-  color: $green_font;
-}
 
 .join-form {
   background-image: url(/assets/lounge/from_bg1.png);
@@ -206,58 +126,6 @@ a:hover {
 }
 
 /* footer */
-.container.bottom div.row {
-  margin: 0px auto 0px auto;
-  width: 940px;
-  padding-top: 30px;
-  padding-bottom: 10px;
-  .live-text {
-    color: $gray_font;
-    font-family: $cursive_font, cursive;
-    font-size: 24px;
-    margin: 0px 0px 0px 0px;
-  }
-
-  .different-text {
-    color: $gray_font;
-    font-family: $clean_font, sans-serif;
-    margin: 10px 0px 0px 0px;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  li {
-    background-image: url('/assets/lounge/footer_mark.png');
-    background-repeat: no-repeat;
-    background-position: 0 .4em;
-    padding-left: 1em;
-  }
-  ul li {
-    font-family: $clean_font, sans-serif;
-    font-size: 14px
-  }
-}
-
-.copyright {
-  color: $gray_font;
-  text-align: center;
-  padding-top: 40px;
-  font-size: 12px;
-  font-family: $clean_font, sans-serif;
-}
-
-.logo-text {
-  color: $dark_purple_font;
-  font-family: $clean_font, sans-serif;
-  font-size: 24px;
-  margin-left: 10px;
-  padding: 10px 0px 0px 0px;
-}
-
 .cvv2 {
   width: 44px;
 }
