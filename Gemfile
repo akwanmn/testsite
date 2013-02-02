@@ -42,6 +42,9 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mini_magick'
 gem 'strong_parameters'
 
+gem 'fabrication' # fixtures
+gem 'ffaker'
+
 group :development do
   #gem 'foreman'
   gem 'thin'
@@ -58,10 +61,8 @@ group :development do
 end
 
 group :test do
-  gem 'fabrication' # fixtures
   gem 'rspec-rails' # rspec / testing
   gem 'database_cleaner'
-  gem 'ffaker'
 end
 
 gem 'hpricot'
