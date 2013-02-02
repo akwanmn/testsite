@@ -52,6 +52,7 @@ Phoenix::Application.configure do
   config.assets.precompile += %w( lounge.css
     font-awesome.css
     main.js
+    plain.js
     libs/*.js
     admin/*.js
     admin/*.js.coffee
