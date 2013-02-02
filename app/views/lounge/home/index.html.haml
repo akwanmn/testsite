@@ -41,6 +41,8 @@
         .row
           %p.logo-text
             <span class='off-green'>2</span>date<span class='off-green'>4</span>love
+
+          //.alert.alert-error Sorry there was a problem processing your request.
           .span5.join-form
             .join-today Join Today
             .form-details
@@ -75,7 +77,9 @@
                     %option{value: ''} Choose Subscription
                     %option{value: ''} $12.95 (One Time)
                 .form-row
-                  %input.input-xxlarge{type: :text, placeholder: 'Credit Card Number'}
+                  %input.input-medium{type: :text, placeholder: 'Credit Card Number'}
+                  %input.input-small.cvv2{type: :text, placeholder: 'CCV2'}
+                  %input.input-small{type: :text, placeholder: 'Credit Card Expiration'}
                 .form-row
                   %button.btn.yellow-btn{type: :submit} Join Now
 
