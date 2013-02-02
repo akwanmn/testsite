@@ -36,6 +36,7 @@ gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mini_magick'
 gem 'strong_parameters'
+gem 'newrelic_rpm'
 
 gem 'thin'
 gem 'fabrication' # fixtures
