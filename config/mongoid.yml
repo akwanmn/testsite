@@ -1,3 +1,8 @@
+production:
+  sessions:
+    default:
+      uri: <%= ENV['MONGOHQ_URL'] %>
+
 development:
   # Configure available database sessions. (required)
   sessions:
@@ -11,9 +16,10 @@ development:
       # of host:port pairs. (required)
       hosts:
         - localhost:27017
+        #- linus.mongohq.com:10082
       #  - alex.mongohq.com:10069
-      #username: zenom
-      #password: andy1212
+      #username: heroku
+      #password: 2ef44285c5e1145cbeb1bd6d1c557ec4
       options:
         # Change whether the session persists in safe mode by default.
         # (default: false)
