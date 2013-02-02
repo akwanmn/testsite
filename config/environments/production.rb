@@ -49,6 +49,7 @@ Phoenix::Application.configure do
   #config.assets.precompile += %w( plain.js
   #Chart.js signin.js Theme.js lounge.css design.css lounge/results.css lounge/home.css )
 
+  config.assets.precompile += %w( libs/*.js admin/*.js admin/*.css lounge/*.css lounge/*.js )
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
