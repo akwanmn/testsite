@@ -34,6 +34,7 @@ gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
 # image processing
 gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'fog'
 gem 'mini_magick'
 gem 'strong_parameters'
 gem 'newrelic_rpm'

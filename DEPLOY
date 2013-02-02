@@ -1,0 +1,6 @@
+# Deploy Setup
+
+heroku config:add AWS_ACCESS_KEY_ID=xxx AWS_SECRET_ACCESS_KEY=yyy
+Adding config vars and restarting app... done, v21
+  AWS_ACCESS_KEY_ID     => xxx
+  AWS_SECRET_ACCESS_KEY => yyy
