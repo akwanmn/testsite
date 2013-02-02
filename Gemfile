@@ -7,13 +7,8 @@ gem 'rails', '3.2.11'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-fileupload-rails'
-  gem 'handlebars_assets'
 end
 
 
@@ -30,8 +25,8 @@ gem 'country_select'
 gem 'devise' # authentication
 gem 'cancan' # authorization
 gem 'geocoder' # geo location
-gem 'sidekiq' # jobs platform
-gem 'switch_user' # switch from admin to user
+#gem 'sidekiq' # jobs platform
+#gem 'switch_user' # switch from admin to user
 gem 'kaminari' # pagination
 gem 'kaminari-bootstrap'
 gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
@@ -42,17 +37,12 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mini_magick'
 gem 'strong_parameters'
 
+gem 'thin'
 gem 'fabrication' # fixtures
 gem 'ffaker'
 
 group :development do
-  #gem 'foreman'
-  gem 'thin'
-  #gem 'guard-rspec'
-  #gem 'rb-fsevent'
-  #gem 'terminal-notifier-guard'
   gem 'quiet_assets'
-  #gem 'localtunnel'
   gem 'pry-rails'
   gem 'awesome_print'
   gem 'better_errors'
