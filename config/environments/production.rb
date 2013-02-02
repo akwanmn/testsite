@@ -47,7 +47,7 @@ Phoenix::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += %w( libs/modernizr.js jquery-1.7.2.min.js less-1.3.0.min.js modernizr-2.5.3.min.js jquery-ui-1.8.21.custom.min.js plain.js
-  Chart.js signin.js Theme.js )
+  Chart.js signin.js Theme.js lounge.css design.css )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
