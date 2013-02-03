@@ -1,0 +1,139 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title 2Date4Love - A different kind of intimacy.
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    = stylesheet_link_tag 'lounge', 'lounge/profile'
+    %link{rel: 'icon', href: '/favicon.ico'}
+    %link{href:'http://fonts.googleapis.com/css?family=Petit+Formal+Script', rel: 'stylesheet', type: 'text/css'}
+    %link{href:'http://fonts.googleapis.com/css?family=Oxygen:400,700', rel: 'stylesheet', type: 'text/css'}
+    /[if gte IE 9]
+      :css
+        .gradient {
+          filter: none;
+        }
+
+  %body{'cz-shortcut-listen' => true}
+    #wrap
+      = render 'lounge/shared/topnav-inside'
+
+      .container
+        .row
+          = render 'lounge/shared/logo-text'
+        %form.form-horizontal
+          .row
+            .span11
+              %h4.big-shadow Edit Account & Profile Details
+              .progress.progress-warning.progress-striped
+                .bar{style: 'width: 40%'}
+          .row
+            .span11.header
+              %i{class: 'icon-user'}
+              %span.title Account Details
+            .row
+              .span5
+                .control-group
+                  %label.control-label{for: 'first_name'} First Name
+                  .controls
+                    %input{type: :text, id: 'first_name'}
+                .control-group
+                  %label.control-label{for: 'city'} City
+                  .controls
+                    %input{type: :text, id: 'city'}
+                .control-group
+                  %label.control-label{for: 'postal_code'} Postal Code
+                  .controls
+                    %input{type: :text, id: 'postal_code'}
+                .control-group
+                  %label.control-label{for: 'password'} Password
+                  .controls
+                    %input{type: :text, id: 'password'}
+              .span5
+                .control-group
+                  %label.control-label{for: 'last_name'} Last Name
+                  .controls
+                    %input{type: :text, id: 'last_name'}
+                .control-group
+                  %label.control-label{for: 'state'} State
+                  .controls
+                    %input{type: :text, id: 'state'}
+                .control-group
+                  %label.control-label{for: 'country'} Country
+                  .controls
+                    %input{type: :text, id: 'country'}
+                .control-group
+                  %label.control-label{for: 'confirm_password'} Password Confirmation
+                  .controls
+                    %input{type: :text, id: 'confirm_password'}
+          .row
+            .span11.header
+              %i{class: 'icon-edit'}
+              %span.title Profile & Search Details
+            .row
+              .span5
+                .control-group
+                  %label.control-label{for: 'first_name'} Your Gender
+                  .controls
+                    %select
+                .control-group
+                  %label.control-label{for: 'first_name'} Min. Age
+                  .controls
+                    %input{type: :text, id: 'first_name'}
+                .control-group
+                  %label.control-label{for: 'first_name'} Birthday
+                  .controls
+                    %input{type: :text, id: 'first_name'}
+                .control-group
+                  %label.control-label{for: 'first_name'} Ethnicity
+                  .controls
+                    %select
+                .control-group
+                  %label.control-label{for: 'first_name'} Education
+                  .controls
+                    %select
+              .span5
+                .control-group
+                  %label.control-label{for: 'first_name'} Looking For
+                  .controls
+                    %select
+                .control-group
+                  %label.control-label{for: 'first_name'} Max Age
+                  .controls
+                    %input{type: :text, id: 'first_name'}
+                .control-group
+                  %label.control-label{for: 'first_name'} Occupation
+                  .controls
+                    %input{type: :text, id: 'first_name'}
+                .control-group
+                  %label.control-label{for: 'first_name'} Religion
+                  .controls
+                    %select
+                .control-group
+                  %label.control-label{for: 'first_name'} Search Miles
+                  .controls
+                    %input{type: :text, id: 'first_name'}
+            .row
+              .span10
+                .control-group
+                  %label.control-label Describe Yourself
+                  .controls
+                    %textarea.span8{rows: 6}
+                .control-group
+                  %label.control-label Likes
+                  .controls
+                    %input.span8{type: :text, placeholder: 'Begin typing to find likes.'}
+          .row
+            .span11.header
+              %i{class: 'icon-picture'}
+              %span.title Images
+            .row
+
+
+
+
+
+      /= render 'lounge/shared/promos'
+      = render 'lounge/shared/footer'
+    = javascript_include_tag 'main'

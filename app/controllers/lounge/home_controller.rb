@@ -1,5 +1,5 @@
 class Lounge::HomeController < ApplicationController
   def index
-    render 'results', layout: false
+    render 'profile', layout: false
   end
 end
