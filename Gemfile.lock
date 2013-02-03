@@ -91,7 +91,6 @@ GEM
       multi_json (~> 1.0)
     fabrication (2.5.4)
     ffaker (1.15.0)
-    flipper (0.3.0)
     fog (1.9.0)
       builder
       excon (~> 0.14)
@@ -139,7 +138,7 @@ GEM
       subexec (~> 0.2.1)
     money (5.1.0)
       i18n (~> 0.6.0)
-    mongoid (3.0.19)
+    mongoid (3.0.20)
       activemodel (~> 3.1)
       moped (~> 1.2)
       origin (~> 1.0)
@@ -262,7 +261,6 @@ DEPENDENCIES
   devise
   fabrication
   ffaker
-  flipper
   fog
   geocoder
   haml-rails

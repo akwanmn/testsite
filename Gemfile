@@ -29,7 +29,7 @@ gem 'kaminari' # pagination
 gem 'kaminari-bootstrap'
 gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
 
-gem 'flipper' # turn on and off services for people (new features)
+#gem 'flipper' # turn on and off services for people (new features)
 
 # image processing
 gem 'carrierwave'
