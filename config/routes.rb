@@ -35,7 +35,7 @@ Phoenix::Application.routes.draw do
   # Lounge URLS
   namespace :lounge, path: '/' do
     resources :home, only: [:new]
-    match '/signup' => 'home#signup', via: :post
+    match '/signup' => 'lounge/home#signup', via: :post
   end
 
   #resources :home, :only => [:index, :new, :create]
