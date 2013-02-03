@@ -34,7 +34,7 @@
             .span5.join-form
               .join-today Join Today
               .form-details
-                = simple_form_for [:lounge, @user], url: signup_path, html: {class: 'form-horizontal'} do |f|
+                = simple_form_for @user, url: signup_path, html: {class: 'form-horizontal'} do |f|
                   %h4 Join today for only $12.95 (one time)
                   .form-row
                     .input-prepend
