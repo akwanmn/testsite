@@ -25,10 +25,9 @@ body {
 }
 
 #wrap {
-  //background-color: #000;
   background-image: url('/assets/lounge/background.png');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center -100px;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -58,14 +57,13 @@ body {
 }
 
 .background-blur {
+  margin-top: 30px;
+  margin-bottom: 50px;
   background: rgb(255, 255, 255);
   background: rgba(255, 255, 255, 0.5);
-  //filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
 }
 
 .join-form {
-  //opacity: 0.5;
-  //filter: alpha(opacity = 50); /* required for opacity to work in IE */
   padding: 15px;
   margin-top: 10px; // From top of image area.
 

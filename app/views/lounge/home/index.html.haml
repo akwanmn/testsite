@@ -15,7 +15,7 @@
         .gradient {
           filter: none;
         }
-    /[if lte IE8]
+    /[if lte IE 8]
       :css
         .background-blur {
           background: transparent;
@@ -25,48 +25,48 @@
   %body{'cz-shortcut-listen' => true}
     #wrap
       = render 'lounge/shared/topnav'
-
-      .container.sample-background
-        .row
-          = render 'lounge/shared/logo-text'
-          //.alert.alert-error Sorry there was a problem processing your request.
-          .span6.background-blur
-            .span5.join-form
-              .join-today Join Today
-              .form-details
-                = simple_form_for @user, url: lounge_signup_path, html: {class: 'form-horizontal'} do |f|
-                  %h4 Join today for only $12.95 (one time)
-                  .form-row
-                    .input-prepend
-                      %span.add-on @
+      .sample-background
+        .container
+          .row
+            = render 'lounge/shared/logo-text'
+            //.alert.alert-error Sorry there was a problem processing your request.
+            .span6.background-blur
+              .span5.join-form
+                .join-today Join Today
+                .form-details
+                  = simple_form_for @user, url: lounge_signup_path, html: {class: 'form-horizontal'} do |f|
+                    %h4 Join today for only $12.95 (one time)
+                    .form-row
+                      .input-prepend
+                        %span.add-on @
+                        = f.simple_fields_for :user_profile do |p|
+                          = p.text_field :nickname, placeholder: 'Username', class: 'span2'
+                      .username-message
+                        .green ACCEPTED!
+                    .form-row
                       = f.simple_fields_for :user_profile do |p|
-                        = p.text_field :nickname, placeholder: 'Username', class: 'span2'
-                    .username-message
-                      .green ACCEPTED!
-                  .form-row
+                        = p.text_field :first_name, placeholder: 'First Name', class: 'input-medium'
+                        = p.text_field :last_name, placeholder: 'Last Name', class: 'input-medium'
+                    .form-row
+                      = f.text_field :email, placeholder: 'E-Mail', class: 'input-xxlarge'
+                    .form-row
+                      = f.password_field :password, placeholder: 'Password', class: 'input-medium'
+                      = f.password_field :password_confirmation, placeholder: 'Confirm Password', class: 'input-medium'
+                    %h4 Billing Details
                     = f.simple_fields_for :user_profile do |p|
-                      = p.text_field :first_name, placeholder: 'First Name', class: 'input-medium'
-                      = p.text_field :last_name, placeholder: 'Last Name', class: 'input-medium'
-                  .form-row
-                    = f.text_field :email, placeholder: 'E-Mail', class: 'input-xxlarge'
-                  .form-row
-                    = f.password_field :password, placeholder: 'Password', class: 'input-medium'
-                    = f.password_field :password_confirmation, placeholder: 'Confirm Password', class: 'input-medium'
-                  %h4 Billing Details
-                  = f.simple_fields_for :user_profile do |p|
-                    .form-row.line
-                      = p.text_field :address_street, placeholder: 'Street Address', class: 'input-xxlarge'
-                    .form-row
-                      = p.text_field :address_city, placeholder: 'City', class: 'input-medium'
-                      = p.text_field :address_state, placeholder: 'State', class: 'input-medium'
-                    .form-row
-                      %input.input-medium{type: :password, placeholder: 'Zip Code'}
-                      = p.country_select :address_country, ['United States', 'Canada']
-                    .form-row
-                      %input.input-large{type: :text, placeholder: 'Credit Card Number'}
-                      %input.input-small{type: :text, placeholder: 'CCV2'}
-                    .form-row
-                      = f.button :submit, class: 'btn-warning', value: 'Join Now'
+                      .form-row.line
+                        = p.text_field :address_street, placeholder: 'Street Address', class: 'input-xxlarge'
+                      .form-row
+                        = p.text_field :address_city, placeholder: 'City', class: 'input-medium'
+                        = p.text_field :address_state, placeholder: 'State', class: 'input-medium'
+                      .form-row
+                        %input.input-medium{type: :password, placeholder: 'Zip Code'}
+                        = p.country_select :address_country, ['United States', 'Canada']
+                      .form-row
+                        %input.input-large{type: :text, placeholder: 'Credit Card Number'}
+                        %input.input-small{type: :text, placeholder: 'CCV2'}
+                      .form-row
+                        = f.button :submit, class: 'btn-warning', value: 'Join Now'
 
       = render 'lounge/shared/promos'
       = render 'lounge/shared/footer'
