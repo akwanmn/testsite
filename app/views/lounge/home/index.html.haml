@@ -22,6 +22,8 @@
           filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7FFFFFFF,endColorstr=#7FFFFFFF);
           zoom: 1
         }
+    /[if lt IE 9]
+      %script{src: '/assets/html5shiv.js'}
   %body{'cz-shortcut-listen' => true}
     #wrap
       = render 'lounge/shared/topnav'
