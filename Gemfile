@@ -39,6 +39,8 @@ gem 'mini_magick'
 gem 'strong_parameters'
 gem 'newrelic_rpm'
 
+#gem 'asset_sync' # store assets on S3
+
 gem 'thin'
 gem 'fabrication' # fixtures
 gem 'ffaker'

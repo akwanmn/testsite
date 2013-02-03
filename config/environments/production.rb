@@ -72,4 +72,16 @@ Phoenix::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+  # active merchant configuration
+  config.after_initialize do
+    # 353774152 - personal
+    # 353774188 - business
+    ActiveMerchant::Billing::Base.mode = :test
+    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+        login: 'andy_1353774218_biz_api1.conspyre.com',
+        password: '1353774257',
+        signature: 'Aej25IpJLqXjMLvgSNNMveBCqM4BAfDnk30suIxxTbXZll3n0iSzjBvC'
+    )
+    # Access as GATEWAY
+  end
 end
