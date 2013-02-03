@@ -31,6 +31,7 @@
 
     .logo {
       background-image: url('/assets/lounge/2date4love-logo.png');
+      background-repeat: no-repeat;
       background-size: 70px 70px;
       width: 70px;
       height: 70px;
@@ -38,7 +39,7 @@
       float: left;
       filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/assets/lounge/2date4love-logo.png',
 sizingMethod='scale');
-      //-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/assets/lounge/2date4love-logo.png', sizingMethod='scale')";
+      -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/assets/lounge/2date4love-logo.png', sizingMethod='scale')";
     }
   }
 }
