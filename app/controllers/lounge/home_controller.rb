@@ -1,4 +1,5 @@
 class Lounge::HomeController < ApplicationController
+  skip_before_filter :authenticate_user!
   def new
     @user = User.new
     @user.user_profile = UserProfile.new
@@ -6,6 +7,6 @@ class Lounge::HomeController < ApplicationController
   end
 
   def signup
-    render text: params.inspect
+    render text: Rails.env == 'development' ? params.inspect : 'OK'
   end
 end
