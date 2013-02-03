@@ -7,14 +7,7 @@
 
 
 body {
-  padding-top: 80px;
-  background-image: url('/assets/lounge/background1.png');
-  background-repeat: no-repeat;
-  background-position: right 60px;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-attachment: fixed;
+  padding-top: 75px;
 }
 
 /* large h2 type text with dropshadow */
@@ -31,6 +24,14 @@ body {
   text-shadow:2px 2px #FFF;
 }
 
+#wrap {
+  //background-color: #000;
+  background-image: url('/assets/lounge/background.png');
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
 
 /* navbar on home page */
 .navbar .container {
@@ -55,11 +56,15 @@ body {
   }
 }
 
+.background-blur {
+  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0.5);
+  //filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+}
 
 .join-form {
-  background-image: url(/assets/lounge/from_bg1.png);
-  background-repeat: no-repeat;
-  height: 500px;
+  //opacity: 0.5;
+  //filter: alpha(opacity = 50); /* required for opacity to work in IE */
   padding: 15px;
   margin-top: 10px; // From top of image area.
 

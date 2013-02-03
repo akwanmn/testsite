@@ -5,9 +5,9 @@ class Admin::UsersController < AdminController
 
   def index
     if params[:deleted]
-      @users = User.deleted.page params[:page]
+      @users = User.deleted.page params[:page].to_i
     else
-      @users = User.search(params[:search]).order_by('email ASC').page params[:page]
+      @users = User.search(params[:search]).order_by('email ASC').page params[:page].to_i
     end
   end
 

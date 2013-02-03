@@ -73,6 +73,7 @@ class UserProfile
 
   embedded_in :user
 
+  field :nickname,          type: String
   field :first_name,        type: String
   field :last_name,         type: String
   field :birthday,          type: Date
@@ -80,6 +81,7 @@ class UserProfile
   field :seeking,           type: String
   field :min_age,           type: Integer
   field :max_age,           type: Integer
+  field :address_street,    type: String
   field :address_city,      type: String
   field :address_state,     type: String
   field :address_zip,       type: String
@@ -97,6 +99,7 @@ class UserProfile
   # validations
   validates_inclusion_of :gender, in: GENDERS
   validates_inclusion_of :seeking, in: GENDERS
+  validates_uniqueness_of :nickname
   validates_numericality_of :min_age, greater_than_or_equal_to: 18
   validates_numericality_of :max_age, less_than_or_equal_to: 120
   validates_numericality_of :search_radius, greater_than: 0, less_than_or_equal_to: 4000

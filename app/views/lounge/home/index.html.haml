@@ -15,54 +15,58 @@
         .gradient {
           filter: none;
         }
+    /[if lte IE8]
+      :css
+        .background-blur {
+          background: transparent;
+          filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7FFFFFFF,endColorstr=#7FFFFFFF);
+          zoom: 1
+        }
   %body{'cz-shortcut-listen' => true}
     #wrap
       = render 'lounge/shared/topnav'
 
-      .container
+      .container.sample-background
         .row
           = render 'lounge/shared/logo-text'
-
           //.alert.alert-error Sorry there was a problem processing your request.
-          .span5.join-form
-            .join-today Join Today
-            .form-details
-              .form.form-horizontal
-                %h4 Join today for only $12.95 (one time)
-                .form-row
-                  .input-prepend
-                    %span.add-on @
-                    %input.span2{type: :text, placeholder: "Username"}
-                  .username-message
-                    .green ACCEPTED!
-                .form-row
-                  %input.input-medium{type: :text, placeholder: 'First Name'}
-                  %input.input-medium{type: :text, placeholder: 'Last Name'}
-                .form-row
-                  %input.input-xxlarge{type: :text, placeholder: 'E-Mail'}
-                .form-row
-                  %input.input-medium{type: :password, placeholder: 'Password'}
-                  %input.input-medium{type: :password, placeholder: 'Confirm Password'}
-                %h4 Billing Details
-                .form-row.line
-                  %input.input-xxlarge{type: :text, placeholder: 'Street Address'}
-                .form-row
-                  %input.input-medium{type: :password, placeholder: 'City'}
-                  %select
-                    %option{value: ''} Select State
-                    %option{value: ''} Michigan
-                    %option{value: ''} California
-                .form-row
-                  %input.input-medium{type: :password, placeholder: 'Zip Code'}
-                  %select
-                    %option{value: ''} Choose Subscription
-                    %option{value: ''} $12.95 (One Time)
-                .form-row
-                  %input.input-medium{type: :text, placeholder: 'Credit Card Number'}
-                  %input.input-small.cvv2{type: :text, placeholder: 'CCV2'}
-                  %input.input-small{type: :text, placeholder: 'Card Exp.'}
-                .form-row
-                  %button.btn.yellow-btn{type: :submit} Join Now
+          .span6.background-blur
+            .span5.join-form
+              .join-today Join Today
+              .form-details
+                = simple_form_for [:lounge, @user], url: signup_path, html: {class: 'form-horizontal'} do |f|
+                  %h4 Join today for only $12.95 (one time)
+                  .form-row
+                    .input-prepend
+                      %span.add-on @
+                      = f.simple_fields_for :user_profile do |p|
+                        = p.text_field :nickname, placeholder: 'Username', class: 'span2'
+                    .username-message
+                      .green ACCEPTED!
+                  .form-row
+                    = f.simple_fields_for :user_profile do |p|
+                      = p.text_field :first_name, placeholder: 'First Name', class: 'input-medium'
+                      = p.text_field :last_name, placeholder: 'Last Name', class: 'input-medium'
+                  .form-row
+                    = f.text_field :email, placeholder: 'E-Mail', class: 'input-xxlarge'
+                  .form-row
+                    = f.password_field :password, placeholder: 'Password', class: 'input-medium'
+                    = f.password_field :password_confirmation, placeholder: 'Confirm Password', class: 'input-medium'
+                  %h4 Billing Details
+                  = f.simple_fields_for :user_profile do |p|
+                    .form-row.line
+                      = p.text_field :address_street, placeholder: 'Street Address', class: 'input-xxlarge'
+                    .form-row
+                      = p.text_field :address_city, placeholder: 'City', class: 'input-medium'
+                      = p.text_field :address_state, placeholder: 'State', class: 'input-medium'
+                    .form-row
+                      %input.input-medium{type: :password, placeholder: 'Zip Code'}
+                      = p.country_select :address_country, ['United States', 'Canada']
+                    .form-row
+                      %input.input-large{type: :text, placeholder: 'Credit Card Number'}
+                      %input.input-small{type: :text, placeholder: 'CCV2'}
+                    .form-row
+                      = f.button :submit, class: 'btn-warning', value: 'Join Now'
 
       = render 'lounge/shared/promos'
       = render 'lounge/shared/footer'

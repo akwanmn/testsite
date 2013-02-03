@@ -14,23 +14,6 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#685372', endColorstr='#886d96',GradientType=0 ); /* IE6-8 */
 }
 
-.yellow-btn {
-  background-color: hsl(36, 100%, 50%) !important;
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#E9AD21", endColorstr="#ff9900");
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#E9AD21), to(#ff9900));
-  background-image: -moz-linear-gradient(top, #E9AD21, #ff9900);
-  background-image: -ms-linear-gradient(top, #E9AD21, #ff9900);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E9AD21), color-stop(100%, #ff9900));
-  background-image: -webkit-linear-gradient(top, #E9AD21, #ff9900);
-  background-image: -o-linear-gradient(top, #E9AD21, #ff9900);
-  background-image: linear-gradient(#E9AD21, #ff9900);
-  border-color: #ff9900 #ff9900 hsl(36, 100%, 45%);
-  color: #FFF !important;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.33);
-  -webkit-font-smoothing: antialiased;
-}
-
 /* Logo & promo text definitions */
 @mixin header-logo-text {
   .branding {

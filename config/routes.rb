@@ -4,7 +4,6 @@ Phoenix::Application.routes.draw do
   ##################################################
   devise_for :users, path_names: { :sign_in => 'login', :sign_out => 'logout' }
 
-
   ##################################################
   ## ADMIN URLS
   ##################################################
@@ -33,13 +32,15 @@ Phoenix::Application.routes.draw do
     end
   end
 
-  # namespace for the api to use for ember.js
-  namespace :api do
-    namespace :v1 do
-      resources :users
-    end
+  # Lounge URLS
+  namespace :lounge, path: '/' do
+    resources :home, only: [:new]
+    match '/signup' => 'home#signup', via: :post
   end
 
+  #resources :home, :only => [:index, :new, :create]
+  #resources :users
+
   # needs to be changed to something that is not the admin.
-  root to: 'lounge/home#index'
+  root to: 'lounge/home#new'
 end
