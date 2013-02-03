@@ -10,8 +10,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-fileupload-rails'
 end
-
-
+#gem 'asset_sync' # store assets on S3
 
 gem 'chosen-rails'
 gem 'haml-rails'
@@ -26,24 +25,26 @@ gem 'devise' # authentication
 gem 'cancan' # authorization
 gem 'geocoder' # geo location
 #gem 'sidekiq' # jobs platform
-#gem 'switch_user' # switch from admin to user
 gem 'kaminari' # pagination
 gem 'kaminari-bootstrap'
 gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
+
+gem 'flipper' # turn on and off services for people (new features)
 
 # image processing
 gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'fog'
 gem 'mini_magick'
+
+# security
 gem 'strong_parameters'
+
+# monitoring
 gem 'newrelic_rpm'
 
-#gem 'asset_sync' # store assets on S3
-
+# required by heroku
 gem 'thin'
-gem 'fabrication' # fixtures
-gem 'ffaker'
 
 group :development do
   gem 'quiet_assets'
@@ -52,13 +53,11 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
+  gem 'fabrication' # fixtures
+  gem 'ffaker'
 end
 
 group :test do
   gem 'rspec-rails' # rspec / testing
   gem 'database_cleaner'
 end
-
-gem 'hpricot'
-gem 'haml'
-gem 'ruby_parser'
