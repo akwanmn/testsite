@@ -50,8 +50,27 @@ class Order
     amount.to_f * 100
   end
 
+  # takes the params passed in and builds an order for the
+  # index page.
+  def self.from_join_params(params)
+    # :card_number, :card_verification, :address, :city, :state, :zip, :name,
+    # :country, :amount
+    o = self.new
+    o.card_number         = params[:orders][:card_number]
+    o.card_verification   = params[:orders][:card_verification]
+    o.ip_address          = params[:request_ip]
+    o.address             = params[:user_profile_attributes][:address_street]
+    o.city                = params[:user_profile_attributes][:address_city]
+    o.state               = params[:user_profile_attributes][:address_state]
+    o.zip                 = params[:user_profile_attributes][:address_zip]
+    o.country             = params[:user_profile_attributes][:address_country]
+    o.amount              = DEFAULT_PRICE
+    o.card_expires_on     = Date.parse(params[:orders][:card_expires_on]).end_of_month
+    o
+  end
+
   # TODO: Make this actually take input params
-  # not just what we have on file, to allow for 
+  # not just what we have on file, to allow for
   # other cards to be used?
   def purchase_options
     {
@@ -89,5 +108,7 @@ class Order
       :last_name          => user.last_name
     )
   end
+
+
 
 end

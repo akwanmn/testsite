@@ -22,8 +22,8 @@
         %td= u.full_name
         %td
           =link_to u.email, '#'
-        %td= t(u.user_profile.gender)
-        %td= l(u.user_profile.birthday)
+        %td= t(u.user_profile.gender) rescue 'N/A'
+        %td= l(u.user_profile.birthday) rescue 'N/A'
         %td= u.user_profile.age
         %td
           %span.label{class: "#{u.membership_status.downcase}"}= u.membership_status

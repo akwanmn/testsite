@@ -92,23 +92,26 @@ class UserProfile
   field :ethnicity,         type: String
   field :religion,          type: String
   field :likes,             type: Array
-  field :search_radius,     type: Integer, default: 100
+  field :search_radius,     type: Integer, default: 2000
   field :percent_complete,  type: Integer
   #field :profile_views,     type: Array
 
-  # validations
-  validates_inclusion_of :gender, in: GENDERS
-  validates_inclusion_of :seeking, in: GENDERS
+  # validations -- most are on update so we can create an account without
+  # all the profile details
+  validates_inclusion_of :gender, in: GENDERS, on: :update
+  validates_inclusion_of :seeking, in: GENDERS, on: :update
   validates_uniqueness_of :nickname
-  validates_numericality_of :min_age, greater_than_or_equal_to: 18
-  validates_numericality_of :max_age, less_than_or_equal_to: 120
+  validates_numericality_of :min_age, greater_than_or_equal_to: 18, on: :update
+  validates_numericality_of :max_age, less_than_or_equal_to: 120, on: :update
   validates_numericality_of :search_radius, greater_than: 0, less_than_or_equal_to: 4000
   validates_presence_of :first_name, :last_name, :gender, :seeking, :min_age, :max_age, :address_zip, :address_country,
-    :selected_birthday, :search_radius
+    :selected_birthday, :search_radius, on: :update
+  validates_presence_of :first_name, :last_name, :address_zip, :address_country, on: :create
 
   # callbacks
   before_save :calculate_profile_percentage
   delegate :photos, to: :user
+
   # Calculate the age of this person.
   def age
     return "-" if birthday.blank?

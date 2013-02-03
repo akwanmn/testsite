@@ -37,7 +37,7 @@
                 .join-today Join Today
                 .form-details
                   = simple_form_for @user, url: lounge_signup_path, html: {class: 'form-horizontal'} do |f|
-                    %h4 Join today for only $12.95 (one time)
+                    %h4 Lifetime Membership ONLY $12.95
                     .form-row
                       .input-prepend
                         %span.add-on @
@@ -62,11 +62,13 @@
                         = p.text_field :address_city, placeholder: 'City', class: 'input-medium'
                         = p.text_field :address_state, placeholder: 'State', class: 'input-medium'
                       .form-row
-                        %input.input-medium{type: :password, placeholder: 'Zip Code'}
+                        = p.text_field :address_zip, placeholder: 'Zip Code', class: 'input-medium'
                         = p.country_select :address_country, ['United States', 'Canada']
                       .form-row
-                        %input.input-large{type: :text, placeholder: 'Credit Card Number'}
-                        %input.input-small{type: :text, placeholder: 'CCV2'}
+                        = f.simple_fields_for :orders do |o|
+                          = o.text_field :card_number, placeholder: 'Credit Card Number', class: 'input-medium'
+                          = o.text_field :card_verification, placeholder: 'CVV2', class: 'input-mini'
+                          = o.text_field :card_expires_on, placeholder: 'Card Exp.', class: 'input-mini'
                       .form-row
                         = f.button :submit, class: 'btn-warning', value: 'Join Now'
 

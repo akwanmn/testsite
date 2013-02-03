@@ -1,3 +1,6 @@
+- if @user.errors
+  = @user.errors.inspect
+  = @user.user_profile.errors.inspect
 %p
   %strong Approx
   = @user.user_profile.approximate_location
@@ -14,7 +17,7 @@
       = f.simple_fields_for :user_profile do |up|
         = up.input :first_name
         = up.input :last_name
-        = up.input :selected_birthday, as: :datepicker, input_html: {value: l(@user.user_profile.birthday)} rescue 'N/A'
+        = up.input :selected_birthday, as: :datepicker, input_html: {value: (@user.user_profile.birthday.present? ? l(@user.user_profile.birthday) : '')}
         = up.input :birthday, as: :hidden
         = up.input :address_zip
         = up.input :address_country, :priority => ['United States', 'Canada']

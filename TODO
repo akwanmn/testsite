@@ -1,4 +1,8 @@
 TODO
+- Fixes, Get signup to work properly. Birthday is breaking things in the admin.
+  Need to figure out how to refactor the birthday and the validations which seem
+  to be breaking badly atm.
+
 
 Profile: (Allow editing of a fiew specific to a like?)
   Animals
