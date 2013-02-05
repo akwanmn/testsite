@@ -12,7 +12,7 @@
         = up.input :address_state
         = up.input :address_zip
         = up.input :address_country, :priority => ['United States', 'Canada']
-        = up.input :selected_birthday, as: :datepicker, input_html: {value: l(@user.user_profile.birthday)}
+        = up.input :selected_birthday, as: :datepicker, input_html: {value: (@user.user_profile.birthday.present? ? l(@user.user_profile.birthday) : '')}
         = up.input :birthday, as: :hidden
         = up.input :occupation
         = up.input :ethnicity, collection: UserProfile::ETHNICITY, prompt: 'Choose Ethnicity', include_blank: true
