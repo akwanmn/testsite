@@ -53,6 +53,7 @@ Phoenix::Application.configure do
     font-awesome.css
     main.js
     plain.js
+    lounge.js
     html5shiv.js
     libs/*.js
     admin/*.js
