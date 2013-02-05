@@ -9,17 +9,17 @@ class Lounge::HomeController < ApplicationController
 
   def signup
     # save user details first...then create order?
-    user = User.new(user_params)
-    user.user_profile = UserProfile.new(user_params[:user_profile_attributes])
-    user.save!
-    p card_params
-    o = Order.from_join_params(card_params)
-    o.user = user
-    o.name = user.full_name
-    p o.valid?
-    p o.errors
-    o.save!
-    p o.purchase
+    # user = User.new(user_params)
+    # user.user_profile = UserProfile.new(user_params[:user_profile_attributes])
+    # user.save!
+    # p card_params
+    # o = Order.from_join_params(card_params)
+    # o.user = user
+    # o.name = user.full_name
+    # p o.valid?
+    # p o.errors
+    # o.save!
+    # p o.purchase
     #if user.save!
 
     #end
