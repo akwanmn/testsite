@@ -1,8 +1,6 @@
 class UserProfile
   include Mongoid::Document
 
-  attr_accessor :selected_birthday
-
   # Maybe move out to a lib/constants for now?
   GENDERS = ['Male', 'Female']
   EDUCATION = [
@@ -94,19 +92,21 @@ class UserProfile
   field :likes,             type: Array
   field :search_radius,     type: Integer, default: 2000
   field :percent_complete,  type: Integer
+  field :timezone,          type: String, default: 'UTC'
   #field :profile_views,     type: Array
 
   # validations -- most are on update so we can create an account without
   # all the profile details
-  validates_inclusion_of :gender, in: GENDERS, on: :update
-  validates_inclusion_of :seeking, in: GENDERS, on: :update
+  validates_inclusion_of :gender, in: GENDERS
+  validates_inclusion_of :seeking, in: GENDERS
   validates_uniqueness_of :nickname
-  validates_numericality_of :min_age, greater_than_or_equal_to: 18, on: :update
-  validates_numericality_of :max_age, less_than_or_equal_to: 120, on: :update
+  validates_numericality_of :min_age, greater_than_or_equal_to: 18
+  validates_numericality_of :max_age, less_than_or_equal_to: 120
   validates_numericality_of :search_radius, greater_than: 0, less_than_or_equal_to: 4000
-  validates_presence_of :first_name, :last_name, :gender, :seeking, :min_age, :max_age, :address_zip, :address_country,
-    :selected_birthday, :search_radius, on: :update
-  validates_presence_of :first_name, :last_name, :address_zip, :address_country, on: :create
+  validates_presence_of :first_name, :last_name, :gender, :seeking, :min_age,
+    :max_age, :address_zip, :address_country, :search_radius
+
+  validate :zip_code_matches_state
 
   # callbacks
   before_save :calculate_profile_percentage
@@ -138,6 +138,14 @@ class UserProfile
     self.percent_complete = percent.to_i
   end
 
+  # match zipcode to state, just to make sure we have consistent data.
+  def zip_code_matches_state
+    location = Geocoder.search(address_zip).first
+    unless location.state.downcase == address_state.downcase
+      self.errors[:base] << "State (#{address_state}) & Zip Code (#{location.state}) do not match!"
+    end
+  end
+
   def latitude
     coordinates[1]
   end
@@ -147,10 +155,10 @@ class UserProfile
   end
 
   def address
-    #addy = "#{address_city} #{address_state}, #{address_zip} #{address_country}"
     address_zip
   end
 
+  # determine their location approximately.
   def approximate_location
     if !user.coordinates.blank?
       location = Geocoder.search(user.coordinates.reverse).first

@@ -2,4 +2,5 @@
   alert("Failed to upload photo: <%= j @photo.errors.full_messages.join(', ').html_safe %>");
 <% else %>
   $("#photos ul.thumbnails").append("<%= j render(@photo) %>");
+  $('.bar').parent().parent().fadeOut()
 <% end %>

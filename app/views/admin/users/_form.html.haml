@@ -1,37 +1,86 @@
 - if @user.errors
-  = @user.errors.inspect
-  = @user.user_profile.errors.inspect
-%p
-  %strong Approx
-  = @user.user_profile.approximate_location
+  - @user.errors.full_messages.each do |error|
+    %p= error
+- if @user.user_profile.errors
+  - @user.user_profile.errors.full_messages.each do |error|
+    %p= error
+.row
+  .span10
+    %strong Last Sign In Date:
+    = l(@user.last_sign_in_at.in_time_zone(current_user.user_profile.timezone)) rescue ''
+    = " | "
+    %strong Last Sign In IP:
+    = @user.last_sign_in_ip
+    = " | "
+    %strong Sign In Count:
+    = @user.sign_in_count
 = simple_form_for [:admin,@user], html: {class: 'form-horizontal'} do |f|
   .row
-    .span5
-      = f.input :email, input_html: {class: 'input-xlarge'}
-      = f.input :password
-      = f.input :password_confirmation
-      = f.input :is_admin, as: :boolean
-      = f.input :sign_in_count, :disabled => true
-      = f.input :last_sign_in_at, :disabled => true
-    .span5
-      = f.simple_fields_for :user_profile do |up|
-        = up.input :first_name
-        = up.input :last_name
-        = up.input :selected_birthday, as: :datepicker, input_html: {value: (@user.user_profile.birthday.present? ? l(@user.user_profile.birthday) : '')}
-        = up.input :birthday, as: :hidden
-        = up.input :address_zip
+    .span10.section-header
+      %i.icon-white.icon-user
+      Account Details
+    = f.simple_fields_for :user_profile do |up|
+      .span4
+        = up.input :first_name, input_html: {class: 'input-large'}
+        = up.input :address_city, input_html: {class: 'input-large'}
+        = up.input :address_zip, input_html: {class: 'input-large'}
+        = f.input :password
+        = f.input :is_admin, as: :boolean
+      .span4
+        = up.input :last_name, input_html: {class: 'input-large'}
+        = up.input :address_state, input_html: {class: 'input-large'}
         = up.input :address_country, :priority => ['United States', 'Canada']
-        = f.input :last_sign_in_ip, :disabled => true
-    .span2
-      - if params[:action] == 'edit'
-        %h5= "Within #{@user.user_profile.search_radius} miles.."
-        - User.near(@user.coordinates.reverse, @user.user_profile.search_radius.to_i).excludes(id: @user.id).limit(20).each do |match|
-          = link_to match.email, edit_admin_user_path(match)
+        = f.input :password_confirmation
+        = up.input :timezone, collection: ActiveSupport::TimeZone::MAPPING, prompt: 'Choose Timezone',
+          include_blank: true
   .row
-    .offset1
-      = link_to 'Manage Profile', edit_profile_admin_user_path(@user), class: 'btn'
+    .span10.section-header
+      %i.icon-white.icon-search
+      Profile & Search Details
+    = f.simple_fields_for :user_profile do |up|
+      .span4
+        = up.input :gender, collection: UserProfile::GENDERS, prompt: 'Choose Gender'
+        = up.input :min_age
+        = up.input :selected_birthday, as: :datepicker, input_html: {value: (@user.user_profile.birthday.present? ? l(@user.user_profile.birthday) : ''), class: 'input-medium'}
+        = up.input :birthday, as: :hidden
+        = up.input :ethnicity, collection: UserProfile::ETHNICITY, prompt: 'Choose Ethnicity', include_blank: true
+        = up.input :education, collection: UserProfile::EDUCATION, prompt: 'Choose Education', include_blank: true
+      .span4
+        = up.input :seeking, collection: UserProfile::GENDERS, prompt: 'Choose Gender'
+        = up.input :max_age
+        = up.input :occupation
+        = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion', include_blank: true
+        = up.input :search_radius
+  .row{style: 'margin-top: -20px'}
+    .span10
+      = f.simple_fields_for :user_profile do |up|
+        = up.input :biography, as: 'text',input_html: {class: 'span7', rows: '6'}
+  .row{style: 'margin-top: -20px'}
+    .span10
+      = f.simple_fields_for :user_profile do |up|
+        = up.input :likes, input_html: {class: 'chzn-select span7', multiple: true}, collection: UserProfile::LIKES
+  .row
+    .span6.offset3
       = f.button :submit, class: 'btn btn-primary'
       - if params[:action] == 'edit'
         = link_to 'Create Order', new_admin_user_order_path(@user), class: 'btn btn-secondary'
       = link_to 'Cancel', admin_users_path, class: 'btn btn-tertiary'
-
+= form_for [:admin, @user, Photo.new], html: {id: 'profile_upload'} do |p|
+  .row
+    .span10.section-header
+      %i.icon-white.icon-picture
+      Images
+    .row{style: 'margin-top: -20px'}
+      .span10{style: 'margin-left: 60px'}
+        #photos
+          %ul.thumbnails
+            = render @user.photos
+        %span.btn.btn-success.fileinput-button.btn-medium
+          %i.icon-plus.icon-white
+          %span Add Profile Photos
+          %input{type: 'file', name: 'photos[photo_file]', multiple: 'multiple'}
+%script{id: 'template-upload', type: 'text/x-tmpl'}
+  .upload
+    {%=o.name%}
+    .progress
+      .bar{style: 'width: 0%'}

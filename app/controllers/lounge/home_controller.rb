@@ -4,7 +4,7 @@ class Lounge::HomeController < ApplicationController
     @user = User.new
     @user.user_profile = UserProfile.new
     #@order = Order.new
-    render 'index', layout: false
+    render 'profile', layout: false
   end
 
   def signup
