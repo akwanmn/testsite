@@ -19,14 +19,14 @@
   .branding {
     .live-text {
       color: $logo_color;
-      font-family: $cursive_font, cursive;
+      font-family: $clean_font, cursive;
       font-size: 24px;
       margin: 15px 0px 0px 100px;
     }
 
     .different-text {
       font-family: $clean_font, sans-serif;
-      margin: 10px 0px 0px 100px;
+      margin: 10px 0px 0px 125px;
     }
 
     .logo {
@@ -78,22 +78,53 @@ sizingMethod='scale');
   margin-bottom:0px;
 }
 
+// Purple Button
+.btn-purple {
+  background-color: hsl(284, 32%, 26%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#a371b6", endColorstr="#4c2d57");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#a371b6), to(#4c2d57));
+  background-image: -moz-linear-gradient(top, #a371b6, #4c2d57);
+  background-image: -ms-linear-gradient(top, #a371b6, #4c2d57);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #a371b6), color-stop(100%, #4c2d57));
+  background-image: -webkit-linear-gradient(top, #a371b6, #4c2d57);
+  background-image: -o-linear-gradient(top, #a371b6, #4c2d57);
+  background-image: linear-gradient(#a371b6, #4c2d57);
+  border-color: #4c2d57 #4c2d57 hsl(284, 32%, 18%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.52);
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-custom1 {
+  background-color: hsl(45, 100%, 47%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffebb2", endColorstr="#efb300");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#ffebb2), to(#efb300));
+  background-image: -moz-linear-gradient(top, #ffebb2, #efb300);
+  background-image: -ms-linear-gradient(top, #ffebb2, #efb300);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffebb2), color-stop(100%, #efb300));
+  background-image: -webkit-linear-gradient(top, #ffebb2, #efb300);
+  background-image: -o-linear-gradient(top, #ffebb2, #efb300);
+  background-image: linear-gradient(#ffebb2, #efb300);
+  border-color: #efb300 #efb300 hsl(45, 100%, 37.5%);
+  color: #333 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.62);
+  -webkit-font-smoothing: antialiased;
+}
+
 .container.bottom div.row {
   margin: 0px auto 0px auto;
   width: 940px;
   padding-top: 30px;
   padding-bottom: 10px;
-  .live-text {
-    color: $footer_logo_color;
-    font-family: $cursive_font, cursive;
-    font-size: 24px;
-    margin: 0px 0px 0px 0px;
-  }
 
-  .different-text {
+  .overview {
     color: $footer_logo_color;
     font-family: $clean_font, sans-serif;
+    font-size: 12px;
     margin: 10px 0px 0px 0px;
+    text-align: justify;
   }
 
   ul {

@@ -25,7 +25,7 @@ body {
 }
 
 #wrap {
-  background-image: url('/assets/lounge/background.png');
+  background-image: url('/assets/lounge/background1.png');
   background-repeat: no-repeat;
   background-position: center -100px;
   -webkit-background-size: cover;
@@ -75,7 +75,9 @@ body {
   .form-details {
     margin-left: 25px;
     margin-top: 20px;
-
+    h4 {
+      margin-left: 20px;
+    }
     .form-row {
       clear: right;
       padding-top: 10px;

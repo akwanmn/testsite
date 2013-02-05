@@ -9,7 +9,7 @@
     %link{href:'http://fonts.googleapis.com/css?family=Petit+Formal+Script', rel: 'stylesheet', type: 'text/css'}
     %link{href:'http://fonts.googleapis.com/css?family=Oxygen', rel: 'stylesheet', type: 'text/css'}
 
-    = javascript_include_tag 'main'
+
     /[if gte IE 9]
       :css
         .gradient {
@@ -70,7 +70,10 @@
                           = o.text_field :card_verification, placeholder: 'CVV2', class: 'input-mini'
                           = o.text_field :card_expires_on, placeholder: 'Card Exp.', class: 'input-mini'
                       .form-row
-                        = f.button :submit, class: 'btn-warning', value: 'Join Now'
+                        = link_to '#', id: 'join-button', class: 'btn btn-large btn-custom1' do
+                          %i.icon-white.icon-heart
+                          Join Today
 
       = render 'lounge/shared/promos'
       = render 'lounge/shared/footer'
+      = javascript_include_tag 'main', 'lounge'
