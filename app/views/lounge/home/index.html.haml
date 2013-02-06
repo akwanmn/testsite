@@ -31,49 +31,20 @@
         .container
           .row
             = render 'lounge/shared/logo-text'
-            //.alert.alert-error Sorry there was a problem processing your request.
-            .span6.background-blur
+            - if @user.errors.any?
+              .alert.alert-error
+                = "#{pluralize(@user.errors.count, 'error')} were found."
+              - @user.errors.full_messages.each do |error|
+                %p= error
+            .span5.background-blur
               .span5.join-form
                 .join-today Join Today
-                .form-details
-                  = simple_form_for @user, url: lounge_signup_path, html: {class: 'form-horizontal'} do |f|
-                    %h4 Lifetime Membership ONLY $12.95
-                    .form-row
-                      .input-prepend
-                        %span.add-on @
-                        = f.simple_fields_for :user_profile do |p|
-                          = p.text_field :nickname, placeholder: 'Username', class: 'span2'
-                      .username-message
-                        .green ACCEPTED!
-                    .form-row
-                      = f.simple_fields_for :user_profile do |p|
-                        = p.text_field :first_name, placeholder: 'First Name', class: 'input-medium'
-                        = p.text_field :last_name, placeholder: 'Last Name', class: 'input-medium'
-                    .form-row
-                      = f.text_field :email, placeholder: 'E-Mail', class: 'input-xxlarge'
-                    .form-row
-                      = f.password_field :password, placeholder: 'Password', class: 'input-medium'
-                      = f.password_field :password_confirmation, placeholder: 'Confirm Password', class: 'input-medium'
-                    %h4 Billing Details
-                    = f.simple_fields_for :user_profile do |p|
-                      .form-row.line
-                        = p.text_field :address_street, placeholder: 'Street Address', class: 'input-xxlarge'
-                      .form-row
-                        = p.text_field :address_city, placeholder: 'City', class: 'input-medium'
-                        = p.text_field :address_state, placeholder: 'State', class: 'input-medium'
-                      .form-row
-                        = p.text_field :address_zip, placeholder: 'Zip Code', class: 'input-medium'
-                        = p.country_select :address_country, ['United States', 'Canada']
-                      .form-row
-                        = f.simple_fields_for :orders do |o|
-                          = o.text_field :card_number, placeholder: 'Credit Card Number', class: 'input-medium'
-                          = o.text_field :card_verification, placeholder: 'CVV2', class: 'input-mini'
-                          = o.text_field :card_expires_on, placeholder: 'Card Exp.', class: 'input-mini'
-                      .form-row
-                        = link_to '#', id: 'join-button', class: 'btn btn-large btn-custom1' do
-                          %i.icon-white.icon-heart
-                          Join Today
-
+                = simple_form_for @user, url: lounge_signup_path, wrapper: :small do |f|
+                  .controls.controls-row
+                    = f.simple_fields_for :user_profile do |up|
+                      = up.input :first_name, input_html: {class: 'span2'}, placeholder: 'First Name'
+                      = up.input :last_name, input_html: {class: 'span2'}, label: false
+                  = f.submit :submit
       = render 'lounge/shared/promos'
       = render 'lounge/shared/footer'
       = javascript_include_tag 'main', 'lounge'

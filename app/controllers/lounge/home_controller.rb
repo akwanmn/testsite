@@ -1,17 +1,24 @@
 class Lounge::HomeController < ApplicationController
   skip_before_filter :authenticate_user!
+
   def new
     @user = User.new
     @user.user_profile = UserProfile.new
-    #@order = Order.new
-    render 'profile', layout: false
+    render 'index', layout: false
   end
 
   def signup
     # save user details first...then create order?
-    # user = User.new(user_params)
-    # user.user_profile = UserProfile.new(user_params[:user_profile_attributes])
-    # user.save!
+    @user = User.new(user_params)
+    @user.user_profile = UserProfile.new(user_params[:user_profile_attributes])
+
+    respond_to do |format|
+      if @user.save
+        render text: 'SUCCESS'
+      else
+        format.html { flash[:error] = 'There were errors processing your request.'; render 'index', layout: false}
+      end
+    end
     # p card_params
     # o = Order.from_join_params(card_params)
     # o.user = user
@@ -37,7 +44,7 @@ class Lounge::HomeController < ApplicationController
     # p order.valid?
     # p order.errsor
     # Rails.logger.info order.inspect
-    render text: Rails.env == 'development' ? user_params.inspect : 'OK'
+    #render text: Rails.env == 'development' ? user_params.inspect : 'OK'
   end
 
   private

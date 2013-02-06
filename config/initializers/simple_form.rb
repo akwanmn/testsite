@@ -5,6 +5,14 @@ SimpleForm.setup do |config|
   # wrapper, change the order or even add your own to the
   # stack. The options given below are used to wrap the
   # whole input.
+  config.wrappers :small do |b|
+    b.use :placeholder
+    b.use :input
+    b.wrapper :tag => 'div', :class => 'errors' do |ba|
+      ba.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
+    end
+  end
+
   config.wrappers :default, :class => :input,
     :hint_class => :field_with_hint, :error_class => :field_with_errors do |b|
     ## Extensions enabled by default
@@ -120,7 +128,7 @@ SimpleForm.setup do |config|
 
   # Custom wrappers for input types. This should be a hash containing an input
   # type as key and the wrapper that will be used for all inputs with specified type.
-  # config.wrapper_mappings = { :string => :prepend }
+  config.wrapper_mappings = false #{ :string => :prepend }
 
   # Default priority for time_zone inputs.
   # config.time_zone_priority = nil

@@ -10,6 +10,7 @@ body {
   padding-top: 75px;
 }
 
+
 /* large h2 type text with dropshadow */
 .big-shadow {
   font-size:42px;
@@ -64,39 +65,10 @@ body {
 }
 
 .join-form {
-  padding: 15px;
-  margin-top: 10px; // From top of image area.
-
   .join-today {
     @extend .big-shadow;
     font-size:42px;
-  }
-
-  .form-details {
-    margin-left: 25px;
-    margin-top: 20px;
-    h4 {
-      margin-left: 20px;
-    }
-    .form-row {
-      clear: right;
-      padding-top: 10px;
-
-      select {
-        width: 165px;
-      }
-
-      .username-message {
-        width: 170px;
-        float: right;
-        font-size: 12px;
-        margin-top: 5px;
-      }
-    }
-
-    .input-xxlarge {
-      width: 318px;
-    }
+    margin-bottom: 20px;
   }
 }
 
@@ -134,4 +106,15 @@ body {
 /* footer */
 .cvv2 {
   width: 44px;
+}
+
+input.span2.validation-error {
+  border: 1px solid #f00;
+}
+
+.help-inline {
+  display: none;
+}
+input[class*="span"], select[class*="span"], textarea[class*="span"], .uneditable-input[class*="span"], .row-fluid input[class*="span"], .row-fluid select[class*="span"], .row-fluid textarea[class*="span"], .row-fluid .uneditable-input[class*="span"] {
+  margin-left: 20px;
 }

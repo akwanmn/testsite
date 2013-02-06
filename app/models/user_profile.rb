@@ -104,9 +104,10 @@ class UserProfile
   validates_numericality_of :max_age, less_than_or_equal_to: 120
   validates_numericality_of :search_radius, greater_than: 0, less_than_or_equal_to: 4000
   validates_presence_of :first_name, :last_name, :gender, :seeking, :min_age,
-    :max_age, :address_zip, :address_country, :search_radius
+    :max_age, :address_zip, :address_country, :search_radius, :address_city, :address_state,
+    :nickname
 
-  validate :zip_code_matches_state
+  validate :zip_code_matches_state, if: Proc.new {|record| record.address_state_changed? }
 
   # callbacks
   before_save :calculate_profile_percentage
@@ -140,6 +141,7 @@ class UserProfile
 
   # match zipcode to state, just to make sure we have consistent data.
   def zip_code_matches_state
+    return false if address_zip.blank?
     location = Geocoder.search(address_zip).first
     unless location.state.downcase == address_state.downcase
       self.errors[:base] << "State (#{address_state}) & Zip Code (#{location.state}) do not match!"
