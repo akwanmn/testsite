@@ -48,6 +48,7 @@ gem 'newrelic_rpm'
 gem 'thin'
 
 group :development do
+  gem 'powder'
   gem 'quiet_assets'
   gem 'pry-rails'
   gem 'awesome_print'
