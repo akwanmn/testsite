@@ -1,4 +1,4 @@
-Geocoder.configure do |config|
+#Geocoder.configure do |config|
   ## Configurable parameters: if you wish to change some configurable
   ## behaviour in Geocoder, feel free to uncomment the following lines
   ## and provide custom parameters.
@@ -21,5 +21,6 @@ Geocoder.configure do |config|
   ## Calculation options
   # config.units     = :mi        # :km for kilometers or :mi for miles
   # config.distances = :linear    # :spherical or :linear
-end
+#end
 
+Geocoder.configure(timeout: 5)
