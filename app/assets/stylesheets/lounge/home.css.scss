@@ -26,7 +26,7 @@ body {
 }
 
 #wrap {
-  background-image: url('/assets/lounge/background1.png');
+  background-image: url('/assets/lounge/background.png');
   background-repeat: no-repeat;
   background-position: center -100px;
   -webkit-background-size: cover;
@@ -58,7 +58,7 @@ body {
 }
 
 .background-blur {
-  margin-top: 30px;
+  margin-top: 10px;
   margin-bottom: 50px;
   background: rgb(255, 255, 255);
   background: rgba(255, 255, 255, 0.5);
@@ -75,6 +75,10 @@ body {
       text-align: center;
       font-size: 18px;
   }
+}
+
+#join-button {
+  margin-left: 5px;
 }
 
 .container.full {

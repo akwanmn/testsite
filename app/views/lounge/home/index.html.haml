@@ -37,9 +37,12 @@
               .span5
                 - if @user.errors.any?
                   .alert.alert-error{style: 'width: 285px'}
-                    = "#{pluralize(@user.errors.count, 'error')} were found."
+                    = "Please correct the errors below."
                 = simple_form_for @user, url: lounge_signup_path, wrapper: :small do |f|
                   = f.simple_fields_for :user_profile do |up|
+                    .form-row
+                      .form-field
+                        = up.input :nickname, placeholder: 'Nickname', label: false, input_html: {class: 'input-medium'}
                     .form-row
                       .form-field
                         = up.input :first_name, placeholder: 'First Name', label: false, input_html: {class: 'input-medium'}
@@ -76,7 +79,7 @@
                         .form-field
                           = o.input :card_expires_on, placeholder: 'Card Exp.', label: false, input_html: {class: 'input-mini'}
                   .form-row
-                    = link_to '#', id: 'join-button', class: 'btn btn-large btn-purple' do
+                    = link_to '#', id: 'join-button', class: 'btn btn-purple' do
                       %i{class: 'icon-heart'}
                       = 'JOIN TODAY'
       = render 'lounge/shared/promos'
