@@ -38,9 +38,11 @@ body {
   background-image: url('/assets/lounge/background.png');
   background-repeat: no-repeat;
   background-position: center center;
+  //background-attachment: fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
+  background-size: cover;
 }
 
 /* navbar on home page */
