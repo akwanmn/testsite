@@ -65,7 +65,7 @@ class Order
     o.zip                 = params[:user_profile_attributes][:address_zip]
     o.country             = params[:user_profile_attributes][:address_country]
     o.amount              = DEFAULT_PRICE
-    o.card_expires_on     = Date.parse(params[:orders][:card_expires_on]).end_of_month
+    o.card_expires_on     = Date.parse(params[:orders][:card_expires_on]).end_of_month rescue nil
     o
   end
 
@@ -102,8 +102,8 @@ class Order
       :brand              => card_type,
       :number             => card_number,
       :verification_value => card_verification,
-      :month              => card_expires_on.month,
-      :year               => card_expires_on.year,
+      #:month              => card_expires_on.month unless card_expires_on.blank?,
+      #:year               => card_expires_on.year,
       :first_name         => user.first_name,
       :last_name          => user.last_name
     )

@@ -4,20 +4,45 @@ class Lounge::HomeController < ApplicationController
   def new
     @user = User.new
     @user.user_profile = UserProfile.new
+    @order = @user.orders.new
     render 'index', layout: false
   end
 
   def signup
     # save user details first...then create order?
     @user = User.new(user_params)
-    @user.user_profile = UserProfile.new(user_params[:user_profile_attributes])
-
+    # @order = Order.from_join_params(card_params)
+    # @order.user = @user
+    # @order.name = @user.full_name
+    # @order.ip_address = request.env['REMOTE_ADDR']
+    @order = Order.new(card_params)
+    @order.user = @user
+    @order.save
+    Rails.logger.debug @order.inspect
+    Rails.logger.debug @order.errors
     respond_to do |format|
-      if @user.save
-        render text: 'SUCCESS'
+      # if @user.save
+      #   # #@order = @user.orders.new(card_params)
+      #   # @order = Order.from_join_params(card_params)
+      #   # @order.valid?
+      #   # Rails.logger.debug "*" * 100
+      #   # Rails.logger.debug @order.errors.inspect
+      #   # if @order.save!
+      #   #   render text: 'SUCCESS'
+      #   # else
+      #   #   Rails.logger.debug "*" * 100
+      #   #   Rails.logger.debug @order.errors.inspect
+      #   #   format.html { flash[:error] = 'There were errors processing your request.'; render 'index', layout: false}
+      #   # end
+      # else
+      #   Rails.logger.debug "*" * 100
+      #   Rails.logger.debug @user.errors.inspect
+      #   Rails.logger.debug @user.user_profile.errors.inspect
+      if @user.save && @order.save
       else
         format.html { flash[:error] = 'There were errors processing your request.'; render 'index', layout: false}
       end
+      # end
     end
     # p card_params
     # o = Order.from_join_params(card_params)

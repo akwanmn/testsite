@@ -97,18 +97,17 @@ class UserProfile
 
   # validations -- most are on update so we can create an account without
   # all the profile details
-  validates_inclusion_of :gender, in: GENDERS
-  validates_inclusion_of :seeking, in: GENDERS
-  validates_uniqueness_of :nickname
-  validates_numericality_of :min_age, greater_than_or_equal_to: 18
-  validates_numericality_of :max_age, less_than_or_equal_to: 120
-  validates_numericality_of :search_radius, greater_than: 0, less_than_or_equal_to: 4000
+  validates_inclusion_of :gender, in: GENDERS, on: :update
+  validates_inclusion_of :seeking, in: GENDERS, on: :update
+  validates_numericality_of :min_age, greater_than_or_equal_to: 18, on: :update
+  validates_numericality_of :max_age, less_than_or_equal_to: 120, on: :update
+  validates_numericality_of :search_radius, greater_than: 0, less_than_or_equal_to: 4000, on: :update
+  validates_presence_of :gender, :seeking, :min_age, :max_age, :search_radius, on: :update
   validates_presence_of :address_street, on: :create # only need this for billing currently
-  validates_presence_of :first_name, :last_name, :gender, :seeking, :min_age,
-    :max_age, :address_zip, :address_country, :search_radius, :address_city, :address_state,
-    :nickname
-
-  validate :zip_code_matches_state, if: Proc.new {|record| record.address_state_changed? }
+  validates_uniqueness_of :nickname
+  validates_presence_of :first_name, :last_name, :address_zip, :address_country,
+    :address_city, :address_state, :nickname
+  #validate :zip_code_matches_state, if: Proc.new {|record| record.address_state_changed? }
 
   # callbacks
   before_save :calculate_profile_percentage
