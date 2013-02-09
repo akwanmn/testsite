@@ -70,6 +70,11 @@ body {
     font-size:42px;
     margin-bottom: 20px;
   }
+  h5 {
+      font-family: $clean_font, sans-serif;
+      text-align: center;
+      font-size: 18px;
+  }
 }
 
 .container.full {
@@ -108,13 +113,52 @@ body {
   width: 44px;
 }
 
-input.span2.validation-error {
-  border: 1px solid #f00;
+.form-field {
+  //clear: right;
+  float: left;
+  padding-left: 5px;
+  .errors {
+    .help-inline {
+      color: #a371b6;
+      margin-top: -20px;
+      padding-top: -5px;
+      font-family: $clean_font, sans-serif;
+      font-size: 12px;
+    }
+  }
+
+  .input-xxlarge {
+    width: 318px;
+  }
+
+  .input-mini {
+    width: 65px;
+  }
+  select {
+    width: 163px;
+  }
 }
 
-.help-inline {
-  display: none;
+.form-row {
+  clear: both;
 }
-input[class*="span"], select[class*="span"], textarea[class*="span"], .uneditable-input[class*="span"], .row-fluid input[class*="span"], .row-fluid select[class*="span"], .row-fluid textarea[class*="span"], .row-fluid .uneditable-input[class*="span"] {
-  margin-left: 20px;
+
+h4 {
+  clear: both;
+  margin-left: 5px;
+  font-family: $clean_font, sans-serif;
+  border-bottom: 1px solid #a371b6;
+  width: 330px;
+  padding-bottom: 3px;
 }
+
+// input.span2.validation-error {
+//   border: 1px solid #f00;
+// }
+
+// .help-inline {
+//   display: none;
+// }
+// input[class*="span"], select[class*="span"], textarea[class*="span"], .uneditable-input[class*="span"], .row-fluid input[class*="span"], .row-fluid select[class*="span"], .row-fluid textarea[class*="span"], .row-fluid .uneditable-input[class*="span"] {
+//   margin-left: 20px;
+// }

@@ -103,6 +103,7 @@ class UserProfile
   validates_numericality_of :min_age, greater_than_or_equal_to: 18
   validates_numericality_of :max_age, less_than_or_equal_to: 120
   validates_numericality_of :search_radius, greater_than: 0, less_than_or_equal_to: 4000
+  validates_presence_of :address_street, on: :create # only need this for billing currently
   validates_presence_of :first_name, :last_name, :gender, :seeking, :min_age,
     :max_age, :address_zip, :address_country, :search_radius, :address_city, :address_state,
     :nickname

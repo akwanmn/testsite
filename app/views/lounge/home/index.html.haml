@@ -31,20 +31,54 @@
         .container
           .row
             = render 'lounge/shared/logo-text'
-            - if @user.errors.any?
-              .alert.alert-error
-                = "#{pluralize(@user.errors.count, 'error')} were found."
-              - @user.errors.full_messages.each do |error|
-                %p= error
-            .span5.background-blur
-              .span5.join-form
-                .join-today Join Today
+            .span5.background-blur.join-form
+              .join-today Join Today
+              %h5 Lifetime Membership only $12.95
+              .span5
+                - if @user.errors.any?
+                  .alert.alert-error{style: 'width: 285px'}
+                    = "#{pluralize(@user.errors.count, 'error')} were found."
                 = simple_form_for @user, url: lounge_signup_path, wrapper: :small do |f|
-                  .controls.controls-row
-                    = f.simple_fields_for :user_profile do |up|
-                      = up.input :first_name, input_html: {class: 'span2'}, placeholder: 'First Name'
-                      = up.input :last_name, input_html: {class: 'span2'}, label: false
-                  = f.submit :submit
+                  = f.simple_fields_for :user_profile do |up|
+                    .form-row
+                      .form-field
+                        = up.input :first_name, placeholder: 'First Name', label: false, input_html: {class: 'input-medium'}
+                      .form-field
+                        = up.input :last_name, placeholder: 'Last Name', label: false, input_html: {class: 'input-medium'}
+                    .form-row
+                      .form-field
+                        = f.input :email, placeholder: 'E-Mail', label: false, input_html: {class: 'input-xxlarge'}
+                    .form-row
+                      .form-field
+                        = f.input :password, placeholder: 'Password', label: false, input_html: {class: 'input-medium'}
+                      .form-field
+                        = f.input :password_confirmation, placeholder: 'Confirmation Password', label: false, input_html: {class: 'input-medium'}
+                    %h4 Billing Details
+                    .form-row
+                      .form-field
+                        = up.input :address_street, placeholder: 'Street Address', label: false, input_html: {class: 'input-xxlarge'}
+                    .form-row
+                      .form-field
+                        = up.input :address_city, placeholder: 'City', label: false, input_html: {class: 'input-medium'}
+                      .form-field
+                        = up.input :address_state, placeholder: 'State', label: false, input_html: {class: 'input-medium'}
+                    .form-row
+                      .form-field
+                        = up.input :address_zip, placeholder: 'Zip Code', label: false, input_html: {class: 'input-medium'}
+                      .form-field
+                        = up.input :address_country, placeholder: 'State', label: false, priority: ['United States', 'Canada']
+                    .form-row
+                      = f.simple_fields_for :orders do |o|
+                        .form-field
+                          = o.input :card_number, placeholder: 'Credit Card Number', label: false, input_html: {class: 'input-medium'}
+                        .form-field
+                          = o.input :card_verification, placeholder: 'CVV2', label: false, input_html: {class: 'input-mini'}
+                        .form-field
+                          = o.input :card_expires_on, placeholder: 'Card Exp.', label: false, input_html: {class: 'input-mini'}
+                  .form-row
+                    = link_to '#', id: 'join-button', class: 'btn btn-large btn-purple' do
+                      %i{class: 'icon-heart'}
+                      = 'JOIN TODAY'
       = render 'lounge/shared/promos'
       = render 'lounge/shared/footer'
       = javascript_include_tag 'main', 'lounge'

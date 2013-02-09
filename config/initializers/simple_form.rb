@@ -7,7 +7,7 @@ SimpleForm.setup do |config|
   # whole input.
   config.wrappers :small do |b|
     b.use :placeholder
-    b.use :input
+    b.use :label_input
     b.wrapper :tag => 'div', :class => 'errors' do |ba|
       ba.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
     end
