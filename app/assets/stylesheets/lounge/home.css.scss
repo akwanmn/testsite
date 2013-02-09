@@ -25,10 +25,19 @@ body {
   text-shadow:2px 2px #FFF;
 }
 
-#wrap {
+// #wrap {
+//   background-image: url('/assets/lounge/background.png');
+//   background-repeat: no-repeat;
+//   background-position: center -100px;
+//   -webkit-background-size: cover;
+//   -moz-background-size: cover;
+//   -o-background-size: cover;
+// }
+
+.sample-background {
   background-image: url('/assets/lounge/background.png');
   background-repeat: no-repeat;
-  background-position: center -100px;
+  background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -115,12 +124,6 @@ body {
   padding-left: 10px;
 }
 
-/* footer */
-.cvv2 {
-  width: 44px;
-}
-
-
 
 .form-field {
   //clear: right;
@@ -160,14 +163,3 @@ h4 {
   width: 330px;
   padding-bottom: 3px;
 }
-
-// input.span2.validation-error {
-//   border: 1px solid #f00;
-// }
-
-// .help-inline {
-//   display: none;
-// }
-// input[class*="span"], select[class*="span"], textarea[class*="span"], .uneditable-input[class*="span"], .row-fluid input[class*="span"], .row-fluid select[class*="span"], .row-fluid textarea[class*="span"], .row-fluid .uneditable-input[class*="span"] {
-//   margin-left: 20px;
-// }
