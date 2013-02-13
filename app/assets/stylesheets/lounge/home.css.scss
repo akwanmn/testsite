@@ -165,3 +165,23 @@ h4 {
   width: 330px;
   padding-bottom: 3px;
 }
+
+// button 1
+// e727c0 -> C70091
+
+.btn-custom2 {
+  background-color: hsl(319, 56%, 42%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#c9409d", endColorstr="#a72f81");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#c9409d), to(#a72f81));
+  background-image: -moz-linear-gradient(top, #c9409d, #a72f81);
+  background-image: -ms-linear-gradient(top, #c9409d, #a72f81);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c9409d), color-stop(100%, #a72f81));
+  background-image: -webkit-linear-gradient(top, #c9409d, #a72f81);
+  background-image: -o-linear-gradient(top, #c9409d, #a72f81);
+  background-image: linear-gradient(#c9409d, #a72f81);
+  border-color: #a72f81 #a72f81 hsl(319, 56%, 39.5%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.16);
+  -webkit-font-smoothing: antialiased;
+}
