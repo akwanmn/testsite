@@ -1,7 +1,10 @@
 - @orders.each do |order|
   %tr
     %td= order.id
-    %td= link_to order.user.full_name, edit_admin_user_path(order.user)
+    - if order.user.present?
+      %td= link_to order.user.full_name, edit_admin_user_path(order.user)
+    - else
+      %td= 'N/A'
     %td= number_to_currency(order.initial_transaction.to_dollars) rescue ''
     %td= order.status
     %td= order.card_used

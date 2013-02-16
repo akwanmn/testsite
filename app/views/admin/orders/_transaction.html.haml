@@ -7,7 +7,7 @@
       %strong Message:
       = transaction.message
   .row-fluid
-    .span3.offset1  
+    .span3.offset1
       %strong Amount:
       = number_to_currency(transaction.to_dollars)
     .span3
@@ -17,7 +17,7 @@
       %strong Type:
       = transaction.action.capitalize
   .row-fluid
-    .span3.offset1 
+    .span3.offset1
       %strong AVS Code:
       = transaction.cvv2_code unless transaction.cvv2_code.blank?
     .span3
@@ -26,7 +26,8 @@
   .row-fluid
     - if transaction.action == 'purchase' && transaction.success && !transaction.is_refunded
       .span3.offset1
-        = simple_form_for(transaction, url: refund_admin_user_order_path(transaction.order.user.id, transaction.order.id)) do |f|
-          = f.input :transaction_id, as: :hidden, input_html: {value: transaction.id}
-          = f.submit :value => 'Refund', class: 'btn btn-danger process'
+        - if transaction.order.user.present?
+          = simple_form_for(transaction, url: refund_admin_user_order_path(transaction.order.user.id, transaction.order.id)) do |f|
+            = f.input :transaction_id, as: :hidden, input_html: {value: transaction.id}
+            = f.submit :value => 'Refund', class: 'btn btn-danger process'
           /= link_to 'Refund', refund_admin_user_order_path(transaction.order.user.id, transaction.order.id), class: 'btn btn-danger refund'

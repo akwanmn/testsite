@@ -21,15 +21,18 @@
       Account Details
     = f.simple_fields_for :user_profile do |up|
       .span4
+        = f.input :nickname, input_html: {class: 'input-large'}
         = up.input :first_name, input_html: {class: 'input-large'}
         = up.input :address_city, input_html: {class: 'input-large'}
         = up.input :address_zip, input_html: {class: 'input-large'}
         = f.input :password
         = f.input :is_admin, as: :boolean
       .span4
+        = f.input :email, input_html: {class: 'input-large'}
         = up.input :last_name, input_html: {class: 'input-large'}
         = up.input :address_state, input_html: {class: 'input-large'}
-        = up.input :address_country, :priority => ['United States', 'Canada']
+        = up.input :address_country, as: :select, collection: Carmen::Country.all.map {|c| [c.name, c.code]}
+        //= up.country_select :address_country, {priority: %w(US CA)}, prompt: 'Select Country'
         = f.input :password_confirmation
         = up.input :timezone, collection: ActiveSupport::TimeZone::MAPPING, prompt: 'Choose Timezone',
           include_blank: true
@@ -62,7 +65,7 @@
   .row
     .span6.offset3
       = f.button :submit, class: 'btn btn-primary'
-      - if params[:action] == 'edit'
+      - if params[:action] == 'edit' || params[:action] == 'update'
         = link_to 'Create Order', new_admin_user_order_path(@user), class: 'btn btn-secondary'
       = link_to 'Cancel', admin_users_path, class: 'btn btn-tertiary'
 = form_for [:admin, @user, Photo.new], html: {id: 'profile_upload'} do |p|

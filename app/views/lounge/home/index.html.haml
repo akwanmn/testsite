@@ -38,11 +38,17 @@
                 - if @user.errors.any?
                   .alert.alert-error{style: 'width: 285px'}
                     = "Please correct the errors below."
+                - if flash[:error].present?
+                  .alert.alert-error{style: 'width: 285px'}
+                    = flash[:error]
+                - if flash[:info].present?
+                  .alert.alert-info{style: 'width: 285px'}
+                    = flash[:info]
                 = simple_form_for @user, url: lounge_signup_path, wrapper: :small do |f|
                   = f.simple_fields_for :user_profile do |up|
                     .form-row
                       .form-field
-                        = up.input :nickname, label: false, placeholder: 'Nickname', input_html: {class: 'input-medium'}
+                        = f.input :nickname, label: false, placeholder: 'Nickname', input_html: {class: 'input-medium'}
                     .form-row
                       .form-field
                         = up.input :first_name, placeholder: 'First Name', label: false, input_html: {class: 'input-medium'}
@@ -69,7 +75,8 @@
                       .form-field
                         = up.input :address_zip, placeholder: 'Zip Code', label: false, input_html: {class: 'input-medium'}
                       .form-field
-                        = up.input :address_country, placeholder: 'State', label: false, priority: ['United States', 'Canada']
+                        /= up.input :address_country, placeholder: 'Country', label: false, priority: ['United States', 'Canada']
+                        = up.country_select :address_country, {priority: %w(US CA)}, prompt: 'Select Country'
                     .form-row
                       = f.simple_fields_for [@user, @order] do |o|
                         .form-field

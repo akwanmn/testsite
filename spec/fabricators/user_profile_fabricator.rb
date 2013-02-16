@@ -1,7 +1,6 @@
 Fabricator(:user_profile) do
   first_name { Faker::Name.first_name }
   last_name { Faker::Name.last_name }
-  selected_birthday { Date.today - (25...50).to_a.sample.year }
   birthday { |up| up[:selected_birthday] }
   gender   { ['Male', 'Female'].sample }
   seeking  { ['Male', 'Female'].sample }
@@ -11,5 +10,6 @@ Fabricator(:user_profile) do
   address_city   { Faker::Address.city }
   address_state  { Faker::AddressUS.state }
   address_zip    { Faker::AddressUS.zip_code }
+  nickname 'zenom'
   address_country 'US'
 end

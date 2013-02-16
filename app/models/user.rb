@@ -22,11 +22,13 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
+  field :nickname,           :type => String
   field :email,              :type => String, :default => ""
   field :encrypted_password, :type => String, :default => ""
 
   validates_presence_of :email
   validates_presence_of :encrypted_password
+  validates :nickname, presence: true, uniqueness: true
 
   ## Recoverable
   field :reset_password_token,   :type => String
@@ -101,6 +103,7 @@ class User
     "#{user_profile.first_name} #{user_profile.last_name}" unless user_profile.blank?
   end
 
+  # suspend a user.
   def suspend!
     update_attribute(:suspended_at, Date.today)
   end

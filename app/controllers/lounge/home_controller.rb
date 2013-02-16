@@ -9,71 +9,46 @@ class Lounge::HomeController < ApplicationController
   end
 
   def signup
-    # Need to try and run order, then add user if possible.
-    @user = User.new(user_params)
-    @order = Order.new(card_params)
-    # @order.user = @user
-    @order.valid?
-    Rails.logger.debug @order.inspect
-    Rails.logger.debug @order.errors.inspect
-    respond_to do |format|
-      # if @user.save
-      #   # #@order = @user.orders.new(card_params)
-      #   # @order = Order.from_join_params(card_params)
-      #   # @order.valid?
-      #   # Rails.logger.debug "*" * 100
-      #   # Rails.logger.debug @order.errors.inspect
-      #   # if @order.save!
-      #   #   render text: 'SUCCESS'
-      #   # else
-      #   #   Rails.logger.debug "*" * 100
-      #   #   Rails.logger.debug @order.errors.inspect
-      #   #   format.html { flash[:error] = 'There were errors processing your request.'; render 'index', layout: false}
-      #   # end
-      # else
-      #   Rails.logger.debug "*" * 100
-      #   Rails.logger.debug @user.errors.inspect
-      #   Rails.logger.debug @user.user_profile.errors.inspect
-      if @user.save && @order.save
-      else
-        format.html { flash[:error] = 'There were errors processing your request.'; render 'index', layout: false}
-      end
-      # end
-    end
-    # p card_params
-    # o = Order.from_join_params(card_params)
-    # o.user = user
-    # o.name = user.full_name
-    # p o.valid?
-    # p o.errors
-    # o.save!
-    # p o.purchase
-    #if user.save!
+    @user   = User.new(user_params)
+    # create profile
+    @user.user_profile = UserProfile.new(user_params[:user_profile_attributes])
+    # create order
+    @order  = Order.new
+    card_params[:request_ip] = request.env['REMOTE_ADDR']
+    @order.amount = Order::DEFAULT_PRICE # hard coded for now.
+    @order.from_join_params(card_params)
 
-    #end
-    # order = Order.from_join_params(user_params)
-    # order.ip_address = request.env['REMOTE_ADDR']
-    # if order.save
-    #   if order.purchase
-    #     result = 'TRUE'
-    #   else
-    #     Rails.logger.info order.inspect
-    #     result = 'FALSE'
-    #   end
-    # end
-    # render text: result
-    # p order.valid?
-    # p order.errsor
-    # Rails.logger.info order.inspect
-    #render text: Rails.env == 'development' ? user_params.inspect : 'OK'
+    respond_to do |format|
+      # force validations....
+      @user.valid?
+      @order.valid?
+      if @user.valid? && @order.valid?
+        # if its true then save the items.
+        if @order.join_purchase
+          @user.save
+          @order.user = @user
+          @order.finalize_transaction
+          format.html { flash[:info] = 'Successfully signed up.'; render 'index', layout: false }
+        else
+          Rails.logger.debug "*" * 40
+          Rails.logger.debug @order.purchase_response.success?
+          Rails.logger.debug "*" * 40
+          format.html { flash[:error] = "#{@order.purchase_response.message}"; render 'index', layout: false }
+          # failed transaction
+          @order.finalize_transaction('decline')
+        end
+      else
+        # bad validations
+        format.html { render 'index', layout: false}
+      end
+    end
   end
 
   private
     # assign some parameters for a new signup
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation,
+      params.require(:user).permit(:email, :password, :password_confirmation, :nickname,
         user_profile_attributes: [
-          :nickname,
           :address_street,
           :address_city,
           :address_state,
@@ -88,7 +63,6 @@ class Lounge::HomeController < ApplicationController
     def card_params
       params.require(:user).permit(
         user_profile_attributes: [
-          :nickname,
           :address_street,
           :address_city,
           :address_state,

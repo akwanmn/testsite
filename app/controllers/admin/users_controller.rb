@@ -17,11 +17,14 @@ class Admin::UsersController < AdminController
   end
 
   def update
+    Rails.logger.debug "*" * 40
+    Rails.logger.debug user_params
+    Rails.logger.debug "*" * 40
     respond_to do |format|
       if params[:user][:password].blank?
         result = @user.update_without_password(user_params)
       else
-        result = @user.update_attributes(user_params)
+        result = @user.update_attributes!(user_params)
       end
       if result
         format.html { redirect_to admin_users_path, notice: "#{@user.full_name} was successfully updated."}
@@ -76,12 +79,12 @@ class Admin::UsersController < AdminController
     # for different roles as we go forward.
     def user_params
       if current_user.is_admin
-        params.require(:user).permit(:email, :is_admin, :password, :password_confirmation,
+        params.require(:user).permit(:email, :is_admin, :password, :password_confirmation, :nickname,
           user_profile_attributes: [
           :birthday, :first_name, :last_name, :address_zip, :address_country,
           :address_city, :address_state, :gender, :seeking, :min_age, :max_age,
           :address_street, :biography, :occupation, :education, :ethnicity, :religion,
-          :likes, :search_radius, :timezone
+          :likes, :search_radius, :timezone, :nickname
         ])
       else
         params.require(:user).permit(:email, user_profile_attributes: [

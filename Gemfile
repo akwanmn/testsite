@@ -22,6 +22,8 @@ gem 'sendgrid' # email
 gem 'aasm' # state machine
 gem 'simple_form' # forms
 gem 'country_select'
+#gem 'carmen'
+gem 'carmen-rails'
 gem 'devise' # authentication
 gem 'cancan' # authorization
 gem 'geocoder' # geo location
@@ -59,6 +61,7 @@ group :development do
   gem 'fabrication' # fixtures
   gem 'ffaker'
   gem 'foreman'
+  gem 'braintree'
 end
 
 group :test do

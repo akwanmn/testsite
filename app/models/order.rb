@@ -5,7 +5,7 @@ class Order
   DEFAULT_PRICE = 12.95 # hard coded for now until we build a subscription class.
 
   attr_accessor :card_number, :card_verification, :address, :city, :state, :zip, :name,
-    :country, :amount, :first_name, :last_name
+    :country, :amount, :first_name, :last_name, :purchase_response
 
   paginates_per 5
   belongs_to :user
@@ -27,6 +27,20 @@ class Order
     transactions.create(action: 'purchase', amount: price_in_cents, response: response)
     user.make_paid!  if response.success?
     response.success?
+  end
+
+  # simpliefied for the join process page.
+  def join_purchase
+    @purchase_response = GATEWAY.purchase(price_in_cents, credit_card, purchase_options)
+    @purchase_response.success?
+  end
+
+  # used to finalize a transaction for pages like join where we need a response
+  # before adding the uer, this does the rest of the purchase items.
+  def finalize_transaction(type='purchase')
+    self.save
+    self.user.make_paid! if (!user.nil? && user.persisted?)
+    self.transactions.create(action:type, amount: self.price_in_cents, response: self.purchase_response)
   end
 
   def initial_transaction
@@ -53,29 +67,20 @@ class Order
 
   # takes the params passed in and builds an order for the
   # index page.
-  def self.from_join_params(params)
-    # :card_number, :card_verification, :address, :city, :state, :zip, :name,
-    # :country, :amount
-    o = Order.create
-    o.first_name          = params[:user_profile_attributes][:first_name]
-    o.last_name           = params[:user_profile_attributes][:last_name]
-    o.card_number         = params[:orders][:card_number]
-    o.card_verification   = params[:orders][:card_verification]
-    o.ip_address          = params[:request_ip]
-    o.address             = params[:user_profile_attributes][:address_street]
-    o.city                = params[:user_profile_attributes][:address_city]
-    o.state               = params[:user_profile_attributes][:address_state]
-    o.zip                 = params[:user_profile_attributes][:address_zip]
-    o.country             = params[:user_profile_attributes][:address_country]
-    o.amount              = DEFAULT_PRICE
-    o.card_expires_on     = Date.parse(params[:orders][:card_expires_on]).end_of_month rescue nil
-    Rails.logger.debug "*" * 50
-    Rails.logger.debug o.inspect
-    Rails.logger.debug o.credit_card.inspect
-    Rails.logger.debug params.inspect
-    Rails.logger.debug "*" * 50
-
-    o
+  def from_join_params(params)
+    self.first_name          = params[:user_profile_attributes][:first_name]
+    self.last_name           = params[:user_profile_attributes][:last_name]
+    self.card_number         = params[:order][:card_number]
+    self.card_verification   = params[:order][:card_verification]
+    self.ip_address          = params[:request_ip]
+    self.address             = params[:user_profile_attributes][:address_street]
+    self.city                = params[:user_profile_attributes][:address_city]
+    self.state               = params[:user_profile_attributes][:address_state]
+    self.zip                 = params[:user_profile_attributes][:address_zip]
+    self.country             = params[:user_profile_attributes][:address_country]
+    self.amount              = DEFAULT_PRICE
+    self.card_expires_on     = Date.parse(params[:order][:card_expires_on]).end_of_month rescue nil
+    self.name                = "#{first_name} #{last_name}"
   end
 
   # TODO: Make this actually take input params
@@ -89,7 +94,7 @@ class Order
         :address1 => address,
         :city => city,
         :state => state,
-        :country => 'US',
+        :country => country,
         :zip => zip
       }
     }
@@ -111,8 +116,8 @@ class Order
       :brand              => card_type,
       :number             => card_number,
       :verification_value => card_verification,
-      #:month              => card_expires_on.month unless card_expires_on.blank?,
-      #:year               => card_expires_on.year,
+      :month              => (card_expires_on.month rescue nil),
+      :year               => (card_expires_on.year rescue nil),
       :first_name         => (user.first_name rescue first_name),
       :last_name          => (user.last_name rescue last_name)
     )
