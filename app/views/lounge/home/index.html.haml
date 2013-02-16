@@ -71,7 +71,7 @@
                       .form-field
                         = up.input :address_country, placeholder: 'State', label: false, priority: ['United States', 'Canada']
                     .form-row
-                      = f.simple_fields_for :orders do |o|
+                      = f.simple_fields_for [@user, @order] do |o|
                         .form-field
                           = o.input :card_number, placeholder: 'Credit Card Number', label: false, input_html: {class: 'input-medium'}
                         .form-field
@@ -79,7 +79,7 @@
                         .form-field
                           = o.input :card_expires_on, placeholder: 'Card Exp.', label: false, input_html: {class: 'input-mini'}
                   .form-row
-                    = link_to '#', id: 'join-button', class: 'btn btn-custom2' do
+                    = link_to '#', id: 'join-button', class: 'btn btn-large btn-custom2' do
                       %i{class: 'icon-heart'}
                       = 'JOIN TODAY'
       = render 'lounge/shared/promos'

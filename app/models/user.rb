@@ -98,6 +98,11 @@ class User
     "#{user_profile.first_name} #{user_profile.last_name}" unless user_profile.blank?
   end
 
+  def create
+    Rails.logger.debug "HERE" * 40
+    super
+  end
+
   # Override the devise valid_password? method so that we can use Django passwords
   # here as well.  Import them straight in and we will check for Devise passwords,
   # otherwise check against Django's format.

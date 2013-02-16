@@ -5,7 +5,7 @@ class Order
   DEFAULT_PRICE = 12.95 # hard coded for now until we build a subscription class.
 
   attr_accessor :card_number, :card_verification, :address, :city, :state, :zip, :name,
-    :country, :amount
+    :country, :amount, :first_name, :last_name
 
   paginates_per 5
   belongs_to :user
@@ -16,8 +16,9 @@ class Order
   field :card_expires_on,   type: Date
   field :card_used,         type: String
 
-  # make sure we have a good card on new order.
-  validate :validate_card, on: :create
+  # only run validate_card if card_number is not blank
+  validate :validate_card, on: :create, unless: lambda {|r| r.card_number.blank? }
+  # make sure we have all these fields.
   validates_presence_of :address, :card_number, :card_verification, :city, :state, :zip, :name, :country,
     :card_expires_on, :amount
 
@@ -55,7 +56,9 @@ class Order
   def self.from_join_params(params)
     # :card_number, :card_verification, :address, :city, :state, :zip, :name,
     # :country, :amount
-    o = self.new
+    o = Order.create
+    o.first_name          = params[:user_profile_attributes][:first_name]
+    o.last_name           = params[:user_profile_attributes][:last_name]
     o.card_number         = params[:orders][:card_number]
     o.card_verification   = params[:orders][:card_verification]
     o.ip_address          = params[:request_ip]
@@ -66,6 +69,12 @@ class Order
     o.country             = params[:user_profile_attributes][:address_country]
     o.amount              = DEFAULT_PRICE
     o.card_expires_on     = Date.parse(params[:orders][:card_expires_on]).end_of_month rescue nil
+    Rails.logger.debug "*" * 50
+    Rails.logger.debug o.inspect
+    Rails.logger.debug o.credit_card.inspect
+    Rails.logger.debug params.inspect
+    Rails.logger.debug "*" * 50
+
     o
   end
 
@@ -104,8 +113,8 @@ class Order
       :verification_value => card_verification,
       #:month              => card_expires_on.month unless card_expires_on.blank?,
       #:year               => card_expires_on.year,
-      :first_name         => user.first_name,
-      :last_name          => user.last_name
+      :first_name         => (user.first_name rescue first_name),
+      :last_name          => (user.last_name rescue last_name)
     )
   end
 

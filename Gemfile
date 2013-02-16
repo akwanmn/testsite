@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '1.9.3'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -45,7 +45,8 @@ gem 'strong_parameters'
 gem 'newrelic_rpm'
 
 # required by heroku
-gem 'thin'
+#gem 'thin'
+gem 'unicorn'
 
 group :development do
   gem 'powder'
@@ -57,6 +58,7 @@ group :development do
   gem 'meta_request'
   gem 'fabrication' # fixtures
   gem 'ffaker'
+  gem 'foreman'
 end
 
 group :test do

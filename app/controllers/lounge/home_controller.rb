@@ -4,22 +4,18 @@ class Lounge::HomeController < ApplicationController
   def new
     @user = User.new
     @user.user_profile = UserProfile.new
-    @order = @user.orders.new
+    @order = Order.new
     render 'index', layout: false
   end
 
   def signup
-    # save user details first...then create order?
+    # Need to try and run order, then add user if possible.
     @user = User.new(user_params)
-    # @order = Order.from_join_params(card_params)
-    # @order.user = @user
-    # @order.name = @user.full_name
-    # @order.ip_address = request.env['REMOTE_ADDR']
     @order = Order.new(card_params)
-    @order.user = @user
-    @order.save
+    # @order.user = @user
+    @order.valid?
     Rails.logger.debug @order.inspect
-    Rails.logger.debug @order.errors
+    Rails.logger.debug @order.errors.inspect
     respond_to do |format|
       # if @user.save
       #   # #@order = @user.orders.new(card_params)
@@ -101,7 +97,7 @@ class Lounge::HomeController < ApplicationController
           :first_name,
           :last_name
         ],
-        orders: [
+        order: [
           :card_number,
           :card_verification,
           :card_expires_on
