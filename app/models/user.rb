@@ -2,7 +2,6 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Paranoia
   include Geocoder::Model::Mongoid
   include AASM
   # security
@@ -47,12 +46,16 @@ class User
   field :is_admin,           :type => Boolean, :default => false
   field :coordinates,         type: Array
   field :current_state,       type: String
+  field :suspended_at,        type: Date
 
   geocoded_by :address
   after_validation :geocode
 
   # some delegations to make things cleaner -- Thanks Jon.
   delegate :first_name, :last_name, :address, :address_zip, :likes, to: :user_profile
+
+  default_scope where(:suspended_at => nil)
+  scope :suspended, where(:suspended_at.ne => nil)
 
   # handle membership status
   aasm column: :current_state do
@@ -98,9 +101,8 @@ class User
     "#{user_profile.first_name} #{user_profile.last_name}" unless user_profile.blank?
   end
 
-  def create
-    Rails.logger.debug "HERE" * 40
-    super
+  def suspend!
+    update_attribute(:suspended_at, Date.today)
   end
 
   # Override the devise valid_password? method so that we can use Django passwords

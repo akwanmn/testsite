@@ -1,11 +1,11 @@
 class Admin::UsersController < AdminController
-  prepend_before_filter :find_deleted, only: [:restore]
+  prepend_before_filter :find_suspended, only: [:restore]
   before_filter :find_user, only: [:edit, :update, :disable]
   load_and_authorize_resource
 
   def index
     if params[:deleted]
-      @users = User.deleted.page params[:page].to_i
+      @users = User.suspended.page params[:page].to_i
     else
       @users = User.search(params[:search]).order_by('email ASC').page params[:page].to_i
     end
@@ -49,7 +49,7 @@ class Admin::UsersController < AdminController
 
   # we don't want to 'destroy' users so lets just disable them.
   def disable
-    @user.destroy
+    @user.suspend!
     respond_to do |format|
       format.html { redirect_to admin_users_path, notice: "#{@user.full_name} has been deleted." }
     end
@@ -62,8 +62,8 @@ class Admin::UsersController < AdminController
     end
   end
 
-  def find_deleted
-    @user = User.deleted.where(id: params[:id]).first
+  def find_suspended
+    @user = User.suspended.where(id: params[:id]).first
   end
 
   # Find  the user
