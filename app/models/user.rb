@@ -20,39 +20,35 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
-  field :nickname,           :type => String
   field :email,              :type => String, :default => ""
   field :encrypted_password, :type => String, :default => ""
-
-  validates_presence_of :email
-  validates_presence_of :encrypted_password
-  validates :nickname, presence: true, uniqueness: true
-
   ## Recoverable
   field :reset_password_token,   :type => String
   field :reset_password_sent_at, :type => Time
-
   ## Rememberable
   field :remember_created_at, :type => Time
-
   ## Trackable
   field :sign_in_count,      :type => Integer, :default => 0
   field :current_sign_in_at, :type => Time
   field :last_sign_in_at,    :type => Time
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
-
   # extra fields
+  field :nickname,           :type => String
   field :is_admin,           :type => Boolean, :default => false
   field :coordinates,         type: Array
   field :current_state,       type: String
   field :suspended_at,        type: Date
 
-  geocoded_by :address
-  after_validation :geocode
-
   # some delegations to make things cleaner -- Thanks Jon.
   delegate :first_name, :last_name, :address, :address_zip, :likes, to: :user_profile
+
+  validates_presence_of :email
+  validates_presence_of :encrypted_password
+  validates :nickname, presence: true, uniqueness: true
+
+  geocoded_by :address
+  after_validation :geocode
 
   default_scope where(:suspended_at => nil)
   scope :suspended, where(:suspended_at.ne => nil)
@@ -80,31 +76,6 @@ class User
       transitions to: :suspended, from: [:charter, :paid, :free]
     end
   end
-
-  # def membership_status
-  #   case current_state
-  #   when 'free'
-  #     'Free'
-  #   when 'paid'
-  #     'Current'
-  #   when 'charter'
-  #     'Charter'
-  #   end
-  # end
-
-  ## Confirmable
-  # field :confirmation_token,   :type => String
-  # field :confirmed_at,         :type => Time
-  # field :confirmation_sent_at, :type => Time
-  # field :unconfirmed_email,    :type => String # Only if using reconfirmable
-
-  ## Lockable
-  # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
-  # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
-  # field :locked_at,       :type => Time
-
-  ## Token authenticatable
-  # field :authentication_token, :type => String
 
   def full_name
     "#{user_profile.first_name} #{user_profile.last_name}" unless user_profile.blank?

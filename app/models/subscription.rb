@@ -8,7 +8,11 @@ class Subscription
   field :amount,      type: Float
   field :disabled,    type: Boolean
 
-  validates_inclusion_of :duration, in: (0...366).to_a, message: 'Must be between 0 and 365 days.'
-  validates_presence_of :name, :amount, :duration
-  validates_format_of :amount, :with => /^[0-9]+\.[0-9]{2}$/, :message => "must contain dollars and cents, seperated by a period (xxxxx.xx)"
+  validates :duration,
+    inclusion: {in: (0...366).to_a, message: 'Must be between 0 and 365.'},
+    presence: true
+  validates :amount,
+    presence: true,
+    format: {with: /^[0-9]+\.[0-9]{2}$/, message: 'must contain dollars and cents, separated by a period (xxxx.xx)'}
+  validates_presence_of :name
 end

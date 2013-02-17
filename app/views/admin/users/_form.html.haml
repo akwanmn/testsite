@@ -1,9 +1,11 @@
 - if @user.errors
   - @user.errors.full_messages.each do |error|
-    %p= error
+    %p{style: 'font-size: 15px'}= error
 - if @user.user_profile.errors
-  - @user.user_profile.errors.full_messages.each do |error|
-    %p= error
+  .span4
+    %ul.error-list
+      - @user.user_profile.errors.full_messages.each do |error|
+        %li.error= error
 .row
   .span10
     %strong Last Sign In Date:

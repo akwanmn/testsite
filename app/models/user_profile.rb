@@ -96,17 +96,29 @@ class UserProfile
 
   # validations -- most are on update so we can create an account without
   # all the profile details
-
-  validates_inclusion_of :gender, in: GENDERS, on: :update
-  validates_inclusion_of :seeking, in: GENDERS, on: :update
-  validates_numericality_of :min_age, greater_than_or_equal_to: 18, on: :update
-  validates_numericality_of :max_age, less_than_or_equal_to: 120, on: :update
-  validates_numericality_of :search_radius, greater_than: 0, less_than_or_equal_to: 4000, on: :update
-  validates_presence_of :gender, :seeking, :min_age, :max_age, :search_radius, on: :update
-  validates_presence_of :address_street, on: :create # only need this for billing currently
-  validates_presence_of :first_name, :last_name, :address_zip, :address_country,
-    :address_city, :address_state
-  #validate :zip_code_matches_state, if: Proc.new {|record| record.address_state_changed? }
+  validates :gender,
+    inclusion: {in: GENDERS, message: 'needs a gender'},
+    presence: true,
+    on: :update
+  validates :seeking,
+    inclusion: {in: GENDERS, message: 'needs a gender'},
+    presence: true,
+    on: :update
+  validates :min_age,
+    numericality: {greater_than_or_equal_to: 18, message: 'must be greater than 18'},
+    presence: true,
+    on: :update
+  validates :max_age,
+    numericality: {greater_than: 19, less_than_or_equal_to: 110, message: 'must be between 19 and 110'},
+    presence: true,
+    on: :update
+  validates :search_radius,
+    numericality: {greater_than: 0, less_than_or_equal_to: 4000, message: 'must be between 0 and 4000'},
+    presence: true,
+    on: :update
+  validates :address_street, presence: true, on: :create # needed for billing / paypal
+  validates :first_name, :last_name, :address_zip, :address_country, :address_city, :address_state,
+    presence: true
 
   # callbacks
   before_save :calculate_profile_percentage

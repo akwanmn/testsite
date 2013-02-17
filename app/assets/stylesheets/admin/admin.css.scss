@@ -48,3 +48,12 @@ li.alert-error {
 .alert-error .qq-upload-failed-text {
   display: inline;
 }
+
+ul.error-list {
+  list-style-type: none;
+  margin: 0px 0px 10px 0px;
+  li.error {
+    font-size: 12px;
+    color: #f00;
+  }
+}

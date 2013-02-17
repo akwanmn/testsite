@@ -13,13 +13,9 @@ class Admin::UsersController < AdminController
 
   def new
     @user = User.new
-    #@user.user_profile = UserProfile.new
   end
 
   def update
-    Rails.logger.debug "*" * 40
-    Rails.logger.debug user_params
-    Rails.logger.debug "*" * 40
     respond_to do |format|
       if params[:user][:password].blank?
         result = @user.update_without_password(user_params)
