@@ -26,7 +26,7 @@
         %td= l(u.user_profile.birthday) rescue 'N/A'
         %td= u.user_profile.age
         %td
-          %span.label{class: "#{u.membership_status.downcase}"}= u.membership_status
+          %span.label{class: "#{u.current_state.downcase}"}= u.current_state.capitalize
         %td
           - if u.suspended_at
             = link_to 'Restore', restore_admin_user_path(u.id), class: 'btn btn-small btn-success'

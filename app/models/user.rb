@@ -4,8 +4,6 @@ class User
   include Mongoid::Timestamps
   include Geocoder::Model::Mongoid
   include AASM
-  # security
-  include ActiveModel::ForbiddenAttributesProtection
 
   paginates_per 10
 
@@ -64,6 +62,7 @@ class User
     state :free, initial: true
     state :paid
     state :charter
+    state :suspended
 
     event :make_paid do
       transitions to: :paid, from: [:free, :charter]
@@ -72,18 +71,26 @@ class User
     event :make_charter do
       transitions to: :charter, from: [:paid, :free]
     end
-  end
 
-  def membership_status
-    case current_state
-    when 'free'
-      'Free'
-    when 'paid'
-      'Current'
-    when 'charter'
-      'Charter'
+    event :make_free do
+      transitions to: :free, from: [:charter, :paid, :suspended]
+    end
+
+    event :make_suspended do
+      transitions to: :suspended, from: [:charter, :paid, :free]
     end
   end
+
+  # def membership_status
+  #   case current_state
+  #   when 'free'
+  #     'Free'
+  #   when 'paid'
+  #     'Current'
+  #   when 'charter'
+  #     'Charter'
+  #   end
+  # end
 
   ## Confirmable
   # field :confirmation_token,   :type => String
@@ -105,7 +112,13 @@ class User
 
   # suspend a user.
   def suspend!
+    make_suspended!
     update_attribute(:suspended_at, Date.today)
+  end
+
+  def restore!
+    make_free!
+    update_attribute(:suspended_at, nil)
   end
 
   # Override the devise valid_password? method so that we can use Django passwords
@@ -128,5 +141,4 @@ class User
       where("$or" => [{email: /#{search}/i}, {'user_profile.first_name' => /#{search}/i}, {'user_profile.last_name' => /#{search}/i}])
     end
   end
-
 end

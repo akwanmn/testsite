@@ -13,7 +13,11 @@
       = f.input :city, input_html: {value: (params[:order].blank? ? @user.user_profile.address_city : params[:order][:city])}
       = f.input :state, input_html: {value: (params[:order].blank? ? @user.user_profile.address_state : params[:order][:state])}
       = f.input :zip, input_html: {value: (params[:order].blank? ? @user.user_profile.address_zip : params[:order][:zip])}
-      = f.input :country, input_html: {value: (params[:order].blank? ? @user.user_profile.address_country : params[:order][:country])}, priority: ['United States']
+
+      .control-group
+        = f.label :country
+        .controls
+          = f.country_select :country, input_html: {value: (params[:order].blank? ? @user.user_profile.address_country : params[:order][:country])}, priority: %w{US}#, as: :select, collection: Carmen::Country.all.map {|c| [c.name, c.code]}
   .row
     .offset5
       = f.button :submit, class: 'btn-primary process'

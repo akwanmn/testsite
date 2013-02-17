@@ -11,7 +11,7 @@ abbr[title=required] {
 }
 
 
-span.label.current {
+span.label.paid {
   background-color: #94ba65;
   font-weight: normal;
 }
@@ -24,6 +24,11 @@ span.label.charter {
 span.label.free {
   @extend span.label.current;
   background-color: #999999;
+}
+
+span.label.suspended {
+  @extend span.label.current;
+  background-color: #f00;
 }
 
 

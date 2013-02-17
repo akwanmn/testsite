@@ -18,7 +18,7 @@ class Admin::OrdersController < AdminController
     @order.attributes = params[:order]
     @order.card_used = @order.credit_card.display_number
     #@order.save!
-    
+
     respond_to do |format|
       if @order.save #&& @order.purchase
         if @order.purchase
@@ -45,14 +45,14 @@ class Admin::OrdersController < AdminController
         else
           format.html { flash[:error] = "Unable to refund transaction. (#{transaction.message}"; redirect_to admin_user_orders_path(order.user)}
         end
-        
+
       else
         format.html { flash[:error] = 'Unable to locate order.'; redirect_to admin_user_orders_path(order.user) }
       end
     end
   end
 
-  def latest 
+  def latest
     @orders = Order.order_by('created_at DESC').page params[:page]
   end
 
@@ -60,4 +60,11 @@ class Admin::OrdersController < AdminController
     @user = User.find(params[:user_id])
     @orders = Order.where(:user_id => params[:user_id]).order_by('created_at DESC').page params[:page]
   end
+
+  def order_params
+    params.require(:order).permit(:name, :address, :card_number, :city, :card_verification,
+      :state, :card_expires_on, :zip, :amount, :country)
+  end
+  private :order_params
+
 end

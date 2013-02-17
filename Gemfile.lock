@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/rails-api/active_model_serializers.git
-  revision: cef10cf01dfe18f72060bda279d5246c156ae737
+  revision: 3e9b366a4531e6795b73b41e732f9db849874903
   specs:
     active_model_serializers (0.5.2)
       activemodel (>= 3.0)
@@ -25,7 +25,7 @@ GEM
     active_utils (1.0.5)
       activesupport (>= 2.3.11)
       i18n
-    activemerchant (1.29.3)
+    activemerchant (1.30.0)
       active_utils (>= 1.0.2)
       activesupport (>= 2.3.14)
       builder (>= 2.0.0)
@@ -50,14 +50,13 @@ GEM
     arel (3.0.2)
     awesome_print (1.1.0)
     bcrypt-ruby (3.0.1)
-    better_errors (0.3.2)
+    better_errors (0.6.0)
       coderay (>= 1.0.0)
-      erubis (>= 2.7.0)
-    binding_of_caller (0.6.8)
-    braintree (2.22.0)
-      builder (>= 2.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.1)
+      debug_inspector (>= 0.0.1)
     builder (3.0.4)
-    cancan (1.6.8)
+    cancan (1.6.9)
     carmen (1.0.0.beta2)
     carmen-rails (1.0.0.beta3)
       carmen (~> 1.0.0.beta2)
@@ -81,8 +80,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
-    country_select (1.1.3)
     database_cleaner (0.9.1)
+    debug_inspector (0.0.2)
     devise (2.2.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -93,7 +92,7 @@ GEM
     excon (0.16.10)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    fabrication (2.5.4)
+    fabrication (2.6.1)
     ffaker (1.15.0)
     fog (1.9.0)
       builder
@@ -109,11 +108,12 @@ GEM
       thor (>= 0.13.6)
     formatador (0.2.4)
     geocoder (1.1.6)
-    haml (3.1.7)
-    haml-rails (0.3.5)
+    haml (4.0.0)
+      tilt
+    haml-rails (0.4)
       actionpack (>= 3.1, < 4.1)
       activesupport (>= 3.1, < 4.1)
-      haml (~> 3.1)
+      haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
     hike (1.2.1)
     i18n (0.6.1)
@@ -121,7 +121,7 @@ GEM
     jquery-fileupload-rails (0.4.0)
       actionpack (>= 3.1)
       railties (>= 3.1)
-    jquery-rails (2.2.0)
+    jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.7.7)
@@ -141,11 +141,11 @@ GEM
       rails
     method_source (0.8.1)
     mime-types (1.21)
-    mini_magick (3.4)
+    mini_magick (3.5.0)
       subexec (~> 0.2.1)
     money (5.1.0)
       i18n (~> 0.6.0)
-    mongoid (3.0.21)
+    mongoid (3.0.22)
       activemodel (~> 3.1)
       moped (~> 1.2)
       origin (~> 1.0)
@@ -153,19 +153,19 @@ GEM
     mongoid-grid_fs (1.7.0)
       mime-types (~> 1.19)
       mongoid (~> 3.0)
-    moped (1.4.1)
+    moped (1.4.2)
     multi_json (1.6.1)
-    net-scp (1.0.4)
-      net-ssh (>= 1.99.1)
-    net-ssh (2.6.3)
-    newrelic_rpm (3.5.6.46)
+    net-scp (1.0.6)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.6.5)
+    newrelic_rpm (3.5.6.55)
     nokogiri (1.5.6)
     origin (1.0.11)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
     powder (0.1.8)
       thor (>= 0.11.5)
-    pry (0.9.11.4)
+    pry (0.9.12)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
@@ -261,14 +261,12 @@ DEPENDENCIES
   awesome_print
   better_errors
   binding_of_caller
-  braintree
   cancan
   carmen-rails
   carrierwave
   carrierwave-mongoid
   chosen-rails
   coffee-rails (~> 3.2.1)
-  country_select
   database_cleaner
   devise
   fabrication

@@ -11,7 +11,7 @@ class ProfilePhotoUploader< CarrierWave::Uploader::Base
   # include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  # storage :file
+  #storage :file
   storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -27,7 +27,6 @@ class ProfilePhotoUploader< CarrierWave::Uploader::Base
   version :medium do
     process :resize_to_fit => [nil, 640]
   end
-
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url

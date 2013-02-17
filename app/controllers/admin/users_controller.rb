@@ -59,7 +59,7 @@ class Admin::UsersController < AdminController
   end
 
   def restore
-    @user.restore
+    @user.restore!
     respond_to do |format|
       format.html { redirect_to admin_users_path, notice: "#{@user.full_name} has been restored."}
     end
