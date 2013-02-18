@@ -1,10 +1,8 @@
 class Lounge::HomeController < ApplicationController
   skip_before_filter :authenticate_user!
+  before_filter :build_signup_form, only: [:new, :login]
 
   def new
-    @user = User.new
-    @user.user_profile = UserProfile.new
-    @order = Order.new
     render 'index', layout: false
   end
 
@@ -45,6 +43,12 @@ class Lounge::HomeController < ApplicationController
   end
 
   private
+    def build_signup_form
+      @user = User.new
+      @user.user_profile = UserProfile.new
+      @order = Order.new
+    end
+
     # assign some parameters for a new signup
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :nickname,

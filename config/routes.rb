@@ -2,7 +2,7 @@ Phoenix::Application.routes.draw do
   ##################################################
   # GLOBAL ROUTES
   ##################################################
-  devise_for :users, path_names: { :sign_in => 'login', :sign_out => 'logout' }
+  devise_for :users#, path: '', path_names: { :sign_in => '/sign_in', :sign_out => 'logout' }
 
   ##################################################
   ## ADMIN URLS
@@ -36,6 +36,7 @@ Phoenix::Application.routes.draw do
   namespace :lounge, path: '/' do
     resources :home, only: [:new]
     match '/signup' => 'home#signup', via: :post
+    match '/login' => 'home#login', via: :post
   end
 
   #resources :home, :only => [:index, :new, :create]

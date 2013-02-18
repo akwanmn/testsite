@@ -1,11 +1,14 @@
 .login.pull-right
-  %form.navbar-form
-    %input{type: 'text', class: 'input-medium', placeholder: 'Email'}
-    %input{type: 'text', class: 'input-medium', placeholder: 'Password'}
-    %button{type: 'submit', class: 'btn btn-custom2'} Login
-    .options
-      %label.checkbox
-        %input{type: 'checkbox'}
-          Keep me logged in.
-        = "|"
-        = link_to 'Forgot Password', '#'
+  = simple_form_for(User.new, url: new_user_session_path, html: {class: 'navbar-form'}) do |f|
+    = f.text_field :email, placeholder: 'E-Mail', class: 'input-medium'
+    = f.password_field :password, placeholder: 'Password', class: 'input-medium'
+    = f.submit :submit, class: 'btn btn-custom2', value: 'Login'
+    / %input{type: 'text', class: 'input-medium', placeholder: 'Email'}
+    / %input{type: 'text', class: 'input-medium', placeholder: 'Password'}
+    / %button{type: 'submit', class: 'btn btn-custom2'} Login
+    / .options
+    /   %label.checkbox
+    /     %input{type: 'checkbox'}
+    /       Keep me logged in.
+    /     = "|"
+    /     = link_to 'Forgot Password', '#'
