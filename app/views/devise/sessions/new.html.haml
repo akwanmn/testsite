@@ -1,18 +1,17 @@
-
-/ = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-/   %h1 Sign In
-/   .login-fields
-/     %p Sign in using your registered account:
-/     .field
-/       = f.label :email
-/       = f.input :email, :required => false, :autofocus => true, :placeholder => 'E-Mail', :input_html => {:class => 'username login username-field'}
-/     / /field
-/     .field
-/       = f.label :password
-/       = f.input :password, :required => false, :type => :password, :placeholder => 'Password', :input_html => {:class => 'password login password-field'}
-/     / /password
-/   / /login-fields
-/   .login-actions
-/     %span.login-checkbox
-/       = f.input :remember_me, :input_html => {:class=> 'field login-checkbox'},  :as => :boolean
-/     = f.button :submit, "Sign In", :class => 'button btn btn-primary btn-large'
+= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  %h1 Sign In
+  .login-fields
+    %p Sign in using your registered account:
+    .field
+      = f.label :nickname
+      = f.input :nickname, :required => false, :autofocus => true, :placeholder => 'Nickname', :input_html => {:class => 'username login username-field'}
+    / /field
+    .field
+      = f.label :password
+      = f.input :password, :required => false, :type => :password, :placeholder => 'Password', :input_html => {:class => 'password login password-field'}
+    / /password
+  / /login-fields
+  .login-actions
+    %span.login-checkbox
+      = f.input :remember_me, :input_html => {:class=> 'field login-checkbox'},  :as => :boolean
+    = f.button :submit, "Sign In", :class => 'button btn btn-primary btn-large'
