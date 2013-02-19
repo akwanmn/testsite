@@ -47,6 +47,7 @@ gem 'newrelic_rpm'
 # required by heroku
 #gem 'thin'
 gem 'unicorn'
+gem 'net-scp', '~>1.0.6'
 
 group :development do
   gem 'powder'

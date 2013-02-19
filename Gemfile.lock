@@ -282,6 +282,7 @@ DEPENDENCIES
   meta_request
   mini_magick
   mongoid (~> 3.0.0)
+  net-scp (~> 1.0.6)
   newrelic_rpm
   powder
   pry-rails
