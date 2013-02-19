@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-up = UserProfile.new(first_name: 'Andy Holman', last_name: 'Holman',
+up = UserProfile.new(first_name: 'Andy', last_name: 'Holman',
   address_street: '601 Hewitt Street', address_city: 'Howell', address_state: 'MI',
   address_zip: '48843', address_country: 'US')
 User.create!(email: 'andy@conspyre.com', is_admin: true, password: 'Andy1212!',
