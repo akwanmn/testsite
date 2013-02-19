@@ -4,9 +4,31 @@ class ApplicationController < ActionController::Base
 
   layout :layout_by_resource
 
+  # access denied messages
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
+
   protected
 
+  # in case we ever need  to have a different layout. like
+  # in the dashboard :)
   def layout_by_resource
     "application"
   end
+
+  def stored_location_for(resource_or_scope)
+    nil
+  end
+  private :stored_location_for
+
+  def after_sign_in_path_for(resource_or_scope)
+    if current_user.is_admin
+      admin_path
+    else
+      root_path
+    end
+  end
+  private :after_sign_in_path_for
+
 end
