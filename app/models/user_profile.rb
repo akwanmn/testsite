@@ -122,6 +122,7 @@ class UserProfile
 
   # callbacks
   before_save :calculate_profile_percentage
+  after_validation :clean_up_likes
   delegate :photos, to: :user
 
   # Calculate the age of this person.
@@ -148,6 +149,13 @@ class UserProfile
     end
     percent = (filled_in.to_f / fields.length.to_f).round(2) * 100
     self.percent_complete = percent.to_i
+  end
+
+  def clean_up_likes
+    Rails.logger.debug "*" * 40
+    self.likes.reject! {|l| l.empty? }
+    Rails.logger.debug likes.inspect
+    Rails.logger.debug "*" * 40
   end
 
   # match zipcode to state, just to make sure we have consistent data.

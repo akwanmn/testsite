@@ -4,8 +4,9 @@
 
 @import "lounge-variables";
 @import "lounge-global";
-
-
+html, body {
+  height: 100%;
+}
 body {
   padding-top: 80px;
   background-color: $lounge_bg_color;
@@ -15,7 +16,6 @@ hr {
   margin-top: -15px;
 }
 @include shadowed-text(18px);
-
 
 /* navbar on home page */
 .navbar .container {
@@ -52,6 +52,13 @@ hr {
       font-size: 11px;
     }
   }
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -165px;
 }
 
 #wrap div.container.full div.row img {

@@ -1,0 +1,65 @@
+= @users.selector
+.span3
+  %h5.big-shadow Quick Search
+  .quick-search
+    %form
+      %label Looking For
+      %select
+        %option{value: ''} Man
+        %option{value: ''} Woman
+      %label Ages
+      %input.input-mini{type: :text, value: '30'}
+      = " - "
+      %input.input-mini{type: :text, value: '80'}
+      %h5 Likes
+      %label.checkbox
+        %input{type: :checkbox} Outdoors
+      %label.checkbox
+        %input{type: :checkbox} Indoors
+      %label.checkbox
+        %input{type: :checkbox} Animals
+      %label.checkbox
+        %input{type: :checkbox} Religion
+      %br/
+      %br/
+      %select
+        %option{value: ''} Sort Results
+        %option{value: ''} Recently Joined
+        %option{value: ''} Recently Updated
+      = link_to 'Search', '', class: 'btn btn-purple'
+.span8
+  .row
+    %h5.big-shadow Search Results
+    %hr/
+    .pagination.pagination-mini
+      %ul
+        %li
+          = link_to 'Prev'
+        %li
+          = link_to '1'
+        %li
+          = link_to '2'
+        %li
+          = link_to 'Next'
+  .row
+    %ul.thumbnails
+      - @users.each do |u|
+        %li.span2
+          %a.thumbnail{href: ''}
+            %img{src: 'http://placehold.it/190x160'}
+          .profile-details
+            .details-one= u.nickname
+            .details-two= truncate(u.user_profile.biography, length: 50)
+
+
+  .row
+    .pagination.pagination-mini
+      %ul
+        %li
+          = link_to 'Prev'
+        %li
+          = link_to '1'
+        %li
+          = link_to '2'
+        %li
+          = link_to 'Next'

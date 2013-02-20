@@ -1,7 +1,12 @@
 .login-details.pull-right
-  .welcome Welcome Back, <span class="name">Laura</span>
+  .welcome
+    - if current_user.sign_in_count >= 2
+      Welcome back,
+    - else
+      Welcome,
+    %span.name= current_user.first_name
   = link_to 'Edit Profile', ''
   %span.divider= " | "
   = link_to 'Messages (5)'
   %span.divider= " | "
-  = link_to 'Logout'
+  = link_to 'Logout', destroy_user_session_path

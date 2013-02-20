@@ -41,7 +41,7 @@ class User
   field :suspended_at,        type: Date
 
   # some delegations to make things cleaner -- Thanks Jon.
-  delegate :first_name, :last_name, :address, :address_zip, :likes, to: :user_profile
+  delegate :first_name, :last_name, :address, :address_zip, :likes, :birthday, to: :user_profile
 
   validates_presence_of :email
   validates_presence_of :encrypted_password

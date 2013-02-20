@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :authenticate_user!
-
   layout :layout_by_resource
 
   # access denied messages
@@ -14,7 +13,7 @@ class ApplicationController < ActionController::Base
   # in case we ever need  to have a different layout. like
   # in the dashboard :)
   def layout_by_resource
-    "application"
+    "layouts/application"
   end
 
   def stored_location_for(resource_or_scope)
@@ -26,7 +25,7 @@ class ApplicationController < ActionController::Base
     if current_user.is_admin
       admin_path
     else
-      root_path
+      lounge_dashboard_index_path
     end
   end
   private :after_sign_in_path_for
