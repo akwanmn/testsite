@@ -1,4 +1,3 @@
-= @users.selector
 .span3
   %h5.big-shadow Quick Search
   .quick-search
@@ -32,15 +31,7 @@
     %h5.big-shadow Search Results
     %hr/
     .pagination.pagination-mini
-      %ul
-        %li
-          = link_to 'Prev'
-        %li
-          = link_to '1'
-        %li
-          = link_to '2'
-        %li
-          = link_to 'Next'
+      = paginate @users, window: 2
   .row
     %ul.thumbnails
       - @users.each do |u|
@@ -51,12 +42,4 @@
             .details-two= truncate(u.user_profile.biography, length: 50)
   .row
     .pagination.pagination-mini
-      %ul
-        %li
-          = link_to 'Prev'
-        %li
-          = link_to '1'
-        %li
-          = link_to '2'
-        %li
-          = link_to 'Next'
+      = paginate @users, window: 2

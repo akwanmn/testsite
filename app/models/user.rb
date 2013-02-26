@@ -5,7 +5,7 @@ class User
   include Geocoder::Model::Mongoid
   include AASM
 
-  paginates_per 10
+  paginates_per 1
 
   # association
   embeds_one  :user_profile
@@ -83,6 +83,18 @@ class User
     end
   end
 
+  # pass in address & radius to search for.
+  scope :search_radius, lambda {|address, radius| near(address.to_s, radius.to_i) }
+  # search for likes, single word or array.
+  scope :with_likes, lambda {|l| where('user_profile.likes' => {'$in' =>  l.to_a}) }
+  # find people between min age and max age.
+  scope :between_ages, lambda {|age1, age2| where(
+        'user_profile.birthday' => {'$gte' => (Date.today.beginning_of_year - age2.to_i.years)}).and(
+        'user_profile.birthday' => {'$lte' => (Date.today - age1.to_i.years)}
+      )}
+  # specific gender
+  scope :with_gender, lambda {|gender| where('user_profile.gender' => gender.to_s)}
+
   def full_name
     "#{user_profile.first_name} #{user_profile.last_name}" unless user_profile.blank?
   end
@@ -99,7 +111,7 @@ class User
   end
 
   def random_profile_image
-    photos.sample.photo_file
+    photos.sample.photo_file rescue nil
   end
 
   # Override the devise valid_password? method so that we can use Django passwords
