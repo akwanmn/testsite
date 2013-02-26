@@ -11,15 +11,9 @@
       = " - "
       %input.input-mini{type: :text, value: '80'}
       %h5 Likes
-      %label.checkbox
-        %input{type: :checkbox} Outdoors
-      %label.checkbox
-        %input{type: :checkbox} Indoors
-      %label.checkbox
-        %input{type: :checkbox} Animals
-      %label.checkbox
-        %input{type: :checkbox} Religion
-      %br/
+      - UserProfile::LIKES.each do |l|
+        %label.checkbox
+          %input{type: :checkbox}= l
       %br/
       %select
         %option{value: ''} Sort Results

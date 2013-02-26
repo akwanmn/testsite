@@ -94,6 +94,7 @@ class User
       )}
   # specific gender
   scope :with_gender, lambda {|gender| where('user_profile.gender' => gender.to_s)}
+  scope :suspended, where(current_state: 'suspended', :suspended_at.ne => nil)
 
   def full_name
     "#{user_profile.first_name} #{user_profile.last_name}" unless user_profile.blank?
