@@ -1,25 +1,26 @@
+/= params.inspect
 .span3
   %h5.big-shadow Quick Search
   .quick-search
-    %form
+    = form_tag search_lounge_dashboard_index_path, method: :post do |f|
       %label Looking For
-      %select
-        %option{value: ''} Man
-        %option{value: ''} Woman
+      = select_tag 'looking_for', options_for_select(UserProfile::GENDERS), prompt: 'Choose Gender'
       %label Ages
-      %input.input-mini{type: :text, value: '30'}
+      = text_field_tag :min_age, current_user.user_profile.min_age, class: 'input-mini'
       = " - "
-      %input.input-mini{type: :text, value: '80'}
+      = text_field_tag :max_age, current_user.user_profile.max_age, :class => 'input-mini'
       %h5 Likes
       - UserProfile::LIKES.each do |l|
         %label.checkbox
-          %input{type: :checkbox}= l
+          = check_box_tag 'likes[]', l
+          = l
       %br/
       %select
         %option{value: ''} Sort Results
         %option{value: ''} Recently Joined
         %option{value: ''} Recently Updated
-      = link_to 'Search', '', class: 'btn btn-purple'
+      = submit_tag 'Search', class: 'btn btn-purple'
+      /= f.button :submit, value: 'Search', class: 'btn btn-purple'
 .span8
   .row
     %h5.big-shadow Search Results
