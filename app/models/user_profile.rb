@@ -122,7 +122,7 @@ class UserProfile
 
   # callbacks
   before_save :calculate_profile_percentage
-  after_validation :clean_up_likes
+  after_validation :clean_up_likes, on: :update
   delegate :photos, to: :user
 
   # Calculate the age of this person.

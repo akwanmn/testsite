@@ -45,13 +45,10 @@
     %ul.thumbnails
       - @users.each do |u|
         %li.span2
-          %a.thumbnail{href: ''}
-            %img{src: 'http://placehold.it/190x160'}
+          = render 'profile_image', image: u.random_profile_image
           .profile-details
             .details-one= u.nickname
             .details-two= truncate(u.user_profile.biography, length: 50)
-
-
   .row
     .pagination.pagination-mini
       %ul

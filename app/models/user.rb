@@ -98,6 +98,10 @@ class User
     update_attribute(:suspended_at, nil)
   end
 
+  def random_profile_image
+    photos.sample.photo_file
+  end
+
   # Override the devise valid_password? method so that we can use Django passwords
   # here as well.  Import them straight in and we will check for Devise passwords,
   # otherwise check against Django's format.
