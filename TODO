@@ -3,3 +3,8 @@ TODO
 # query to see where likes match current users likes
 User.where('user_profile.likes' => {'$in' =>  ['Family', 'Education']}).count
  within(range).min_age(18).max_age(37)
+
+
+
+- Image on the front still looks like shit.
+- CSS on dashboard when resized overlaps with footer.

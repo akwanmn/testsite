@@ -28,9 +28,6 @@ class Lounge::HomeController < ApplicationController
           @order.finalize_transaction
           format.html { flash[:info] = 'Successfully signed up.'; render 'index', layout: false }
         else
-          Rails.logger.debug "*" * 40
-          Rails.logger.debug @order.purchase_response.success?
-          Rails.logger.debug "*" * 40
           format.html { flash[:error] = "#{@order.purchase_response.message}"; render 'index', layout: false }
           # failed transaction
           @order.finalize_transaction('decline')

@@ -1,18 +1,17 @@
-/= params.inspect
 .span3
   %h5.big-shadow Quick Search
   .quick-search
     = form_tag search_lounge_dashboard_index_path, method: :post do |f|
       %label Looking For
-      = select_tag 'looking_for', options_for_select(UserProfile::GENDERS), prompt: 'Choose Gender'
+      = select_tag 'looking_for', options_for_select(UserProfile::GENDERS, @seeking), prompt: 'Choose Gender'
       %label Ages
-      = text_field_tag :min_age, current_user.user_profile.min_age, class: 'input-mini'
+      = text_field_tag :min_age, @min_age, class: 'input-mini'
       = " - "
-      = text_field_tag :max_age, current_user.user_profile.max_age, :class => 'input-mini'
+      = text_field_tag :max_age, @max_age, :class => 'input-mini'
       %h5 Likes
       - UserProfile::LIKES.each do |l|
         %label.checkbox
-          = check_box_tag 'likes[]', l
+          = check_box_tag 'likes[]', l, @likes.include?(l.to_s)
           = l
       %br/
       %select
@@ -29,6 +28,8 @@
       = paginate @users, window: 2
   .row
     %ul.thumbnails
+      - if @users.count == 0
+        .span7.red Unable to find compatible matches, try expanding your search criteria.
       - @users.each do |u|
         %li.span2
           = render 'profile_image', image: u.random_profile_image
