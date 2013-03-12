@@ -97,6 +97,18 @@ class User
   scope :suspended, where(current_state: 'suspended', :suspended_at.ne => nil)
   scope :not_current_user, lambda {|cu| where(:id.ne => cu.id)}
 
+  # sorting options
+  def self.sort_option(option)
+    case option
+    when 'joined'
+      desc(:created_at)
+    when 'updated'
+      desc(:updated_at)
+    else
+      desc(:created_at)
+    end
+  end
+
   def full_name
     "#{user_profile.first_name} #{user_profile.last_name}" unless user_profile.blank?
   end

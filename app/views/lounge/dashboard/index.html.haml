@@ -1,3 +1,4 @@
+= @users.selector
 .span3
   %h5.big-shadow Quick Search
   .quick-search
@@ -14,12 +15,8 @@
           = check_box_tag 'likes[]', l, @likes.include?(l.to_s)
           = l
       %br/
-      %select
-        %option{value: ''} Sort Results
-        %option{value: ''} Recently Joined
-        %option{value: ''} Recently Updated
+      = select_tag 'sort_by', options_for_select(@sort_options.map {|k| [k[:name], k[:id]]}, @sort_by)
       = submit_tag 'Search', class: 'btn btn-purple'
-      /= f.button :submit, value: 'Search', class: 'btn btn-purple'
 .span8
   .row
     %h5.big-shadow Search Results
