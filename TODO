@@ -1,8 +1,8 @@
 TODO
 
-# query to see where likes match current users likes
-User.where('user_profile.likes' => {'$in' =>  ['Family', 'Education']}).count
- within(range).min_age(18).max_age(37)
+- Birthday is pretty much mandatory, so we need to add that somehow
+  so that it is there from the get go or force them to edit their profile
+  before searching?
 
 
 

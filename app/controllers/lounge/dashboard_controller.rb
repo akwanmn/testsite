@@ -1,17 +1,20 @@
 class Lounge::DashboardController < ApplicationController
-  before_filter :set_default_values
-  def index
-    @users = User.search_radius(current_user.address, current_user.user_profile.search_radius).
-      with_likes(@likes).between_ages(@min_age, @max_age).
-      with_gender(@seeking).not_current_user(current_user).sort_option(@sort_by).page params[:page].to_i
-  end
+  before_filter :set_default_values, :do_search, only: [:index, :search]
 
   def search
+    render 'lounge/dashboard/index'
+  end
+
+  #########
+  # Private
+  #########
+
+  def do_search
     @users = User.search_radius(current_user.address, current_user.user_profile.search_radius).
       with_likes(@likes).between_ages(@min_age, @max_age).
       with_gender(@seeking).not_current_user(current_user).sort_option(@sort_by).page params[:page].to_i
-    render 'lounge/dashboard/index'
   end
+  private :do_search
 
   # params that we allow
   def search_params
@@ -33,5 +36,5 @@ class Lounge::DashboardController < ApplicationController
       {id: 'updated', name: 'Recently Updated'}
     ]
   end
-
+  private :set_default_values
 end

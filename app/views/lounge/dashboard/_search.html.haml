@@ -1,0 +1,15 @@
+= form_tag search_lounge_dashboard_index_path, method: :post do |f|
+  %label Looking For
+  = select_tag 'looking_for', options_for_select(UserProfile::GENDERS, @seeking), prompt: 'Choose Gender'
+  %label Ages
+  = text_field_tag :min_age, @min_age, class: 'input-mini'
+  = " - "
+  = text_field_tag :max_age, @max_age, :class => 'input-mini'
+  %h5 Likes
+  - UserProfile::LIKES.each do |l|
+    %label.checkbox
+      = check_box_tag 'likes[]', l, @likes.include?(l.to_s)
+      = l
+  %br/
+  = select_tag 'sort_by', options_for_select(@sort_options.map {|k| [k[:name], k[:id]]}, @sort_by)
+  = submit_tag 'Search', class: 'btn btn-purple'

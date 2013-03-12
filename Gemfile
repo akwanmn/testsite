@@ -61,6 +61,7 @@ group :development do
   gem 'fabrication' # fixtures
   gem 'ffaker'
   gem 'foreman'
+  gem 'yard'
 end
 
 group :test do
