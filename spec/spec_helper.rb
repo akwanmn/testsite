@@ -9,8 +9,23 @@ require 'rspec/autorun'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
+  Geocoder.configure(:lookup => :test)
 
-  config.before(:suite) do 
+  Geocoder::Lookup::Test.add_stub(
+    "48843", [
+      {
+        'latitude'     => 40.7143528,
+        'longitude'    => -74.0059731,
+        'address'      => 'New York, NY, USA',
+        'state'        => 'New York',
+        'state_code'   => 'NY',
+        'country'      => 'United States',
+        'country_code' => 'US'
+      }
+    ]
+  )
+
+  config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean_with(:truncation)
   end
@@ -19,7 +34,7 @@ RSpec.configure do |config|
     DatabaseCleaner.start
   end
 
-  config.after(:each) do 
+  config.after(:each) do
     DatabaseCleaner.clean
   end
 

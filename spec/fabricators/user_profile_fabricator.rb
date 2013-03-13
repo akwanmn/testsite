@@ -9,7 +9,8 @@ Fabricator(:user_profile) do
   address_street { Faker::Address.street_address}
   address_city   { Faker::Address.city }
   address_state  { Faker::AddressUS.state }
-  address_zip    { Faker::AddressUS.zip_code }
-  nickname 'zenom'
+  address_zip    '48843'
   address_country 'US'
+  search_radius 1000
+  likes { [ UserProfile::LIKES.sample ]}
 end

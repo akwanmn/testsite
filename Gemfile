@@ -50,6 +50,12 @@ gem 'unicorn'
 
 # fix as this was erroring on heroku due to something needing net-scp 1.0.6.
 gem 'net-scp', '1.0.4'
+
+group :development, :test do
+  gem 'fabrication' # fixtures
+  gem 'ffaker'
+end
+
 group :development do
   gem 'powder'
   gem 'quiet_assets'
@@ -58,8 +64,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
-  gem 'fabrication' # fixtures
-  gem 'ffaker'
   gem 'foreman'
   gem 'yard'
 end
@@ -67,4 +71,5 @@ end
 group :test do
   gem 'rspec-rails' # rspec / testing
   gem 'database_cleaner'
+  gem 'vcr'
 end
