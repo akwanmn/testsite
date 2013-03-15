@@ -121,7 +121,7 @@ class UserProfile
     presence: true
 
   # callbacks
-  before_save :calculate_profile_percentage
+  after_validation :calculate_profile_percentage
   after_validation :clean_up_likes, on: :update
   delegate :photos, to: :user
 
@@ -137,13 +137,16 @@ class UserProfile
   def calculate_profile_percentage
     fields = ['gender', 'seeking', 'min_age', 'max_age', 'address_zip', 'address_country',
       'biography', 'occupation', 'education', 'ethnicity', 'religion', 'likes', 'search_radius',
-      'photos']
+      'photos', 'birthday', 'address_state', 'address_city']
     filled_in = 0
+    Rails.logger.debug "*" * 40
     fields.each do |f|
       if self.send(f).is_a?(Array)
         # see if the array is actually empty
         filled_in += 1 unless self.send(f).reject(&:blank?).count == 0
+        Rails.logger.debug "Missing: #{f}" if self.send(f).reject(&:blank?).count == 0
       else
+        Rails.logger.debug "Missing: #{f}" if self.send(f).blank?
         filled_in += 1 unless self.send(f).blank?
       end
     end
@@ -152,10 +155,7 @@ class UserProfile
   end
 
   def clean_up_likes
-    Rails.logger.debug "*" * 40
     self.likes.reject! {|l| l.empty? }
-    Rails.logger.debug likes.inspect
-    Rails.logger.debug "*" * 40
   end
 
   # match zipcode to state, just to make sure we have consistent data.

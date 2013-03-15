@@ -42,6 +42,7 @@ Phoenix::Application.routes.draw do
         match 'search' => 'dashboard#search', via: :post
       end
     end
+    resources :profile
   end
 
   #resources :home, :only => [:index, :new, :create]

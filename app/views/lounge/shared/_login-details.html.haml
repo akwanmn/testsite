@@ -5,7 +5,7 @@
     - else
       Welcome,
     %span.name= current_user.first_name
-  = link_to 'Edit Profile', ''
+  = link_to 'Edit Profile', edit_lounge_profile_path(current_user)
   %span.divider= " | "
   = link_to 'Messages (5)'
   %span.divider= " | "
