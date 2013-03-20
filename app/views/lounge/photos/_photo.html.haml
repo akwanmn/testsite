@@ -1,0 +1,4 @@
+%li.span2{'class' => photo.id}
+  = link_to image_tag(photo.photo_file.thumb.url, class: 'img-polaroid'), photo.photo_file.url
+  %p{style: 'text-align: center; margin-top: 10px;'}
+    = link_to 'Delete', lounge_user_photo_path(current_user, photo), method: :delete, remote: true, class: 'btn', confirm: 'Are you sure?'

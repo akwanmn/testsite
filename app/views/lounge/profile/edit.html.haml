@@ -62,40 +62,22 @@
     .row{style: 'padding-bottom: 10px'}
       .span6
         = f.button :submit, class: 'btn btn-warning pull-right', value: 'Save Profile'
+= form_for [:lounge, @user, Photo.new], html: {id: 'profile_upload'} do |p|
   .row
     .span11.header
       %i{class: 'icon-picture'}
       %span.title Images
-    .row
-      .span10.offset1
-        %ul.thumbnails
-          %li.span2
-            %img.img-polaroid{src: 'http://placehold.it/170x140'}
-          %li.span2
-            %img.img-polaroid{src: 'http://placehold.it/170x140'}
-          %li.span2
-            %img.img-polaroid{src: 'http://placehold.it/170x140'}
-          %li.span2
-            %img.img-polaroid{src: 'http://placehold.it/170x140'}
-          %li.span2
-            %img.img-polaroid{src: 'http://placehold.it/170x140'}
-          %li.span2
-            %img.img-polaroid{src: 'http://placehold.it/170x140'}
-          %li.span2
-            %img.img-polaroid{src: 'http://placehold.it/170x140'}
-          %li.span2
-            %img.img-polaroid{src: 'http://placehold.it/170x140'}
-          %li.span2
-            %img.img-polaroid{src: 'http://placehold.it/170x140'}
-          %li.span2
-            %img.img-polaroid{src: 'http://placehold.it/170x140'}
-          %li.span2
-            %img.img-polaroid{src: 'http://placehold.it/170x140'}
-          %li.span2
-            %img.img-polaroid{src: 'http://placehold.it/170x140'}
-          %li.span2
-            %img.img-polaroid{src: 'http://placehold.it/170x140'}
-          %li.span2
-            %img.img-polaroid{src: 'http://placehold.it/170x140'}
-          %li.span2
-            %img.img-polaroid{src: 'http://placehold.it/170x140'}
+    .row{style: 'margin-top: -20px'}
+      .span10{style: 'margin-left: 60px'}
+        #photos
+          %ul.thumbnails
+            = render @user.photos
+        %span.btn.btn-success.fileinput-button.btn-medium
+          %i.icon-plus.icon-white
+          %span Add Profile Photos
+          %input{type: 'file', name: 'photos[photo_file]', multiple: 'multiple'}
+%script{id: 'template-upload', type: 'text/x-tmpl'}
+  .upload
+    {%=o.name%}
+    .progress
+      .bar{style: 'width: 0%'}

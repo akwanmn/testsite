@@ -11,3 +11,4 @@ $ ->
     if ($(input).html().is(':empty'))
       console.log 'here'
       $(input).addClass('validation-error')
+

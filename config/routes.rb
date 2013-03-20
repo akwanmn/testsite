@@ -43,6 +43,9 @@ Phoenix::Application.routes.draw do
       end
     end
     resources :profile
+    resources :user do
+      resources :photos
+    end
   end
 
   #resources :home, :only => [:index, :new, :create]

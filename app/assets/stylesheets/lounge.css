@@ -11,6 +11,8 @@
 
  *= require font-awesome.css
  *= require bootstrap
+ *= require chosen
+ *= require jquery.fileupload-ui
  *= require_self
 */
 

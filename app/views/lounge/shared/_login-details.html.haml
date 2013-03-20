@@ -5,6 +5,8 @@
     - else
       Welcome,
     %span.name= current_user.first_name
+  = link_to 'Home', lounge_dashboard_index_path
+  %span.divider= " | "
   = link_to 'Edit Profile', edit_lounge_profile_path(current_user)
   %span.divider= " | "
   = link_to 'Messages (5)'
