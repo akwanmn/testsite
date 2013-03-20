@@ -21,6 +21,7 @@ class Lounge::PhotosController < ApplicationController
     pass = true
     respond_to do |format|
       if @photo.destroy
+        @user.user_profile.update_attribute(:percent_complete, @user.user_profile.calculate_profile_percentage)
         format.js { render layout: false }
       end
     end

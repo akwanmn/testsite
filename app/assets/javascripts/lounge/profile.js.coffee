@@ -8,7 +8,7 @@ $ ->
   $('#profile_upload').fileupload
     dataType: 'script'
     add: (e, data) ->
-      $('.bar').parent().fadeOut()
+      $('.upload .progress .bar').parent().fadeOut()
       types = /(\.|\/)(gif|jpe?g|png)$/i
       file = data.files[0]
       if types.test(file.type) || types.test(file.name)
@@ -21,3 +21,10 @@ $ ->
       if data.context
         progress = parseInt(data.loaded / data.total * 100, 10)
         data.context.find('.bar').css('width', progress + '%')
+
+  $('.profile-image').colorbox
+    scalePhotos: true,
+    maxHeight: 640,
+    maxWidth: 640,
+    title: ->
+      $(this).attr('data-profile')

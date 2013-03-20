@@ -1,1 +1,2 @@
 $("li.<%= j @photo.id.to_s.strip.html_safe %>").fadeOut();
+$('.profile-progress.bar').css('width', "<%= j current_user.user_profile.percent_complete.to_s %>%")
