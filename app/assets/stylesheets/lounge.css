@@ -13,6 +13,7 @@
  *= require bootstrap
  *= require chosen
  *= require profile-photos
+ *= require ui-lightness/jquery-ui-1.8.21.custom.css
  *= require jquery.fileupload-ui
  *= require_self
 */

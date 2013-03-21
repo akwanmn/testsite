@@ -2,6 +2,12 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
+
+  $( "input#user_user_profile_attributes_selected_birthday" ).datepicker
+    altFormat: 'yy-mm-dd'
+    dateFormat: 'mm/dd/yy'
+    altField: '#user_user_profile_attributes_birthday'
+
   $(".chzn-select").chosen
     allow_single_deselect: true
 
@@ -22,9 +28,12 @@ $ ->
         progress = parseInt(data.loaded / data.total * 100, 10)
         data.context.find('.bar').css('width', progress + '%')
 
-  $('.profile-image').colorbox
-    scalePhotos: true,
-    maxHeight: 640,
-    maxWidth: 640,
-    title: ->
-      $(this).attr('data-profile')
+  $('.profile-image').live 'click', (e) ->
+    e.preventDefault()
+    $(this).colorbox
+      open: true,
+      scalePhotos: true,
+      maxHeight: 640,
+      maxWidth: 640,
+      title: ->
+        $(this).attr('data-profile')
