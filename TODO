@@ -12,9 +12,4 @@ TODO
 - Upgrade Rails to 3.2.13
 
 # Profile Fixes
-  - Birthday - Style
   - Chosen for Timezone?
-  - Password not updating?
-
-# Dashboard
-  - Title text missing above image listing?
