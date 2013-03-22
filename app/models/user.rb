@@ -12,6 +12,7 @@ class User
   embeds_many :photos
   has_many :orders
   accepts_nested_attributes_for :user_profile
+  has_one :mailbox
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
