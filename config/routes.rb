@@ -34,7 +34,7 @@ Phoenix::Application.routes.draw do
   end
 
   # Lounge URLS
-  namespace :lounge, path: '/' do
+  namespace :lounge, path: '/lounge' do
     resources :home, only: [:new]
     match '/signup' => 'home#signup', via: :post
     resources :dashboard, only: [:index] do
@@ -42,9 +42,13 @@ Phoenix::Application.routes.draw do
         match 'search' => 'dashboard#search', via: :post
       end
     end
-    resources :profile
-    resources :user do
-      resources :photos
+    resources :profile, only: [:edit, :update, :show] do
+      collection do
+        get 'modify' => 'profile#edit'
+      end
+    end
+    resources :user, except: [:index, :new, :create, :edit, :update, :delete] do
+      resources :photos, only: [:index, :create, :destroy]
     end
   end
 

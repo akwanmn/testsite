@@ -179,3 +179,8 @@ a {
 a:hover {
   color: $link_hover_color;
 }
+
+input.datepicker {
+  z-index:1151;
+  @extend .input-medium;
+}

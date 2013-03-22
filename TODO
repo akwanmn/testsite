@@ -9,10 +9,12 @@ TODO
 - Image on the front still looks like shit.
 - CSS on dashboard when resized overlaps with footer.
 
+- Upgrade Rails to 3.2.13
 
 # Profile Fixes
   - Birthday - Style
   - Chosen for Timezone?
+  - Password not updating?
 
 # Dashboard
   - Title text missing above image listing?

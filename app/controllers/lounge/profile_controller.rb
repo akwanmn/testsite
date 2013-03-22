@@ -1,5 +1,5 @@
 class Lounge::ProfileController < ApplicationController
-  before_filter :set_current_user, only: [:edit, :update]
+  before_filter :set_current_user
 
   def edit
     @user = current_user
@@ -13,7 +13,7 @@ class Lounge::ProfileController < ApplicationController
         result = @user.update_attributes!(user_params)
       end
       if result
-        format.html { redirect_to edit_lounge_profile_path(@user), notice: "#{@user.full_name} was successfully updated."}
+        format.html { redirect_to modify_lounge_profile_index_path, notice: "#{@user.full_name} was successfully updated."}
       else
         format.html { flash[:error] = 'There were validation errors.'; render action: 'edit'}
       end
@@ -26,7 +26,7 @@ class Lounge::ProfileController < ApplicationController
   private :set_current_user
 
   def user_params
-    params.require(:user).permit(:email, user_profile_attributes: [
+    params.require(:user).permit(:email, :password, :password_confirmation, user_profile_attributes: [
       :birthday, :first_name, :last_name, :address_zip, :address_country,
       :address_city, :address_state, :gender, :seeking, :min_age, :max_age,
       :address_street, :biography, :occupation, :education, :ethnicity, :religion,
