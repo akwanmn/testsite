@@ -56,6 +56,7 @@ class User
 
   geocoded_by :address
   after_validation :geocode
+  after_create :create_mailbox
 
   default_scope where(:suspended_at => nil)
   scope :suspended, where(:suspended_at.ne => nil)
@@ -149,4 +150,9 @@ class User
       where("$or" => [{email: /#{search}/i}, {'user_profile.first_name' => /#{search}/i}, {'user_profile.last_name' => /#{search}/i}])
     end
   end
+
+  def create_mailbox
+    self.mailbox = Mailbox.new
+  end
+  private :create_mailbox
 end

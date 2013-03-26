@@ -54,22 +54,21 @@ gem 'net-scp', '1.0.4'
 group :development, :test do
   gem 'fabrication' # fixtures
   gem 'ffaker'
+  gem 'rb-fsevent', '~> 0.9'
+  gem 'listen'
+  gem 'guard-rails'
+  gem 'guard-rspec'
+  #gem 'better_errors'
+  #gem 'binding_of_caller'
 end
 
 group :development do
   gem 'powder'
   gem 'quiet_assets'
-  #gem 'pry-rails'
+  gem 'pry-rails'
   gem 'awesome_print'
-  gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'meta_request'
   gem 'foreman'
-  gem 'yard'
-  gem 'guard-rails'
-  gem 'rb-fsevent'
-  gem 'guard-rspec'
-  gem 'rb-readline'
 end
 
 group :test do

@@ -50,11 +50,6 @@ GEM
     arel (3.0.2)
     awesome_print (1.1.0)
     bcrypt-ruby (3.0.1)
-    better_errors (0.7.2)
-      coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
-    binding_of_caller (0.7.1)
-      debug_inspector (>= 0.0.1)
     builder (3.0.4)
     cancan (1.6.9)
     carmen (1.0.0.beta2)
@@ -81,7 +76,6 @@ GEM
       execjs
     coffee-script-source (1.6.2)
     database_cleaner (0.9.1)
-    debug_inspector (0.0.2)
     devise (2.2.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -182,6 +176,8 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-rails (0.2.2)
+      pry (>= 0.9.10)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.4.5)
@@ -211,7 +207,6 @@ GEM
     raindrops (0.10.0)
     rake (10.0.3)
     rb-fsevent (0.9.3)
-    rb-readline (0.4.2)
     rdoc (3.12.2)
       json (~> 1.4)
     rspec (2.13.0)
@@ -269,7 +264,6 @@ GEM
     vcr (2.4.0)
     warden (1.2.1)
       rack (>= 1.0)
-    yard (0.8.5.2)
 
 PLATFORMS
   ruby
@@ -279,8 +273,6 @@ DEPENDENCIES
   active_model_serializers!
   activemerchant
   awesome_print
-  better_errors
-  binding_of_caller
   cancan
   carmen-rails
   carrierwave
@@ -301,16 +293,17 @@ DEPENDENCIES
   jquery-rails
   kaminari
   kaminari-bootstrap
+  listen
   meta_request
   mini_magick
   mongoid (~> 3.0.0)
   net-scp (= 1.0.4)
   newrelic_rpm
   powder
+  pry-rails
   quiet_assets
   rails (= 3.2.13)
-  rb-fsevent
-  rb-readline
+  rb-fsevent (~> 0.9)
   rspec-rails
   sass-rails (~> 3.2.3)
   sendgrid
@@ -319,4 +312,3 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   unicorn
   vcr
-  yard

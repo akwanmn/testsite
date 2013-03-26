@@ -10,6 +10,9 @@ describe Order do
     name: user.full_name,
     first_name: user.first_name,
     last_name: user.last_name,
+    card_number: 1,
+    amount: 12.95,
+    card_verification: 111,
     country: user.user_profile.address_country) }
 
   context 'Fabricators' do
@@ -25,8 +28,6 @@ describe Order do
     its(:ip_address) { should_not be_nil }
     its(:status) { should eql 'Valid' }
     its(:initial_transaction) { should eql current_order.transactions.first }
-
-
 
     context 'credit card' do
       let(:credit_card) { subject.credit_card }

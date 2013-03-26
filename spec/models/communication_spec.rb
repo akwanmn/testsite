@@ -1,18 +1,34 @@
 require 'spec_helper'
 
 describe Communication do
-  subject { Fabricate(:communication) }
-  its(:messages) { should_not be_empty }
-
-  it '#length' do
-    subject.messages.length.should == 3
+  subject {
+    Communication.new(
+      subject: 'Testing',
+      body: 'This is a test body.',
+      from_user: Fabricate(:user),
+      to_user: Fabricate(:user)
+    )
+  }
+  before do
+    subject.send_msg
+  end
+  context 'sending' do
+    it 'to_user should have one message' do
+      subject.to_user.mailbox.communications.count.should == 1
+    end
+    it 'from_user should have one message' do
+      subject.from_user.mailbox.communications.count.should == 1
+    end
+    context 'messages' do
+      let(:messages) { subject.from_user.mailbox.communications.first.messages }
+      it 'has 1 message' do
+        messages.count.should == 1
+      end
+      it 'has the right subject' do
+        messages.first.subject.should == 'Testing'
+      end
+    end
   end
 
-  its(:from_user_id) { should_not be_nil }
-  its(:to_user_id) { should_not be_nil }
   its(:sent_at) { should_not be_nil }
-
-  it '#testing' do
-    #p subject.messages
-  end
 end

@@ -23,4 +23,11 @@ describe User do
       it { should be_valid_password('andy12') }
     end
   end
+
+  context 'mailbox' do
+    it 'has one' do
+      subject.mailbox.should_not be_nil
+    end
+  end
+
 end
