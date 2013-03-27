@@ -6,4 +6,5 @@ Fabricator(:user) do
   password_confirmation 'andy12'
   user_profile { |u| Fabricate.build(:user_profile, user: u) }
   nickname { Faker::Internet.user_name }
+  #after_create { |user| Fabricate(:mailbox, user: user) }
 end

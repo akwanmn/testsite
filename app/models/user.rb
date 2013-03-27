@@ -152,7 +152,7 @@ class User
   end
 
   def create_mailbox
-    self.mailbox = Mailbox.new
+    self.mailbox = Mailbox.create!
   end
   private :create_mailbox
 end
