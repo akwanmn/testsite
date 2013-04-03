@@ -1,0 +1,9 @@
+%tr
+  %td.span1
+    %input{type: :checkbox}
+  %td.span2
+    = link_to message.from_user.nickname, '#'
+  %td.span5
+    = link_to message.subject, lounge_message_path(message)
+  %td.span3
+    = "#{l(message.sent_at.in_time_zone(current_user.user_profile.timezone)) rescue l(message.sent_at) }"

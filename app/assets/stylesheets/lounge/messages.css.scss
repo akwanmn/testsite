@@ -1,0 +1,93 @@
+// Place all the styles related to the lounge/messages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "lounge-variables";
+@import "lounge-global";
+
+$header_color: #f2f0ed;
+
+body {
+  padding-top: 80px;
+  background-color: $lounge_bg_color;
+}
+
+@include shadowed-text(22px);
+
+/* navbar on home page */
+.navbar .container {
+  height: $header_height;
+
+  @include header-logo-text;
+
+  .login-details {
+    font-family: $clean_font, sans-serif;
+    font-size: 12px;
+    margin: 15px 0px 0px 0px;
+    .divider {
+      color: $light_purple;
+    }
+    .welcome {
+      font-size: 16px;
+      .name {
+        color: $light_purple;
+      }
+    }
+    a {
+      color: #fff;
+    }
+    a:hover {
+      color: $light_purple;
+    };
+  }
+  .options {
+    input[type=checkbox] {
+      margin-top: 4px;
+    }
+    label {
+      font-family: $clean_font, sans-serif;
+      font-size: 11px;
+    }
+  }
+}
+
+/* communications */
+.communication {
+  padding: 10px;
+  border: 1px solid #efefef;
+  .subject-info {
+    border-bottom: 1px solid #000000;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    font-family: $clean_font, sans-serif;
+    .subject {
+      font-size: 16px;
+    }
+    .sent {
+      color: $light_purple;
+      font-weight: normal;
+      font-size: 12px;
+    }
+  }
+  .message {
+    font-family: $clean_font, sans-serif;
+  }
+}
+
+span.bold {
+  font-weight: bold;
+}
+
+table.table.table-striped {
+  font-family: $clean_font, sans-serif;
+  tr {
+    th {
+      background-color: $light_purple;
+      color: $dark_purple;
+    }
+    td {
+      a {
+        color: $dark_purple;
+      }
+    }
+  }
+}

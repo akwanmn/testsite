@@ -12,6 +12,8 @@ TODO
     - Sent should be where messages.from_user = current_user
     - Archive & Trash should be the entire conversation.
     - Re: in subject?
+  - Authorization
+  - How to know whats in inbox through messages?
 
 # Profile View Page
   - Send an email from the page?

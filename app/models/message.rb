@@ -11,16 +11,15 @@ class Message
   field :body,    type: String
   field :sent_at, type: DateTime
   ############## Callbacks ##############
-  after_create :update_sent_at
-
   ############## Validations ##############
   validates_presence_of :subject, :body, :from_user, :to_user
 
   ############## Public  ##############
   # Used only when its a brand new message, otherwise use reply.
-  def new_message
+  def send_message
     create_sender_communication
     create_receiver_communication
+    update_sent_at
   end
 
   def reply_message
@@ -29,12 +28,12 @@ class Message
 
   ##############  Private ##############
   def create_sender_communication
-    self.communications << Communication.create!(mailbox: from_user.mailbox)
+    self.communications << Communication.create!(mailbox: from_user.mailbox, touched_at: DateTime.now.utc)
   end
   private :create_sender_communication
 
   def create_receiver_communication
-    self.communications << Communication.create!(mailbox: to_user.mailbox)
+    self.communications << Communication.create!(mailbox: to_user.mailbox, touched_at: DateTime.now.utc)
   end
   private :create_receiver_communication
 

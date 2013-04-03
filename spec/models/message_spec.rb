@@ -10,11 +10,11 @@ describe Message do
   its(:to_user)     { should_not be_blank }
   its(:sent_at)     { should_not be_blank }
 
-  it { should respond_to(:new_message) }
+  it { should respond_to(:send_message) }
   it { should respond_to(:reply_message) }
 
   context 'sending' do
-    before { subject.new_message }
+    before { subject.send_message }
     context 'communications' do
       it { should have(2).communications }
       it { should_not be_nil }

@@ -1,0 +1,26 @@
+= stylesheet_link_tag 'lounge', 'lounge/messages'
+= render 'lounge/shared/messages'
+.row
+  .span12
+    .buttons{style: 'margin-top: 30px'}
+      = link_to 'Inbox', lounge_messages_path, class: 'btn btn-purple'
+      = link_to 'Archives', archives_lounge_messages_path, class: 'btn btn-warning'
+      = link_to 'Trash', trash_lounge_messages_path, class: 'btn btn-danger'
+    %h4.big-shadow= @box
+    .communication
+      - @messages.each do |msg|
+        .subject-info
+          .subject
+            %span.bold= "Subject:"
+            ="#{msg.subject}"
+          .from
+            %span.bold= "From: "
+            = "#{msg.from_user.nickname}"
+          .to
+            %span.bold= "To: "
+            = "#{msg.to_user.nickname}"
+          .sent
+            = "Received: "
+            = "#{l(msg.sent_at.in_time_zone(current_user.user_profile.timezone)) rescue l(msg.sent_at) }"
+
+        .message= h(msg.body)

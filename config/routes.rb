@@ -50,6 +50,13 @@ Phoenix::Application.routes.draw do
     resources :user, except: [:index, :new, :create, :edit, :update, :delete] do
       resources :photos, only: [:index, :create, :destroy]
     end
+    resources :messages, only: [:index, :show] do
+      collection do
+        get 'trash' => 'messages#trash'
+        get 'archives' => 'messages#archives'
+        get 'sent' => 'messages#sent'
+      end
+    end
   end
 
   #resources :home, :only => [:index, :new, :create]

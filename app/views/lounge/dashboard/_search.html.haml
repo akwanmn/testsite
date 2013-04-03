@@ -2,13 +2,13 @@
   %label Looking For
   = select_tag 'looking_for', options_for_select(UserProfile::GENDERS, @seeking), prompt: 'Choose Gender'
   %label Ages
-  = text_field_tag :min_age, @min_age, class: 'input-mini'
+  = text_field_tag :min_age, @min_age ||= '21', class: 'input-mini'
   = " - "
-  = text_field_tag :max_age, @max_age, :class => 'input-mini'
+  = text_field_tag :max_age, @max_age ||= '50', :class => 'input-mini'
   %h5 Likes
   - UserProfile::LIKES.each do |l|
     %label.checkbox
-      = check_box_tag 'likes[]', l, @likes.include?(l.to_s)
+      = check_box_tag 'likes[]', l, (@likes.blank? ? nil : @likes.include?(l.to_s))
       = l
   %br/
   = select_tag 'sort_by', options_for_select(@sort_options.map {|k| [k[:name], k[:id]]}, @sort_by)

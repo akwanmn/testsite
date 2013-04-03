@@ -1,0 +1,2 @@
+module Lounge::MessagesHelper
+end
