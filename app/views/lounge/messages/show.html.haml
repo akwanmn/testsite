@@ -26,7 +26,6 @@
           %span.bold= "To: "
           = "#{msg.to_user.nickname}"
         .sent
-          = "Received: "
           = "#{l(msg.sent_at.in_time_zone(current_user.user_profile.timezone)) rescue l(msg.sent_at) }"
 
       .message= h(msg.body)

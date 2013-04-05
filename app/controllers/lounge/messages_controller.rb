@@ -31,13 +31,13 @@ class Lounge::MessagesController < ApplicationController
   end
 
   def create
-    communication = Communication.find(params[:message][:id].to_s)
+    communication = Communication.find(message_params[:id])
     reply_to_msg = communication.messages.last
     message = Message.new
     message.from_user = current_user
     message.to_user = User.find(communication.other_party(current_user))
     message.subject = reply_to_msg.subject
-    message.body = params[:message][:body]
+    message.body = message_params[:body]
     message.communications = reply_to_msg.communications
     respond_to do |format|
       if message.reply_message
@@ -56,4 +56,5 @@ class Lounge::MessagesController < ApplicationController
   def message_params
     params.require(:message).permit(:id, :body)
   end
+  private :message_params
 end
