@@ -27,7 +27,7 @@ class Lounge::MessagesController < ApplicationController
   def show
     @message = Message.new
     @communication = @mb.find(params[:id])#.messages.order_by('messages.created_at DESC')
-    @messages = @communication.messages.order_by('created_at ASC').page params[:page].to_i
+    @messages = @communication.messages.order_by('created_at DESC').page params[:page].to_i
   end
 
   def create
@@ -39,12 +39,21 @@ class Lounge::MessagesController < ApplicationController
     message.subject = reply_to_msg.subject
     message.body = params[:message][:body]
     message.communications = reply_to_msg.communications
-    Rails.logger.debug message.reply_message.inspect
-    render text: message.reply_message.inspect
+    respond_to do |format|
+      if message.reply_message
+        format.html { redirect_to lounge_message_path(communication) }
+      else
+        format.html { flash[:error] = 'Body cannot be left blank!'; redirect_to action: 'show', id: communication.id }
+      end
+    end
   end
 
   def get_user_comms
     @mb = current_user.mailbox.communications
   end
   private :get_user_comms
+
+  def message_params
+    params.require(:message).permit(:id, :body)
+  end
 end

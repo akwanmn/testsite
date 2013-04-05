@@ -2,31 +2,33 @@
 = render 'lounge/shared/messages'
 = render 'lounge/messages/shared/buttons'
 = paginate @messages
-- @messages.each do |msg|
-  .communication
-    .subject-info
-      .subject
-        %span.bold= "Subject:"
-        ="#{msg.subject}"
-      .from
-        %span.bold= "From: "
-        = "#{msg.from_user.nickname}"
-      .to
-        %span.bold= "To: "
-        = "#{msg.to_user.nickname}"
-      .sent
-        = "Received: "
-        = "#{l(msg.sent_at.in_time_zone(current_user.user_profile.timezone)) rescue l(msg.sent_at) }"
-
-    .message= h(msg.body)
-
-= paginate @messages
-.reply
+.reply{style: 'display: none;'}
   .row
     .span12{style: 'margin-top: 20px'}
-      %hr/
-      %h4.big-shadow= 'Reply'
       = simple_form_for [:lounge, @message], html: {class: 'form-vertical'} do |f|
         = f.input :body, as: :text, label: false, input_html: {style: 'width: 100%', rows: 5}
         = f.input :id, as: :hidden, input_html: {value: @communication.id}
         = f.submit :submit, value: 'Reply', class: 'btn btn-purple'
+        = link_to 'Cancel', '', class: 'btn btn-warning cancel-reply'
+.all-messages
+  - @messages.each do |msg|
+    .communication
+      .subject-info
+        .subject
+          %span.bold= "Subject:"
+          ="#{msg.subject}"
+        .reply-button.pull-right
+          = link_to 'Reply', '#', class: 'btn btn-mini btn-purple reply-message'
+        .from
+          %span.bold= "From: "
+          = "#{msg.from_user.nickname}"
+        .to
+          %span.bold= "To: "
+          = "#{msg.to_user.nickname}"
+        .sent
+          = "Received: "
+          = "#{l(msg.sent_at.in_time_zone(current_user.user_profile.timezone)) rescue l(msg.sent_at) }"
+
+      .message= h(msg.body)
+
+= paginate @messages

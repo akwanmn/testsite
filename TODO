@@ -7,6 +7,7 @@ TODO
 - Image on the front still looks like shit.
 
 # Messages
+  - Send new message.
   - Skip Read At for right now. (or make read at only for the to_user, and just set it?)
   - Re: in subject?
   - Authorization

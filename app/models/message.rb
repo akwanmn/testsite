@@ -24,13 +24,13 @@ class Message
     create_sender_communication
     create_receiver_communication
     update_sent_at
-    self.save!
+    self.save
   end
 
   def reply_message
     format_reply_subject
     update_sent_at
-    self.save!
+    self.save
   end
 
   ##############  Private ##############

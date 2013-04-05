@@ -9,5 +9,6 @@
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require lounge/profile
+//= require lounge/messages
 //= require_self
 
