@@ -8,12 +8,9 @@ TODO
 
 # Messages
   - Skip Read At for right now. (or make read at only for the to_user, and just set it?)
-  - Make communications mark as inbox, sent, archives etc.
-    - Sent should be where messages.from_user = current_user
-    - Archive & Trash should be the entire conversation.
-    - Re: in subject?
+  - Re: in subject?
   - Authorization
-  - How to know whats in inbox through messages?
+  - How to know whats in inbox through messages? (> last_sign_in_at)
 
 # Profile View Page
   - Send an email from the page?

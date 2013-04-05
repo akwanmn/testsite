@@ -1,0 +1,7 @@
+.row{style: 'margin-bottom: 40px'}
+  .span12
+    .buttons{style: 'margin-top: 30px'}
+      = link_to 'Inbox', lounge_messages_path, class: 'btn btn-mini btn-purple'
+      = link_to 'Sent Messages', sent_lounge_messages_path, class: 'btn btn-mini btn-warning'
+      = link_to 'Archives', archives_lounge_messages_path, class: 'btn btn-mini btn-primary'
+      = link_to 'Trash', trash_lounge_messages_path, class: 'btn btn-mini btn-danger'

@@ -53,7 +53,9 @@ body {
 /* communications */
 .communication {
   padding: 10px;
+  background-color: #fafafa;
   border: 1px solid #efefef;
+  margin-bottom: 10px;
   .subject-info {
     border-bottom: 1px solid #000000;
     padding-bottom: 5px;
@@ -89,5 +91,11 @@ table.table.table-striped {
         color: $dark_purple;
       }
     }
+  }
+}
+
+div.reply{
+  a.btn {
+    margin-bottom: 20px;
   }
 }

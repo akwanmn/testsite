@@ -24,6 +24,7 @@ class Communication
   scope :inbox, where(:box => 'inbox')
   scope :archive, where(:box => 'archives')
   scope :trash, where(:box => 'trash')
+
   ############## VALIDATIONS ##############
   ########## CALLBACKS #############
   after_save :update_touched_at
@@ -47,6 +48,13 @@ class Communication
 
   def latest_message
     messages.last
+  end
+
+  # get the other side of the conversation
+  def other_party(current_user)
+    users = self.messages.map(&:from_user_id).zip(self.messages.map(&:to_user_id)).flatten.uniq!
+    users.delete(current_user.id)
+    users.first
   end
   ########### PRIVATE ##############
   def update_touched_at

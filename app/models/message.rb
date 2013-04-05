@@ -2,6 +2,10 @@ class Message
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  attr_accessor :communication_id
+
+  paginates_per 10
+
   ############## Associations ##############
   has_and_belongs_to_many :communications
   belongs_to :from_user, class_name: 'User'
@@ -20,13 +24,21 @@ class Message
     create_sender_communication
     create_receiver_communication
     update_sent_at
+    self.save!
   end
 
   def reply_message
-    # pending
+    format_reply_subject
+    update_sent_at
+    self.save!
   end
 
   ##############  Private ##############
+  def format_reply_subject
+    self.subject = self.subject.downcase.start_with?('re:') ? self.subject : "Re: #{subject}"
+  end
+  private :format_reply_subject
+
   def create_sender_communication
     self.communications << Communication.create!(mailbox: from_user.mailbox, touched_at: DateTime.now.utc)
   end
