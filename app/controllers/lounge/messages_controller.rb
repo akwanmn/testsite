@@ -20,7 +20,7 @@ class Lounge::MessagesController < ApplicationController
 
   def sent
     @box = 'Sent Messages'
-    @communications = Message.where(:from_user => current_user).order_by('created_at DESC')
+    @communications = Message.where(:from_user => current_user).order_by('created_at DESC').page params[:page]
     render 'index'
   end
 
