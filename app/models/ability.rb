@@ -3,9 +3,9 @@ class Ability
 
   def initialize(user)
     if user.is_admin
-        can :manage, :all    
+        can :manage, :all
     else
-        can :read, :all 
+        can :read, :all
     end
 
     # Define abilities for the passed in user here. For example:

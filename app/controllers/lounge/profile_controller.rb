@@ -20,6 +20,10 @@ class Lounge::ProfileController < ApplicationController
     end
   end
 
+  def show
+    render text: 'HELLO'
+  end
+
   def set_current_user
     @user = current_user
   end

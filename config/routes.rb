@@ -56,6 +56,9 @@ Phoenix::Application.routes.draw do
         get 'archives' => 'messages#archives'
         get 'sent' => 'messages#sent'
       end
+      member do
+        get 'view' => 'messages#view'
+      end
     end
   end
 

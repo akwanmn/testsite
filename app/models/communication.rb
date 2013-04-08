@@ -52,9 +52,9 @@ class Communication
 
   # get the other side of the conversation
   def other_party(current_user)
-    users = self.messages.map(&:from_user_id).zip(self.messages.map(&:to_user_id)).flatten.uniq!
+    users = self.messages.map(&:from_user_id).zip(self.messages.map(&:to_user_id)).flatten#.uniq!
     users.delete(current_user.id)
-    users.first
+    users.uniq.first
   end
   ########### PRIVATE ##############
   def update_touched_at

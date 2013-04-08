@@ -1,0 +1,20 @@
+= stylesheet_link_tag 'lounge', 'lounge/messages'
+= render 'lounge/shared/messages'
+= render 'lounge/messages/shared/buttons'
+.all-messages
+  .communication
+    .subject-info
+      .subject
+        %span.bold= "Subject:"
+        ="#{@message.subject}"
+      .from
+        %span.bold= "From: "
+        = "#{@message.from_user.nickname}"
+      .to
+        %span.bold= "To: "
+        = "#{@message.to_user.nickname}"
+      .sent
+        = "#{l(@message.sent_at.in_time_zone(current_user.user_profile.timezone)) rescue l(@message.sent_at) }"
+
+    .message= h(@message.body)
+

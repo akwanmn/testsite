@@ -8,10 +8,9 @@ TODO
 
 # Messages
   - Send new message.
-  - Skip Read At for right now. (or make read at only for the to_user, and just set it?)
-  - Re: in subject?
   - Authorization
   - How to know whats in inbox through messages? (> last_sign_in_at)
+  - Fix sent message view, since it was using communication.
 
 # Profile View Page
   - Send an email from the page?

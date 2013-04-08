@@ -2,7 +2,7 @@
   %td.span1
     %input{type: :checkbox}
   %td.span2
-    = link_to communication.latest_message.from_user.nickname, '#'
+    = link_to communication.latest_message.from_user.nickname, lounge_profile_path(communication.latest_message.from_user.nickname)
   %td.span5
     = link_to communication.latest_message.subject, lounge_message_path(communication)
   %td.span3

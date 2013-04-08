@@ -30,6 +30,11 @@ class Lounge::MessagesController < ApplicationController
     @messages = @communication.messages.order_by('created_at DESC').page params[:page].to_i
   end
 
+  # view a message, not a communication
+  def view
+    @message = Message.find(params[:id].to_s)
+  end
+
   def create
     communication = Communication.find(message_params[:id])
     reply_to_msg = communication.messages.last
