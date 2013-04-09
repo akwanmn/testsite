@@ -1,0 +1,14 @@
+%table.table.table-striped.communications
+  %tr
+    %th From
+    %th Subject
+    %th Received
+    %th
+  - @communications.each do |comm|
+    - if @box == 'Inbox'
+      - if (comm.latest_message.from_user != current_user) || comm.messages.length > 1
+        = render partial: 'lounge/messages/communication', :locals => { :communication => comm}
+    - elsif @box == 'Sent Messages'
+      = render partial: 'lounge/messages/message', :locals => { :message => comm}
+    - else
+      = render partial: 'lounge/messages/communication', :locals => { :communication => comm}

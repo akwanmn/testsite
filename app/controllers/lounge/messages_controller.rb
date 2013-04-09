@@ -53,6 +53,17 @@ class Lounge::MessagesController < ApplicationController
     end
   end
 
+  def archive_communications
+    @comm = Communication.find(params[:id])
+    @comm.archive!
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def delete_communications
+  end
+
   def get_user_comms
     @mb = current_user.mailbox.communications
   end

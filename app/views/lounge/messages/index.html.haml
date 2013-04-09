@@ -3,18 +3,7 @@
 = render 'lounge/messages/shared/buttons'
 %h4.big-shadow= @box
 = paginate @communications
-%table.table.table-striped
-  %tr
-    %th
-    %th From
-    %th Subject
-    %th Received
-  - @communications.each do |comm|
-    - if @box == 'Inbox'
-      - if (comm.latest_message.from_user != current_user) || comm.messages.length > 1
-        = render partial: 'lounge/messages/communication', :locals => { :communication => comm}
-    - elsif @box == 'Sent Messages'
-      = render partial: 'lounge/messages/message', :locals => { :message => comm}
-    - else
-      = render partial: 'lounge/messages/communication', :locals => { :communication => comm}
+
+= render 'lounge/messages/message_list'
+
 = paginate @communications

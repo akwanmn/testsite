@@ -9,11 +9,11 @@ TODO
 # Messages
   - Send new message.
   - Authorization
-  - How to know whats in inbox through messages? (> last_sign_in_at)
-  - Fix sent message view, since it was using communication.
+  - Delete message
 
 # Profile View Page
   - Send an email from the page?
 
 # Profile Fixes
   - Chosen for Timezone?
+  - How to know whats in inbox through messages? (> last_sign_in_at)

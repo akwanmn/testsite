@@ -88,7 +88,9 @@ table.table.table-striped {
     }
     td {
       a {
-        color: $dark_purple;
+        btn {
+          color: #ffffff;
+        }
       }
     }
   }

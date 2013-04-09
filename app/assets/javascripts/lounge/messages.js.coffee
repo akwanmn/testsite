@@ -13,3 +13,8 @@ $ ->
     e.preventDefault()
     $('.all-messages form').each ->
       $(this).parent().parent().remove()
+
+  # archive
+  # $('.communications td a.btn.btn-warning').live 'click', (e) ->
+  #   e.preventDefault()
+  #   this_id = $(this).parent().parent().attr('id')

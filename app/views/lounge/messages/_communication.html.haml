@@ -1,9 +1,10 @@
-%tr
-  %td.span1
-    %input{type: :checkbox}
+%tr{id: communication.id}
   %td.span2
     = link_to communication.latest_message.from_user.nickname, lounge_profile_path(communication.latest_message.from_user.nickname)
   %td.span5
     = link_to communication.latest_message.subject, lounge_message_path(communication)
   %td.span3
     = "#{l(communication.latest_message.sent_at.in_time_zone(current_user.user_profile.timezone)) rescue l(communication.latest_message.sent_at) }"
+  %td.span2
+    = link_to 'Archive', archive_lounge_message_path(communication), class: 'btn btn-mini btn-warning', remote: true, method: :post unless @box == 'Archives' || @box == 'Trash'
+    = link_to 'Delete', '#', class: 'btn btn-mini btn-danger' unless @box == 'Trash'

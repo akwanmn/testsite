@@ -28,8 +28,6 @@ gem 'geocoder' # geo location
 #gem 'sidekiq' # jobs platform
 gem 'kaminari' # pagination
 gem 'kaminari-bootstrap'
-gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
-
 #gem 'flipper' # turn on and off services for people (new features)
 
 # image processing
