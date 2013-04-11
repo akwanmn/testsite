@@ -1,6 +1,6 @@
 - if image.present?
-  %a.thumbnail{href: "#{image.url}"}
+  = link_to lounge_profile_path(user.nickname), class: 'thumbnail' do
     %img{src: "#{image.thumb.url}"}
 - else
-  %a.thumbnail{href: '#', :style => 'width: 130px; height: 109px'}
+  = link_to lounge_profile_path(user.nickname), class: 'thumbnail' do
     %img{src: '/assets/lounge/default-avatar.jpg', width: '130px', height: '109px'}

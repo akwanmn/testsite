@@ -43,7 +43,7 @@
         .span5
           = up.input :gender, collection: UserProfile::GENDERS, prompt: 'Choose Gender', input_html: {tabindex: 11}
           = up.input :min_age, input_html: {tabindex: 13}
-          = up.input :selected_birthday, as: :string, input_html: {value: (@user.user_profile.birthday.present? ? l(@user.user_profile.birthday) : ''),  tabindex: 15}
+          = up.input :selected_birthday, as: :string, input_html: {value: (@user.user_profile.birthday.present? ? l(@user.user_profile.birthday) : ''),  tabindex: 15}, required: true
           = up.input :birthday, as: :hidden
           = up.input :ethnicity, collection: UserProfile::ETHNICITY, prompt: 'Choose Ethnicity', include_blank: true, input_html: {tabindex: 17}
           = up.input :education, collection: UserProfile::EDUCATION, prompt: 'Choose Education', include_blank: true, input_html: {tabindex: 19}

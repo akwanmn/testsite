@@ -112,6 +112,10 @@ class UserProfile
     numericality: {greater_than: 19, less_than_or_equal_to: 110, message: 'must be between 19 and 110'},
     presence: true,
     on: :update
+  validates :birthday,
+    presence: true,
+    on: :update
+  validate :check_age, on: :update
   validates :search_radius,
     numericality: {greater_than: 0, less_than_or_equal_to: 4000, message: 'must be between 0 and 4000'},
     presence: true,
@@ -188,4 +192,14 @@ class UserProfile
     end
     location.nil? ? 'Unknown' : location.data['formatted_address']
   end
+
+  # Checks the age to make sure someone is within a proper age range.
+  def check_age
+    if age < 18
+      errors.add(:birthday, "must be before #{(Date.today - 18.years).strftime('%m/%d/%Y')}")
+    elsif age > 110
+      errors.add(:birthday, "must be after #{(Date.today - 110.years).strftime('%m/%d/%Y')}")
+    end
+  end
+  private :check_age
 end
