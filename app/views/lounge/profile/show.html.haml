@@ -1,0 +1,63 @@
+= stylesheet_link_tag 'lounge','lounge/profile'
+= render 'lounge/shared/messages'
+- if @user.blank?
+  .row
+    .span10
+      %h2 Sorry no user profile found.
+- else
+  .row
+    .span10
+      %h4.big-shadow Meet #{@user.nickname}
+  .row.profile-data
+    .span2
+      - if @user.random_profile_image.nil?
+        = link_to '/assets/lounge/default-avatar.jpg', class: 'thumbnail profile-image' do
+          %img{src: '/assets/lounge/default-avatar.jpg', width: '130px', height: '109px'}
+      - else
+        = link_to "#{@user.random_profile_image.url}", class: 'thumbnail profile-image' do
+          %img{src: "#{@user.random_profile_image.thumb.url}"}
+
+    .span3
+      .info
+        %span.bold Age:
+        #{@user.user_profile.age}
+      .info
+        %span.bold Country:
+        #{@user.user_profile.address_country}
+      .info
+        %span.bold Ethnicity:
+        #{@user.user_profile.ethnicity}
+      .info
+        %span.bold Education:
+        #{@user.user_profile.education}
+    .span3
+      .info
+        %span.bold State:
+        #{@user.user_profile.address_state}
+      .info
+        %span.bold Occupation:
+        #{@user.user_profile.occupation}
+      .info
+        %span.bold Religion:
+        #{@user.user_profile.religion}
+      .info
+        %span.bold Likes:
+        #{@user.user_profile.likes.join(', ')}
+
+    .span2
+      .message-link
+        .message
+          = link_to '#', class: 'btn btn-purple' do
+            %i.icon-envelope.icon-white
+            = " Message"
+  .row.profile-data
+    .span10
+      .biography #{simple_format(@user.user_profile.biography)}
+
+  .row
+    .span10
+      #photos
+        %ul.thumbnails
+          - @user.photos.each do |photo|
+            %li.span2{'class' => photo.id}
+              = link_to image_tag(photo.photo_file.thumb.url, class: 'img-polaroid'), photo.photo_file.url, class: 'profile-image', 'data-profile' => photo.user.nickname

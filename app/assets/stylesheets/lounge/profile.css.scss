@@ -74,3 +74,22 @@ body {
 div.user_user_profile_birthday.hidden {
   display: none;
 }
+
+.profile-data {
+  font-family: $clean_font, sans-serif;
+  .biography {
+    margin-top: 20px;
+  }
+  .bold {
+    font-weight: bold;
+  }
+  .message-link {
+    margin-left: 20px;
+    margin-top: 5px;
+  }
+}
+
+#photos {
+  margin-top: 20px;
+}
+

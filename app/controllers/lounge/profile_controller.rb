@@ -21,7 +21,7 @@ class Lounge::ProfileController < ApplicationController
   end
 
   def show
-    render text: 'HELLO'
+    @user = User.where(nickname: params[:id].to_s).first
   end
 
   def set_current_user
