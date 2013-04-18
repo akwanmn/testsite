@@ -21,6 +21,7 @@ class Lounge::ProfileController < ApplicationController
   end
 
   def show
+    @message = Message.new
     @user = User.where(nickname: params[:id].to_s).first
   end
 

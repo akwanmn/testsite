@@ -5,6 +5,13 @@
     .span10
       %h2 Sorry no user profile found.
 - else
+  .reply.keep-me{style: 'display: none;'}
+    .row
+      .span12{style: 'margin-top: 20px'}
+        = simple_form_for [:lounge, @message], html: {class: 'form-vertical'} do |f|
+          = f.input :body, as: :text, label: false, input_html: {style: 'width: 80%', rows: 5}
+          = f.submit :submit, value: 'Send', class: 'btn btn-purple'
+          = link_to 'Cancel', '', class: 'btn btn-warning cancel-reply'
   .row
     .span10
       %h4.big-shadow Meet #{@user.nickname}
@@ -47,7 +54,7 @@
     .span2
       .message-link
         .message
-          = link_to '#', class: 'btn btn-purple' do
+          = link_to '#', class: 'btn btn-purple new-message' do
             %i.icon-envelope.icon-white
             = " Message"
   .row.profile-data

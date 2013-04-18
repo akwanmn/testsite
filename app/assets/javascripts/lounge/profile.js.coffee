@@ -37,3 +37,11 @@ $ ->
       maxWidth: 640,
       title: ->
         $(this).attr('data-profile')
+
+  $('a.new-message').click (e) ->
+    e.preventDefault()
+    $(this).closest('.profile-data').after($('div.reply').removeClass('keep-me').html())
+
+  $('a.cancel-reply').live 'click', (e) ->
+    e.preventDefault()
+    $(this).parent().parent().parent().remove()
