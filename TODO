@@ -1,9 +1,5 @@
 TODO
 
-BUGFIXES:
-Fixes, make errors more visible on join page on errors.
-Make the time stand out more.
-
 When someone replies, it shows the from in the message on the from persons mailbox. Instead of who it was from.
 
 - Birthday is pretty much mandatory, so we need to add that somehow
