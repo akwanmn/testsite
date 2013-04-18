@@ -1,5 +1,11 @@
 TODO
 
+BUGFIXES:
+Fixes, make errors more visible on join page on errors.
+Make the time stand out more.
+
+When someone replies, it shows the from in the message on the from persons mailbox. Instead of who it was from.
+
 - Birthday is pretty much mandatory, so we need to add that somehow
   so that it is there from the get go or force them to edit their profile
   before searching?
@@ -7,6 +13,8 @@ TODO
 - Image on the front still looks like shit.
 
 SendGrid (send emails where?)
+
+# When signup, auto log them in!!!
 
 # Messages
   - Send new message.

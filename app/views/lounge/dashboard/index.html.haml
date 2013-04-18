@@ -16,7 +16,7 @@
       - if current_user.user_profile.percent_complete < 59 || !current_user.user_profile.birthday.present?
         .span7
           %h5
-            = link_to 'Do get the most out of 2date4love, click here to complete your profile!!', modify_lounge_profile_index_path
+            = link_to 'To get the most out of 2date4love, click here to complete your profile!!', modify_lounge_profile_index_path
       - @users.each do |u|
         %li.span2
           = render 'profile_image', image: u.random_profile_image, user: u
