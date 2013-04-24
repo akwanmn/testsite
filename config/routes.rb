@@ -55,6 +55,7 @@ Phoenix::Application.routes.draw do
         get 'trash' => 'messages#trash'
         get 'archives' => 'messages#archives'
         get 'sent' => 'messages#sent'
+        post 'ping' => 'messages#ping'
       end
       member do
         get 'view' => 'messages#view'

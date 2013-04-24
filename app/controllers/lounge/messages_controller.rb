@@ -35,6 +35,21 @@ class Lounge::MessagesController < ApplicationController
     @message = Message.find(params[:id].to_s)
   end
 
+  def ping
+    Rails.logger.debug "*" * 40
+    Rails.logger.debug params
+    communication       = Communication.new
+    message             = Message.new(new_message_params)
+    message.from_user   = current_user
+    message.to_user     = User.find(new_message_params[:to])
+    message.subject     = new_message_params[:subject]
+    message.body        = new_message_params[:body]
+    respond_to do |format|
+      #format.js { redirect_to lounge_profile_path(message.to_user.nickname) }
+      format.js
+    end
+  end
+
   def create
     communication = Communication.find(message_params[:id])
     reply_to_msg = communication.messages.last
@@ -53,6 +68,7 @@ class Lounge::MessagesController < ApplicationController
     end
   end
 
+
   def archive_communications
     @comm = Communication.find(params[:id])
     @comm.archive!
@@ -69,8 +85,14 @@ class Lounge::MessagesController < ApplicationController
   end
   private :get_user_comms
 
+
   def message_params
     params.require(:message).permit(:id, :body)
   end
   private :message_params
+
+  def new_message_params
+    params.require(:message).permit(:body, :subject, :to)
+  end
+  private :new_message_params
 end

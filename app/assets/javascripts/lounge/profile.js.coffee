@@ -40,8 +40,9 @@ $ ->
 
   $('a.new-message').click (e) ->
     e.preventDefault()
-    $(this).closest('.profile-data').after($('div.reply').removeClass('keep-me').html())
-
+    if $('form').length > 1
+      $('form').last().parent().parent().hide().remove()
+    $(this).closest('.profile-data').after($('div.reply').html())
   $('a.cancel-reply').live 'click', (e) ->
     e.preventDefault()
     $(this).parent().parent().parent().remove()
