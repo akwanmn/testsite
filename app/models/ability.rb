@@ -8,10 +8,9 @@ class Ability
       can :read, User
       can [:show, :update], UserProfile, id: user.id
       can [:read, :show], Communication, mailbox_id: user.mailbox.id
-      can :manage, Message
-      # can :manage, Message do |msg|
-      #   msg.from_user_id == user.id || msg.to_user_id == user.id
-      # end
+      can [:view], Message do |msg|
+        (msg.from_user_id == user.id || msg.to_user_id == user.id)
+      end
     end
 
     # Define abilities for the passed in user here. For example:

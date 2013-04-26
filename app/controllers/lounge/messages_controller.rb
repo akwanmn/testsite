@@ -2,6 +2,7 @@ class Lounge::MessagesController < ApplicationController
   before_filter :get_user_comms
   load_and_authorize_resource :communication
   load_and_authorize_resource :user
+  load_and_authorize_resource :message, only: [:view]
 
   def index
     @box = 'Inbox'
@@ -38,7 +39,6 @@ class Lounge::MessagesController < ApplicationController
   end
 
   def ping
-    Rails.logger.debug "*" * 40
     communication       = Communication.new
     message             = Message.new(new_message_params)
     message.from_user   = current_user
