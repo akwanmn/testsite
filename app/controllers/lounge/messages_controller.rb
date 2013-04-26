@@ -58,7 +58,7 @@ class Lounge::MessagesController < ApplicationController
     reply_to_msg = communication.messages.last
     message = Message.new
     message.from_user = current_user
-    message.to_user = User.find(communication.other_party(current_user))
+    message.to_user = communication.other_party(current_user)
     message.subject = reply_to_msg.subject
     message.body = message_params[:body]
     message.communications = reply_to_msg.communications
@@ -81,6 +81,11 @@ class Lounge::MessagesController < ApplicationController
   end
 
   def delete_communications
+    @comm = Communication.find(params[:id])
+    @comm.delete!
+    respond_to do |format|
+      format.js
+    end
   end
 
   def get_user_comms

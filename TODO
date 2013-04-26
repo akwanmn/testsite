@@ -13,7 +13,6 @@ SendGrid (send emails where?)
 # When signup, auto log them in!!!
 
 # Messages
-  - Send new message.
   - Authorization
   - Delete message
 

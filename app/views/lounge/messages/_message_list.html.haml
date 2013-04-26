@@ -1,6 +1,7 @@
 %table.table.table-striped.communications
   %tr
-    %th From
+    %th
+      = (@box == 'Sent Messages') ? 'To' : 'From'
     %th Subject
     %th Received
     %th

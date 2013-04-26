@@ -54,7 +54,7 @@ class Communication
   def other_party(current_user)
     users = self.messages.map(&:from_user_id).zip(self.messages.map(&:to_user_id)).flatten#.uniq!
     users.delete(current_user.id)
-    users.uniq.first
+    User.find(users.uniq.first)
   end
   ########### PRIVATE ##############
   def update_touched_at
