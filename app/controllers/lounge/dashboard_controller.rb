@@ -1,5 +1,6 @@
 class Lounge::DashboardController < ApplicationController
   before_filter :set_default_values, :do_search, only: [:index, :search]
+  load_and_authorize_resource :user
 
   def search
     render 'lounge/dashboard/index'

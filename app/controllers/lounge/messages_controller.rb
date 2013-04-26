@@ -1,5 +1,7 @@
 class Lounge::MessagesController < ApplicationController
   before_filter :get_user_comms
+  load_and_authorize_resource :communication
+  load_and_authorize_resource :user
 
   def index
     @box = 'Inbox'
