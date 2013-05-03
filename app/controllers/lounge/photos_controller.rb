@@ -1,9 +1,9 @@
 class Lounge::PhotosController < ApplicationController
   before_filter :find_user
 
-  def index
-    render text: params[:user_id]
-  end
+  # def index
+  #   render text: params[:user_id]
+  # end
 
   def create
     @photo = @user.photos.new(params[:photos])
