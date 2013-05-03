@@ -56,7 +56,7 @@ class User
 
   geocoded_by :address
   after_validation :geocode
-  after_create :create_mailbox
+  after_create :create_mailbox, :send_welcome_email
 
   default_scope where(:suspended_at => nil)
   scope :suspended, where(:suspended_at.ne => nil)
@@ -155,4 +155,9 @@ class User
     self.mailbox = Mailbox.create!
   end
   private :create_mailbox
+
+  def send_welcome_email
+    Notifier.welcome_email(self).deliver
+  end
+  private :send_welcome_email
 end

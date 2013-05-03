@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   # access denied messages
   rescue_from CanCan::AccessDenied do |exception|
-    Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
+    #Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
     redirect_to root_url, :alert => exception.message
   end
 
@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
   private :stored_location_for
 
   def after_sign_in_path_for(resource_or_scope)
-    Rails.logger.debug "*" * 100
     if current_user.is_admin
       admin_path
     else
