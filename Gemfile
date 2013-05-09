@@ -68,6 +68,7 @@ group :development do
   gem 'awesome_print'
   gem 'meta_request'
   gem 'foreman'
+  gem 'mysql2' # only needed for migration
 end
 
 group :test do

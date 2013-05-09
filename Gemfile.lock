@@ -167,6 +167,7 @@ GEM
       mongoid (~> 3.0)
     moped (1.4.5)
     multi_json (1.7.2)
+    mysql2 (0.3.11)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.6.7)
@@ -306,6 +307,7 @@ DEPENDENCIES
   meta_request
   mini_magick
   mongoid (~> 3.0.0)
+  mysql2
   net-scp (= 1.0.4)
   newrelic_rpm
   powder
