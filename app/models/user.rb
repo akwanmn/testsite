@@ -5,7 +5,7 @@ class User
   include Geocoder::Model::Mongoid
   include AASM
 
-  paginates_per 10
+  paginates_per 50
 
   # association
   embeds_one  :user_profile

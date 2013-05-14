@@ -24,7 +24,7 @@
           =link_to u.email, '#'
         %td= t(u.user_profile.gender) rescue 'N/A'
         %td= l(u.user_profile.birthday) rescue 'N/A'
-        %td= u.user_profile.age
+        %td= u.user_profile.present? ? u.user_profile.age : 'N/A'
         %td
           %span.label{class: "#{u.current_state.downcase}"}= u.current_state.capitalize
         %td
@@ -37,4 +37,4 @@
             /= link_to 'Switch', "/switch_user?scope_identifier?user_#{u.id}", class: 'btn btn-small btn-tertiary'
             = link_to 'Orders', admin_user_orders_path(u), class: 'btn btn-small btn-primary'
 
-= paginate @users, window: 2
+= paginate @users, window: 10

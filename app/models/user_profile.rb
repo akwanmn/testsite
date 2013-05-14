@@ -92,7 +92,7 @@ class UserProfile
   field :search_radius,     type: Integer, default: 2000
   field :percent_complete,  type: Integer
   field :timezone,          type: String, default: 'UTC'
-  #field :profile_views,     type: Array
+  field :total_views,       type: Integer
 
   # validations -- most are on update so we can create an account without
   # all the profile details
@@ -195,9 +195,9 @@ class UserProfile
 
   # Checks the age to make sure someone is within a proper age range.
   def check_age
-    if age < 18
+    if age.to_i < 18
       errors.add(:birthday, "must be before #{(Date.today - 18.years).strftime('%m/%d/%Y')}")
-    elsif age > 110
+    elsif age.to_i > 110
       errors.add(:birthday, "must be after #{(Date.today - 110.years).strftime('%m/%d/%Y')}")
     end
   end

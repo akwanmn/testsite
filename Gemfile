@@ -25,6 +25,7 @@ gem 'carmen-rails'
 gem 'devise' # authentication
 gem 'cancan' # authorization
 gem 'geocoder' # geo location
+gem 'timezone'
 #gem 'sidekiq' # jobs platform
 gem 'kaminari' # pagination
 gem 'kaminari-bootstrap'
