@@ -147,7 +147,7 @@ class User
     if search.blank?
       all
     else
-      where("$or" => [{email: /#{search}/i}, {'user_profile.first_name' => /#{search}/i}, {'user_profile.last_name' => /#{search}/i}])
+      where("$or" => [{email: /#{search}/i}, {nickname: /#{search}/i}, {'user_profile.first_name' => /#{search}/i}, {'user_profile.last_name' => /#{search}/i}])
     end
   end
 

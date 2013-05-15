@@ -31,7 +31,7 @@ task :name_of_task => :environment do
   users = client.query("SELECT * FROM auth_user")
   missing_profiles = []
   users.each do |u|
-    user = User.find_or_initialize_by(email: u['email'])
+    user = User.find_or_initialize_by(nickname: u['username'])
     user.nickname             = u['username']
     user.created_at           = u['date_joined']
     user.last_sign_in_at      = u['last_login']
