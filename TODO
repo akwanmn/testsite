@@ -7,6 +7,11 @@ When someone replies, it shows the from in the message on the from persons mailb
 ### IMPORTANT
 # Migration.
 # Lost Password E-mail.
+# http://lvh.me:5000/lounge/dashboard
+  - Moped::Errors::OperationFailure in Lounge/dashboard#index
+  - failed with error 13027: "exception: point not in interval of [ -180, 180 ]"
+  - FIX: Figure out the search radius query, that seems to be breaking it.
+# Fix layout on dashboard, with random image on a row.
 
 # Have you or do you serve in the military?
 

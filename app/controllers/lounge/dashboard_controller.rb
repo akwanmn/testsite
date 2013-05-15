@@ -11,7 +11,7 @@ class Lounge::DashboardController < ApplicationController
   #########
 
   def do_search
-    @users = User.search_radius(current_user.address, current_user.user_profile.search_radius).
+    @users = User.#search_radius(current_user.address, current_user.user_profile.search_radius).
       with_likes(@likes).between_ages(@min_age, @max_age).
       with_gender(@seeking).not_current_user(current_user).sort_option(@sort_by).page params[:page].to_i
   end
