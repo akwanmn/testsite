@@ -11,9 +11,16 @@ class Lounge::DashboardController < ApplicationController
   #########
 
   def do_search
-    @users = User.#search_radius(current_user.address, current_user.user_profile.search_radius).
-      with_likes(@likes).between_ages(@min_age, @max_age).
-      with_gender(@seeking).not_current_user(current_user).sort_option(@sort_by).page params[:page].to_i
+    if current_user.coordinates.nil?
+      @search_feature = 'WITHOUT COORDINATES'
+      @users = User.with_likes(@likes).between_ages(@min_age, @max_age).
+        with_gender(@seeking).not_current_user(current_user).sort_option(@sort_by).page params[:page].to_i
+    else
+      @search_feature = 'WITH COORDINATES'
+      @users = User.search_radius(current_user.address, current_user.user_profile.search_radius).
+        with_likes(@likes).between_ages(@min_age, @max_age).
+        with_gender(@seeking).not_current_user(current_user).sort_option(@sort_by).page params[:page].to_i
+    end
   end
   private :do_search
 

@@ -55,7 +55,7 @@ class User
       network mobile register ruby subscribe stats stat store stores system), message: 'is already taken'}
 
   geocoded_by :address
-  after_validation :geocode
+  after_save :geocode
   after_create :create_mailbox#, :send_welcome_email
 
   default_scope where(:suspended_at => nil)

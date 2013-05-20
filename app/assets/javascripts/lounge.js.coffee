@@ -7,3 +7,6 @@ $ ->
   $('#new_user div.errors').each (k,v) ->
     if $(v).html() != ''
       $(v).parent().parent().find('input:first').addClass('omgerror')
+
+
+  $('input, textarea').placeholder()

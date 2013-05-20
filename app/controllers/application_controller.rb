@@ -26,7 +26,11 @@ class ApplicationController < ActionController::Base
     if current_user.is_admin
       admin_path
     else
-      lounge_dashboard_index_path
+      if current_user.user_profile.percent_complete < 50
+        modify_lounge_profile_index_path
+      else
+        lounge_dashboard_index_path
+      end
     end
   end
   private :after_sign_in_path_for

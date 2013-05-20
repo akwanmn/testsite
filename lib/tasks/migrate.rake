@@ -64,14 +64,15 @@ task :name_of_task => :environment do
       prof.seeking          = user_profile['seeking'] == 1 ? 'Male' : 'Female'
       prof.likes            = user_profile['looking_for'].split(' ').map {|k| SEARCH_HASH[k.to_i] }
       prof.total_views      = user_profile['views']
-      #p user
-      unless prof.address_zip.blank?
-        sample = Geocoder.coordinates(prof.address_zip)
-        prof.address_zip = nil if sample.blank?
+
+      has_coords = false
+      if user_profile['lat'].present? && user_profile['lng'].present?
+        has_coords = true
+        user.coordinates = [user_profile['lng'].to_f, user_profile['lat'].to_f]
       end
       user.user_profile = prof
       user.save(validate: false)
-      puts "Migrated #{user.nickname}"
+      puts "Migrated #{user.nickname} - Coords: #{has_coords}"
     end
   end
   #p missing_profiles

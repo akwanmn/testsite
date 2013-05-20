@@ -62,12 +62,13 @@ hr {
 
 .profile-details {
   font-family: $clean_font, sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   margin-left: 5px;
   .details-one {
     font-weight: bold;
     margin-bottom: -5px;
     padding: 0px;
+    color: $dark_purple;
   }
   .details-two {
     margin-top: 2px;
