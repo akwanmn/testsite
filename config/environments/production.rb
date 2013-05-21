@@ -15,7 +15,7 @@ Phoenix::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
@@ -49,7 +49,8 @@ Phoenix::Application.configure do
   #config.assets.precompile += %w( plain.js
   #Chart.js signin.js Theme.js lounge.css design.css lounge/results.css lounge/home.css )
 
-  config.assets.precompile += %w( lounge.css
+  config.assets.precompile += %w(
+    lounge.css
     font-awesome.css
     main.js
     plain.js
