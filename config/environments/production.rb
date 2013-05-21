@@ -55,6 +55,7 @@ Phoenix::Application.configure do
     plain.js
     lounge.js
     html5shiv.js
+    jquery.placeholder.js
     libs/*.js
     admin/*.js
     admin/*.js.coffee

@@ -17,5 +17,5 @@ When someone replies, it shows the from in the message on the from persons mailb
   - How to know whats in inbox through messages? (> last_sign_in_at)
 
 ## Older Browsers
-  - Add view messages in admin area.
+  - Add view messages in admin area. (mark as spam??)
   - Background checks?
