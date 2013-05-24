@@ -12,7 +12,7 @@ class Lounge::DashboardController < ApplicationController
 
   def do_search
     if current_user.coordinates.nil?
-      @search_feature = 'WITHOUT COORDINATES'
+      @search_feature = "#{current_user.coordinates.nil?}"
       @users = User.with_likes(@likes).between_ages(@min_age, @max_age).
         with_gender(@seeking).not_current_user(current_user).sort_option(@sort_by).page params[:page].to_i
     else

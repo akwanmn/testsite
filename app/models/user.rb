@@ -40,6 +40,7 @@ class User
   field :coordinates,         type: Array
   field :current_state,       type: String
   field :suspended_at,        type: Date
+  field :import_user_id,      type: Integer
 
   # some delegations to make things cleaner -- Thanks Jon.
   delegate :first_name, :last_name, :address, :address_zip, :likes, :birthday, to: :user_profile
@@ -55,8 +56,8 @@ class User
       network mobile register ruby subscribe stats stat store stores system), message: 'is already taken'}
 
   geocoded_by :address
-  after_save :geocode
-  after_create :create_mailbox#, :send_welcome_email
+  after_update :geocode
+  after_create :create_mailbox, :send_welcome_email
 
   default_scope where(:suspended_at => nil)
   scope :suspended, where(:suspended_at.ne => nil)
@@ -157,7 +158,7 @@ class User
   private :create_mailbox
 
   def send_welcome_email
-    Notifier.welcome_email(self).deliver
+    Notifier.welcome_email(self).deliver unless Rails.env == 'development'
   end
   private :send_welcome_email
 end

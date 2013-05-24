@@ -17,8 +17,8 @@ SEARCH_HASH = {
 }
 
 
-desc "One line task description"
-task :name_of_task => :environment do
+desc "Migrate the users."
+task :migrate_users => :environment do
   countries = {}
   Carmen::Country.all.each do |c|
     countries[c.alpha_3_code] = c.alpha_2_code
@@ -28,6 +28,8 @@ task :name_of_task => :environment do
   end
 
   client = Mysql2::Client.new(:host => "localhost", :username => "root", :database => "2d4l", :password => "")
+  User.skip_callback(:update, :after, :geocode)
+  User.skip_callback(:create, :after, :send_welcome_email)
   users = client.query("SELECT * FROM auth_user")
   missing_profiles = []
   users.each do |u|
@@ -37,6 +39,7 @@ task :name_of_task => :environment do
     user.last_sign_in_at      = u['last_login']
     user.encrypted_password   = u['password']
     user.current_state = u['is_active'] == 1 ? 'charter' : 'suspended'
+    user.import_user_id       = u['id']
 
     user_profile = client.query("SELECT * FROM core_userprofile WHERE user_id = #{u['id']} LIMIT 1").first
 
@@ -75,7 +78,35 @@ task :name_of_task => :environment do
       puts "Migrated #{user.nickname} - Coords: #{has_coords}"
     end
   end
+
+
+  # Thread_id = communication
+  # parent_id = last message
+  #
   #p missing_profiles
   #p countries
   # Your code goes here
+end
+
+desc "Migrate the messages."
+task :migrate_basic_messages => :environment do
+  client = Mysql2::Client.new(:host => "localhost", :username => "root", :database => "2d4l", :password => "")
+  assoc = {}
+  User.all.each do |u|
+    assoc[u.import_user_id] = u
+  end
+  messages = client.query("SELECT DISTINCT(thread_id) FROM postman_message WHERE thread_id IS NOT NULL")
+  messages.each do |msg|
+    #puts "FROM: #{assoc[msg['sender_id']].nickname} TO: #{assoc[msg['recipient_id']].nickname}"
+    # if sender archived or deleted, do not add to mailbox?
+    msgs_in_thread = client.query("SELECT * FROM postman_message WHERE thread_id = #{msg['thread_id']}")
+    puts "*" * 40
+    puts "Working on thread #{msg['thread_id']}"
+    msgs_in_thread.each do |m|
+      next if assoc[m['sender_id']].nil? || assoc[m['recipient_id']].nil?
+      puts "\t FROM: #{assoc[m['sender_id']].nickname}"
+    end
+    # one communication for each user (unless deleted or archived)
+    # message is assigned to the same communications.
+  end
 end
