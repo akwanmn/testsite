@@ -1,1 +1,0 @@
-(function(){$(function(){return $("a#join-button").click(function(t){return t.preventDefault(),$(this).html("..processing..").attr("disabled","disabled"),$("form#new_user").submit()}),$("#new_user div.errors").each(function(t,r){return""!==$(r).html()?$(r).parent().parent().find("input:first").addClass("omgerror"):void 0}),$("input, textarea").placeholder()})}).call(this);
