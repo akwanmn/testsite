@@ -190,3 +190,11 @@ h4 {
 .omgerror {
   border: 1px solid #f00 !important;
 }
+
+.question {
+  font-weight: bold;
+}
+.answer {
+  font-family: $clean_font, sans-serif;
+  padding-left: 5px;
+}

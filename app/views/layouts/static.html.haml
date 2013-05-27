@@ -1,0 +1,38 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title 2Date4Love - A different kind of intimacy.
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    = stylesheet_link_tag 'lounge', 'lounge/home'
+    %link{href:'http://fonts.googleapis.com/css?family=Petit+Formal+Script', rel: 'stylesheet', type: 'text/css'}
+    %link{href:'http://fonts.googleapis.com/css?family=Oxygen', rel: 'stylesheet', type: 'text/css'}
+
+
+    /[if gte IE 9]
+      :css
+        .gradient {
+          filter: none;
+        }
+    /[if lte IE 8]
+      :css
+        .background-blur {
+          background: transparent;
+          filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7FFFFFFF,endColorstr=#7FFFFFFF);
+          zoom: 1
+        }
+    /[if lt IE 9]
+      %script{src: '/assets/html5shiv.js'}
+  %body{'cz-shortcut-listen' => true}
+    #wrap
+      = render 'lounge/shared/topnav'
+      .sample-background
+        .container
+          .row
+            = render 'lounge/shared/logo-text'
+            .span7.background-blur{style: 'padding: 10px'}
+              = yield
+      = render 'lounge/shared/promos'
+      = render 'lounge/shared/footer'
+      = javascript_include_tag 'main', 'lounge'
