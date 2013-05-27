@@ -65,6 +65,14 @@ Phoenix::Application.routes.draw do
     end
   end
 
+  get 'faq'       => 'lounge/static#faq'
+  get 'terms'     => 'lounge/static#terms'
+  get 'tips'      => 'lounge/static#tips'
+  get 'articles'  => 'lounge/static#articles'
+  get 'success'   => 'lounge/static#success'
+  get 'privacy'   => 'lounge/static#privacy'
+
+
   #resources :home, :only => [:index, :new, :create]
   #resources :users
 

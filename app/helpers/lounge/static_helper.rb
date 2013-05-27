@@ -1,0 +1,2 @@
+module Lounge::StaticHelper
+end
