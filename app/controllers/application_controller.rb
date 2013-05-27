@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :authenticate_user!
-  before_filter :set_git_sha
   layout :layout_by_resource
 
   # access denied messages
@@ -18,9 +17,6 @@ class ApplicationController < ActionController::Base
     "layouts/application"
   end
 
-  def set_git_sha
-    headers['X-GitSHA'] = Phoenix::Application::GIT_SHA
-  end
 
   def stored_location_for(resource_or_scope)
     nil
