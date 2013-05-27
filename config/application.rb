@@ -15,7 +15,6 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-GIT_SHA = `git rev-parse HEAD`.chomp
 module Phoenix
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
