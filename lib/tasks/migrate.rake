@@ -78,18 +78,10 @@ task :migrate_users => :environment do
       puts "Migrated #{user.nickname} - Coords: #{has_coords}"
     end
   end
-
-
-  # Thread_id = communication
-  # parent_id = last message
-  #
-  #p missing_profiles
-  #p countries
-  # Your code goes here
 end
 
 desc "Migrate the messages."
-task :migrate_basic_messages => :environment do
+task :migrate_messages => :environment do
   # clean this all up
   Communication.delete_all
   Message.delete_all
