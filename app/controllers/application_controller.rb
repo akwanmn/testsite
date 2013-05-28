@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
     "layouts/application"
   end
 
-
   def stored_location_for(resource_or_scope)
     nil
   end
@@ -27,7 +26,7 @@ class ApplicationController < ActionController::Base
     if current_user.is_admin
       admin_path
     else
-      if current_user.user_profile.percent_complete < 50
+      if current_user.user_profile.nil? || current_user.user_profile.percent_complete.to_i < 50
         modify_lounge_profile_index_path
       else
         lounge_dashboard_index_path

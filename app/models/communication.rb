@@ -15,11 +15,12 @@ class Communication
 
 
   belongs_to :mailbox
-  has_and_belongs_to_many :messages
+  has_and_belongs_to_many :messages, dependent: :destroy
 
   field :read_at,     type: DateTime
   field :box,         type: String
   field :touched_at,  type: DateTime # last time a message was updated
+  field :import_thread_id, type: Integer
 
   scope :inbox, where(:box => 'inbox')
   scope :archive, where(:box => 'archives')
