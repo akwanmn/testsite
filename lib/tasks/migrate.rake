@@ -92,7 +92,7 @@ desc "Migrate the messages."
 task :migrate_basic_messages => :environment do
   # clean this all up
   Communication.delete_all
-
+  Message.delete_all
   client = Mysql2::Client.new(:host => "localhost", :username => "root", :database => "2d4l", :password => "")
   assoc = {}
   User.all.each do |u|
@@ -120,11 +120,14 @@ task :migrate_basic_messages => :environment do
         sent_at:    m['sent_at'],
         from_user:  assoc[m['sender_id']],
         to_user:    assoc[m['recipient_id']])
-      t_comm.state = 'archives' if msg['recipient_archived'] == 1
-      f_comm.state = 'archives' if msg['sender_archived'] == 1
-      mess.communications << t_comm unless msg['recipient_deleted_at'].present?
-      mess.communications << f_comm unless msg['sender_deleted_at'].present?
+
+      mess.communications << t_comm unless m['recipient_deleted_at'].present?
+      mess.communications << f_comm unless m['sender_deleted_at'].present?
       mess.save!
+      t_comm.box = 'archives' if m['recipient_archived'] == 1
+      f_comm.box = 'archives' if m['sender_archived'] == 1
+      t_comm.save!
+      f_comm.save!
     end
   end
 end

@@ -15,7 +15,7 @@ class Communication
 
 
   belongs_to :mailbox
-  has_and_belongs_to_many :messages, dependent: :destroy
+  has_and_belongs_to_many :messages
 
   field :read_at,     type: DateTime
   field :box,         type: String
