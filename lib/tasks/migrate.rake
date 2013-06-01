@@ -136,9 +136,15 @@ task :migrate_photos => :environment do
       imgs.push(prof['im3']) if prof.present? && prof['im3'].present?
       imgs.push(prof['im4']) if prof.present? && prof['im4'].present?
       imgs.push(prof['im5']) if prof.present? && prof['im5'].present?
+      next if imgs.empty?
       puts "#{u.nickname} has #{imgs.size} images."
       total_images += imgs.size
+      imgs.each do |img|
+        url = "http://2date4love.com/site_media/#{img}"
+        photo = u.photos.new
+        photo.remote_photo_file_url = url
+        photo.save!
+      end
     end
-    puts total_images
 end
 #http://2date4love.com/site_media/uploads/users/Goldbill/profile1.JPG
