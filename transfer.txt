@@ -1,0 +1,5 @@
+Transfer:
+- Set AWS environment keys.
+- Test SSL.
+
+Production Setup:
