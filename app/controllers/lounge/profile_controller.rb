@@ -1,7 +1,6 @@
 class Lounge::ProfileController < ApplicationController
   before_filter :set_current_user
-  load_and_authorize_resource :user
-  load_and_authorize_resource :user_profile, through: :user
+  load_and_authorize_resource :user, parent: true
 
   def edit
     @user = current_user

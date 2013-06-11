@@ -159,7 +159,7 @@ GEM
     mini_portile (0.5.0)
     money (5.1.1)
       i18n (~> 0.6.0)
-    mongoid (3.0.23)
+    mongoid (3.0.21)
       activemodel (~> 3.1)
       moped (~> 1.2)
       origin (~> 1.0)
