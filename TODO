@@ -5,13 +5,10 @@ When someone replies, it shows the from in the message on the from persons mailb
 - Image on the front still looks like shit.
 
 ### IMPORTANT
-# Migration. (photos still yet to do)
 # Lost Password E-mail.
 
 # Custom search pagination, breaking.
-
 # Have you or do you serve in the military?
-
 # Profile Fixes
   - Chosen for Timezone?
   - How to know whats in inbox through messages? (> last_sign_in_at)
@@ -19,3 +16,8 @@ When someone replies, it shows the from in the message on the from persons mailb
 ## Older Browsers
   - Add view messages in admin area. (mark as spam??)
   - Background checks?
+
+
+### MIGRATION FIXES.....
+- Uploading images breaking (new api key?)
+  - Maybe a carrierwave issue?
