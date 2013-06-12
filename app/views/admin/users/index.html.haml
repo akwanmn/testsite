@@ -9,7 +9,7 @@
 %table.table.table-bordered.table-striped.table-highlight
   %thead
     %tr
-      %th Name
+      %th Nickname
       %th E-Mail
       %th Gender
       %th Birthday
@@ -19,7 +19,7 @@
   %tbody
     - @users.each do |u|
       %tr
-        %td= u.full_name
+        %td= u.nickname
         %td
           =link_to u.email, '#'
         %td= t(u.user_profile.gender) rescue 'N/A'

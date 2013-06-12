@@ -57,7 +57,7 @@ class User
 
   geocoded_by :address
   after_update :geocode
-  after_create :create_mailbox, :send_welcome_email
+  after_create :create_mailbox#, :send_welcome_email
 
   default_scope where(:suspended_at => nil)
   scope :suspended, where(:suspended_at.ne => nil)
