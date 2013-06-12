@@ -23,7 +23,7 @@ gem 'aasm' # state machine
 gem 'simple_form' # forms
 gem 'carmen-rails'
 gem 'devise' # authentication
-gem 'cancan' # authorization
+gem 'cancan', '1.6.9' # authorization
 gem 'geocoder' # geo location
 gem 'timezone'
 #gem 'sidekiq' # jobs platform

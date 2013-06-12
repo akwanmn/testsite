@@ -46,7 +46,7 @@ GEM
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
     callsite (0.0.11)
-    cancan (1.6.10)
+    cancan (1.6.9)
     carmen (1.0.0)
       unicode_utils (~> 1.4.0)
     carmen-rails (1.0.0)
@@ -286,7 +286,7 @@ DEPENDENCIES
   aasm
   activemerchant
   awesome_print
-  cancan
+  cancan (= 1.6.9)
   carmen-rails
   carrierwave
   carrierwave-mongoid
