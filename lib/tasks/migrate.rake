@@ -126,17 +126,21 @@
 
 # desc "Migrate the photos."
 # task :migrate_photos => :environment do
+#     allowed = ['.jpg', '.jpeg', '.gif', '.png']
 #     client = Mysql2::Client.new(:host => "localhost", :username => "root", :database => "2d4l", :password => "")
 #     total_images = 0
 #     User.all.each do |u|
 #       imgs = []
 #       prof = client.query("SELECT * FROM core_userprofile WHERE user_id = '#{u.import_user_id}'").first
-#       imgs.push(prof['im1']) if prof.present? && prof['im1'].present?
-#       imgs.push(prof['im2']) if prof.present? && prof['im2'].present?
-#       imgs.push(prof['im3']) if prof.present? && prof['im3'].present?
-#       imgs.push(prof['im4']) if prof.present? && prof['im4'].present?
-#       imgs.push(prof['im5']) if prof.present? && prof['im5'].present?
-#       next if imgs.empty?
+#       (1..5).each do |num|
+#         next unless prof.present?
+#         next unless prof["im#{num}"].present?
+#         image = prof["im#{num}"]
+#         ext = File.extname(image).downcase
+#         next unless allowed.include?(ext)
+#         imgs << image
+#       end
+#       next if imgs.size == 0
 #       puts "#{u.nickname} has #{imgs.size} images."
 #       total_images += imgs.size
 #       imgs.each do |img|
@@ -146,5 +150,6 @@
 #         photo.save!
 #       end
 #     end
+#     puts total_images
 # end
 # #http://2date4love.com/site_media/uploads/users/Goldbill/profile1.JPG
