@@ -141,6 +141,10 @@
 #         imgs << image
 #       end
 #       next if imgs.size == 0
+#       if imgs.size <= u.photos.count
+#         puts "Skipping #{u.nickname}..images exist."
+#         next
+#       end
 #       puts "#{u.nickname} has #{imgs.size} images."
 #       total_images += imgs.size
 #       imgs.each do |img|

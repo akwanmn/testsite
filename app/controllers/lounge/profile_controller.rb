@@ -22,6 +22,8 @@ class Lounge::ProfileController < ApplicationController
   end
 
   def show
+    Rails.logger.debug "*" * 100
+    Rails.logger.debug params.inspect
     @message = Message.new
     @user = User.where(nickname: params[:id].to_s).first
   end
