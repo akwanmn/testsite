@@ -53,7 +53,8 @@ class User
       sale sales secure shop signup signin security ssh tech username visitor www you yourname yourusername
       ruby registration random rss profile public anonymous app account address webadmin news operator
       adm daemon sysadmin welcome ftp snmp mail abuse alias newsletter contact customer staff job jobs
-      network mobile register ruby subscribe stats stat store stores system), message: 'is already taken'}
+      network mobile register ruby subscribe stats stat store stores system), message: 'is already taken'},
+    format: {with: /[0-9A-Za-z\-\.\_\+\@]+/ }
 
   geocoded_by :address
   after_update :geocode
