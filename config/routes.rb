@@ -73,7 +73,11 @@ Phoenix::Application.routes.draw do
   get 'articles'  => 'lounge/static#articles'
   get 'success'   => 'lounge/static#success'
   get 'privacy'   => 'lounge/static#privacy'
-
+  get 'story'   => 'lounge/static#story'
+  get 'articles/write-your-profile' => 'lounge/static#write_your_profile', as: 'article_profile'
+  get 'articles/intimacy' => 'lounge/static#intimacy', as: 'article_intimacy'
+  get 'articles/safety' => 'lounge/static#safety', as: 'article_safety'
+  get 'articles/fraudster' => 'lounge/static#fraudster', as: 'article_fraud'
 
   #resources :home, :only => [:index, :new, :create]
   #resources :users

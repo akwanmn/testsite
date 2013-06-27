@@ -19,4 +19,13 @@ class Lounge::StaticController < ApplicationController
 
   def privacy
   end
+  def story; end
+
+
+
+  # articles stuff
+  def write_your_profile; end
+  def intimacy; end
+  def safety; end
+  def fraudster; end
 end
