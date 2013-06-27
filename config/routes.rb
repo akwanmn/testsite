@@ -42,7 +42,7 @@ Phoenix::Application.routes.draw do
         match 'search' => 'dashboard#search', via: :post
       end
     end
-    resources :profile, constraints: {:id => /[\w.-@+]+?/, :format => /html|csv/}, only: [:edit, :update, :show] do
+    resources :profile, constraints: {:id => /[0-9A-Za-z\-\.\_]+/, :format => /html|csv/}, only: [:edit, :update, :show] do
       #match "profile/:id" => "profile#show", :constraints => {:id => /[\w.]+?/, :format => /html|csv/}
       #resources :feeds, :id => /[A-Za-z0-9\.]+?/, :format => /json|csv|xml|yaml/
       collection do
