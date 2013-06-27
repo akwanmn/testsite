@@ -39,7 +39,7 @@ Phoenix::Application.routes.draw do
     match '/signup' => 'home#signup', via: :post
     resources :dashboard, only: [:index] do
       collection do
-        match 'search' => 'dashboard#search', via: :post
+        match 'search' => 'dashboard#search', via: [:post, :get]
       end
     end
     resources :profile, constraints: {:id => /[0-9A-Za-z\-\.\_]+/, :format => /html|csv/}, only: [:edit, :update, :show] do
