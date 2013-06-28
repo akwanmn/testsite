@@ -57,8 +57,8 @@ class User
     format: {with: /[0-9A-Za-z\-\.\_\+\@]+/ }
 
   geocoded_by :address
-  after_update :geocode
-  after_create :create_mailbox#, :send_welcome_email
+  after_validation :geocode
+  after_create :create_mailbox, :send_welcome_email
 
   default_scope where(:suspended_at => nil)
   scope :suspended, where(:suspended_at.ne => nil)
