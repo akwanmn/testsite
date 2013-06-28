@@ -1,6 +1,11 @@
 - if image.present?
   = link_to lounge_profile_path(user.nickname) do
     %img{src: "#{image.thumb.url}"}
+  .distance{style: 'font-size: 10px; padding-left: 5px'}
+    = "#{Geocoder::Calculations.distance_between(current_user.coordinates, user.coordinates).round} miles away"
 - else
   = link_to lounge_profile_path(user.nickname) do
     %img{src: '/assets/lounge/default-avatar.jpg', width: '130px', height: '109px'}
+  .distance{style: 'font-size: 10px; padding-left: 5px'}
+    = "#{Geocoder::Calculations.distance_between(current_user.coordinates, user.coordinates).round} miles away"
+
