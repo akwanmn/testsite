@@ -115,6 +115,9 @@ class UserProfile
   validates :birthday,
     presence: true,
     on: :update
+  validates :biography,
+    presence: true,
+    on: :update
   validate :check_age, on: :update
   validates :search_radius,
     numericality: {greater_than: 0, less_than_or_equal_to: 4000, message: 'must be between 0 and 4000'},
