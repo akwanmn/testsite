@@ -16,6 +16,8 @@ class Lounge::HomeController < ApplicationController
     @order.amount = Order::DEFAULT_PRICE # hard coded for now.
     @order.from_join_params(card_params)
 
+    puts "*" * 100
+    p user_params
     respond_to do |format|
       # force validations....
       @user.valid?
@@ -50,6 +52,7 @@ class Lounge::HomeController < ApplicationController
     # assign some parameters for a new signup
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :nickname,
+        :accepted_terms,
         user_profile_attributes: [
           :address_street,
           :address_city,

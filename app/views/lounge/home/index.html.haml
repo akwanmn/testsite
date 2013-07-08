@@ -51,7 +51,7 @@
                   = f.simple_fields_for :user_profile do |up|
                     .form-row
                       .form-field
-                        = f.input :nickname, label: false, placeholder: 'Nickname', input_html: {class: 'input-medium'}
+                        = f.input :nickname, label: false, placeholder: 'Username', input_html: {class: 'input-medium'}
                     .form-row
                       .form-field
                         = up.input :first_name, placeholder: 'First Name', label: false, input_html: {class: 'input-medium'}
@@ -88,6 +88,9 @@
                           = o.input :card_verification, placeholder: 'CVV2', label: false, input_html: {class: 'input-mini'}
                         .form-field
                           = o.input :card_expires_on, placeholder: 'Card Exp.', label: false, input_html: {class: 'input-mini'}
+                    .form-row
+                      .form-field
+                        = f.input :accepted_terms, as: :boolean, label: "I accept #{link_to 'Terms & Conditions', terms_path, :target => '_blank'}"
                   .form-row
                     = link_to '#', id: 'join-button', class: 'btn btn-large btn-custom2' do
                       %i{class: 'icon-heart'}

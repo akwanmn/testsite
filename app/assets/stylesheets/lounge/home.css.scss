@@ -167,6 +167,16 @@ h4 {
   padding-bottom: 3px;
 }
 
+
+label.boolean {
+  font-family: $clean_font, sans-serif;
+  font-size: 15px;
+  padding-bottom: 10px;
+  padding-top: 5px;
+  a {
+    color: $dark_purple;
+  }
+}
 // button 1
 // e727c0 -> C70091
 

@@ -41,12 +41,16 @@ class User
   field :current_state,       type: String
   field :suspended_at,        type: Date
   field :import_user_id,      type: Integer
+  field :accepted_terms,      type: Boolean
+
 
   # some delegations to make things cleaner -- Thanks Jon.
   delegate :first_name, :last_name, :address, :address_zip, :likes, :birthday, to: :user_profile
 
   validates_presence_of :email
   validates_presence_of :encrypted_password
+  validates :accepted_terms, :acceptance => {:accept => true}
+
   validates :nickname, presence: true, uniqueness: true,
     exclusion: {in: %w(admin superadmin root administrator god support billing user service help
       editor email guest info invite marketing master me media messenger nick nickname operator
@@ -55,6 +59,7 @@ class User
       adm daemon sysadmin welcome ftp snmp mail abuse alias newsletter contact customer staff job jobs
       network mobile register ruby subscribe stats stat store stores system), message: 'is already taken'},
     format: {with: /[0-9A-Za-z\-\.\_\+\@]+/ }
+
 
   geocoded_by :address
   after_validation :geocode

@@ -8,5 +8,4 @@ $ ->
     if $(v).html() != ''
       $(v).parent().parent().find('input:first').addClass('omgerror')
 
-
   $('input, textarea').placeholder()
