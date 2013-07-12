@@ -1,0 +1,52 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title 2Date4Love - A different kind of intimacy.
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    = stylesheet_link_tag 'lounge', 'lounge/home'
+    %link{href:'http://fonts.googleapis.com/css?family=Petit+Formal+Script', rel: 'stylesheet', type: 'text/css'}
+    %link{href:'http://fonts.googleapis.com/css?family=Oxygen', rel: 'stylesheet', type: 'text/css'}
+
+
+    /[if gte IE 9]
+      :css
+        .gradient {
+          filter: none;
+        }
+    /[if lte IE 8]
+      :css
+        .background-blur {
+          background: transparent;
+          filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7FFFFFFF,endColorstr=#7FFFFFFF);
+          zoom: 1
+        }
+    /[if lt IE 9]
+      %script{src: '/assets/html5shiv.js'}
+  %body{'cz-shortcut-listen' => true}
+    #wrap
+      = render 'lounge/shared/topnav'
+      .sample-background
+        .container
+          .row{style: 'height: 650px'}
+            = render 'lounge/shared/logo-text'
+            - if flash[:alert].present?
+              .alert.alert-warning
+                = flash[:alert]
+            .span6.background-blur
+              .span5.message
+                %p.welcome Welcome
+                %p 2date4love℠ is a dating site that enables people who cannot engage in sexual intercourse to meet and experience love, companionship and intimacy.
+
+                %p At 2date4love, we encourage people with this shared commonality to be open to the possibility of finding love and happiness.  This is the community you've been looking for.
+
+                %p We invite you to live love like your life.
+                %p.continue
+                  = link_to new_lounge_home_path, class: 'btn btn-large btn-custom2' do
+                    %i{class: 'icon-heart'}
+                    = 'JOIN TODAY'
+
+      = render 'lounge/shared/promos'
+      = render 'lounge/shared/footer'
+      = javascript_include_tag 'main', 'lounge'

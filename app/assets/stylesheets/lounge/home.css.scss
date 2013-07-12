@@ -208,3 +208,18 @@ label.boolean {
   font-family: $clean_font, sans-serif;
   padding-left: 5px;
 }
+
+.span5.message {
+  padding: 20px;
+  font-size: 18px;
+  font-family: $clean_font, sans-serif;
+  p.welcome {
+    @extend .big-shadow;
+    font-size:42px;
+    margin-bottom: 20px;
+  }
+  p.continue {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}

@@ -2,6 +2,10 @@ class Lounge::HomeController < ApplicationController
   skip_before_filter :authenticate_user!
   before_filter :build_signup_form, only: [:new, :login]
 
+  def landing
+    render 'landing', layout: false
+  end
+
   def new
     render 'index', layout: false
   end

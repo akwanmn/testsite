@@ -35,7 +35,7 @@ Phoenix::Application.routes.draw do
 
   # Lounge URLS
   namespace :lounge, path: '/lounge' do
-    resources :home, only: [:new]
+    resources :home, only: [:new, :landing]
     match '/signup' => 'home#signup', via: :post
     resources :dashboard, only: [:index] do
       collection do
@@ -83,5 +83,5 @@ Phoenix::Application.routes.draw do
   #resources :users
 
   # needs to be changed to something that is not the admin.
-  root to: 'lounge/home#new'
+  root to: 'lounge/home#landing'
 end
