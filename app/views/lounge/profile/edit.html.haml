@@ -12,6 +12,7 @@
   .row
     .span11
       %h4.big-shadow Edit Account & Profile Details
+      %p.completion Profile Completion Percentage (#{current_user.user_profile.percent_complete}%)
       .progress.progress-warning.progress-striped
         .profile-progress.bar{style: "width: #{current_user.user_profile.percent_complete}%"}
   .row
