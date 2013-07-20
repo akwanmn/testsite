@@ -32,7 +32,7 @@
           .row
             = render 'lounge/shared/logo-text'
             - if flash[:alert].present?
-              .alert.alert-warning
+              .alert.alert-error{style: 'width: 400px; margin-left: 20px'}
                 = flash[:alert]
             .span5.background-blur.join-form
               .join-today Join Today
