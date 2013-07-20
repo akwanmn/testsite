@@ -80,7 +80,7 @@ class Admin::UsersController < AdminController
           :birthday, :first_name, :last_name, :address_zip, :address_country,
           :address_city, :address_state, :gender, :seeking, :min_age, :max_age,
           :address_street, :biography, :occupation, :education, :ethnicity, :religion,
-          :search_radius, :timezone, :nickname, {:likes => []}
+          :search_radius, :timezone, :nickname, :distance_type, {:likes => []}
         ])
       else
         params.require(:user).permit(:email, user_profile_attributes: [

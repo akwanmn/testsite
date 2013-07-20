@@ -69,6 +69,18 @@ class UserProfile
     'Travel'
   ]
 
+  DISTANCES = [
+    500,
+    1000,
+    2000,
+    5000
+  ]
+
+  DISTANCE_TYPES = [
+    {name: 'Miles', value: 'mi'},
+    {name: 'Kilometers', value: 'km'},
+  ]
+
   embedded_in :user
 
   field :first_name,        type: String
@@ -121,12 +133,17 @@ class UserProfile
     on: :update
   validate :check_age, on: :update
   validates :search_radius,
-    numericality: {greater_than: 0, less_than_or_equal_to: 4000, message: 'must be between 0 and 4000'},
+    numericality: {greater_than: 0, less_than_or_equal_to: 5000, message: 'must be between 0 and 4000'},
     presence: true,
     on: :update
   validates :address_street, presence: true, on: :create # needed for billing / paypal
   validates :first_name, :last_name, :address_zip, :address_country, :address_city, :address_state,
     presence: true
+  validates :distance_type,
+    inclusion: {in: DISTANCE_TYPES.map {|c| c[:value] }, message: 'select miles or kilometers'},
+    presence: true,
+    on: :update
+
 
   # callbacks
   after_validation :calculate_profile_percentage
@@ -145,7 +162,7 @@ class UserProfile
   def calculate_profile_percentage
     fields = ['gender', 'seeking', 'min_age', 'max_age', 'address_zip', 'address_country',
       'biography', 'occupation', 'education', 'ethnicity', 'religion', 'likes', 'search_radius',
-      'photos', 'birthday', 'address_state', 'address_city']
+      'photos', 'birthday', 'address_state', 'address_city', 'distance_type']
     filled_in = 0
     Rails.logger.debug "*" * 40
     fields.each do |f|

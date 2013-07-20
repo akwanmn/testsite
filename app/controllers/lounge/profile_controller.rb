@@ -38,7 +38,7 @@ class Lounge::ProfileController < ApplicationController
       :birthday, :first_name, :last_name, :address_zip, :address_country,
       :address_city, :address_state, :gender, :seeking, :min_age, :max_age,
       :address_street, :biography, :occupation, :education, :ethnicity, :religion,
-      :search_radius, :timezone, {:likes => []}
+      :search_radius, :distance_type, :timezone, {:likes => []}
     ])
   end
 end
