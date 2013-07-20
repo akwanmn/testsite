@@ -211,8 +211,10 @@ label.boolean {
 
 .span5.message {
   padding: 20px;
-  font-size: 18px;
   font-family: $clean_font, sans-serif;
+  p {
+    font-size: 18px;
+  }
   p.welcome {
     @extend .big-shadow;
     font-size:42px;
@@ -222,4 +224,10 @@ label.boolean {
     margin-top: 20px;
     margin-bottom: 20px;
   }
+}
+p.video_promo {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: $dark_purple;
 }
