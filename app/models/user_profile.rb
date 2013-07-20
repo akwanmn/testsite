@@ -93,6 +93,7 @@ class UserProfile
   field :percent_complete,  type: Integer
   field :timezone,          type: String, default: 'UTC'
   field :total_views,       type: Integer
+  field :distance_type,     type: String, default: 'mi'
 
   # validations -- most are on update so we can create an account without
   # all the profile details

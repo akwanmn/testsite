@@ -1,5 +1,5 @@
 .login.pull-right
-  = simple_form_for(User.new, url: new_user_session_url(protocol: 'https'), html: {class: 'navbar-form'}) do |f|
+  = simple_form_for(User.new, url: new_user_session_url(protocol: (Rails.env == 'development' ? 'http': 'https')), html: {class: 'navbar-form'}) do |f|
     = f.text_field :nickname, placeholder: 'Username', class: 'input-medium'
     = f.password_field :password, placeholder: 'Password', class: 'input-medium'
     = f.submit :submit, class: 'btn btn-custom2', value: 'Login'

@@ -45,7 +45,7 @@
                 %p.video_promo Watch the welcome video from Laura Brashier, founder of 2date4love.
                 %p= render 'lounge/shared/promo_vid'
                 %p.continue
-                  = link_to new_lounge_home_url(protocol: 'https'), class: 'btn btn-large btn-custom2' do
+                  = link_to new_lounge_home_url(protocol: (Rails.env == 'development' ? 'http': 'https'), class: 'btn btn-large btn-custom2' do
                     %i{class: 'icon-heart'}
                     = 'JOIN TODAY'
 
