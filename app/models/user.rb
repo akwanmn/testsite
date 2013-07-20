@@ -93,7 +93,7 @@ class User
   end
 
   # pass in address & radius to search for.
-  scope :search_radius, lambda {|address, radius, units| near(address.to_s, radius.to_i, :units => :mi) }
+  scope :search_radius, lambda {|address, radius| near(address.to_s, radius.to_i) }
   # search for likes, single word or array.
   scope :with_likes, lambda {|l| where('user_profile.likes' => {'$in' =>  l.to_a}) }
   # find people between min age and max age.
