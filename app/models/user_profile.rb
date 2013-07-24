@@ -148,7 +148,7 @@ class UserProfile
   # callbacks
   after_validation :calculate_profile_percentage
   after_validation :clean_up_likes, on: :update
-  delegate :photos, to: :user
+  delegate :photos, :coordinates, to: :user
 
   # Calculate the age of this person.
   def age
