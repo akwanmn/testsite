@@ -17,7 +17,7 @@ describe OrderTransaction do
   its(:action) { should eql 'purchase' }
   its(:amount) { should eql 1295}
   its(:success) { should be_true }
-  its(:authorization) { should be_nil }
+  its(:authorization) { should eq '53433' }
   its(:message) { should eql 'Bogus Gateway: Forced success' }
   its(:is_refunded) { should be_false }
 end

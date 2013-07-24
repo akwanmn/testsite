@@ -8,7 +8,6 @@ describe Message do
   its(:updated_at)  { should_not be_blank }
   its(:from_user)   { should_not be_blank }
   its(:to_user)     { should_not be_blank }
-  its(:sent_at)     { should_not be_blank }
 
   it { should respond_to(:send_message) }
   it { should respond_to(:reply_message) }
@@ -16,6 +15,7 @@ describe Message do
   context 'sending' do
     before { subject.send_message }
     context 'communications' do
+      its(:sent_at)     { should_not be_blank }
       it { should have(2).communications }
       it { should_not be_nil }
       it 'assigns mailbox to communications' do
