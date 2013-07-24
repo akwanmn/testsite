@@ -55,7 +55,8 @@
         = up.input :max_age
         = up.input :occupation
         = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion', include_blank: true
-        = up.input :search_radius
+        = up.input :search_radius, collection: UserProfile::DISTANCES, prompt: 'Choose Distance', input_html: {tabindex: 20}
+        = up.input :distance_type, collection: UserProfile::DISTANCE_TYPES.map {|c| [c[:name], c[:value]]}, prompt: 'Choose Distance', input_html: {tabindex: 20}
   .row{style: 'margin-top: -20px'}
     .span10
       = f.simple_fields_for :user_profile do |up|

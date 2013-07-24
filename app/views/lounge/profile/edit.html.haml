@@ -12,6 +12,7 @@
   .row
     .span11
       %h4.big-shadow Edit Account & Profile Details
+      %p.completion Profile Completion Percentage (#{current_user.user_profile.percent_complete}%)
       .progress.progress-warning.progress-striped
         .profile-progress.bar{style: "width: #{current_user.user_profile.percent_complete}%"}
   .row
@@ -30,7 +31,7 @@
           = f.input :email, input_html: {class: 'input-large', tabindex: 1}
           = up.input :last_name, input_html: {class: 'input-large', tabindex: 3}
           = up.input :address_state, input_html: {class: 'input-large', tabindex: 5}
-          = up.input :address_country, as: :select, collection: Carmen::Country.all.map {|c| [c.name, c.code]}, input_html: {tabindex: 7}
+          = up.input :address_country, as: :select, collection: Carmen::Country.all.map {|c| [c.name, c.code]}, priority: ['United States'], input_html: {tabindex: 7}
           = f.input :password_confirmation, input_html: {tabindex: 9}
           = up.input :timezone, collection: ActiveSupport::TimeZone::MAPPING, prompt: 'Choose Timezone',
             include_blank: true, input_html: {tabindex: 10}
@@ -52,7 +53,8 @@
           = up.input :max_age, input_html: {tabindex: 14}
           = up.input :occupation, input_html: {tabindex: 16}
           = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion', include_blank: true, input_html: {tabindex: 18}
-          = up.input :search_radius, input_html: {tabindex: 20}
+          = up.input :search_radius, collection: UserProfile::DISTANCES, prompt: 'Choose Distance', input_html: {tabindex: 20}
+          = up.input :distance_type, collection: UserProfile::DISTANCE_TYPES.map {|c| [c[:name], c[:value]]}, prompt: 'Choose Distance', input_html: {tabindex: 20}
     .row
       .span10
         = f.simple_fields_for :user_profile do |up|

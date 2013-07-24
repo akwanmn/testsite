@@ -21,11 +21,12 @@ en:
         first_name: 'First Name'
         min_age: 'Min. Age'
         max_age: 'Max Age'
-        search_radius: 'Miles'
+        search_radius: 'Distance'
         address_city: 'City'
         address_state: 'State'
         address_zip: 'Postal Code'
         address_country: 'Country'
+        distance_type: 'Miles/Kilometers'
 
   date:
     formats:
