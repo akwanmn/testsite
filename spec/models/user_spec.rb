@@ -7,6 +7,18 @@ describe User do
     it { should be_valid }
   end
 
+  its(:first_name) { should_not be_nil }
+  its(:last_name) { should_not be_nil }
+  its(:address) { should_not be_nil }
+  its(:address_zip) { should_not be_nil }
+  its(:likes) { should_not be_nil }
+  its(:birthday) { should_not be_nil }
+
+  it { should respond_to(:make_free) }
+  it { should respond_to(:make_charter) }
+  it { should respond_to(:make_suspended) }
+  it { should respond_to(:make_paid) }
+
   it '#full_name' do
     name = "#{subject.user_profile.first_name} #{subject.user_profile.last_name}"
     subject.full_name.should eql "#{name}"
@@ -27,6 +39,22 @@ describe User do
   context 'mailbox' do
     it 'has one' do
       subject.mailbox.should_not be_nil
+    end
+  end
+
+  context "user status" do
+    context 'suspend' do
+      before do
+        subject.suspend!
+      end
+      it { should be_suspended }
+    end
+    context 'restore' do
+      before do
+        subject.suspend!
+        subject.restore!
+      end
+      it { should be_free }
     end
   end
 
