@@ -42,6 +42,34 @@ describe Order do
 
     its(:purchase) { should be_true }
 
+    context '#join_purchase' do
+      let(:purchase) do
+        subject.join_purchase
+      end
+      it { should be_true }
+    end
+
+    context '#status' do
+      before do
+        transactions = [
+          Fabricate.build(:order_transaction, is_refunded: true),
+          Fabricate.build(:order_transaction, is_refunded: false)
+        ]
+        subject.stub_chain(:transactions, :where).and_return(transactions)
+      end
+      its(:status) { should eql 'Partially Refunded' }
+    end
+
+    context '#finalize_transaction' do
+      before do
+        subject.transactions.stub(:create).and_return([1])
+        subject.finalize_transaction
+        subject.stub(:transactions).and_return([1])
+      end
+      its(:user) { should be_paid }
+      it {should have(1).transactions }
+    end
+
     context 'order transaction' do
       let!(:purchase) do
         subject.purchase

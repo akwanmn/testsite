@@ -58,4 +58,12 @@ describe User do
     end
   end
 
+  context '#random_profile_image' do
+    before do
+      subject.stub(:photos).and_return([OpenStruct.new(photo_file: 1), OpenStruct.new(photo_file: 2)])
+    end
+    it { should have(2).photos }
+    its(:random_profile_image) { should_not be_nil }
+  end
+
 end
