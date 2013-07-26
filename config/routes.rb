@@ -36,6 +36,7 @@ Phoenix::Application.routes.draw do
   # Lounge URLS
   namespace :lounge, path: '/lounge' do
     resources :home, only: [:new, :landing]
+    resources :password_resets
     match '/signup' => 'home#signup', via: :post
     resources :dashboard, only: [:index] do
       collection do

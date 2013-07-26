@@ -1,0 +1,2 @@
+module Lounge::PasswordResetsHelper
+end
