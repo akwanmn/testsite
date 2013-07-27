@@ -42,8 +42,6 @@
                 %p At 2date4love, we encourage people with this shared commonality to be open to the possibility of finding love and happiness.  This is the community you've been looking for.
 
                 %p We invite you to live love like your life.
-                %p.video_promo Watch the welcome video from Laura Brashier, founder of 2date4love.
-                %p= render 'lounge/shared/promo_vid'
                 %p.continue
                   = link_to new_lounge_home_url(protocol: (Rails.env == 'development' ? 'http': 'https')), class: 'btn btn-large btn-custom2' do
                     %i{class: 'icon-heart'}

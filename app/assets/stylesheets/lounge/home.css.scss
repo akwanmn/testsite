@@ -72,7 +72,7 @@ body {
   margin-top: 10px;
   margin-bottom: 50px;
   background: rgb(255, 255, 255);
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .join-form {
@@ -213,7 +213,7 @@ label.boolean {
   padding: 20px;
   font-family: $clean_font, sans-serif;
   p {
-    font-size: 18px;
+    font-size: 15px;
   }
   p.welcome {
     @extend .big-shadow;
