@@ -36,6 +36,7 @@
                 = flash[:alert]
             .span5.background-blur.join-form
               .join-today Join Today
+              %p.limited-time For a limited time! ??????
               %h5 Lifetime Membership only $12.95
               .span5
                 - if @user.errors.any?

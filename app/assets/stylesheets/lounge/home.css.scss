@@ -167,6 +167,12 @@ h4 {
   padding-bottom: 3px;
 }
 
+p.limited-time {
+  font-family: $clean_font, sans-serif;
+  font-size: 18px;
+  text-align: center;
+  color: $dark_purple;
+}
 
 label.boolean {
   font-family: $clean_font, sans-serif;
