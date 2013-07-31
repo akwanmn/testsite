@@ -17,27 +17,9 @@ When someone replies, it shows the from in the message on the from persons mailb
   - Add view messages in admin area. (mark as spam??)
   - Background checks?
 
-
-
-Here's the list of changes;
- XX 1. Can you use the photo of the couple kneeling down with the Mission statement that's on the present front page, and then the current front page will be the 'join page'. I think we need to have a landing page that tells what the website is. I know you have the same description at the bottom but I think a clean explicit landing page looks better with rotating photos.  I have to purchase the photos that will change the home page, or rotate etc...
-
-XX 2. Will you change the word 'nickname' to 'username' on the join page in the box.
-
-3. After entering all the info on the join page and click "JOIN TODAY", there's a yellow band that goes across the entire page, it needs to be shorter. (This may be more esthetic)
-
-XX 4. We don't have an area that has a check box for the users to 'agree to the terms of service', please add.
-
-5. The search radius area; can we make that optional for the UK users and add Kilometers. We talked about a drop down that looks sorta like this;  As the site grows we can then shorten the distances, if we have it now at 50 miles the users usually don't have any matches at this point depending on where they live.
-     Miles /  Kilometers
-   500    /  500
-  1000   /    1000
-   2000  / 2000
-   5000  /  5000
-
-XX 6. Will you also make the 'Biography' area mandatory that the users need to write something.
-
-7. We also need a place to put the 'youtube' video? The "Our Story" page? Ideas?
+## Non-secure items in secure area for https, need to change that in the lounge area inside.
+## Image upload on IE?
+## large images do not fit inside image viewer on IE.
 
 
 Usernames are case sensitive. We can change this if needed. But for people to login they either need
