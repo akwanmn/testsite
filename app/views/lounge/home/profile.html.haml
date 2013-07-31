@@ -7,8 +7,8 @@
     %meta{:content => "", :name => "author"}/
     = stylesheet_link_tag 'lounge', 'lounge/profile'
     %link{rel: 'icon', href: '/favicon.ico'}
-    %link{href:'http://fonts.googleapis.com/css?family=Petit+Formal+Script', rel: 'stylesheet', type: 'text/css'}
-    %link{href:'http://fonts.googleapis.com/css?family=Oxygen:400,700', rel: 'stylesheet', type: 'text/css'}
+    = render 'lounge/shared/fonts'
+
     /[if gte IE 9]
       :css
         .gradient {

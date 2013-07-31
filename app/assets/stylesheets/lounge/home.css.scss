@@ -75,6 +75,8 @@ body {
   background: rgba(255, 255, 255, 0.9);
 }
 
+
+
 .join-form {
   .join-today {
     @extend .big-shadow;
@@ -231,6 +233,19 @@ label.boolean {
     margin-bottom: 20px;
   }
 }
+
+.purple-background {
+  background-color: #685372;
+  color: #FFF;
+  padding: 20px;
+  font-family: $clean_font, sans-serif;
+  font-size: 22px;
+  margin-bottom: 40px;
+  margin-top: -40px;
+  letter-spacing: 1px;
+  line-height: 110%;
+}
+
 p.video_promo {
   margin-top: 20px;
   font-size: 20px;
