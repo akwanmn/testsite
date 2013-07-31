@@ -51,7 +51,7 @@ class User
   validates_presence_of :encrypted_password
   validates :accepted_terms, :acceptance => {:accept => true}
 
-  validates :nickname, presence: true, uniqueness: true,
+  validates :nickname, presence: true, uniqueness: {case_sensitive: false},
     exclusion: {in: %w(admin superadmin root administrator god support billing user service help
       editor email guest info invite marketing master me media messenger nick nickname operator
       sale sales secure shop signup signin security ssh tech username visitor www you yourname yourusername
