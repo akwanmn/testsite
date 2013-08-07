@@ -5,14 +5,14 @@ production:
 development:
   sessions:
     default:
-      uri: <%= ENV['MONGOHQ_URL'] %>
+      #uri: <%= ENV['MONGOHQ_URL'] %>
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
-      # database: phoenix_development
+      database: phoenix_development
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
-      #hosts:
-      #  - localhost:27017
+      hosts:
+        - localhost:27017
       #options:
         # Change whether the session persists in safe mode by default.
         # (default: false)
