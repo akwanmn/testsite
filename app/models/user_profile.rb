@@ -16,12 +16,14 @@ class UserProfile
 
   ETHNICITY = [
     "African-American",
+    "Alaskan",
     "American Indian",
-    "Asian / Pacific Islander",
+    "Asian",
     "Caucasian",
-    "Hispanic",
-    "Indian",
+    "Hispanic / Latino",
     "Middle-Eastern",
+    "Native American",
+    "Pacific Islander",
     "Other"
   ]
 
