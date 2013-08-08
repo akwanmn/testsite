@@ -8,7 +8,7 @@ development:
       #uri: <%= ENV['MONGOHQ_URL'] %>
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
-      database: phoenix_development
+      database: app11535278
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
