@@ -33,7 +33,7 @@
           = up.input :address_state, input_html: {class: 'input-large', tabindex: 5}
           = up.input :address_country, as: :select, collection: Carmen::Country.all.map {|c| [c.name, c.code]}, priority: ['United States'], input_html: {tabindex: 7}
           = f.input :password_confirmation, input_html: {tabindex: 9}
-          = up.input :timezone, collection: ActiveSupport::TimeZone::MAPPING, prompt: 'Choose Timezone',
+          = up.input :timezone, collection: sorted_timezones, prompt: 'Choose Timezone',
             include_blank: true, input_html: {tabindex: 10}
   .row
     .span11.header

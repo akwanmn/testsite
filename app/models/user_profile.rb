@@ -21,7 +21,8 @@ class UserProfile
     "Caucasian",
     "Hispanic",
     "Indian",
-    "Middle-Eastern"
+    "Middle-Eastern",
+    "Other"
   ]
 
   RELIGIONS = [
