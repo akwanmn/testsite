@@ -30,6 +30,7 @@ gem 'timezone'
 gem 'kaminari' # pagination
 gem 'kaminari-bootstrap'
 #gem 'flipper' # turn on and off services for people (new features)
+gem 'mail_form'
 
 # image processing
 gem 'carrierwave'
