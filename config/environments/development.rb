@@ -43,6 +43,16 @@ Phoenix::Application.configure do
         password: '1374627904',
         signature: 'A5kN5kgkDzev82a-iyen5ib0477ZAov0Y9jOSPrG7pxj-BO-lQmtHHP5'
     )
+
+    ActionMailer::Base.smtp_settings = {
+      :address        => 'smtp.sendgrid.net',
+      :port           => '587',
+      :authentication => :plain,
+      :user_name      => ENV['SENDGRID_USERNAME'],
+      :password       => ENV['SENDGRID_PASSWORD'],
+      :domain         => 'heroku.com',
+      :enable_starttls_auto => true
+    }
   end
 
 end
