@@ -62,6 +62,7 @@ class User
 
 
   geocoded_by :address
+  #before_validation :lower_username
   after_validation :geocode
   after_create :create_mailbox, :send_welcome_email
 
@@ -117,6 +118,10 @@ class User
       desc(:created_at)
     end
   end
+
+  # def lower_username
+  #   self.nickname.downcase!
+  # end
 
   def full_name
     "#{user_profile.first_name} #{user_profile.last_name}" unless user_profile.blank?

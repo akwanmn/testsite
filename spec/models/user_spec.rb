@@ -66,4 +66,11 @@ describe User do
     its(:random_profile_image) { should_not be_nil }
   end
 
+  # context '#duplicate usernames' do
+  #   let(:duplicate) { Fabricate.build(:user, nickname: subject.nickname)}
+  #   it 'should not be allowed' do
+  #     duplicate.valid?.should be_false
+  #   end
+  # end
+
 end
