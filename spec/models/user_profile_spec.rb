@@ -46,7 +46,7 @@ describe UserProfile do
   context 'validations' do
     let(:zipcode) { Fabricate.build(:user, user_profile: Fabricate.build(:user_profile, address_zip: nil)) }
     it 'zip code is required' do
-      zipcode.valid?.should be_false
+      zipcode.valid?.should be_falseher
     end
   end
 
