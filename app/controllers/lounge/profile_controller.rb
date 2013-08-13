@@ -4,6 +4,8 @@ class Lounge::ProfileController < ApplicationController
 
   def edit
     @user = current_user
+    template = Rails.env == 'development' ? 'edit2' : 'edit'
+    render template
   end
 
   def update

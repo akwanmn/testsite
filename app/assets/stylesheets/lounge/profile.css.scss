@@ -97,3 +97,19 @@ p.completion {
   font-size: 14px;
   font-family: $clean_font, sans-serif;
 }
+
+.nav-tabs {
+  li {
+      a {
+        background-color: $dark_purple;
+        color: white;
+      }
+      a:hover {
+        background-color: $light_purple;
+      }
+  }
+}
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
+  background-color: $light_purple;
+}

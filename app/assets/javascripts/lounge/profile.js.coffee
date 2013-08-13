@@ -46,3 +46,8 @@ $ ->
   $('a.cancel-reply').live 'click', (e) ->
     e.preventDefault()
     $(this).parent().parent().parent().remove()
+
+  $('#myTab a').click (e) ->
+    e.preventDefault()
+    $(this).tab('show')
+  $('#myTab a:first').tab('show');

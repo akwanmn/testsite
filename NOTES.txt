@@ -44,12 +44,15 @@ Things I have on my action list:
   - Hide password boxes on profile with a "Change Password" button or link so people do not feel they need to enter their password.
   - Contact Page.
   - Expand profile page with more questions about Children, Smoking, modify like format etc.
-  - Possibly bump up the profile completion percentage for redirecting to edit profile after login?
-  - Make messages more defined as to how to View.
+  - Make messages more defined as to how to View. (TEST)
   - Really figure out why people with no coordinates cannot be shown.
 
 
 
-
+heroku:75a2ef7cc4b11ce578f6f975d596a089@linus.mongohq.com:10082/app11535278
 Completed:
   - CC Exp date formatting on join page.
+  - Possibly bump up the profile completion percentage for redirecting to edit profile after login?
+
+
+8/13/2013 - 2.5 hrs - Worked on New form for profile. Sent screenshot to Laura / Kevin.
