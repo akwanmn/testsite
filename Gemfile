@@ -29,6 +29,7 @@ gem 'timezone'
 #gem 'sidekiq' # jobs platform
 gem 'kaminari' # pagination
 gem 'kaminari-bootstrap'
+gem 'chronic'
 #gem 'flipper' # turn on and off services for people (new features)
 gem 'mail_form'
 

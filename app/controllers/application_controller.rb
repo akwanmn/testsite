@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     if current_user.is_admin
       admin_path
     else
-      if current_user.user_profile.nil? || current_user.user_profile.percent_complete.to_i < 59
+      if current_user.user_profile.nil? || current_user.user_profile.percent_complete.to_i < 65
         modify_lounge_profile_index_path
       else
         lounge_dashboard_index_path

@@ -87,7 +87,7 @@
                         .form-field
                           = o.input :card_verification, placeholder: 'CVV2', label: false, input_html: {class: 'input-mini'}
                         .form-field
-                          = o.input :card_expires_on, placeholder: 'Card Exp.', label: false, input_html: {class: 'input-mini'}
+                          = o.input :card_expires_on, placeholder: 'Card Exp.', label: false, input_html: {class: 'input-mini', value: (o.object.card_expires_on.nil? ? nil : l(o.object.card_expires_on, format: :credit_card))}
                     .form-row
                       .form-field
                         = f.input :accepted_terms, as: :boolean, label: "I accept #{link_to 'Terms & Conditions', terms_path, :target => '_blank'}"

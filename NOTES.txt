@@ -44,6 +44,11 @@ Things I have on my action list:
   - Hide password boxes on profile with a "Change Password" button or link so people do not feel they need to enter their password.
   - Contact Page.
   - Expand profile page with more questions about Children, Smoking, modify like format etc.
-  - CC Exp date formatting on join page.
   - Possibly bump up the profile completion percentage for redirecting to edit profile after login?
   - Make messages more defined as to how to View.
+
+
+
+
+Completed:
+  - CC Exp date formatting on join page.

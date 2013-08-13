@@ -20,8 +20,6 @@ class Lounge::HomeController < ApplicationController
     @order.amount = Order::DEFAULT_PRICE # hard coded for now.
     @order.from_join_params(card_params)
 
-    puts "*" * 100
-    p user_params
     respond_to do |format|
       # force validations....
       @user.valid?
@@ -40,6 +38,7 @@ class Lounge::HomeController < ApplicationController
           @order.finalize_transaction('decline')
         end
       else
+        puts "*" * 20
         # bad validations
         format.html { render 'index', layout: false}
       end

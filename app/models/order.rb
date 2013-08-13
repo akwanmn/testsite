@@ -79,7 +79,7 @@ class Order
     self.zip                 = params[:user_profile_attributes][:address_zip]
     self.country             = params[:user_profile_attributes][:address_country]
     self.amount              = DEFAULT_PRICE
-    self.card_expires_on     = Date.parse(params[:order][:card_expires_on]).end_of_month rescue nil
+    self.card_expires_on     = Chronic.parse(params[:order][:card_expires_on]).end_of_month rescue nil
     self.name                = "#{first_name} #{last_name}"
   end
 
