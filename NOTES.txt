@@ -46,6 +46,7 @@ Things I have on my action list:
   - Expand profile page with more questions about Children, Smoking, modify like format etc.
   - Possibly bump up the profile completion percentage for redirecting to edit profile after login?
   - Make messages more defined as to how to View.
+  - Really figure out why people with no coordinates cannot be shown.
 
 
 

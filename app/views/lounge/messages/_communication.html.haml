@@ -6,5 +6,6 @@
   %td.span3
     = "#{l(communication.latest_message.sent_at.in_time_zone(current_user.user_profile.timezone)) rescue l(communication.latest_message.sent_at) }"
   %td.span2
+    = link_to 'View Message', lounge_message_path(communication), class: 'btn btn-mini' unless @box == 'Trash'
     = link_to 'Archive', archive_lounge_message_path(communication), class: 'btn btn-mini btn-warning', remote: true, method: :post unless @box == 'Archives' || @box == 'Trash'
     = link_to 'Delete', delete_lounge_message_path(communication), class: 'btn btn-mini btn-danger', remote: true, method: :post unless @box == 'Trash'
