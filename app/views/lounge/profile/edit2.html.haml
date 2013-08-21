@@ -11,48 +11,44 @@
   .span11
     %ul#myTab.nav.nav-tabs
       %li
-        %a{href: '#home', 'data-toggle' =>'tab'} Profile Details
-      %li
-        %a{href: '#blah1', 'data-toggle' => 'tab'} Detailed Profile
+        %a{href: '#blah1', 'data-toggle' => 'tab'} Details About You
       %li
         %a{href: '#photos', 'data-toggle' => 'tab'} Profile Photos
       %li
-        %a{href: '#account', 'data-toggle' => 'tab'} Account Details
+        %a{href: '#account', 'data-toggle' => 'tab'} My Account
 
-    .tab-content
-
-
-      #home.tab-pane
-        = simple_form_for @user, url: lounge_profile_path(@user), html: {class: 'form-horizontal'} do |f|
+    .tab-content.details
+      #account.tab-pane
+        = simple_form_for @user, url: update_account_lounge_profile_index_path, html: {class: 'form-horizontal'} do |f|
           = f.simple_fields_for :user_profile do |up|
             .row
               .span5
-                /= f.input :nickname, input_html: {class: 'input-large', disabled: 'disabled'}
+                = f.input :nickname, input_html: {class: 'input-large', disabled: 'disabled'}
                 = up.input :first_name, input_html: {class: 'input-large', tabindex: 2}
                 = up.input :address_city, input_html: {class: 'input-large', tabindex: 4}
                 = up.input :address_zip, input_html: {class: 'input-large', tabindex: 6}
-                /= f.input :password, input_html: {tabindex: 8}
-                = up.input :gender, collection: UserProfile::GENDERS, prompt: 'Choose Gender', input_html: {tabindex: 11}
-                = up.input :min_age, input_html: {tabindex: 13}
-                = up.input :selected_birthday, as: :string, input_html: {value: (@user.user_profile.birthday.present? ? l(@user.user_profile.birthday) : ''),  tabindex: 15}, required: true
-                = up.input :birthday, as: :hidden
-                = up.input :ethnicity, collection: UserProfile::ETHNICITY, prompt: 'Choose Ethnicity', include_blank: true, input_html: {tabindex: 17}
-                = up.input :education, collection: UserProfile::EDUCATION, prompt: 'Choose Education', include_blank: true, input_html: {tabindex: 19}
-                = up.input :search_radius, collection: UserProfile::DISTANCES, prompt: 'Choose Distance', input_html: {tabindex: 20}
+                = f.input :password, input_html: {tabindex: 8}, class: 'hide'
+                -# = up.input :gender, collection: UserProfile::GENDERS, prompt: 'Choose Gender', input_html: {tabindex: 11}
+                -# = up.input :min_age, input_html: {tabindex: 13}
+                -# = up.input :selected_birthday, as: :string, input_html: {value: (@user.user_profile.birthday.present? ? l(@user.user_profile.birthday) : ''),  tabindex: 15}, required: true
+                -# = up.input :birthday, as: :hidden
+                -# = up.input :ethnicity, collection: UserProfile::ETHNICITY, prompt: 'Choose Ethnicity', include_blank: true, input_html: {tabindex: 17}
+                -# = up.input :education, collection: UserProfile::EDUCATION, prompt: 'Choose Education', include_blank: true, input_html: {tabindex: 19}
+                -# = up.input :search_radius, collection: UserProfile::DISTANCES, prompt: 'Choose Distance', input_html: {tabindex: 20}
               .span5
-                /= f.input :email, input_html: {class: 'input-large', tabindex: 1}
+                = f.input :email, input_html: {class: 'input-large', tabindex: 1}
                 = up.input :last_name, input_html: {class: 'input-large', tabindex: 3}
                 = up.input :address_state, input_html: {class: 'input-large', tabindex: 5}
                 = up.input :address_country, as: :select, collection: Carmen::Country.all.map {|c| [c.name, c.code]}, priority: ['United States'], input_html: {tabindex: 7}
-                /= f.input :password_confirmation, input_html: {tabindex: 9}
-                = up.input :timezone, collection: sorted_timezones, prompt: 'Choose Timezone',
-                  include_blank: true, input_html: {tabindex: 10}
-                = up.input :seeking, collection: UserProfile::GENDERS, prompt: 'Choose Gender', input_html: {tabindex: 12}
-                = up.input :max_age, input_html: {tabindex: 14}
-                = up.input :occupation, input_html: {tabindex: 16}
-                = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion', include_blank: true, input_html: {tabindex: 18}
+                = f.input :password_confirmation, input_html: {tabindex: 9}
+                = up.input :timezone, collection: sorted_timezones, prompt: 'Choose Timezone', include_blank: true, input_html: {tabindex: 10}
+                = f.button :submit, class: 'btn btn-warning pull-right', value: 'Save Profile'
+                -# = up.input :seeking, collection: UserProfile::GENDERS, prompt: 'Choose Gender', input_html: {tabindex: 12}
+                -# = up.input :max_age, input_html: {tabindex: 14}
+                -# = up.input :occupation, input_html: {tabindex: 16}
+                -# = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion', include_blank: true, input_html: {tabindex: 18}
 
-                = up.input :distance_type, collection: UserProfile::DISTANCE_TYPES.map {|c| [c[:name], c[:value]]}, prompt: 'Choose Distance', input_html: {tabindex: 20}
+                -# = up.input :distance_type, collection: UserProfile::DISTANCE_TYPES.map {|c| [c[:name], c[:value]]}, prompt: 'Choose Distance', input_html: {tabindex: 20}
 
       #blah1.tab-pane
         %h2 Basic Profile Information

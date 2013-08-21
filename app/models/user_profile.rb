@@ -147,6 +147,7 @@ class UserProfile
     presence: true,
     on: :update
 
+  # first name, last name, city, state, postal, country, timezone on myaccount
 
   # callbacks
   after_validation :calculate_profile_percentage

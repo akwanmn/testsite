@@ -113,3 +113,13 @@ p.completion {
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover {
   background-color: $light_purple;
 }
+
+.tab-content.details {
+  background-color: $sample;
+  margin-top: -20px;
+  padding-top: 20px;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+}
+// {style: 'background-color: #fff; margin-top: -20px; padding-top: 20px'}

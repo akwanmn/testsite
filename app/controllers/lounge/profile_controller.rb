@@ -8,6 +8,10 @@ class Lounge::ProfileController < ApplicationController
     render template
   end
 
+  def myaccount
+    render text: 'My Account Page'
+  end
+
   def update
     respond_to do |format|
       if params[:user][:password].blank?

@@ -48,6 +48,7 @@ Phoenix::Application.routes.draw do
       #resources :feeds, :id => /[A-Za-z0-9\.]+?/, :format => /json|csv|xml|yaml/
       collection do
         get 'modify' => 'profile#edit'
+        put 'update-account' => 'profile#myaccount', as: 'update_account'
       end
     end
     resources :user, except: [:index, :new, :create, :edit, :update, :delete] do

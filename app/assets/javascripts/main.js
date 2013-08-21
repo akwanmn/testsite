@@ -12,5 +12,6 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require lounge/profile
 //= require lounge/messages
+//= require tabs
 //= require_self
 
