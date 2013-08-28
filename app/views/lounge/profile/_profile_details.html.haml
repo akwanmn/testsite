@@ -1,0 +1,73 @@
+-# = simple_form_for @user, url: update_account_lounge_profile_index_path, html: {class: 'form-horizontal'} do |f|
+-#   = f.simple_fields_for :user_profile do |up|
+%form
+  .row
+    .span9.offset1
+      .test-group
+        .control-group
+          %p.pull-left.detail-class Outdoor Activities
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} Hiking
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} Camping
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} Fishing
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} Biking
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} Motorcycle/Off-Roading
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} Running / 5k / Triathalons
+
+      .control-group.test-group
+        %p.pull-left.detail-class Health & Fitness
+        .controls.span3
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} Don't Exercise
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} Exercise 3-5 times a week
+        .controls.span3
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} Exercise 1-2 times a week
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} Other
+
+      .control-group.test-group
+        %p.pull-left.detail-class Family
+        .controls.span3
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} I have children living with me.
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} I do not have children and do not want any.
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} I have children that are grown and live away from home.
+        .controls.span3
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} I do not have children.
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} I do not have children, but like them.
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} Other
+
+      .control-group.test-group
+        %p.pull-left.detail-class Lifestyle
+        .controls.span3
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} I don't smoke.
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} I smoke cigars occassionally.
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} I don't drink alcohol.
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} I drink daily.
+        .controls.span3
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} I smoke occassionally.
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} I smoke daily.
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} I drink alcohol socially.
+          %label{class: 'checkbox'}
+            %input{type: 'checkbox', value: '1', id: 'blah1'} I eat healty.

@@ -123,3 +123,27 @@ p.completion {
   border-left: 1px solid #ddd;
 }
 // {style: 'background-color: #fff; margin-top: -20px; padding-top: 20px'}
+.detail-class {
+  font-size: 14px;
+  font-weight: bold;
+  width: 130px;
+}
+
+.control-group {
+  clear: both;
+}
+
+.test-group {
+  font-family: $clean_font, sans-serif;
+  p {
+    padding-top: 10px;
+    font-weight: bold;
+  }
+  .controls {
+    padding-bottom: 10px;
+    label {
+      font-size: 12px;
+    }
+  }
+  border-bottom: 1px solid #ddd;
+}
