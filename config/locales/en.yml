@@ -15,6 +15,7 @@ en:
         last_sign_in_at: 'Lasted Signed In'
         last_sign_in_ip: 'Last IP Address'
         is_admin: 'Admin'
+        nickname: 'Username'
       user_profile:
         selected_birthday: 'Birthday'
         last_name: 'Last Name'
