@@ -129,21 +129,24 @@ p.completion {
   width: 130px;
 }
 
-.control-group {
-  clear: both;
-}
+// .control-group {
+//   clear: both;
+// }
 
 .test-group {
   font-family: $clean_font, sans-serif;
-  p {
-    padding-top: 10px;
-    font-weight: bold;
-  }
-  .controls {
-    padding-bottom: 10px;
-    label {
-      font-size: 12px;
-    }
-  }
+  // // padding: 0px 0px 10px 0px;
+  // p {
+  //   padding-top: 10px;
+  //   font-weight: bold;
+  // }
+  // .controls {
+  //   label {
+  //     font-size: 12px;
+  //   }
+  // }
+}
+
+.border-bottom {
   border-bottom: 1px solid #ddd;
 }

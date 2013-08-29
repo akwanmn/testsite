@@ -1,8 +1,27 @@
 -# = simple_form_for @user, url: update_account_lounge_profile_index_path, html: {class: 'form-horizontal'} do |f|
 -#   = f.simple_fields_for :user_profile do |up|
-%form
+%form{style: 'margin-bottom: 20px'}
   .row
-    .span9.offset1
+    .span9.offset1.border-bottom
+      .test-group
+        .control-group
+          %p.pull-left.detail-class Marital Status
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} Single / Never Married
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} Separated
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} Married
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} Divorced
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} Widowed
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I would rather not say.
+  .row
+    .span9.offset1.border-bottom
       .test-group
         .control-group
           %p.pull-left.detail-class Outdoor Activities
@@ -20,68 +39,179 @@
               %input{type: 'checkbox', value: '1', id: 'blah1'} Motorcycle/Off-Roading
             %label{class: 'checkbox'}
               %input{type: 'checkbox', value: '1', id: 'blah1'} Running / 5k / Triathalons
+  .row
+    .span9.offset1.border-bottom
+      .test-group
+        .control-group.test-group
+          %p.pull-left.detail-class Health & Fitness
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} Don't Exercise
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} Exercise 3-5 times a week
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} Exercise 1-2 times a week
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I would rather not say.
+  .row
+    .span9.offset1.border-bottom
+      .test-group
+        .control-group.test-group
+          %p.pull-left.detail-class Family
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I have children living with me.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I do not have children and do not want any.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I have children that are grown and live away from home.
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I do not have children.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I do not have children, but like them.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I would rather not say.
+  .row
+    .span9.offset1.border-bottom
+      .test-group
+        .control-group.test-group
+          %p.pull-left.detail-class Drinking
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I don't drink alcohol.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I drink daily.
+          .controls.span3
+            %label{class: 'checkbox'}
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I drink alcohol socially.
 
-      .control-group.test-group
-        %p.pull-left.detail-class Health & Fitness
-        .controls.span3
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} Don't Exercise
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} Exercise 3-5 times a week
-        .controls.span3
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} Exercise 1-2 times a week
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} Other
+  .row
+    .span9.offset1.border-bottom
+      .test-group
+        .control-group.test-group
+          %p.pull-left.detail-class Smoking
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I don't smoke.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I smoke cigars occassionally.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I smoke cigars daily.
+          .controls.span3
+            %label{class: 'checkbox'}
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I smoke cigarettes occassionally.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I smoke cigarettes daily.
 
-      .control-group.test-group
-        %p.pull-left.detail-class Family
-        .controls.span3
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} I have children living with me.
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} I do not have children and do not want any.
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} I have children that are grown and live away from home.
-        .controls.span3
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} I do not have children.
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} I do not have children, but like them.
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} Other
+  .row
+    .span9.offset1.border-bottom
+      .test-group
+        .control-group.test-group
+          %p.pull-left.detail-class Food
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I eat healthy.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I am a junkfood junkie.
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I am a vegetarian/vegan.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I eat out mostly.
 
-      .control-group.test-group
-        %p.pull-left.detail-class Lifestyle (Drinking)
-        .controls.span3
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} I don't drink alcohol.
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} I drink daily.
-        .controls.span3
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} I drink alcohol socially.
-      .control-group.test-group
-        %p.pull-left.detail-class Lifestyle (Smoking)
-        .controls.span3
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} I don't smoke.
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} I smoke cigars occassionally.
-        .controls.span3
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} I smoke occassionally.
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} I smoke daily.
-      .control-group.test-group
-        %p.pull-left.detail-class Lifestyle (Eating)
-        .controls.span3
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} I eat healthy.
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} I am a junkfood junkie.
-        .controls.span3
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} I am a vegetarian/vegan.
-          %label{class: 'checkbox'}
-            %input{type: 'checkbox', value: '1', id: 'blah1'} I eat out mostly.
+  .row
+    .span9.offset1.border-bottom
+      .test-group
+        .control-group.test-group
+          %p.pull-left.detail-class Politics
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I am conservative.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I am somewhat conservative.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I am green.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I am not political.
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I am liberal.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I am somewhat liberal.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I am independent.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I would rather not say.
+  .row
+    .span9.offset1.border-bottom
+      .test-group
+        .control-group.test-group
+          %p.pull-left.detail-class Books & Reading
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I read frequently.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I don't read as much as I would like.
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I don't enjoy reading.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I would rather not say.
+
+  .row
+    .span9.offset1.border-bottom
+      .test-group
+        .control-group.test-group
+          %p.pull-left.detail-class Nightlife
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I enjoy going out.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I like being home.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I would rather not say.
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I enjoy concerts, theatre and the arts.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I enjoy listening to music or having cocktails with friends.
+
+  .row
+    .span9.offset1.border-bottom
+      .test-group
+        .control-group.test-group
+          %p.pull-left.detail-class Travel
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I enjoy traveling and take trips often.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I enjoy traveling, but don't have the opportunity often.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I would rather not say.
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I travel for work.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I dislike traveling.
+
+  .row
+    .span9.offset1.border-bottom
+      .test-group
+        .control-group.test-group
+          %p.pull-left.detail-class Career
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} My career is very important to me.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} My career is second to my personal life.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I would rather not say.
+          .controls.span3
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I balance work & personal life.
+            %label{class: 'checkbox'}
+              %input{type: 'checkbox', value: '1', id: 'blah1'} I am retired.
