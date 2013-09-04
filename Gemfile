@@ -52,6 +52,8 @@ gem 'unicorn'
 # fix as this was erroring on heroku due to something needing net-scp 1.0.6.
 gem 'net-scp', '1.0.4'
 
+gem 'wicked' # forms for profile
+
 group :development, :test do
   gem 'fabrication' # fixtures
   gem 'ffaker'

@@ -1,11 +1,16 @@
 class Lounge::ProfileController < ApplicationController
+  include Wicked::Wizard
+
   before_filter :set_current_user
   load_and_authorize_resource :user, parent: true
 
+  steps :basic_details, :advanced_details
+
   def edit
     @user = current_user
-    template = Rails.env == 'development' ? 'edit2' : 'edit'
-    render template
+    # template = Rails.env == 'development' ? 'edit2' : 'edit'
+    # render template
+    render_wizard
   end
 
   def myaccount
