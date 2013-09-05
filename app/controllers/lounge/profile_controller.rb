@@ -7,15 +7,17 @@ class Lounge::ProfileController < ApplicationController
   steps :basic_details, :advanced_details
 
   def edit
-    @user = current_user
-    # template = Rails.env == 'development' ? 'edit2' : 'edit'
-    # render template
     render_wizard
   end
 
-  def myaccount
-    render text: 'My Account Page'
+  def advanced
+    @user.update_attributes(user_params)
+    render_wizard @user
   end
+
+  # def myaccount
+  #   render text: 'My Account Page'
+  # end
 
   def update
     respond_to do |format|
