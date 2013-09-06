@@ -14,4 +14,5 @@
         = up.input :address_country, as: :select, collection: Carmen::Country.all.map {|c| [c.name, c.code]}, priority: ['United States'], input_html: {tabindex: 7}
         = f.input :password_confirmation, input_html: {tabindex: 9}
         = up.input :timezone, collection: sorted_timezones, prompt: 'Choose Timezone', include_blank: true, input_html: {tabindex: 10}
-        = f.button :submit, class: 'btn btn-warning pull-right', value: 'Save Account Details'
+        /= f.button :submit, class: 'btn btn-warning pull-right', value: 'Save Account Details'
+        = link_to 'Next', next_wizard_path, class: 'btn btn-warning'

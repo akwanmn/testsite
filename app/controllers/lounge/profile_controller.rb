@@ -11,8 +11,8 @@ class Lounge::ProfileController < ApplicationController
   end
 
   def advanced
-    @user.update_attributes(user_params)
-    render_wizard @user
+    #@user.update_attributes(user_params)
+    #render_wizard @user
   end
 
   # def myaccount

@@ -1,85 +1,85 @@
-= stylesheet_link_tag 'lounge', 'lounge/profile'
-= render 'lounge/shared/messages'
-- if @user.errors
-  - @user.errors.full_messages.each do |error|
-    %p{style: 'font-size: 15px'}= error
-- if @user.user_profile.errors
-  .span6
-    %ul.error-list
-      - @user.user_profile.errors.full_messages.each do |error|
-        %li.error= error
-= simple_form_for @user, url: lounge_profile_path(@user), html: {class: 'form-horizontal'} do |f|
-  .row
-    .span11
-      %h4.big-shadow Edit Account & Profile Details
-      %p.completion Profile Completion Percentage (#{current_user.user_profile.percent_complete}%)
-      .progress.progress-warning.progress-striped
-        .profile-progress.bar{style: "width: #{current_user.user_profile.percent_complete}%"}
-  .row
-    .span11.header
-      %i{class: 'icon-user'}
-      %span.title Account Details
-    = f.simple_fields_for :user_profile do |up|
-      .row
-        .span5
-          = f.input :nickname, input_html: {class: 'input-large', disabled: 'disabled'}
-          = up.input :first_name, input_html: {class: 'input-large', tabindex: 2}
-          = up.input :address_city, input_html: {class: 'input-large', tabindex: 4}
-          = up.input :address_zip, input_html: {class: 'input-large', tabindex: 6}
-          = f.input :password, input_html: {tabindex: 8}
-        .span5
-          = f.input :email, input_html: {class: 'input-large', tabindex: 1}
-          = up.input :last_name, input_html: {class: 'input-large', tabindex: 3}
-          = up.input :address_state, input_html: {class: 'input-large', tabindex: 5}
-          = up.input :address_country, as: :select, collection: Carmen::Country.all.map {|c| [c.name, c.code]}, priority: ['United States'], input_html: {tabindex: 7}
-          = f.input :password_confirmation, input_html: {tabindex: 9}
-          = up.input :timezone, collection: sorted_timezones, prompt: 'Choose Timezone',
-            include_blank: true, input_html: {tabindex: 10}
-  .row
-    .span11.header
-      %i{class: 'icon-edit'}
-      %span.title Profile & Search Details
-    = f.simple_fields_for :user_profile do |up|
-      .row
-        .span5
-          = up.input :gender, collection: UserProfile::GENDERS, prompt: 'Choose Gender', input_html: {tabindex: 11}
-          = up.input :min_age, input_html: {tabindex: 13}
-          = up.input :selected_birthday, as: :string, input_html: {value: (@user.user_profile.birthday.present? ? l(@user.user_profile.birthday) : ''),  tabindex: 15}, required: true
-          = up.input :birthday, as: :hidden
-          = up.input :ethnicity, collection: UserProfile::ETHNICITY, prompt: 'Choose Ethnicity', include_blank: true, input_html: {tabindex: 17}
-          = up.input :education, collection: UserProfile::EDUCATION, prompt: 'Choose Education', include_blank: true, input_html: {tabindex: 19}
-        .span5
-          = up.input :seeking, collection: UserProfile::GENDERS, prompt: 'Choose Gender', input_html: {tabindex: 12}
-          = up.input :max_age, input_html: {tabindex: 14}
-          = up.input :occupation, input_html: {tabindex: 16}
-          = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion', include_blank: true, input_html: {tabindex: 18}
-          = up.input :search_radius, collection: UserProfile::DISTANCES, prompt: 'Choose Distance', input_html: {tabindex: 20}
-          = up.input :distance_type, collection: UserProfile::DISTANCE_TYPES.map {|c| [c[:name], c[:value]]}, prompt: 'Choose Distance', input_html: {tabindex: 20}
-    .row
-      .span10
-        = f.simple_fields_for :user_profile do |up|
-          = up.input :biography, as: 'text',input_html: {class: 'span8', rows: '6', tabindex: 21}
-        = f.simple_fields_for :user_profile do |up|
-          = up.input :likes, input_html: {class: 'chzn-select span7', multiple: true, tabindex: 22}, collection: UserProfile::LIKES
-    .row{style: 'padding-bottom: 10px'}
-      .span6
-        = f.button :submit, class: 'btn btn-warning pull-right', value: 'Save Profile'
-= form_for [:lounge, @user, Photo.new], html: {id: 'profile_upload'} do |p|
-  .row
-    .span11.header
-      %i{class: 'icon-picture'}
-      %span.title Images
-    .row{style: 'margin-top: -20px'}
-      .span10{style: 'margin-left: 60px'}
-        #photos
-          %ul.thumbnails
-            = render @user.photos
-        %span.btn.btn-success.fileinput-button.btn-medium
-          %i.icon-plus.icon-white
-          %span Add Profile Photos
-          %input{type: 'file', name: 'photos[photo_file]', multiple: 'multiple'}
-%script{id: 'template-upload', type: 'text/x-tmpl'}
-  .upload
-    {%=o.name%}
-    .progress
-      .bar{style: 'width: 0%'}
+-# = stylesheet_link_tag 'lounge', 'lounge/profile'
+-# = render 'lounge/shared/messages'
+-# - if @user.errors
+-#   - @user.errors.full_messages.each do |error|
+-#     %p{style: 'font-size: 15px'}= error
+-# - if @user.user_profile.errors
+-#   .span6
+-#     %ul.error-list
+-#       - @user.user_profile.errors.full_messages.each do |error|
+-#         %li.error= error
+-# = simple_form_for @user, url: lounge_profile_path(@user), html: {class: 'form-horizontal'} do |f|
+-#   .row
+-#     .span11
+-#       %h4.big-shadow Edit Account & Profile Details
+-#       %p.completion Profile Completion Percentage (#{current_user.user_profile.percent_complete}%)
+-#       .progress.progress-warning.progress-striped
+-#         .profile-progress.bar{style: "width: #{current_user.user_profile.percent_complete}%"}
+-#   .row
+-#     .span11.header
+-#       %i{class: 'icon-user'}
+-#       %span.title Account Details
+-#     = f.simple_fields_for :user_profile do |up|
+-#       .row
+-#         .span5
+-#           = f.input :nickname, input_html: {class: 'input-large', disabled: 'disabled'}
+-#           = up.input :first_name, input_html: {class: 'input-large', tabindex: 2}
+-#           = up.input :address_city, input_html: {class: 'input-large', tabindex: 4}
+-#           = up.input :address_zip, input_html: {class: 'input-large', tabindex: 6}
+-#           = f.input :password, input_html: {tabindex: 8}
+-#         .span5
+-#           = f.input :email, input_html: {class: 'input-large', tabindex: 1}
+-#           = up.input :last_name, input_html: {class: 'input-large', tabindex: 3}
+-#           = up.input :address_state, input_html: {class: 'input-large', tabindex: 5}
+-#           = up.input :address_country, as: :select, collection: Carmen::Country.all.map {|c| [c.name, c.code]}, priority: ['United States'], input_html: {tabindex: 7}
+-#           = f.input :password_confirmation, input_html: {tabindex: 9}
+-#           = up.input :timezone, collection: sorted_timezones, prompt: 'Choose Timezone',
+-#             include_blank: true, input_html: {tabindex: 10}
+-#   .row
+-#     .span11.header
+-#       %i{class: 'icon-edit'}
+-#       %span.title Profile & Search Details
+-#     = f.simple_fields_for :user_profile do |up|
+-#       .row
+-#         .span5
+-#           = up.input :gender, collection: UserProfile::GENDERS, prompt: 'Choose Gender', input_html: {tabindex: 11}
+-#           = up.input :min_age, input_html: {tabindex: 13}
+-#           = up.input :selected_birthday, as: :string, input_html: {value: (@user.user_profile.birthday.present? ? l(@user.user_profile.birthday) : ''),  tabindex: 15}, required: true
+-#           = up.input :birthday, as: :hidden
+-#           = up.input :ethnicity, collection: UserProfile::ETHNICITY, prompt: 'Choose Ethnicity', include_blank: true, input_html: {tabindex: 17}
+-#           = up.input :education, collection: UserProfile::EDUCATION, prompt: 'Choose Education', include_blank: true, input_html: {tabindex: 19}
+-#         .span5
+-#           = up.input :seeking, collection: UserProfile::GENDERS, prompt: 'Choose Gender', input_html: {tabindex: 12}
+-#           = up.input :max_age, input_html: {tabindex: 14}
+-#           = up.input :occupation, input_html: {tabindex: 16}
+-#           = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion', include_blank: true, input_html: {tabindex: 18}
+-#           = up.input :search_radius, collection: UserProfile::DISTANCES, prompt: 'Choose Distance', input_html: {tabindex: 20}
+-#           = up.input :distance_type, collection: UserProfile::DISTANCE_TYPES.map {|c| [c[:name], c[:value]]}, prompt: 'Choose Distance', input_html: {tabindex: 20}
+-#     .row
+-#       .span10
+-#         = f.simple_fields_for :user_profile do |up|
+-#           = up.input :biography, as: 'text',input_html: {class: 'span8', rows: '6', tabindex: 21}
+-#         = f.simple_fields_for :user_profile do |up|
+-#           = up.input :likes, input_html: {class: 'chzn-select span7', multiple: true, tabindex: 22}, collection: UserProfile::LIKES
+-#     .row{style: 'padding-bottom: 10px'}
+-#       .span6
+-#         = f.button :submit, class: 'btn btn-warning pull-right', value: 'Save Profile'
+-# = form_for [:lounge, @user, Photo.new], html: {id: 'profile_upload'} do |p|
+-#   .row
+-#     .span11.header
+-#       %i{class: 'icon-picture'}
+-#       %span.title Images
+-#     .row{style: 'margin-top: -20px'}
+-#       .span10{style: 'margin-left: 60px'}
+-#         #photos
+-#           %ul.thumbnails
+-#             = render @user.photos
+-#         %span.btn.btn-success.fileinput-button.btn-medium
+-#           %i.icon-plus.icon-white
+-#           %span Add Profile Photos
+-#           %input{type: 'file', name: 'photos[photo_file]', multiple: 'multiple'}
+-# %script{id: 'template-upload', type: 'text/x-tmpl'}
+-#   .upload
+-#     {%=o.name%}
+-#     .progress
+-#       .bar{style: 'width: 0%'}
