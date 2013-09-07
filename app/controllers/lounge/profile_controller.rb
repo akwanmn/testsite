@@ -8,10 +8,9 @@ class Lounge::ProfileController < ApplicationController
   def advanced
   end
 
-
-  # def myaccount
-  #   render text: 'My Account Page'
-  # end
+  def myaccount
+    render text: 'My Account Page'
+  end
 
   # updates details about you.
   def update

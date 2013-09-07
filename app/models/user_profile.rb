@@ -1,47 +1,6 @@
 class UserProfile
   include Mongoid::Document
 
-  embedded_in :user
-
-  field :first_name,        type: String
-  field :last_name,         type: String
-  field :birthday,          type: Date
-  field :gender,            type: String
-  field :seeking,           type: String
-  field :min_age,           type: Integer
-  field :max_age,           type: Integer
-  field :address_street,    type: String
-  field :address_city,      type: String
-  field :address_state,     type: String
-  field :address_zip,       type: String
-  field :address_country,   type: String
-  field :biography,         type: String
-  field :occupation,        type: String
-  field :education,         type: String
-  field :ethnicity,         type: String
-  field :religion,          type: String
-  field :likes,             type: Array
-  field :search_radius,     type: Integer, default: 2000
-  field :percent_complete,  type: Integer
-  field :timezone,          type: String, default: 'UTC'
-  field :total_views,       type: Integer
-  field :distance_type,     type: String, default: 'mi'
-
-  # more detailed options
-  field :marital_status,      type: Integer, default: 0
-  field :outdoor_activities,  type: Array, default: []
-  field :health_fitness,      type: Integer, default: 0
-  field :children,            type: Integer, default: 0
-  field :drinking,            type: Integer, default: 0
-  field :smoking,             type: Integer, default: 0
-  field :eating,              type: Integer, default: 0
-  field :politics,            type: Integer, default: 0
-  field :reading,             type: Integer, default: 0
-  field :nightlife,           type: Array, default: []
-  field :travel,              type: Integer, default: 0
-  field :career,              type: Integer, default: 0
-
-
   CAREER = [
     ["My career is very important.", "1"],
     ["I balance work & personal life.", "2"],
@@ -140,6 +99,48 @@ class UserProfile
     ["I dislike traveling.", "4"],
     ["I would rather not say.", "0"]
   ]
+
+  embedded_in :user
+
+  field :first_name,        type: String
+  field :last_name,         type: String
+  field :birthday,          type: Date
+  field :gender,            type: String
+  field :seeking,           type: String
+  field :min_age,           type: Integer
+  field :max_age,           type: Integer
+  field :address_street,    type: String
+  field :address_city,      type: String
+  field :address_state,     type: String
+  field :address_zip,       type: String
+  field :address_country,   type: String
+  field :biography,         type: String
+  field :occupation,        type: String
+  field :education,         type: String
+  field :ethnicity,         type: String
+  field :religion,          type: String
+  field :likes,             type: Array
+  field :search_radius,     type: Integer, default: 2000
+  field :percent_complete,  type: Integer
+  field :timezone,          type: String, default: 'UTC'
+  field :total_views,       type: Integer
+  field :distance_type,     type: String, default: 'mi'
+
+  # more detailed options
+  field :marital_status,      type: Integer, default: 0
+  field :outdoor_activities,  type: Array, default: []
+  field :health_fitness,      type: Integer, default: 0
+  field :children,            type: Integer, default: 0
+  field :drinking,            type: Integer, default: 0
+  field :smoking,             type: Integer, default: 0
+  field :eating,              type: Integer, default: 0
+  field :politics,            type: Integer, default: 0
+  field :reading,             type: Integer, default: 0
+  field :nightlife,           type: Array, default: []
+  field :travel,              type: Integer, default: 0
+  field :career,              type: Integer, default: 0
+
+
 
   # validations -- most are on update so we can create an account without
   # all the profile details
