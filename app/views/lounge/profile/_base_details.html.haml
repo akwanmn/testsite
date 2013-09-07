@@ -8,19 +8,19 @@
   = f.simple_fields_for :user_profile do |up|
     .row
       .span5
-        = up.input :gender, collection: UserProfile::GENDERS, prompt: 'Choose Gender', input_html: {tabindex: 11}
+        = up.input :gender, collection: GENDERS, prompt: 'Choose Gender', input_html: {tabindex: 11}
         = up.input :min_age, input_html: {tabindex: 13}
         = up.input :selected_birthday, as: :string, input_html: {value: (@user.user_profile.birthday.present? ? l(@user.user_profile.birthday) : ''),  tabindex: 15}, required: true
         = up.input :birthday, as: :hidden
-        = up.input :ethnicity, collection: UserProfile::ETHNICITY, prompt: 'Choose Ethnicity', include_blank: true, input_html: {tabindex: 17}
-        = up.input :education, collection: UserProfile::EDUCATION, prompt: 'Choose Education', include_blank: true, input_html: {tabindex: 19}
+        = up.input :ethnicity, collection: ETHNICITY, prompt: 'Choose Ethnicity', include_blank: true, input_html: {tabindex: 17}
+        = up.input :education, collection: EDUCATION, prompt: 'Choose Education', include_blank: true, input_html: {tabindex: 19}
       .span5
-        = up.input :seeking, collection: UserProfile::GENDERS, prompt: 'Choose Gender', input_html: {tabindex: 12}
+        = up.input :seeking, collection: GENDERS, prompt: 'Choose Gender', input_html: {tabindex: 12}
         = up.input :max_age, input_html: {tabindex: 14}
         = up.input :occupation, input_html: {tabindex: 16}
-        = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion', include_blank: true, input_html: {tabindex: 18}
-        = up.input :search_radius, collection: UserProfile::DISTANCES, prompt: 'Choose Distance', input_html: {tabindex: 20}
-        = up.input :distance_type, collection: UserProfile::DISTANCE_TYPES.map {|c| [c[:name], c[:value]]}, prompt: 'Choose Distance', input_html: {tabindex: 20}
+        = up.input :religion, collection: RELIGIONS, prompt: 'Choose Religion', include_blank: true, input_html: {tabindex: 18}
+        = up.input :search_radius, collection: DISTANCES, prompt: 'Choose Distance', input_html: {tabindex: 20}
+        = up.input :distance_type, collection: DISTANCE_TYPES.map {|c| [c[:name], c[:value]]}, prompt: 'Choose Distance', input_html: {tabindex: 20}
     .row
       .span10
         = f.simple_fields_for :user_profile do |up|

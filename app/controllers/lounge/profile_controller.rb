@@ -20,7 +20,7 @@ class Lounge::ProfileController < ApplicationController
     respond_to do |format|
       if result
         @template = 'advanced_details'
-        format.html { render action: :edit }
+        format.html { flash[:notice] = "#{@user.nickname} updated."; render action: :edit }
         #format.html { redirect_to modify_lounge_profile_index_path, notice: "#{@user.full_name} was successfully updated."}
       else
         format.html { flash[:error] = 'There were validation errors'; render action: :edit }
