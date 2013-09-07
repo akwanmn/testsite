@@ -10,7 +10,9 @@
           %span Add Profile Photos
           %input{type: 'file', name: 'photos[photo_file]', multiple: 'multiple'}
 %script{id: 'template-upload', type: 'text/x-tmpl'}
-  .upload
-    {%=o.name%}
-    .progress
-      .bar{style: 'width: 0%'}
+  .row
+    .span10{style: 'margin-left: 60px'}
+      .upload
+        {%=o.name%} - Please wait until photo appears.
+        .progress
+          .bar{style: 'width: 0%'}

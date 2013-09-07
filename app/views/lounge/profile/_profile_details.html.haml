@@ -102,68 +102,27 @@
               = up.input :nightlife, collection: show_even_options(UserProfile::NIGHTLIFE), as: :check_boxes, label: false
 
     .row
+      .span9.offset1.border-bottom
+        .test-group
+          .control-group
+            %p.pull-left.detail-class Travel
+            .controls.span3
+              = up.input :travel, collection: show_odd_options(UserProfile::TRAVEL), as: :radio_buttons, label: false
+            .controls.span3
+              = up.input :travel, collection: show_even_options(UserProfile::TRAVEL), as: :radio_buttons, label: false
+
+    .row
+      .span9.offset1.border-bottom
+        .test-group
+          .control-group
+            %p.pull-left.detail-class Career
+            .controls.span3
+              = up.input :career, collection: show_odd_options(UserProfile::CAREER), as: :radio_buttons, label: false
+            .controls.span3
+              = up.input :career, collection: show_even_options(UserProfile::CAREER), as: :radio_buttons, label: false
+
+    .row
       .span10
         %p.pull-right{style: 'padding-top: 10px'}
           = link_to 'Back', modify_lounge_profile_index_path, class: 'btn btn-info'
           = f.submit :submit, value: 'Next', class: 'btn btn-warning'
-
-
-
-
-    -#   .row
-    -#     .span9.offset1.border-bottom
-    -#       .test-group
-    -#         .control-group.test-group
-    -#           %p.pull-left.detail-class Nightlife
-    -#           .controls.span3
-    -#             %label{class: 'checkbox'}
-    -#               %input{type: 'checkbox', value: '1', id: 'blah1'} I enjoy going out.
-    -#             %label{class: 'checkbox'}
-    -#               %input{type: 'checkbox', value: '1', id: 'blah1'} I like being home.
-    -#             %label{class: 'checkbox'}
-    -#               %input{type: 'checkbox', value: '1', id: 'blah1'} I would rather not say.
-    -#           .controls.span3
-    -#             %label{class: 'checkbox'}
-    -#               %input{type: 'checkbox', value: '1', id: 'blah1'} I enjoy concerts, theatre and the arts.
-    -#             %label{class: 'checkbox'}
-    -#               %input{type: 'checkbox', value: '1', id: 'blah1'} I enjoy listening to music or having cocktails with friends.
-
-    -#   .row
-    -#     .span9.offset1.border-bottom
-    -#       .test-group
-    -#         .control-group.test-group
-    -#           %p.pull-left.detail-class Travel
-    -#           .controls.span3
-    -#             %label{class: 'checkbox'}
-    -#               %input{type: 'checkbox', value: '1', id: 'blah1'} I enjoy traveling and take trips often.
-    -#             %label{class: 'checkbox'}
-    -#               %input{type: 'checkbox', value: '1', id: 'blah1'} I enjoy traveling, but don't have the opportunity often.
-    -#             %label{class: 'checkbox'}
-    -#               %input{type: 'checkbox', value: '1', id: 'blah1'} I would rather not say.
-    -#           .controls.span3
-    -#             %label{class: 'checkbox'}
-    -#               %input{type: 'checkbox', value: '1', id: 'blah1'} I travel for work.
-    -#             %label{class: 'checkbox'}
-    -#               %input{type: 'checkbox', value: '1', id: 'blah1'} I dislike traveling.
-
-    -#   .row
-    -#     .span9.offset1.border-bottom
-    -#       .test-group
-    -#         .control-group.test-group
-    -#           %p.pull-left.detail-class Career
-    -#           .controls.span3
-    -#             %label{class: 'checkbox'}
-    -#               %input{type: 'checkbox', value: '1', id: 'blah1'} My career is very important to me.
-    -#             %label{class: 'checkbox'}
-    -#               %input{type: 'checkbox', value: '1', id: 'blah1'} My career is second to my personal life.
-    -#             %label{class: 'checkbox'}
-    -#               %input{type: 'checkbox', value: '1', id: 'blah1'} I would rather not say.
-    -#           .controls.span3
-    -#             %label{class: 'checkbox'}
-    -#               %input{type: 'checkbox', value: '1', id: 'blah1'} I balance work & personal life.
-    -#             %label{class: 'checkbox'}
-    -#               %input{type: 'checkbox', value: '1', id: 'blah1'} I am retired.
-    -#   .row
-    -#     .span10
-    -#       %p.pull-right{style: 'padding-top: 10px'}
-    -#         = link_to 'Next', '', class: 'btn btn-warning'

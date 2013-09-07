@@ -38,6 +38,17 @@ class UserProfile
   field :politics,            type: Integer, default: 0
   field :reading,             type: Integer, default: 0
   field :nightlife,           type: Array, default: []
+  field :travel,              type: Integer, default: 0
+  field :career,              type: Integer, default: 0
+
+
+  CAREER = [
+    ["My career is very important.", "1"],
+    ["I balance work & personal life.", "2"],
+    ["Personal life comes first.", "3"],
+    ["I am retired.", "4"],
+    ['I would rather not say.', '0']
+  ]
 
   MARITAL_STATUS = [
     ['Single / Never Married', '1'],
@@ -122,6 +133,14 @@ class UserProfile
     ["I enjoy listening to music or visiting with friends.", "4"]
   ]
 
+  TRAVEL = [
+    ["I enjoy traveling and take trips often.", "1"],
+    ["I travel only for work.", "2"],
+    ["I enjoy traveling, but don't have the opportunity often.", "3"],
+    ["I dislike traveling.", "4"],
+    ["I would rather not say.", "0"]
+  ]
+
   # validations -- most are on update so we can create an account without
   # all the profile details
   validates :gender,
@@ -182,17 +201,14 @@ class UserProfile
     fields = ['gender', 'seeking', 'min_age', 'max_age', 'address_zip', 'address_country',
       'biography', 'occupation', 'education', 'ethnicity', 'religion', 'likes', 'search_radius',
       'photos', 'birthday', 'address_state', 'address_city', 'distance_type', 'marital_status', 'outdoor_activities', 'health_fitness',
-      'children', 'drinking'
+      'children', 'drinking', 'eating', 'politics', 'reading', 'nightlife', 'travel', 'career'
     ]
     filled_in = 0
-    Rails.logger.debug "*" * 40
     fields.each do |f|
       if self.send(f).is_a?(Array)
         # see if the array is actually empty
         filled_in += 1 unless self.send(f).reject(&:blank?).count == 0
-        #Rails.logger.debug "Missing: #{f}" if self.send(f).reject(&:blank?).count == 0
       else
-        #Rails.logger.debug "Missing: #{f}" if self.send(f).blank?
         filled_in += 1 unless self.send(f).blank?
       end
     end

@@ -15,8 +15,6 @@ class Lounge::ProfileController < ApplicationController
 
   # updates details about you.
   def update
-    Rails.logger.debug "*" * 100
-    Rails.logger.debug user_params.inspect
     result = @user.update_without_password(user_params)
     respond_to do |format|
       if result
@@ -63,7 +61,7 @@ class Lounge::ProfileController < ApplicationController
       :address_city, :address_state, :gender, :seeking, :min_age, :max_age,
       :address_street, :biography, :occupation, :education, :ethnicity, :religion,
       :search_radius, :distance_type, :timezone, :marital_status, :health_fitness, :children,
-      :drinking, :smoking, :eating, :politics, :reading, {:nightlife => []}, {:outdoor_activities => []}, {:likes => []}
+      :drinking, :smoking, :eating, :politics, :reading, :travel, :career, {:nightlife => []}, {:outdoor_activities => []}, {:likes => []}
     ])
   end
 end
