@@ -139,7 +139,10 @@ class UserProfile
     numericality: {greater_than: 0, less_than_or_equal_to: 5000, message: 'must be between 0 and 4000'},
     presence: true,
     on: :update
+
   validates :address_street, presence: true, on: :create # needed for billing / paypal
+
+  # only on my account.
   validates :first_name, :last_name, :address_zip, :address_country, :address_city, :address_state,
     presence: true
   validates :distance_type,
@@ -160,6 +163,7 @@ class UserProfile
     now = Time.now.utc.to_date
     now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
   end
+
 
   # Calculate the percentage complete of the profile, maybe even send emails
   # out if they are < 50% on occassion or something for reminders.

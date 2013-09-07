@@ -1,4 +1,39 @@
--# = stylesheet_link_tag 'lounge', 'lounge/profile'
+= stylesheet_link_tag 'lounge', 'lounge/profile'
+= render 'lounge/shared/messages'
+-# - if @user.errors
+-#   - @user.errors.full_messages.each do |error|
+-#     %p{style: 'font-size: 15px'}= error
+-# - if @user.user_profile.errors
+-#   .span6
+-#     %ul.error-list
+-#       - @user.user_profile.errors.full_messages.each do |error|
+-#         %li.error= error
+.row
+  .span11
+    %p.completion Profile Completion Percentage (#{current_user.user_profile.percent_complete}%)
+    .progress.progress-warning.progress-striped
+      .profile-progress.bar{style: "width: #{current_user.user_profile.percent_complete}%"}
+
+.row
+  .span11
+    %ul#myTab.nav.nav-tabs
+      %li
+        %a{href: '#profile-details', 'data-toggle' => 'tab'} Details About You
+      %li
+        %a{href: '#photos', 'data-toggle' => 'tab'} Profile Photos
+      %li
+        %a{href: '#account', 'data-toggle' => 'tab'} My Account
+
+    .tab-content.details
+      #profile-details.tab-pane
+        = render 'base_details'
+      #photos.tab-pane
+        = render 'photo_upload'
+      #account.tab-pane
+        = render 'myaccount'
+
+
+-# %h1 OLD STUFF BELOW HERE....
 -# = render 'lounge/shared/messages'
 -# - if @user.errors
 -#   - @user.errors.full_messages.each do |error|
@@ -8,10 +43,13 @@
 -#     %ul.error-list
 -#       - @user.user_profile.errors.full_messages.each do |error|
 -#         %li.error= error
+
+
+
 -# = simple_form_for @user, url: lounge_profile_path(@user), html: {class: 'form-horizontal'} do |f|
 -#   .row
 -#     .span11
--#       %h4.big-shadow Edit Account & Profile Details
+-#       %h4.big-shadow Modify Profile & Select Likes
 -#       %p.completion Profile Completion Percentage (#{current_user.user_profile.percent_complete}%)
 -#       .progress.progress-warning.progress-striped
 -#         .profile-progress.bar{style: "width: #{current_user.user_profile.percent_complete}%"}

@@ -1,5 +1,13 @@
 = stylesheet_link_tag 'lounge', 'lounge/profile'
-
+= render 'lounge/shared/messages'
+- if @user.errors
+  - @user.errors.full_messages.each do |error|
+    %p{style: 'font-size: 15px'}= error
+- if @user.user_profile.errors
+  .span6
+    %ul.error-list
+      - @user.user_profile.errors.full_messages.each do |error|
+        %li.error= error
 %hr
 .row
   .span11
