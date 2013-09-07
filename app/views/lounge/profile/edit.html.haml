@@ -26,7 +26,7 @@
 
     .tab-content.details
       #profile-details.tab-pane
-        = render @template.present? ? 'profile_details' : 'base_details'
+        = render 'base_details'
       #photos.tab-pane
         = render 'photo_upload'
       #account.tab-pane

@@ -27,6 +27,101 @@ class UserProfile
   field :total_views,       type: Integer
   field :distance_type,     type: String, default: 'mi'
 
+  # more detailed options
+  field :marital_status,      type: Integer, default: 0
+  field :outdoor_activities,  type: Array, default: []
+  field :health_fitness,      type: Integer, default: 0
+  field :children,            type: Integer, default: 0
+  field :drinking,            type: Integer, default: 0
+  field :smoking,             type: Integer, default: 0
+  field :eating,              type: Integer, default: 0
+  field :politics,            type: Integer, default: 0
+  field :reading,             type: Integer, default: 0
+  field :nightlife,           type: Array, default: []
+
+  MARITAL_STATUS = [
+    ['Single / Never Married', '1'],
+    ['Separated', '2'],
+    ['Married', '3'],
+    ['Divorced', '4'],
+    ['Widowed', '5'],
+    ['I would rather not say.', '0']
+  ]
+
+  OUTDOOR_ACTIVITIES = [
+    ['Hiking', '1'],
+    ['Biking', '2'],
+    ['Camping', '3'],
+    ['Motorcycle / Off-Roading', '4'],
+    ['Fishing', '5'],
+    ['Running / 5k / Triathalons', '6'],
+  ]
+
+  HEALTH_FITNESS = [
+    ["Don't Exercise", 1],
+    ["Exercise 1-2 times a week.", 2],
+    ["Exercise 3-5 times a week.", 3],
+    ["I would rather not say.", 0]
+  ]
+
+  CHILDREN = [
+    ["I have children living with me", "1"],
+    ["I do not have children.", "2"],
+    ["I do not have children and do not want any.", "3"],
+    ["I do not have children, but like them.", "4"],
+    ["I have children that are grown and live away from home.", "5"],
+    ["I would rather not say.", "0"]
+  ]
+
+  DRINKING = [
+    ["I don't drink alcohol.", "1"],
+    ["I drink alcohol socially.", 2],
+    ["I drink daily.", "3"],
+    ["I would rather not say.", "0"]
+  ]
+
+  SMOKING = [
+    ["I don't smoke.", "1"],
+    ["I smoke cigarettes occassionally.", "2"],
+    ["I smoke cigars occassionally.", 3],
+    ["I smoke cigarettes daily.", 4],
+    ["I smoke cigars daily.", 5],
+    ["I would rather not say.", "0"]
+  ]
+
+  EATING = [
+    ["I eat healty.", "1"],
+    ["I am a vegetarian/vegan", "2"],
+    ["I am a junkfood junkie.", "3"],
+    ["I am eat out mostly", "4"],
+    ["I would rather not say.", "0"]
+  ]
+
+  POLITICS = [
+    ["I am conservative.", 1],
+    ["I am liberal.", 2],
+    ["I am somewhat conservative.", 3],
+    ["I am somewhat liberal.", 4],
+    ["I am green.", 5],
+    ["I am independent.", 6],
+    ["I am not political.", 7],
+    ["I would rather not say.", "0"]
+  ]
+
+  BOOKS_READING = [
+    ["I read frequently.", "1"],
+    ["I don't enjoy reading.", 2],
+    ["I don't read as much as I would like.", "3"],
+    ["I would rather not say.", "0"]
+  ]
+
+  NIGHTLIFE = [
+    ["I enjoy going out.", "1"],
+    ["I enjoy concerts, theatre and the arts.", "2"],
+    ["I like being home.", "3"],
+    ["I enjoy listening to music or visiting with friends.", "4"]
+  ]
+
   # validations -- most are on update so we can create an account without
   # all the profile details
   validates :gender,
@@ -71,7 +166,7 @@ class UserProfile
 
   # callbacks
   after_validation :calculate_profile_percentage
-  after_validation :clean_up_likes, on: :update
+  after_validation :clean_up_arrays, on: :update
   delegate :photos, :coordinates, to: :user
 
   # Calculate the age of this person.
@@ -81,22 +176,23 @@ class UserProfile
     now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
   end
 
-
   # Calculate the percentage complete of the profile, maybe even send emails
   # out if they are < 50% on occassion or something for reminders.
   def calculate_profile_percentage
     fields = ['gender', 'seeking', 'min_age', 'max_age', 'address_zip', 'address_country',
       'biography', 'occupation', 'education', 'ethnicity', 'religion', 'likes', 'search_radius',
-      'photos', 'birthday', 'address_state', 'address_city', 'distance_type']
+      'photos', 'birthday', 'address_state', 'address_city', 'distance_type', 'marital_status', 'outdoor_activities', 'health_fitness',
+      'children', 'drinking'
+    ]
     filled_in = 0
     Rails.logger.debug "*" * 40
     fields.each do |f|
       if self.send(f).is_a?(Array)
         # see if the array is actually empty
         filled_in += 1 unless self.send(f).reject(&:blank?).count == 0
-        Rails.logger.debug "Missing: #{f}" if self.send(f).reject(&:blank?).count == 0
+        #Rails.logger.debug "Missing: #{f}" if self.send(f).reject(&:blank?).count == 0
       else
-        Rails.logger.debug "Missing: #{f}" if self.send(f).blank?
+        #Rails.logger.debug "Missing: #{f}" if self.send(f).blank?
         filled_in += 1 unless self.send(f).blank?
       end
     end
@@ -104,8 +200,11 @@ class UserProfile
     self.percent_complete = percent.to_i
   end
 
-  def clean_up_likes
+  # cleans up empty items which is silly to have
+  def clean_up_arrays
     self.likes.reject! {|l| l.empty? }
+    self.outdoor_activities.reject! {|l| l.empty? }
+    self.nightlife.reject! {|l| l.empty? }
   end
 
   # match zipcode to state, just to make sure we have consistent data.

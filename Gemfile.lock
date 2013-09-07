@@ -129,7 +129,6 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
-    hashie (2.0.5)
     hike (1.2.3)
     i18n (0.6.5)
     journey (1.0.4)
@@ -318,7 +317,6 @@ DEPENDENCIES
   guard-rails
   guard-rspec
   haml-rails
-  hashie
   jquery-fileupload-rails
   jquery-rails
   kaminari

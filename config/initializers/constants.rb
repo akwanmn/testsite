@@ -81,27 +81,5 @@ DISTANCE_TYPES = [
   {name: 'Kilometers', value: 'km'},
 ]
 
-# needs to be migrated to models for easier config, but for expediency, done here.
-
-class Question < Hashie::Dash
-  property :question, :require => true
-  property :value, :require => true
-end
-
-class ProfileQuestion < Hashie::Dash
-  property :name, :require => true
-  property :questions, default: []
-end
-
-q = Question.new
-q.question = "Single / Never Married"
-q.value = 0
-
-pq = ProfileQuestion.new
-pq.name = 'Marital Status'
-pq.questions << q
-
-PROFILE_DATA = pq
-
 
 

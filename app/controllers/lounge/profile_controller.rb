@@ -3,25 +3,25 @@ class Lounge::ProfileController < ApplicationController
   load_and_authorize_resource :user, parent: true
 
   def edit
-    #render 'basic_details'
   end
 
-  # def advanced
-  #   render text: 'ADVANCED'
-  # end
+  def advanced
+  end
 
 
   # def myaccount
   #   render text: 'My Account Page'
   # end
 
+  # updates details about you.
   def update
+    Rails.logger.debug "*" * 100
+    Rails.logger.debug user_params.inspect
     result = @user.update_without_password(user_params)
     respond_to do |format|
       if result
-        @template = 'advanced_details'
-        format.html { flash[:notice] = "#{@user.nickname} updated."; render action: :edit }
-        #format.html { redirect_to modify_lounge_profile_index_path, notice: "#{@user.full_name} was successfully updated."}
+        #format.html { flash[:notice] = "#{@user.nickname} updated."; render action: :advanced }
+        format.html { redirect_to advanced_details_lounge_profile_index_path }
       else
         format.html { flash[:error] = 'There were validation errors'; render action: :edit }
       end
@@ -62,7 +62,8 @@ class Lounge::ProfileController < ApplicationController
       :birthday, :first_name, :last_name, :address_zip, :address_country,
       :address_city, :address_state, :gender, :seeking, :min_age, :max_age,
       :address_street, :biography, :occupation, :education, :ethnicity, :religion,
-      :search_radius, :distance_type, :timezone, {:likes => []}
+      :search_radius, :distance_type, :timezone, :marital_status, :health_fitness, :children,
+      :drinking, :smoking, :eating, :politics, :reading, {:nightlife => []}, {:outdoor_activities => []}, {:likes => []}
     ])
   end
 end

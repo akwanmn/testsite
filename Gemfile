@@ -45,7 +45,6 @@ gem 'strong_parameters'
 # monitoring
 gem 'newrelic_rpm'
 
-gem 'hashie'
 
 # required by heroku
 #gem 'thin'
