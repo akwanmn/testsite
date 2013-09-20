@@ -93,7 +93,7 @@ class UserProfile
   # Calculate the age of this person.
   def age
     return "-" if birthday.blank?
-    now = Time.now.utc.to_date
+    now  = Time.now.utc.to_date
     now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
   end
 
@@ -105,7 +105,6 @@ class UserProfile
       'photos', 'birthday', 'address_state', 'address_city', 'distance_type', 'marital_status', 'outdoor_activities', 'health_fitness',
       'children', 'drinking', 'eating', 'politics', 'reading', 'nightlife', 'travel', 'career'
     ]
-    
     percent = (filled_in_fields(fields) / fields.size).round(2) * 100
     self.percent_complete = percent.to_i
   end
