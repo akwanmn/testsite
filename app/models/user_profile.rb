@@ -112,14 +112,15 @@ class UserProfile
   def filled_in_fields(fields)
     filled_in = 0
     fields.each do |f|
-      if self.send(f).is_a?(Array)
-        # see if the array is actually empty
-        filled_in += 1 unless self.send(f).reject(&:blank?).count == 0
-      else
-        filled_in += 1 unless self.send(f).blank?
-      end
+      filled_in = filled_in.next if filled_in?(f)
     end
     filled_in.to_f
+  end
+
+  def filled_in?(field)
+    return false if self.send(field).is_a?(Array) && self.send(field).reject(&:blank?).count == 0 
+    return false if self.send(field).blank?
+    true
   end
 
   # cleans up empty items which is silly to have
@@ -127,15 +128,6 @@ class UserProfile
     self.likes.reject! {|l| l.empty? }
     self.outdoor_activities.reject! {|l| l.empty? }
     self.nightlife.reject! {|l| l.empty? }
-  end
-
-  # match zipcode to state, just to make sure we have consistent data.
-  def zip_code_matches_state
-    return false if address_zip.blank?
-    location = Geocoder.search(address_zip).first
-    unless location.state.downcase == address_state.downcase
-      self.errors[:base] << "State (#{address_state}) & Zip Code (#{location.state}) do not match!"
-    end
   end
 
   def latitude
@@ -148,16 +140,6 @@ class UserProfile
 
   def address
     address_zip
-  end
-
-  # determine their location approximately.
-  def approximate_location
-    if !user.coordinates.blank?
-      location = Geocoder.search(user.coordinates.reverse).first
-    else
-      location = Geocoder.search(address_zip).first
-    end
-    location.nil? ? 'Unknown' : location.data['formatted_address']
   end
 
   # Checks the age to make sure someone is within a proper age range.
