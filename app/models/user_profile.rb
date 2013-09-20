@@ -105,6 +105,12 @@ class UserProfile
       'photos', 'birthday', 'address_state', 'address_city', 'distance_type', 'marital_status', 'outdoor_activities', 'health_fitness',
       'children', 'drinking', 'eating', 'politics', 'reading', 'nightlife', 'travel', 'career'
     ]
+    
+    percent = (filled_in_fields(fields) / fields.size).round(2) * 100
+    self.percent_complete = percent.to_i
+  end
+
+  def filled_in_fields(fields)
     filled_in = 0
     fields.each do |f|
       if self.send(f).is_a?(Array)
@@ -114,8 +120,7 @@ class UserProfile
         filled_in += 1 unless self.send(f).blank?
       end
     end
-    percent = (filled_in.to_f / fields.length.to_f).round(2) * 100
-    self.percent_complete = percent.to_i
+    filled_in.to_f
   end
 
   # cleans up empty items which is silly to have
