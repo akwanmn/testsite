@@ -8,7 +8,7 @@ describe UserProfile do
   end
 
   its(:age) { should eql 30 }
-  its(:calculate_profile_percentage) { should eql 72 }
+  its(:calculate_profile_percentage) { should eql 76 }
   its(:latitude) { should_not be_nil }
   its(:longitude) { should_not be_nil }
   its(:address_zip) { should_not be_nil }

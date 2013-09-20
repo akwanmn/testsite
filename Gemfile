@@ -81,3 +81,4 @@ group :test do
   gem 'database_cleaner'
   gem 'vcr'
 end
+gem "codeclimate-test-reporter", group: :test, require: nil
