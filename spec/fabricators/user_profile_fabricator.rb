@@ -13,6 +13,6 @@ Fabricator(:user_profile) do
   search_radius 1000
   birthday { DateTime.now - 30.years }
   biography 'This is a sample biography'
-  likes { [ UserProfile::LIKES.sample ]}
+  likes { [ LIKES.sample ]}
   biography 'This is a test biography.'
 end
