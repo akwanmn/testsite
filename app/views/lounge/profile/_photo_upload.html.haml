@@ -9,6 +9,9 @@
           %i.icon-plus.icon-white
           %span Add Profile Photos
           %input{type: 'file', name: 'photos[photo_file]', multiple: 'multiple'}
+        %span.pull-right
+          = link_to 'Next', '#account', class: 'btn btn-warning profile-next'
+
 %script{id: 'template-upload', type: 'text/x-tmpl'}
   .row
     .span10{style: 'margin-left: 60px'}
