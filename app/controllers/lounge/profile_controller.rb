@@ -2,12 +2,6 @@ class Lounge::ProfileController < ApplicationController
   before_filter :set_current_user
   load_and_authorize_resource :user, parent: true
 
-  # def edit
-  # end
-
-  # def advanced
-  # end
-
   def myaccount
     render text: 'My Account Page'
   end
@@ -17,12 +11,18 @@ class Lounge::ProfileController < ApplicationController
     result = @user.update_without_password(user_params)
     respond_to do |format|
       if result
-        #format.html { flash[:notice] = "#{@user.nickname} updated."; render action: :advanced }
-        format.html { redirect_to advanced_details_lounge_profile_index_path }
+        step_2 = params[:user][:user_profile_attributes].has_key?(:likes) # true/false
+        format.html { redirect_to (step_2 ? modify_lounge_profile_index_path(anchor: 'photos') : advanced_details_lounge_profile_index_path) }
       else
         format.html { flash[:error] = 'There were validation errors'; render action: :edit }
       end
     end
+  end
+
+  #
+  def photos
+    @hash_tag = 'photos'
+    render action: :edit
   end
 
   def show

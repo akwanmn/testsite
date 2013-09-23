@@ -6,5 +6,7 @@ $('#myTab a').click (e) ->
 hash = window.location.hash;
 if (hash)
   $('#myTab a[href="' + hash + '"]').tab('show')
+  $("html, body").animate({ scrollTop: 0 }, "fast"); # make it scroll to the top.
 else
   $('#myTab a:first').tab('show');
+
