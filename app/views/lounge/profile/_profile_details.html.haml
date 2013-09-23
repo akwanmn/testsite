@@ -1,14 +1,25 @@
 = simple_form_for @user, url: lounge_profile_path(@user) do |f|
   = f.simple_fields_for :user_profile do |up|
+
+    .row
+      .span9.offset1.border-bottom
+        .test-group
+          .control-group
+            %p.pull-left.detail-class Your Likes
+            .controls.span3
+              = up.input :likes, collection: LIKES.values_at(* LIKES.each_index.select {|i| i.even?}), as: :check_boxes, label: false
+            .controls.span3
+              = up.input :likes, collection: LIKES.values_at(* LIKES.each_index.select {|i| i.odd?}), as: :check_boxes, label: false
+
     .row
       .span9.offset1.border-bottom
         .test-group
           .control-group
             %p.pull-left.detail-class Marital Status
             .controls.span3
-              = up.input :marital_status, collection: show_odd_options(UserProfile::MARITAL_STATUS), as: :radio_buttons, label: false
+              = up.input :marital_status, collection: show_odd_options(MARITAL_STATUS), as: :radio_buttons, label: false
             .controls.span3
-              = up.input :marital_status, collection: show_even_options(UserProfile::MARITAL_STATUS), as: :radio_buttons, label: false
+              = up.input :marital_status, collection: show_even_options(MARITAL_STATUS), as: :radio_buttons, label: false
 
     .row
       .span9.offset1.border-bottom
@@ -16,9 +27,9 @@
           .control-group
             %p.pull-left.detail-class Outdoor Activities
             .controls.span3
-              = up.input :outdoor_activities, collection: show_odd_options(UserProfile::OUTDOOR_ACTIVITIES), as: :check_boxes, label: false
+              = up.input :outdoor_activities, collection: show_odd_options(OUTDOOR_ACTIVITIES), as: :check_boxes, label: false
             .controls.span3
-              = up.input :outdoor_activities, collection: show_even_options(UserProfile::OUTDOOR_ACTIVITIES), as: :check_boxes, label: false
+              = up.input :outdoor_activities, collection: show_even_options(OUTDOOR_ACTIVITIES), as: :check_boxes, label: false
 
     .row
       .span9.offset1.border-bottom
@@ -26,9 +37,9 @@
           .control-group
             %p.pull-left.detail-class Health & Fitness
             .controls.span3
-              = up.input :health_fitness, collection: show_odd_options(UserProfile::HEALTH_FITNESS), as: :radio_buttons, label: false
+              = up.input :health_fitness, collection: show_odd_options(HEALTH_FITNESS), as: :radio_buttons, label: false
             .controls.span3
-              = up.input :health_fitness, collection: show_even_options(UserProfile::HEALTH_FITNESS), as: :radio_buttons, label: false
+              = up.input :health_fitness, collection: show_even_options(HEALTH_FITNESS), as: :radio_buttons, label: false
 
     .row
       .span9.offset1.border-bottom
@@ -36,9 +47,9 @@
           .control-group
             %p.pull-left.detail-class Children
             .controls.span3
-              = up.input :children, collection: show_odd_options(UserProfile::CHILDREN), as: :radio_buttons, label: false
+              = up.input :children, collection: show_odd_options(CHILDREN), as: :radio_buttons, label: false
             .controls.span3
-              = up.input :children, collection: show_even_options(UserProfile::CHILDREN), as: :radio_buttons, label: false
+              = up.input :children, collection: show_even_options(CHILDREN), as: :radio_buttons, label: false
 
     .row
       .span9.offset1.border-bottom
@@ -46,9 +57,9 @@
           .control-group
             %p.pull-left.detail-class Drinking
             .controls.span3
-              = up.input :drinking, collection: show_odd_options(UserProfile::DRINKING), as: :radio_buttons, label: false
+              = up.input :drinking, collection: show_odd_options(DRINKING), as: :radio_buttons, label: false
             .controls.span3
-              = up.input :drinking, collection: show_even_options(UserProfile::DRINKING), as: :radio_buttons, label: false
+              = up.input :drinking, collection: show_even_options(DRINKING), as: :radio_buttons, label: false
 
     .row
       .span9.offset1.border-bottom
@@ -56,9 +67,9 @@
           .control-group
             %p.pull-left.detail-class Smoking
             .controls.span3
-              = up.input :smoking, collection: show_odd_options(UserProfile::SMOKING), as: :radio_buttons, label: false
+              = up.input :smoking, collection: show_odd_options(SMOKING), as: :radio_buttons, label: false
             .controls.span3
-              = up.input :smoking, collection: show_even_options(UserProfile::SMOKING), as: :radio_buttons, label: false
+              = up.input :smoking, collection: show_even_options(SMOKING), as: :radio_buttons, label: false
 
     .row
       .span9.offset1.border-bottom
@@ -66,9 +77,9 @@
           .control-group
             %p.pull-left.detail-class Food
             .controls.span3
-              = up.input :eating, collection: show_odd_options(UserProfile::EATING), as: :radio_buttons, label: false
+              = up.input :eating, collection: show_odd_options(EATING), as: :radio_buttons, label: false
             .controls.span3
-              = up.input :eating, collection: show_even_options(UserProfile::EATING), as: :radio_buttons, label: false
+              = up.input :eating, collection: show_even_options(EATING), as: :radio_buttons, label: false
 
 
     .row
@@ -77,9 +88,9 @@
           .control-group
             %p.pull-left.detail-class Politics
             .controls.span3
-              = up.input :politics, collection: show_odd_options(UserProfile::POLITICS), as: :radio_buttons, label: false
+              = up.input :politics, collection: show_odd_options(POLITICS), as: :radio_buttons, label: false
             .controls.span3
-              = up.input :politics, collection: show_even_options(UserProfile::POLITICS), as: :radio_buttons, label: false
+              = up.input :politics, collection: show_even_options(POLITICS), as: :radio_buttons, label: false
 
     .row
       .span9.offset1.border-bottom
@@ -87,9 +98,9 @@
           .control-group
             %p.pull-left.detail-class Books & Reading
             .controls.span3
-              = up.input :reading, collection: show_odd_options(UserProfile::BOOKS_READING), as: :radio_buttons, label: false
+              = up.input :reading, collection: show_odd_options(BOOKS_READING), as: :radio_buttons, label: false
             .controls.span3
-              = up.input :reading, collection: show_even_options(UserProfile::BOOKS_READING), as: :radio_buttons, label: false
+              = up.input :reading, collection: show_even_options(BOOKS_READING), as: :radio_buttons, label: false
 
     .row
       .span9.offset1.border-bottom
@@ -97,9 +108,9 @@
           .control-group
             %p.pull-left.detail-class Nightlife
             .controls.span3
-              = up.input :nightlife, collection: show_odd_options(UserProfile::NIGHTLIFE), as: :check_boxes, label: false
+              = up.input :nightlife, collection: show_odd_options(NIGHTLIFE), as: :check_boxes, label: false
             .controls.span3
-              = up.input :nightlife, collection: show_even_options(UserProfile::NIGHTLIFE), as: :check_boxes, label: false
+              = up.input :nightlife, collection: show_even_options(NIGHTLIFE), as: :check_boxes, label: false
 
     .row
       .span9.offset1.border-bottom
@@ -107,9 +118,9 @@
           .control-group
             %p.pull-left.detail-class Travel
             .controls.span3
-              = up.input :travel, collection: show_odd_options(UserProfile::TRAVEL), as: :radio_buttons, label: false
+              = up.input :travel, collection: show_odd_options(TRAVEL), as: :radio_buttons, label: false
             .controls.span3
-              = up.input :travel, collection: show_even_options(UserProfile::TRAVEL), as: :radio_buttons, label: false
+              = up.input :travel, collection: show_even_options(TRAVEL), as: :radio_buttons, label: false
 
     .row
       .span9.offset1.border-bottom
@@ -117,9 +128,9 @@
           .control-group
             %p.pull-left.detail-class Career
             .controls.span3
-              = up.input :career, collection: show_odd_options(UserProfile::CAREER), as: :radio_buttons, label: false
+              = up.input :career, collection: show_odd_options(CAREER), as: :radio_buttons, label: false
             .controls.span3
-              = up.input :career, collection: show_even_options(UserProfile::CAREER), as: :radio_buttons, label: false
+              = up.input :career, collection: show_even_options(CAREER), as: :radio_buttons, label: false
 
     .row
       .span10

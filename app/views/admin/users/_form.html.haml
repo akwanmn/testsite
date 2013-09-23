@@ -44,19 +44,19 @@
       Profile & Search Details
     = f.simple_fields_for :user_profile do |up|
       .span4
-        = up.input :gender, collection: UserProfile::GENDERS, prompt: 'Choose Gender'
+        = up.input :gender, collection: GENDERS, prompt: 'Choose Gender'
         = up.input :min_age
         = up.input :selected_birthday, as: :datepicker, input_html: {value: (@user.user_profile.birthday.present? ? l(@user.user_profile.birthday) : ''), class: 'input-medium'}
         = up.input :birthday, as: :hidden
-        = up.input :ethnicity, collection: UserProfile::ETHNICITY, prompt: 'Choose Ethnicity', include_blank: true
-        = up.input :education, collection: UserProfile::EDUCATION, prompt: 'Choose Education', include_blank: true
+        = up.input :ethnicity, collection: ETHNICITY, prompt: 'Choose Ethnicity', include_blank: true
+        = up.input :education, collection: EDUCATION, prompt: 'Choose Education', include_blank: true
       .span4
-        = up.input :seeking, collection: UserProfile::GENDERS, prompt: 'Choose Gender'
+        = up.input :seeking, collection: GENDERS, prompt: 'Choose Gender'
         = up.input :max_age
         = up.input :occupation
-        = up.input :religion, collection: UserProfile::RELIGIONS, prompt: 'Choose Religion', include_blank: true
-        = up.input :search_radius, collection: UserProfile::DISTANCES, prompt: 'Choose Distance', input_html: {tabindex: 20}
-        = up.input :distance_type, collection: UserProfile::DISTANCE_TYPES.map {|c| [c[:name], c[:value]]}, prompt: 'Choose Distance', input_html: {tabindex: 20}
+        = up.input :religion, collection: RELIGIONS, prompt: 'Choose Religion', include_blank: true
+        = up.input :search_radius, collection: DISTANCES, prompt: 'Choose Distance', input_html: {tabindex: 20}
+        = up.input :distance_type, collection: DISTANCE_TYPES.map {|c| [c[:name], c[:value]]}, prompt: 'Choose Distance', input_html: {tabindex: 20}
   .row{style: 'margin-top: -20px'}
     .span10
       = f.simple_fields_for :user_profile do |up|
@@ -64,7 +64,7 @@
   .row{style: 'margin-top: -20px'}
     .span10
       = f.simple_fields_for :user_profile do |up|
-        = up.input :likes, input_html: {class: 'chzn-select span7', multiple: true}, collection: UserProfile::LIKES
+        = up.input :likes, input_html: {class: 'chzn-select span7', multiple: true}, collection: LIKES
   .row
     .span6.offset3
       = f.button :submit, class: 'btn btn-primary'

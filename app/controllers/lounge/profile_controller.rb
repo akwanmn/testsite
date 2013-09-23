@@ -2,11 +2,11 @@ class Lounge::ProfileController < ApplicationController
   before_filter :set_current_user
   load_and_authorize_resource :user, parent: true
 
-  def edit
-  end
+  # def edit
+  # end
 
-  def advanced
-  end
+  # def advanced
+  # end
 
   def myaccount
     render text: 'My Account Page'
@@ -23,25 +23,6 @@ class Lounge::ProfileController < ApplicationController
         format.html { flash[:error] = 'There were validation errors'; render action: :edit }
       end
     end
-
-    # respond_to do |format|
-    #   Rails.logger.debug "*" * 100
-    #   Rails.logger.debug result.inspect
-    #   Rails.logger.debug "*" * 100
-
-    #   if result
-    #     format.html { redirect_to modify_lounge_profile_index_path, notice: "#{@user.full_name} was successfully updated."}
-    #   else
-    #     render action: :edit
-    #   end
-    # end
-    # respond_to do |format|
-    #   if params[:user][:password].blank?
-    #     result = @user.update_without_password(user_params)
-    #   else
-    #     result = @user.update_attributes!(user_params)
-    #   end
-    # end
   end
 
   def show
