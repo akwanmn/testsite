@@ -125,9 +125,9 @@ class UserProfile
 
   # cleans up empty items which is silly to have
   def clean_up_arrays
-    self.likes.reject! {|l| l.empty? }
-    self.outdoor_activities.reject! {|l| l.empty? }
-    self.nightlife.reject! {|l| l.empty? }
+    self.likes.reject! {|l| l.empty? } if self.likes
+    self.outdoor_activities.reject! {|l| l.empty? } if self.outdoor_activities
+    self.nightlife.reject! {|l| l.empty? } if self.nightlife
   end
 
   def latitude
