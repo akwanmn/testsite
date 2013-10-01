@@ -28,6 +28,7 @@ en:
         address_zip: 'Postal Code'
         address_country: 'Country'
         distance_type: 'Miles/Kilometers'
+        receive_emails: 'Receive Emails?'
 
   date:
     formats:

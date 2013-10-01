@@ -6,12 +6,20 @@
         = up.input :first_name, input_html: {class: 'input-large', tabindex: 2}
         = up.input :address_city, input_html: {class: 'input-large', tabindex: 4}
         = up.input :address_zip, input_html: {class: 'input-large', tabindex: 6}
-        = f.input :password, input_html: {tabindex: 8}, class: 'hide'
+        = up.input :receive_emails, as: :boolean
       .span5
         = f.input :email, input_html: {class: 'input-large', tabindex: 1}
         = up.input :last_name, input_html: {class: 'input-large', tabindex: 3}
         = up.input :address_state, input_html: {class: 'input-large', tabindex: 5}
         = up.input :address_country, as: :select, collection: Carmen::Country.all.map {|c| [c.name, c.code]}, priority: ['United States'], input_html: {tabindex: 7}
-        = f.input :password_confirmation, input_html: {tabindex: 9}
         = up.input :timezone, collection: sorted_timezones, prompt: 'Choose Timezone', include_blank: true, input_html: {tabindex: 10}
+
+    .row
+      .span5.passwords{style: 'display: none'}
+        = f.input :password, input_html: {tabindex: 8}
+        = f.input :password_confirmation, input_html: {tabindex: 9}
+      .span9.offset1
+        = link_to 'Change Password', '', class: 'btn show-password'
+        = link_to 'Cancel Account', '#', class: 'btn btn-danger'
         = f.button :submit, class: 'btn btn-warning pull-right', value: 'Save Account Details'
+

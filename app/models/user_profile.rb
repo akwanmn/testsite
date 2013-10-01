@@ -26,6 +26,7 @@ class UserProfile
   field :timezone,          type: String, default: 'UTC'
   field :total_views,       type: Integer
   field :distance_type,     type: String, default: 'mi'
+  field :receive_emails,    type: Boolean, default: true
 
   # more detailed options
   field :marital_status,      type: Integer, default: 0

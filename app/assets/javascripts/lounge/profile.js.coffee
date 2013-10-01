@@ -47,3 +47,6 @@ $ ->
     e.preventDefault()
     $(this).parent().parent().parent().remove()
 
+  $('a.show-password').click (e) ->
+    e.preventDefault()
+    $('.passwords').toggle()
