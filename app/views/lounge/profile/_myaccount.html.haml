@@ -20,6 +20,6 @@
         = f.input :password_confirmation, input_html: {tabindex: 9}
       .span9.offset1
         = link_to 'Change Password', '', class: 'btn show-password'
-        = link_to 'Cancel Account', '#', class: 'btn btn-danger'
+        = link_to 'Cancel Account', disable_lounge_profile_index_path, class: 'btn btn-danger', confirm: "Are you sure you want to cancel your account?"
         = f.button :submit, class: 'btn btn-warning pull-right', value: 'Save Account Details'
 

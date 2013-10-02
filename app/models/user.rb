@@ -77,7 +77,7 @@ class User
     state :suspended
 
     event :make_paid do
-      transitions to: :paid, from: [:free, :charter]
+      transitions to: :paid, from: [:free, :charter, :suspended]
     end
 
     event :make_charter do

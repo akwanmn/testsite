@@ -50,6 +50,7 @@ Phoenix::Application.routes.draw do
         get 'modify' => 'profile#edit'
         get 'advanced_details' => 'profile#advanced'
         put 'update-account' => 'profile#myaccount', as: 'update_account'
+        get :disable
       end
     end
     resources :user, except: [:index, :new, :create, :edit, :update, :delete] do

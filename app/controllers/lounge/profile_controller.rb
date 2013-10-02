@@ -19,6 +19,13 @@ class Lounge::ProfileController < ApplicationController
     end
   end
 
+  def disable
+    @user.suspend!
+    respond_to do |format|
+      format.html { flash[:alert] = "#{@user.full_name} your account has been cancelled."; redirect_to root_path }
+    end
+  end
+
   #
   def photos
     @hash_tag = 'photos'
