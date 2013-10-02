@@ -4,9 +4,17 @@ class Lounge::ProfileController < ApplicationController
 
   def myaccount
     @user.user_profile.skip_validation = true
-    @user.update_without_password(user_params)
+    if params[:user][:password].blank?
+      result = @user.update_without_password(user_params)
+    else
+      result = @user.update_attributes(user_params)
+    end
     respond_to do |format|
-      format.html { redirect_to modify_lounge_profile_index_path(anchor: 'account'), notice: "Account successfully updated." }
+      if result
+        format.html { redirect_to modify_lounge_profile_index_path(anchor: 'account'), notice: "Account successfully updated." }
+      else
+        format.html { flash[:error] = 'There were validation errors.'; redirect_to modify_lounge_profile_index_path(anchor: 'account')}
+      end
     end
   end
 
