@@ -2,6 +2,8 @@ class UserProfile
   include Mongoid::Document
 
   embedded_in :user
+  attr_accessor :skip_validation # used for the myaccount tab, for certain fields
+
 
   field :first_name,        type: String
   field :last_name,         type: String
@@ -49,30 +51,37 @@ class UserProfile
   validates :gender,
     inclusion: {in: GENDERS, message: 'needs a gender'},
     presence: true,
-    on: :update
+    on: :update,
+    if: :perform_validation?
   validates :seeking,
     inclusion: {in: GENDERS, message: 'needs a gender'},
     presence: true,
-    on: :update
+    on: :update,
+    if: :perform_validation?
   validates :min_age,
     numericality: {greater_than_or_equal_to: 18, message: 'must be greater than 18'},
     presence: true,
-    on: :update
+    on: :update,
+    if: :perform_validation?
   validates :max_age,
     numericality: {greater_than: 19, less_than_or_equal_to: 110, message: 'must be between 19 and 110'},
     presence: true,
-    on: :update
+    on: :update,
+    if: :perform_validation?
   validates :birthday,
     presence: true,
-    on: :update
+    on: :update,
+    if: :perform_validation?
   validates :biography,
     presence: true,
-    on: :update
-  validate :check_age, on: :update
+    on: :update,
+    if: :perform_validation?
+  validate :check_age, on: :update, if: :perform_validation?
   validates :search_radius,
     numericality: {greater_than: 0, less_than_or_equal_to: 5000, message: 'must be between 0 and 4000'},
     presence: true,
-    on: :update
+    on: :update,
+    if: :perform_validation?
 
   validates :address_street, presence: true, on: :create # needed for billing / paypal
 
@@ -96,6 +105,11 @@ class UserProfile
     return "-" if birthday.blank?
     now  = Time.now.utc.to_date
     now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
+  end
+
+  # used to skip validations when skip_validation attribute is set
+  def perform_validation?
+    self.skip_validation == true ? false : true
   end
 
   # Calculate the percentage complete of the profile, maybe even send emails

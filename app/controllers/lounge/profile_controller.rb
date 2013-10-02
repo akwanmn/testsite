@@ -3,7 +3,11 @@ class Lounge::ProfileController < ApplicationController
   load_and_authorize_resource :user, parent: true
 
   def myaccount
-    render text: 'My Account Page'
+    @user.user_profile.skip_validation = true
+    @user.update_without_password(user_params)
+    respond_to do |format|
+      format.html { redirect_to modify_lounge_profile_index_path(anchor: 'account'), notice: "Account successfully updated." }
+    end
   end
 
   # updates details about you.
@@ -26,7 +30,6 @@ class Lounge::ProfileController < ApplicationController
     end
   end
 
-  #
   def photos
     @hash_tag = 'photos'
     render action: :edit
@@ -47,7 +50,7 @@ class Lounge::ProfileController < ApplicationController
       :birthday, :first_name, :last_name, :address_zip, :address_country,
       :address_city, :address_state, :gender, :seeking, :min_age, :max_age,
       :address_street, :biography, :occupation, :education, :ethnicity, :religion,
-      :search_radius, :distance_type, :timezone, :marital_status, :health_fitness, :children,
+      :search_radius, :distance_type, :timezone, :marital_status, :health_fitness, :children, :receive_emails,
       :drinking, :smoking, :eating, :politics, :reading, :travel, :career, {:nightlife => []}, {:outdoor_activities => []}, {:likes => []}
     ])
   end
