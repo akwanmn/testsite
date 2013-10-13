@@ -50,7 +50,7 @@ describe Lounge::HomeController do
         post :signup, user: valid_attributes
       end
 
-      it { should redirect_to lounge_dashboard_index_path }
+      it { should redirect_to match_criteria_lounge_profile_index_path }
     end
 
     describe 'with invalid attributes' do

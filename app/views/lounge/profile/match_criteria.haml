@@ -1,0 +1,24 @@
+= stylesheet_link_tag 'lounge', 'lounge/profile'
+= render 'lounge/shared/messages'
+
+.row
+  .span11
+    %p.completion Profile Completion Percentage (#{current_user.user_profile.percent_complete}%)
+    .progress.progress-warning.progress-striped
+      .profile-progress.bar{style: "width: #{current_user.user_profile.percent_complete}%"}
+
+.row
+  .span11
+    %label Looking For
+    = select_tag 'looking_for', options_for_select(GENDERS, @seeking), prompt: 'Choose Gender'
+    %label Ages
+    = text_field_tag :min_age, @min_age ||= '21', class: 'input-mini'
+    = " - "
+    = text_field_tag :max_age, @max_age ||= '50', :class => 'input-mini'
+    %h5 Likes
+    - LIKES.each do |l|
+      %label.checkbox
+        = check_box_tag 'likes[]', l, (@likes.blank? ? nil : @likes.include?(l.to_s))
+        = l
+    %br/
+    = submit_tag 'Next', class: 'btn btn-purple'

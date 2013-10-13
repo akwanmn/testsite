@@ -49,6 +49,7 @@ Phoenix::Application.routes.draw do
       collection do
         get 'modify' => 'profile#edit'
         get 'advanced_details' => 'profile#advanced'
+        get 'match_criteria' => 'profile#match_criteria'
         put 'update-account' => 'profile#myaccount', as: 'update_account'
         get :disable
       end
