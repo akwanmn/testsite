@@ -60,5 +60,15 @@ describe Lounge::HomeController do
 
       it { should render_template 'index' }
     end
+
+    describe 'with a failing order' do
+      before do
+        ActiveMerchant::Billing::Response.any_instance.should_receive(:success?) { false }
+        Order.any_instance.should_receive(:finalize_transaction).with('decline')
+        post :signup, user: valid_attributes
+      end
+
+      it { should render_template :index }
+    end
   end
 end
