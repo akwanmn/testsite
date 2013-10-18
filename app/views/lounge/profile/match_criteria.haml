@@ -9,16 +9,31 @@
 
 .row
   .span11
-    %label Looking For
-    = select_tag 'looking_for', options_for_select(GENDERS, @seeking), prompt: 'Choose Gender'
-    %label Ages
-    = text_field_tag :min_age, @min_age ||= '21', class: 'input-mini'
-    = " - "
-    = text_field_tag :max_age, @max_age ||= '50', :class => 'input-mini'
-    %h5 Likes
-    - LIKES.each do |l|
-      %label.checkbox
-        = check_box_tag 'likes[]', l, (@likes.blank? ? nil : @likes.include?(l.to_s))
-        = l
-    %br/
-    = submit_tag 'Next', class: 'btn btn-purple'
+    %form.form-horizontal
+      .control-group
+        %label.control-label I'm looking for a
+        .controls
+          = select_tag 'looking_for', options_for_select(GENDERS, @seeking), prompt: 'Choose Gender', html_options: { class: 'inline' }
+      .control-group
+        %label.control-label Between the ages of
+        .controls
+          = text_field_tag :min_age, @min_age ||= '21', class: 'input-mini'
+          = " to "
+          = text_field_tag :max_age, @max_age ||= '50', :class => 'input-mini'
+      %h5 You will be matched on these selections (the more you select the better chance you have of finding a match)
+      - LIKES.each_slice(2) do |first_like, second_like|
+        .controls.controls-row
+          %label.checkbox.span3.pull-left
+            = check_box_tag 'likes[]', first_like, first_like.in?(@likes.to_a)
+            = first_like
+          %label.checkbox.span3
+            = check_box_tag 'likes[]', second_like, second_like.in?(@likes.to_a)
+            = second_like
+      %br/
+      .control-group
+        %label.control-label{for: 'search_radius'} Search radius in miles
+        .controls
+          = text_field_tag :search_radius, @search_radius
+
+      %br/
+      = submit_tag 'Next', class: 'btn btn-purple'
