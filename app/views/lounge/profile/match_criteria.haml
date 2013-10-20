@@ -23,7 +23,7 @@
       %h5 You will be matched on these selections (the more you select the better chance you have of finding a match)
       - LIKES.each_slice(2) do |first_like, second_like|
         .controls.controls-row
-          %label.checkbox.span3.pull-left
+          %label.checkbox.span3
             = check_box_tag 'likes[]', first_like, first_like.in?(@likes.to_a)
             = first_like
           %label.checkbox.span3
