@@ -9,31 +9,31 @@
 
 .row
   .span11
-    %form.form-horizontal
+    = form_for @profile, :url => update_match_criteria_lounge_profile_index_path, html: { class: 'form form-horizontal' } do |f|
       .control-group
         %label.control-label I'm looking for a
         .controls
-          = select_tag 'looking_for', options_for_select(GENDERS, @seeking), prompt: 'Choose Gender', html_options: { class: 'inline' }
+          = f.select :seeking, options_for_select(GENDERS), prompt: 'Choose Gender', html_options: { class: 'inline' }
       .control-group
         %label.control-label Between the ages of
         .controls
-          = text_field_tag :min_age, @min_age ||= '21', class: 'input-mini'
+          = f.text_field :min_age, value: '21', class: 'input-mini'
           = " to "
-          = text_field_tag :max_age, @max_age ||= '50', :class => 'input-mini'
+          = f.text_field :max_age, value: '50', :class => 'input-mini'
       %h5 You will be matched on these selections (the more you select the better chance you have of finding a match)
       - LIKES.each_slice(2) do |first_like, second_like|
         .controls.controls-row
           %label.checkbox.span3
-            = check_box_tag 'likes[]', first_like, first_like.in?(@likes.to_a)
+            = check_box_tag 'likes[]', first_like
             = first_like
           %label.checkbox.span3
-            = check_box_tag 'likes[]', second_like, second_like.in?(@likes.to_a)
+            = check_box_tag 'likes[]', second_like
             = second_like
       %br/
       .control-group
         %label.control-label{for: 'search_radius'} Search radius in miles
         .controls
-          = text_field_tag :search_radius, @search_radius
+          = f.text_field :search_radius
 
       %br/
-      = submit_tag 'Next', class: 'btn btn-purple'
+      = f.submit 'Next', class: 'btn btn-purple'

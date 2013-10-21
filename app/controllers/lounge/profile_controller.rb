@@ -3,7 +3,15 @@ class Lounge::ProfileController < ApplicationController
   load_and_authorize_resource :user, parent: true
 
   def match_criteria
+    @profile = @user.user_profile
+  end
 
+  def update_match_criteria
+    @profile = @user.user_profile
+    @profile.skip_validation = true
+    @profile.likes = params[:likes]
+    @profile.update(params[:user_profile])
+    redirect_to lounge_dashboard_index_path
   end
 
   def myaccount
