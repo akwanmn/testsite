@@ -75,17 +75,30 @@ div.user_user_profile_birthday.hidden {
   display: none;
 }
 
+.like {
+  font-size: 14px;
+}
+
+.more-details {
+  margin-top: 20px;
+}
+
 .profile-data {
   font-family: $clean_font, sans-serif;
   .biography {
-    margin-top: 20px;
+    margin-top: 10px;
   }
   .bold {
     font-weight: bold;
   }
   .message-link {
-    margin-left: 20px;
-    margin-top: 5px;
+    margin-left: 15px;
+    margin-top: 15px;
+  }
+  .info {
+    .like-list {
+      margin-top: 20px;
+    }
   }
 }
 
@@ -97,6 +110,7 @@ p.completion {
   font-size: 14px;
   font-family: $clean_font, sans-serif;
 }
+
 
 .nav-tabs {
   li {

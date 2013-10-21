@@ -108,10 +108,10 @@ OUTDOOR_ACTIVITIES = [
 ]
 
 HEALTH_FITNESS = [
-  ["Don't Exercise", 1],
-  ["Exercise 1-2 times a week.", 2],
-  ["Exercise 3-5 times a week.", 3],
-  ["I would rather not say.", 0]
+  ["Don't Exercise", '1'],
+  ["Exercise 1-2 times a week.", '2'],
+  ["Exercise 3-5 times a week.", '3'],
+  ["I would rather not say.", '0']
 ]
 
 CHILDREN = [
@@ -133,9 +133,9 @@ DRINKING = [
 SMOKING = [
   ["I don't smoke.", "1"],
   ["I smoke cigarettes occassionally.", "2"],
-  ["I smoke cigars occassionally.", 3],
-  ["I smoke cigarettes daily.", 4],
-  ["I smoke cigars daily.", 5],
+  ["I smoke cigars occassionally.", '3'],
+  ["I smoke cigarettes daily.", '4'],
+  ["I smoke cigars daily.", '5'],
   ["I would rather not say.", "0"]
 ]
 
@@ -143,18 +143,18 @@ EATING = [
   ["I eat healty.", "1"],
   ["I am a vegetarian/vegan", "2"],
   ["I am a junkfood junkie.", "3"],
-  ["I am eat out mostly", "4"],
+  ["I a eat out mostly", "4"],
   ["I would rather not say.", "0"]
 ]
 
 POLITICS = [
-  ["I am conservative.", 1],
-  ["I am liberal.", 2],
-  ["I am somewhat conservative.", 3],
-  ["I am somewhat liberal.", 4],
-  ["I am green.", 5],
-  ["I am independent.", 6],
-  ["I am not political.", 7],
+  ["I am conservative.", '1'],
+  ["I am liberal.", '2'],
+  ["I am somewhat conservative.", '3'],
+  ["I am somewhat liberal.", '4'],
+  ["I am green.", '5'],
+  ["I am independent.", '6'],
+  ["I am not political.", '7'],
   ["I would rather not say.", "0"]
 ]
 
