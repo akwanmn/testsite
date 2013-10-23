@@ -31,24 +31,30 @@
             %i.icon-envelope.icon-white
             = " Message"
       .more-details
-        .info
-          %span.bold Country:
-          #{@user.user_profile.address_country}
-        .info
-          %span.bold Ethnicity:
-          #{@user.user_profile.ethnicity}
-        .info
-          %span.bold Education:
-          #{@user.user_profile.education}
-        .info
-          %span.bold State:
-          #{@user.user_profile.address_state}
-        .info
-          %span.bold Occupation:
-          #{@user.user_profile.occupation}
-        .info
-          %span.bold Religion:
-          #{@user.user_profile.religion}
+        - if @user.user_profile.address_country.present?
+          .info
+            %span.bold Country:
+            %span.answer #{@user.user_profile.address_country}
+        - if @user.user_profile.ethnicity.present?
+          .info
+            %span.bold Ethnicity:
+            %span.answer #{@user.user_profile.ethnicity}
+        - if @user.user_profile.education.present?
+          .info
+            %span.bold Education:
+            %span.answer #{@user.user_profile.education}
+        - if @user.user_profile.address_state.present?
+          .info
+            %span.bold State:
+            %span.answer #{@user.user_profile.address_state}
+        - if @user.user_profile.occupation.present?
+          .info
+            %span.bold Occupation:
+            %span.answer #{@user.user_profile.occupation}
+        - if @user.user_profile.religion.present?
+          .info
+            %span.bold Religion:
+            %span.answer #{@user.user_profile.religion}
 
     .span2
       .info
@@ -62,19 +68,30 @@
     .span8
       .row.profile-data
         .span4
-          .bold Marital Status: #{marital_status(@user.user_profile)}
-          .bold Children: #{children(@user.user_profile)}
-          .bold Smoking: #{smoking(@user.user_profile)}
-          .bold Politics: #{politics(@user.user_profile)}
+          .bold Marital Status: 
+          .answer #{marital_status(@user.user_profile)}
+          .bold Children: 
+          .answer #{children(@user.user_profile)}
+          .bold Smoking: 
+          .answer #{smoking(@user.user_profile)}
+          .bold Politics: 
+          .answer #{politics(@user.user_profile)}
           .bold Nightlife:
-          .bold Travel: #{travel(@user.user_profile)} 
+          .bold Travel: 
+          .answer #{travel(@user.user_profile)} 
         .span4
-          .bold Health & Fitness: #{fitness_status(@user.user_profile)}
+          .bold Health & Fitness: 
+          .answer #{fitness_status(@user.user_profile)}
           .bold Outdoor Acitivies: 
-          .bold Drinking: #{drinking(@user.user_profile)}
-          .bold Eating: #{eating(@user.user_profile)}
-          .bold Reading: #{reading(@user.user_profile)}
-          .bold Career: #{career(@user.user_profile)}
+          .bold Drinking: 
+          .answer #{drinking(@user.user_profile)}
+          .bold Eating: 
+          .answer #{eating(@user.user_profile)}
+          .bold Reading: 
+          .answer #{reading(@user.user_profile)}
+          .bold Career: 
+          .answer #{career(@user.user_profile)}
+      %h5.underline Biography
       .biography #{simple_format(@user.user_profile.biography)}
 
   -#   .span3
