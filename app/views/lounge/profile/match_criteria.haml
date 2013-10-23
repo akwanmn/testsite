@@ -1,0 +1,39 @@
+= stylesheet_link_tag 'lounge', 'lounge/profile'
+= render 'lounge/shared/messages'
+
+.row
+  .span11
+    %p.completion Profile Completion Percentage (#{current_user.user_profile.percent_complete}%)
+    .progress.progress-warning.progress-striped
+      .profile-progress.bar{style: "width: #{current_user.user_profile.percent_complete}%"}
+
+.row
+  .span11
+    = form_for @profile, :url => update_match_criteria_lounge_profile_index_path, html: { class: 'form form-horizontal' } do |f|
+      .control-group
+        %label.control-label I'm looking for a
+        .controls
+          = f.select :seeking, options_for_select(GENDERS), prompt: 'Choose Gender', html_options: { class: 'inline' }
+      .control-group
+        %label.control-label Between the ages of
+        .controls
+          = f.text_field :min_age, value: '21', class: 'input-mini'
+          = " to "
+          = f.text_field :max_age, value: '50', :class => 'input-mini'
+      %h5 You will be matched on these selections (the more you select the better chance you have of finding a match)
+      - LIKES.each_slice(2) do |first_like, second_like|
+        .controls.controls-row
+          %label.checkbox.span3
+            = check_box_tag 'likes[]', first_like
+            = first_like
+          %label.checkbox.span3
+            = check_box_tag 'likes[]', second_like
+            = second_like
+      %br/
+      .control-group
+        %label.control-label{for: 'search_radius'} Search radius in miles
+        .controls
+          = f.text_field :search_radius
+
+      %br/
+      = f.submit 'Next', class: 'btn btn-purple'

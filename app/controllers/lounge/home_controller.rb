@@ -31,7 +31,7 @@ class Lounge::HomeController < ApplicationController
           @order.user = @user
           @order.finalize_transaction
           sign_in @user, bypass: true
-          redirect_to lounge_dashboard_index_path and return
+          redirect_to [:match_criteria, :lounge, :profile, :index] and return
         else
           format.html { flash[:error] = "#{@order.purchase_response.message}"; render 'index', layout: false }
           # failed transaction
