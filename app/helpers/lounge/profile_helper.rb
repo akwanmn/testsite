@@ -31,7 +31,19 @@ module Lounge::ProfileHelper
   end
 
   def nightlife(user_profile)
-    find_option NIGHTLIFE, user_profile.nightlife
+    items = []
+    NIGHTLIFE.each do |nl|
+      items << nl[0] if user_profile.nightlife.include?(nl[1])
+    end
+    items
+  end
+
+  def outdoor_activities(user_profile)
+    items = []
+    OUTDOOR_ACTIVITIES.each do |nl|
+      items << nl[0] if user_profile.outdoor_activities.include?(nl[1])
+    end
+    items
   end
 
   def drinking(user_profile)

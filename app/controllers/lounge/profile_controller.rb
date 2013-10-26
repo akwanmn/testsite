@@ -58,6 +58,7 @@ class Lounge::ProfileController < ApplicationController
   def show
     @message = Message.new
     @user = User.where(nickname: params[:id].to_s).first
+    @random_image = @user.random_profile_image
   end
 
   def set_current_user

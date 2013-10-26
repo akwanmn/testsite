@@ -1,19 +1,24 @@
 = stylesheet_link_tag 'lounge','lounge/profile'
+
+- unless @user.blank?
+  #messageModal.modal.hide.fade{role: 'dialog', tabindex: -1, 'aria-labelledby' => 'messageLabel', 'aria-hidden' => true}
+    .modal-header
+      %button{type: 'button', class: 'close', 'data-dismiss' => 'modal', 'aria-hidden' => true} x
+      %h3 Send a message to #{@user.nickname}
+    .modal-body
+      = simple_form_for [:lounge, @message], url: ping_lounge_messages_path, html: {class: 'form-vertical'}, remote: true do |f|
+        = f.input :subject, input_html: {value: (@message.subject rescue '')}
+        = f.input :body, as: :text, label: false, input_html: {style: 'width: 80%', rows: 5}
+        = f.input :to, as: :hidden, input_html: {value: @user.id}
+        = f.submit :submit, value: 'Send', class: 'btn btn-purple'
+        %button.btn.btn-warning{'data-dismiss' => 'modal', 'aria-hidden' => true} Cancel
+
 = render 'lounge/shared/messages'
 - if @user.blank?
   .row
     .span10
       %h2 Sorry no user profile found.
 - else
-  .reply.keep-me{style: 'display: none;'}
-    .row
-      .span12{style: 'margin-top: 20px'}
-        = simple_form_for [:lounge, @message], url: ping_lounge_messages_path, html: {class: 'form-vertical'}, remote: true do |f|
-          = f.input :subject, input_html: {value: (@message.subject rescue '')}
-          = f.input :body, as: :text, label: false, input_html: {style: 'width: 80%', rows: 5}
-          = f.input :to, as: :hidden, input_html: {value: @user.id}
-          = f.submit :submit, value: 'Send', class: 'btn btn-purple'
-          = link_to 'Cancel', '', class: 'btn btn-warning cancel-reply'
   .row
     .span10
       %h4.big-shadow Meet #{@user.nickname}
@@ -23,13 +28,14 @@
         = link_to '/assets/lounge/default-avatar.jpg', class: 'thumbnail profile-image' do
           %img{src: '/assets/lounge/default-avatar.jpg', width: '130px', height: '109px'}
       - else
-        = link_to "#{@user.random_profile_image.url}", class: 'thumbnail profile-image' do
-          %img{src: "#{@user.random_profile_image.thumb.url}"}
+        = link_to "#{@random_image.url}", class: 'thumbnail profile-image' do
+          %img{src: "#{@random_image.thumb.url}"}
       .message-link
-        .message
-          = link_to '#', class: 'btn btn-purple new-message' do
+        .message 
+          = link_to '#messageModal', class: 'btn btn-purple', 'data-toggle' => 'modal', role: 'button' do
             %i.icon-envelope.icon-white
-            = " Message"
+            = " Message "
+    
       .more-details
         - if @user.user_profile.address_country.present?
           .info
@@ -58,7 +64,7 @@
 
     .span2
       .info
-        %span.bold 
+        %span.bold.base-details
           #{@user.user_profile.age} / 
           #{@user.user_profile.gender}
         .like-list
@@ -77,12 +83,26 @@
           .bold Politics: 
           .answer #{politics(@user.user_profile)}
           .bold Nightlife:
+          .answer
+            - if nightlife(@user.user_profile).size > 0
+              %ul
+                - nightlife(@user.user_profile).each do |a|
+                  %li #{a}
+            - else
+              I would rather not say.
           .bold Travel: 
           .answer #{travel(@user.user_profile)} 
         .span4
           .bold Health & Fitness: 
           .answer #{fitness_status(@user.user_profile)}
           .bold Outdoor Acitivies: 
+          .answer
+            - if outdoor_activities(@user.user_profile).size > 0
+              %ul
+                - outdoor_activities(@user.user_profile).each do |a|
+                  %li #{a}
+            - else
+              I would rather not say.
           .bold Drinking: 
           .answer #{drinking(@user.user_profile)}
           .bold Eating: 
@@ -91,50 +111,15 @@
           .answer #{reading(@user.user_profile)}
           .bold Career: 
           .answer #{career(@user.user_profile)}
-      %h5.underline Biography
-      .biography #{simple_format(@user.user_profile.biography)}
-
-  -#   .span3
-  -#     .info
-  -#       %span.bold Age:
-  -#       #{@user.user_profile.age}
-  -#     .info
-  -#       %span.bold Country:
-  -#       #{@user.user_profile.address_country}
-  -#     .info
-  -#       %span.bold Ethnicity:
-  -#       #{@user.user_profile.ethnicity}
-  -#     .info
-  -#       %span.bold Education:
-  -#       #{@user.user_profile.education}
-  -#   .span3
-  -#     .info
-  -#       %span.bold State:
-  -#       #{@user.user_profile.address_state}
-  -#     .info
-  -#       %span.bold Occupation:
-  -#       #{@user.user_profile.occupation}
-  -#     .info
-  -#       %span.bold Religion:
-  -#       #{@user.user_profile.religion}
-  -#     .info
-  -#       %span.bold Likes:
-  -#       #{@user.user_profile.likes.join(', ')}
-
-  -#   .span2
-  -#     .message-link
-  -#       .message
-  -#         = link_to '#', class: 'btn btn-purple new-message' do
-  -#           %i.icon-envelope.icon-white
-  -#           = " Message"
-  -# .row.profile-data
-  -#   .span10
-  -#     .biography #{simple_format(@user.user_profile.biography)}
-
-  .row
-    .span10
-      #photos
-        %ul.thumbnails
-          - @user.photos.each do |photo|
-            %li.span2{'class' => photo.id}
-              = link_to image_tag(photo.photo_file.thumb.url, class: 'img-polaroid'), photo.photo_file.url, class: 'profile-image', 'data-profile' => photo.user.nickname
+      - if @user.user_profile.biography.present?
+        %h5.underline Biography
+        .biography #{simple_format(@user.user_profile.biography)}
+  - if @user.photos.size > 0
+    .row
+      .span12
+        %h5.underline Photos
+        #photos
+          %ul.thumbnails
+            - @user.photos.each do |photo|
+              %li.span2{'class' => photo.id}
+                = link_to image_tag(photo.photo_file.thumb.url, class: 'img-polaroid'), photo.photo_file.url, class: 'profile-image', 'data-profile' => photo.user.nickname

@@ -106,8 +106,15 @@ div.user_user_profile_birthday.hidden {
     display: block;
   }
   .info {
+    .base-details {
+      font-size: 20px;
+    }
     .like-list {
       margin-top: 20px;
+      background: rgb(255, 255, 255);
+      background: rgba(255, 255, 255, 0.4);
+      padding: 10px;
+      font-size: 13px;
     }
   }
 }

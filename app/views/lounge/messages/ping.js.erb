@@ -1,6 +1,5 @@
 <% if @error %>
   alert("Unable to send. Please make sure all fields are filled out.")
 <% else %>
-  alert('NO ERROR!')
-  $('form').last().parent().parent().hide().remove();
+  $('#messageModal').modal('toggle')
 <% end %>
