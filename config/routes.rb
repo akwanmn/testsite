@@ -21,6 +21,8 @@ Phoenix::Application.routes.draw do
         get :restore
         put :update_profile
         get :edit_profile
+        get :extended_profile
+        put :update_extended_profile
       end
       collection do
         get :search

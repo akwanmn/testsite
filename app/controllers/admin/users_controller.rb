@@ -1,6 +1,6 @@
 class Admin::UsersController < AdminController
   prepend_before_filter :find_suspended, only: [:restore]
-  before_filter :find_user, only: [:edit, :update, :disable]
+  before_filter :find_user, only: [:edit, :update, :disable, :edit_profile, :extended_profile]
   load_and_authorize_resource
 
   def index
@@ -31,7 +31,6 @@ class Admin::UsersController < AdminController
   end
 
   def edit_profile
-    @user = User.find(params[:id])
   end
 
   def update_profile
@@ -44,6 +43,10 @@ class Admin::UsersController < AdminController
         format.html { flash[:error] = 'There were validation errors.'; render action: 'edit_profile' }
       end
     end
+  end
+
+
+  def extended_profile
   end
 
   # we don't want to 'destroy' users so lets just disable them.

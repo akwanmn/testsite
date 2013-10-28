@@ -16,6 +16,8 @@
     = " | "
     %strong Sign In Count:
     = @user.sign_in_count
+    .pull-right
+      = link_to 'Extended Profile', extended_profile_admin_user_path(@user), class: 'btn'
 = simple_form_for [:admin,@user], html: {class: 'form-horizontal'} do |f|
   .row
     .span10.section-header
@@ -87,7 +89,6 @@
           %input{type: 'file', name: 'photos[photo_file]', multiple: 'multiple'}
 %script{id: 'template-upload', type: 'text/x-tmpl'}
   .upload
-    %p HELLO
     {%=o.name%}
     .progress
       .bar{style: 'width: 0%'}

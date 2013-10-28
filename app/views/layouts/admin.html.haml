@@ -33,28 +33,6 @@
                   Logged in as
                   = current_user.full_name.blank? ? current_user.email : current_user.full_name
               %li
-                %a{:href => "javascript:;"}
-                  %span.badge.badge-primary 1
-                  New Message
-              %li.dropdown
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "./pages/settings.html"}
-                  Settings
-                  %b.caret
-                %ul.dropdown-menu.pull-right
-                  %li
-                    %a{:href => "javascript:;"} Settings #1
-                  %li
-                    %a{:href => "javascript:;"} Settings #2
-                  %li.dropdown-submenu
-                    %a{:href => "#", :tabindex => "-1"} Dropdown menu
-                    %ul.dropdown-menu
-                      %li
-                        %a{:href => "#", :tabindex => "-1"} Second level link
-                      %li
-                        %a{:href => "#", :tabindex => "-1"} Second level link
-                      %li
-                        %a{:href => "#", :tabindex => "-1"} Second level link
-              %li
                 = link_to 'Logout', destroy_user_session_path
           / /#top-nav
         / /.container
