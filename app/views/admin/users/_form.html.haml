@@ -63,10 +63,6 @@
     .span10
       = f.simple_fields_for :user_profile do |up|
         = up.input :biography, as: 'text',input_html: {class: 'span7', rows: '6'}
-  .row{style: 'margin-top: -20px'}
-    .span10
-      = f.simple_fields_for :user_profile do |up|
-        = up.input :likes, input_html: {class: 'chzn-select span7', multiple: true}, collection: LIKES
   .row
     .span6.offset3
       = f.button :submit, class: 'btn btn-primary'

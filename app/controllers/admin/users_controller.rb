@@ -23,7 +23,7 @@ class Admin::UsersController < AdminController
         result = @user.update_attributes!(user_params)
       end
       if result
-        format.html { redirect_to admin_users_path, notice: "#{@user.full_name} was successfully updated."}
+        format.html { redirect_to edit_admin_user_path(@user), notice: "#{@user.full_name} was successfully updated."}
       else
         format.html { flash[:error] = 'There were validation errors.'; render action: 'edit'}
       end
@@ -35,7 +35,6 @@ class Admin::UsersController < AdminController
 
   def update_profile
     @user = User.find(params[:id])
-    Rails.logger.debug params
     respond_to do |format|
       if @user.user_profile.update_attributes(params[:user][:user_profile_attributes])
         format.html { redirect_to edit_profile_admin_user_path(@user), notice: 'Profile has been updated.'}
@@ -45,9 +44,6 @@ class Admin::UsersController < AdminController
     end
   end
 
-
-  def extended_profile
-  end
 
   # we don't want to 'destroy' users so lets just disable them.
   def disable
@@ -83,14 +79,16 @@ class Admin::UsersController < AdminController
           :birthday, :first_name, :last_name, :address_zip, :address_country,
           :address_city, :address_state, :gender, :seeking, :min_age, :max_age,
           :address_street, :biography, :occupation, :education, :ethnicity, :religion,
-          :search_radius, :timezone, :nickname, :distance_type, {:likes => []}
+          :search_radius, :timezone, :nickname, :distance_type, :marital_status, :health_fitness, :children, :receive_emails,
+      :drinking, :smoking, :eating, :politics, :reading, :travel, :career, {:nightlife => []}, {:outdoor_activities => []}, {:likes => []}
         ])
       else
         params.require(:user).permit(:email, user_profile_attributes: [
           :birthday, :first_name, :last_name, :address_zip, :address_country,
           :address_city, :address_state, :gender, :seeking, :min_age, :max_age,
           :address_street, :biography, :occupation, :education, :ethnicity, :religion,
-          :search_radius, :timezone, {:likes => []}
+          :search_radius, :timezone, :marital_status, :health_fitness, :children, :receive_emails,
+      :drinking, :smoking, :eating, :politics, :reading, :travel, :career, {:nightlife => []}, {:outdoor_activities => []}, {:likes => []}
         ])
       end
     end

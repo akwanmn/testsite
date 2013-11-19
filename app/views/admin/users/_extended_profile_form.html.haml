@@ -1,1 +1,113 @@
-%h2 Extended Profile
+%h2 Extended Profile for #{@user.nickname}
+= link_to 'Back to User', edit_admin_user_path(@user), class: 'btn btn-inverse'
+= simple_form_for [:admin, @user] do |f|
+  = f.simple_fields_for :user_profile do |up|
+    .row
+      .span10.section-header
+        Likes
+      .span5
+        = up.input :likes, collection: LIKES.values_at(* LIKES.each_index.select {|i| i.even?}), as: :check_boxes, label: false
+      .span5
+        = up.input :likes, collection: LIKES.values_at(* LIKES.each_index.select {|i| i.odd?}), as: :check_boxes, label: false
+
+    .row
+      .span10.section-header
+        Marital Status
+      .span5
+        = up.input :marital_status, collection: show_odd_options(MARITAL_STATUS), as: :radio_buttons, label: false
+      .span5
+        = up.input :marital_status, collection: show_even_options(MARITAL_STATUS), as: :radio_buttons, label: false
+
+    .row
+      .span10.section-header
+        Outdoor Activities
+      .span5
+        = up.input :outdoor_activities, collection: show_odd_options(OUTDOOR_ACTIVITIES), as: :check_boxes, label: false
+      .span5
+        = up.input :outdoor_activities, collection: show_even_options(OUTDOOR_ACTIVITIES), as: :check_boxes, label: false
+
+    .row
+      .span10.section-header
+        Health & Fitness
+      .span5
+        = up.input :health_fitness, collection: show_odd_options(HEALTH_FITNESS), as: :radio_buttons, label: false
+      .span5
+        = up.input :health_fitness, collection: show_even_options(HEALTH_FITNESS), as: :radio_buttons, label: false
+
+    .row
+      .span10.section-header
+        Children
+      .span5
+        = up.input :children, collection: show_odd_options(CHILDREN), as: :radio_buttons, label: false
+      .span5
+        = up.input :children, collection: show_even_options(CHILDREN), as: :radio_buttons, label: false
+
+    .row
+      .span10.section-header
+        Drinking
+      .span5
+        = up.input :drinking, collection: show_odd_options(DRINKING), as: :radio_buttons, label: false
+      .span5
+        = up.input :drinking, collection: show_even_options(DRINKING), as: :radio_buttons, label: false
+
+    .row
+      .span10.section-header
+        Smoking
+      .span5
+        = up.input :smoking, collection: show_odd_options(SMOKING), as: :radio_buttons, label: false
+      .span5
+        = up.input :smoking, collection: show_even_options(SMOKING), as: :radio_buttons, label: false
+
+    .row
+      .span10.section-header
+        Eating
+      .span5
+        = up.input :eating, collection: show_odd_options(EATING), as: :radio_buttons, label: false
+      .span5
+        = up.input :eating, collection: show_even_options(EATING), as: :radio_buttons, label: false
+
+
+    .row
+      .span10.section-header
+        Politics
+      .span5
+        = up.input :politics, collection: show_odd_options(POLITICS), as: :radio_buttons, label: false
+      .span5
+        = up.input :politics, collection: show_even_options(POLITICS), as: :radio_buttons, label: false
+
+    .row
+      .span10.section-header
+        Books & Reading
+      .span5
+        = up.input :reading, collection: show_odd_options(BOOKS_READING), as: :radio_buttons, label: false
+      .span5
+        = up.input :reading, collection: show_even_options(BOOKS_READING), as: :radio_buttons, label: false
+
+    .row
+      .span10.section-header
+        Nightlife
+      .span5
+        = up.input :nightlife, collection: show_odd_options(NIGHTLIFE), as: :check_boxes, label: false
+      .span5
+        = up.input :nightlife, collection: show_even_options(NIGHTLIFE), as: :check_boxes, label: false
+
+    .row
+      .span10.section-header
+        Travel
+      .span5
+        = up.input :travel, collection: show_odd_options(TRAVEL), as: :radio_buttons, label: false
+      .span5
+        = up.input :travel, collection: show_even_options(TRAVEL), as: :radio_buttons, label: false
+
+    .row
+      .span10.section-header
+        Career
+      .span5
+        = up.input :career, collection: show_odd_options(CAREER), as: :radio_buttons, label: false
+      .span5
+        = up.input :career, collection: show_even_options(CAREER), as: :radio_buttons, label: false
+
+    .row
+      .span10
+        %p.pull-left{style: 'padding-top: 10px'}
+          = f.submit :submit, value: 'Update Extended Profile', class: 'btn btn-warning'
