@@ -4,8 +4,7 @@ class Lounge::ProfileController < ApplicationController
 
   def match_criteria
     @profile = @user.user_profile
-    puts "*" * 50
-    p @profile
+    @profile
   end
 
   def update_match_criteria
