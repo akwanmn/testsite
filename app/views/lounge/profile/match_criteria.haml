@@ -9,17 +9,11 @@
 
 .row
   .span11
-    = form_for @profile, :url => update_match_criteria_lounge_profile_index_path, html: { class: 'form form-horizontal' } do |f|
-      .control-group
-        %label.control-label I'm looking for a
-        .controls
-          = f.select :seeking, options_for_select(GENDERS), prompt: 'Choose Gender', html_options: { class: 'inline' }
-      .control-group
-        %label.control-label Between the ages of
-        .controls
-          = f.text_field :min_age, value: '21', class: 'input-mini'
-          = " to "
-          = f.text_field :max_age, value: '50', :class => 'input-mini'
+    = simple_form_for @profile, :url => update_match_criteria_lounge_profile_index_path, html: { class: 'form form-horizontal' } do |f|
+      = f.input :gender, collection: GENDERS, prompt: 'Choose Gender'
+      = f.input :seeking, collection: GENDERS, prompt: 'Choose Gender'
+      = f.input :min_age, input_html: {tabindex: 13}
+      = f.input :max_age, input_html: {tabindex: 13}
       %h5 You will be matched on these selections (the more you select the better chance you have of finding a match)
       - LIKES.each_slice(2) do |first_like, second_like|
         .controls.controls-row

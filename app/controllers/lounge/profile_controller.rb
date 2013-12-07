@@ -4,17 +4,16 @@ class Lounge::ProfileController < ApplicationController
 
   def match_criteria
     @profile = @user.user_profile
+    puts "*" * 50
+    p @profile
   end
 
   def update_match_criteria
     @profile = @user.user_profile
     @profile.skip_validation = true
     @profile.likes = params[:likes]
-    puts "*" * 50
-    p params
     @profile.attributes = params[:user_profile]
-    p @profile
-    p @profile.save!
+    @profile.save!
     redirect_to lounge_dashboard_index_path
   end
 

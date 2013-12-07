@@ -29,6 +29,8 @@ en:
         address_country: 'Country'
         distance_type: 'Miles/Kilometers'
         receive_emails: 'Receive Emails?'
+        gender: 'Your Gender'
+        seeking: 'Looking For'
 
   date:
     formats:
